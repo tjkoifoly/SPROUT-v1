@@ -1,0 +1,508 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E43FAE7715CA0C4200CF628C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7615CA0C4200CF628C /* UIKit.framework */; };
+		E43FAE7915CA0C4200CF628C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7815CA0C4200CF628C /* Foundation.framework */; };
+		E43FAE7B15CA0C4200CF628C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7A15CA0C4200CF628C /* CoreGraphics.framework */; };
+		E43FAE7D15CA0C4200CF628C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7C15CA0C4200CF628C /* CoreData.framework */; };
+		E43FAE8315CA0C4200CF628C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E43FAE8115CA0C4200CF628C /* InfoPlist.strings */; };
+		E43FAE8515CA0C4200CF628C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E43FAE8415CA0C4200CF628C /* main.m */; };
+		E43FAE8915CA0C4300CF628C /* CNCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E43FAE8815CA0C4300CF628C /* CNCAppDelegate.m */; };
+		E43FAE8C15CA0C4300CF628C /* SPROUT_Prj.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E43FAE8A15CA0C4300CF628C /* SPROUT_Prj.xcdatamodeld */; };
+		E43FAE9415CA0C4300CF628C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE9315CA0C4300CF628C /* SenTestingKit.framework */; };
+		E43FAE9515CA0C4300CF628C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7615CA0C4200CF628C /* UIKit.framework */; };
+		E43FAE9615CA0C4300CF628C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7815CA0C4200CF628C /* Foundation.framework */; };
+		E43FAE9715CA0C4300CF628C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7C15CA0C4200CF628C /* CoreData.framework */; };
+		E43FAE9F15CA0C4300CF628C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E43FAE9D15CA0C4300CF628C /* InfoPlist.strings */; };
+		E43FAEA215CA0C4300CF628C /* SPROUT_PrjTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E43FAEA115CA0C4300CF628C /* SPROUT_PrjTests.m */; };
+		E43FAEAF15CA0C6D00CF628C /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43FAEAD15CA0C6D00CF628C /* SplashViewController.m */; };
+		E43FAEB015CA0C6D00CF628C /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEAE15CA0C6D00CF628C /* SplashViewController.xib */; };
+		E43FAEB415CA0F1900CF628C /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB315CA0F1900CF628C /* Splash.png */; };
+		E43FAEB615CA0F5000CF628C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB515CA0F5000CF628C /* Default.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E43FAE9815CA0C4300CF628C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E43FAE6915CA0C4200CF628C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E43FAE7115CA0C4200CF628C;
+			remoteInfo = SPROUT_Prj;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E43FAE7215CA0C4200CF628C /* SPROUT_Prj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPROUT_Prj.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E43FAE7615CA0C4200CF628C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E43FAE7815CA0C4200CF628C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E43FAE7A15CA0C4200CF628C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E43FAE7C15CA0C4200CF628C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E43FAE8015CA0C4200CF628C /* SPROUT_Prj-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPROUT_Prj-Info.plist"; sourceTree = "<group>"; };
+		E43FAE8215CA0C4200CF628C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E43FAE8415CA0C4200CF628C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E43FAE8615CA0C4200CF628C /* SPROUT_Prj-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SPROUT_Prj-Prefix.pch"; sourceTree = "<group>"; };
+		E43FAE8715CA0C4200CF628C /* CNCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNCAppDelegate.h; sourceTree = "<group>"; };
+		E43FAE8815CA0C4300CF628C /* CNCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNCAppDelegate.m; sourceTree = "<group>"; };
+		E43FAE8B15CA0C4300CF628C /* SPROUT_Prj.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SPROUT_Prj.xcdatamodel; sourceTree = "<group>"; };
+		E43FAE9215CA0C4300CF628C /* SPROUT_PrjTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SPROUT_PrjTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E43FAE9315CA0C4300CF628C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E43FAE9C15CA0C4300CF628C /* SPROUT_PrjTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SPROUT_PrjTests-Info.plist"; sourceTree = "<group>"; };
+		E43FAE9E15CA0C4300CF628C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E43FAEA015CA0C4300CF628C /* SPROUT_PrjTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPROUT_PrjTests.h; sourceTree = "<group>"; };
+		E43FAEA115CA0C4300CF628C /* SPROUT_PrjTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPROUT_PrjTests.m; sourceTree = "<group>"; };
+		E43FAEAC15CA0C6D00CF628C /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
+		E43FAEAD15CA0C6D00CF628C /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
+		E43FAEAE15CA0C6D00CF628C /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		E43FAEB315CA0F1900CF628C /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
+		E43FAEB515CA0F5000CF628C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E43FAE6F15CA0C4200CF628C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43FAE7715CA0C4200CF628C /* UIKit.framework in Frameworks */,
+				E43FAE7915CA0C4200CF628C /* Foundation.framework in Frameworks */,
+				E43FAE7B15CA0C4200CF628C /* CoreGraphics.framework in Frameworks */,
+				E43FAE7D15CA0C4200CF628C /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43FAE8E15CA0C4300CF628C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43FAE9415CA0C4300CF628C /* SenTestingKit.framework in Frameworks */,
+				E43FAE9515CA0C4300CF628C /* UIKit.framework in Frameworks */,
+				E43FAE9615CA0C4300CF628C /* Foundation.framework in Frameworks */,
+				E43FAE9715CA0C4300CF628C /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E43FAE6715CA0C4200CF628C = {
+			isa = PBXGroup;
+			children = (
+				E43FAEB115CA0F0300CF628C /* Resources */,
+				E43FAEAB15CA0C4C00CF628C /* Splash */,
+				E43FAE7E15CA0C4200CF628C /* SPROUT_Prj */,
+				E43FAE9A15CA0C4300CF628C /* SPROUT_PrjTests */,
+				E43FAE7515CA0C4200CF628C /* Frameworks */,
+				E43FAE7315CA0C4200CF628C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E43FAE7315CA0C4200CF628C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E43FAE7215CA0C4200CF628C /* SPROUT_Prj.app */,
+				E43FAE9215CA0C4300CF628C /* SPROUT_PrjTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E43FAE7515CA0C4200CF628C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E43FAE7615CA0C4200CF628C /* UIKit.framework */,
+				E43FAE7815CA0C4200CF628C /* Foundation.framework */,
+				E43FAE7A15CA0C4200CF628C /* CoreGraphics.framework */,
+				E43FAE7C15CA0C4200CF628C /* CoreData.framework */,
+				E43FAE9315CA0C4300CF628C /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E43FAE7E15CA0C4200CF628C /* SPROUT_Prj */ = {
+			isa = PBXGroup;
+			children = (
+				E43FAE8715CA0C4200CF628C /* CNCAppDelegate.h */,
+				E43FAE8815CA0C4300CF628C /* CNCAppDelegate.m */,
+				E43FAE8A15CA0C4300CF628C /* SPROUT_Prj.xcdatamodeld */,
+				E43FAE7F15CA0C4200CF628C /* Supporting Files */,
+			);
+			path = SPROUT_Prj;
+			sourceTree = "<group>";
+		};
+		E43FAE7F15CA0C4200CF628C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E43FAE8015CA0C4200CF628C /* SPROUT_Prj-Info.plist */,
+				E43FAE8115CA0C4200CF628C /* InfoPlist.strings */,
+				E43FAE8415CA0C4200CF628C /* main.m */,
+				E43FAE8615CA0C4200CF628C /* SPROUT_Prj-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E43FAE9A15CA0C4300CF628C /* SPROUT_PrjTests */ = {
+			isa = PBXGroup;
+			children = (
+				E43FAEA015CA0C4300CF628C /* SPROUT_PrjTests.h */,
+				E43FAEA115CA0C4300CF628C /* SPROUT_PrjTests.m */,
+				E43FAE9B15CA0C4300CF628C /* Supporting Files */,
+			);
+			path = SPROUT_PrjTests;
+			sourceTree = "<group>";
+		};
+		E43FAE9B15CA0C4300CF628C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E43FAE9C15CA0C4300CF628C /* SPROUT_PrjTests-Info.plist */,
+				E43FAE9D15CA0C4300CF628C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E43FAEAB15CA0C4C00CF628C /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				E43FAEAC15CA0C6D00CF628C /* SplashViewController.h */,
+				E43FAEAD15CA0C6D00CF628C /* SplashViewController.m */,
+				E43FAEAE15CA0C6D00CF628C /* SplashViewController.xib */,
+			);
+			name = Splash;
+			sourceTree = "<group>";
+		};
+		E43FAEB115CA0F0300CF628C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E43FAEB215CA0F0E00CF628C /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		E43FAEB215CA0F0E00CF628C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E43FAEB515CA0F5000CF628C /* Default.png */,
+				E43FAEB315CA0F1900CF628C /* Splash.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E43FAE7115CA0C4200CF628C /* SPROUT_Prj */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E43FAEA515CA0C4300CF628C /* Build configuration list for PBXNativeTarget "SPROUT_Prj" */;
+			buildPhases = (
+				E43FAE6E15CA0C4200CF628C /* Sources */,
+				E43FAE6F15CA0C4200CF628C /* Frameworks */,
+				E43FAE7015CA0C4200CF628C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SPROUT_Prj;
+			productName = SPROUT_Prj;
+			productReference = E43FAE7215CA0C4200CF628C /* SPROUT_Prj.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E43FAE9115CA0C4300CF628C /* SPROUT_PrjTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E43FAEA815CA0C4300CF628C /* Build configuration list for PBXNativeTarget "SPROUT_PrjTests" */;
+			buildPhases = (
+				E43FAE8D15CA0C4300CF628C /* Sources */,
+				E43FAE8E15CA0C4300CF628C /* Frameworks */,
+				E43FAE8F15CA0C4300CF628C /* Resources */,
+				E43FAE9015CA0C4300CF628C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E43FAE9915CA0C4300CF628C /* PBXTargetDependency */,
+			);
+			name = SPROUT_PrjTests;
+			productName = SPROUT_PrjTests;
+			productReference = E43FAE9215CA0C4300CF628C /* SPROUT_PrjTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E43FAE6915CA0C4200CF628C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = BKHN;
+			};
+			buildConfigurationList = E43FAE6C15CA0C4200CF628C /* Build configuration list for PBXProject "SPROUT_Prj" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E43FAE6715CA0C4200CF628C;
+			productRefGroup = E43FAE7315CA0C4200CF628C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E43FAE7115CA0C4200CF628C /* SPROUT_Prj */,
+				E43FAE9115CA0C4300CF628C /* SPROUT_PrjTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E43FAE7015CA0C4200CF628C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43FAE8315CA0C4200CF628C /* InfoPlist.strings in Resources */,
+				E43FAEB015CA0C6D00CF628C /* SplashViewController.xib in Resources */,
+				E43FAEB415CA0F1900CF628C /* Splash.png in Resources */,
+				E43FAEB615CA0F5000CF628C /* Default.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43FAE8F15CA0C4300CF628C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43FAE9F15CA0C4300CF628C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E43FAE9015CA0C4300CF628C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E43FAE6E15CA0C4200CF628C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43FAE8515CA0C4200CF628C /* main.m in Sources */,
+				E43FAE8915CA0C4300CF628C /* CNCAppDelegate.m in Sources */,
+				E43FAE8C15CA0C4300CF628C /* SPROUT_Prj.xcdatamodeld in Sources */,
+				E43FAEAF15CA0C6D00CF628C /* SplashViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E43FAE8D15CA0C4300CF628C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E43FAEA215CA0C4300CF628C /* SPROUT_PrjTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E43FAE9915CA0C4300CF628C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E43FAE7115CA0C4200CF628C /* SPROUT_Prj */;
+			targetProxy = E43FAE9815CA0C4300CF628C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E43FAE8115CA0C4200CF628C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E43FAE8215CA0C4200CF628C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E43FAE9D15CA0C4300CF628C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E43FAE9E15CA0C4300CF628C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E43FAEA315CA0C4300CF628C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E43FAEA415CA0C4300CF628C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E43FAEA615CA0C4300CF628C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPROUT_Prj/SPROUT_Prj-Prefix.pch";
+				INFOPLIST_FILE = "SPROUT_Prj/SPROUT_Prj-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E43FAEA715CA0C4300CF628C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPROUT_Prj/SPROUT_Prj-Prefix.pch";
+				INFOPLIST_FILE = "SPROUT_Prj/SPROUT_Prj-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E43FAEA915CA0C4300CF628C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SPROUT_Prj.app/SPROUT_Prj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPROUT_Prj/SPROUT_Prj-Prefix.pch";
+				INFOPLIST_FILE = "SPROUT_PrjTests/SPROUT_PrjTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E43FAEAA15CA0C4300CF628C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SPROUT_Prj.app/SPROUT_Prj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SPROUT_Prj/SPROUT_Prj-Prefix.pch";
+				INFOPLIST_FILE = "SPROUT_PrjTests/SPROUT_PrjTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E43FAE6C15CA0C4200CF628C /* Build configuration list for PBXProject "SPROUT_Prj" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E43FAEA315CA0C4300CF628C /* Debug */,
+				E43FAEA415CA0C4300CF628C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E43FAEA515CA0C4300CF628C /* Build configuration list for PBXNativeTarget "SPROUT_Prj" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E43FAEA615CA0C4300CF628C /* Debug */,
+				E43FAEA715CA0C4300CF628C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E43FAEA815CA0C4300CF628C /* Build configuration list for PBXNativeTarget "SPROUT_PrjTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E43FAEA915CA0C4300CF628C /* Debug */,
+				E43FAEAA15CA0C4300CF628C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E43FAE8A15CA0C4300CF628C /* SPROUT_Prj.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E43FAE8B15CA0C4300CF628C /* SPROUT_Prj.xcdatamodel */,
+			);
+			currentVersion = E43FAE8B15CA0C4300CF628C /* SPROUT_Prj.xcdatamodel */;
+			path = SPROUT_Prj.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E43FAE6915CA0C4200CF628C /* Project object */;
+}
