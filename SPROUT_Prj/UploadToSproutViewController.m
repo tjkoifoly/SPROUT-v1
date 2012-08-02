@@ -8,6 +8,7 @@
 
 #import "UploadToSproutViewController.h"
 #import "CellSproutCustomView.h"
+#import "DragToSproutViewController.h"
 
 @implementation UploadToSproutViewController
 
@@ -37,7 +38,7 @@
 {
     [super viewDidLoad];
     //UPDATE Data:
-    listSprout = [[NSArray alloc] initWithObjects:@"01/01/2012 - Hamish 0 to 6 months",@"23/03/2012 - Tomato plant", nil];
+    listSprout = [[NSArray alloc] initWithObjects:@"01/01/2012 - Hamish 0 to 6 months",@"23/03/2012 - Tomato plant",@"05/05/2012 - Changeing weither", @"12/7/2012 - Carton practice", nil];
     //UPDATE View
     [table setBackgroundColor:[UIColor clearColor]];
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -88,8 +89,9 @@
     }
     
     cell.sproutInfoLabel.text = [listSprout objectAtIndex:indexPath.row];
-    [cell.sproutInfo addTarget:self action:@selector(tableView:didDeselectRowAtIndexPath:) forControlEvents:UIControlEventTouchUpInside];
     
+    [cell.sproutInfo addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
+
     return cell;
 }
 
@@ -99,7 +101,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+-(void) buttonPressed
+{
+    DragToSproutViewController *dragToSproutController = [[DragToSproutViewController alloc] initWithNibName:@"DragToSproutViewController" bundle:nil];
 
+    [self.navigationController pushViewController:dragToSproutController animated:YES];
+}
+
+-(IBAction)goToHome:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 
 

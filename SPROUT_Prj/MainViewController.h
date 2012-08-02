@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class TakePhotoViewController;
 @interface MainViewController : UIViewController
+
+@property (strong, nonatomic) TakePhotoViewController *takePhotoViewController;
+
+-(IBAction)captureSprout:(id)sender;
+-(IBAction)createSprout:(id)sender;
+-(IBAction)viewSprout:(id)sender;
+-(IBAction)reminder :(id)sender;
 
 @end

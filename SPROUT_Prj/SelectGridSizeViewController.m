@@ -1,17 +1,14 @@
 //
-//  MainViewController.m
+//  SelectGridSizeViewController.m
 //  SPROUT_Prj
 //
 //  Created by Nguyen Chi Cong on 8/2/12.
 //  Copyright (c) 2012 BKHN. All rights reserved.
 //
 
-#import "MainViewController.h"
-#import "TakePhotoViewController.h"
+#import "SelectGridSizeViewController.h"
 
-@implementation MainViewController
-
-@synthesize takePhotoViewController;
+@implementation SelectGridSizeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
@@ -42,7 +40,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.takePhotoViewController = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -50,38 +47,5 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-#pragma IBAction
-
--(IBAction)captureSprout:(id)sender
-{
-    if(takePhotoViewController == nil)
-    {
-        takePhotoViewController = [[TakePhotoViewController alloc]initWithNibName:@"TakePhotoViewController" bundle:nil];
-    }
-    
-    [self.navigationController pushViewController:takePhotoViewController animated:YES];
-}
-
--(IBAction)createSprout:(id)sender
-{
-    
-}
-
--(IBAction)viewSprout:(id)sender
-{
-    
-}
-
--(IBAction)reminder :(id)sender
-{
-    
-}
-
-
-
-
-
-
 
 @end

@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) NSArray *listSprout;
 @property (strong, nonatomic) IBOutlet UITableView *table;
+-(IBAction)goToHome:(id)sender;
 
 @end

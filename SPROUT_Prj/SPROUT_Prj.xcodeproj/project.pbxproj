@@ -38,6 +38,10 @@
 		E496C2A415CA27FE0002DFEA /* UploadToSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C2A215CA27FE0002DFEA /* UploadToSproutViewController.xib */; };
 		E496C2AC15CA29390002DFEA /* CellSproutCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C2AB15CA29390002DFEA /* CellSproutCustomView.m */; };
 		E496C2AE15CA29510002DFEA /* CellSproutCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C2AD15CA29510002DFEA /* CellSproutCustomView.xib */; };
+		E4B82BA015CA3C6400B14E6A /* DragToSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B82B9E15CA3C6400B14E6A /* DragToSproutViewController.m */; };
+		E4B82BA115CA3C6400B14E6A /* DragToSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82B9F15CA3C6400B14E6A /* DragToSproutViewController.xib */; };
+		E4B82BA615CA407300B14E6A /* SelectGridSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */; };
+		E4B82BA715CA407300B14E6A /* SelectGridSizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +97,12 @@
 		E496C2AA15CA29390002DFEA /* CellSproutCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellSproutCustomView.h; sourceTree = "<group>"; };
 		E496C2AB15CA29390002DFEA /* CellSproutCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellSproutCustomView.m; sourceTree = "<group>"; };
 		E496C2AD15CA29510002DFEA /* CellSproutCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellSproutCustomView.xib; sourceTree = "<group>"; };
+		E4B82B9D15CA3C6400B14E6A /* DragToSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragToSproutViewController.h; sourceTree = "<group>"; };
+		E4B82B9E15CA3C6400B14E6A /* DragToSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragToSproutViewController.m; sourceTree = "<group>"; };
+		E4B82B9F15CA3C6400B14E6A /* DragToSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragToSproutViewController.xib; sourceTree = "<group>"; };
+		E4B82BA315CA407300B14E6A /* SelectGridSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGridSizeViewController.h; sourceTree = "<group>"; };
+		E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGridSizeViewController.m; sourceTree = "<group>"; };
+		E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGridSizeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,10 +134,12 @@
 		E43FAE6715CA0C4200CF628C = {
 			isa = PBXGroup;
 			children = (
+				E4B82BA215CA404F00B14E6A /* SelectGridSize */,
+				E4B82B9B15CA3C3800B14E6A /* DragToSprout */,
 				E496C29F15CA27BB0002DFEA /* UploadToSprout */,
 				E496C29B15CA25C60002DFEA /* Classes */,
 				E496C29515CA21510002DFEA /* SaveAndContinue */,
-				E496C28D15CA1A1F0002DFEA /* Splash */,
+				E496C28D15CA1A1F0002DFEA /* Main */,
 				E496C28015CA143A0002DFEA /* SaveorDiscardPhoto */,
 				E43FAEAB15CA0C4C00CF628C /* TakePhoto */,
 				E43FAE7E15CA0C4200CF628C /* SPROUT_Prj */,
@@ -240,14 +252,14 @@
 			name = SaveorDiscardPhoto;
 			sourceTree = "<group>";
 		};
-		E496C28D15CA1A1F0002DFEA /* Splash */ = {
+		E496C28D15CA1A1F0002DFEA /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				E496C28E15CA1A400002DFEA /* MainViewController.h */,
 				E496C28F15CA1A400002DFEA /* MainViewController.m */,
 				E496C29015CA1A400002DFEA /* MainViewController.xib */,
 			);
-			name = Splash;
+			name = Main;
 			sourceTree = "<group>";
 		};
 		E496C29515CA21510002DFEA /* SaveAndContinue */ = {
@@ -280,6 +292,26 @@
 				E496C2A215CA27FE0002DFEA /* UploadToSproutViewController.xib */,
 			);
 			name = UploadToSprout;
+			sourceTree = "<group>";
+		};
+		E4B82B9B15CA3C3800B14E6A /* DragToSprout */ = {
+			isa = PBXGroup;
+			children = (
+				E4B82B9D15CA3C6400B14E6A /* DragToSproutViewController.h */,
+				E4B82B9E15CA3C6400B14E6A /* DragToSproutViewController.m */,
+				E4B82B9F15CA3C6400B14E6A /* DragToSproutViewController.xib */,
+			);
+			name = DragToSprout;
+			sourceTree = "<group>";
+		};
+		E4B82BA215CA404F00B14E6A /* SelectGridSize */ = {
+			isa = PBXGroup;
+			children = (
+				E4B82BA315CA407300B14E6A /* SelectGridSizeViewController.h */,
+				E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */,
+				E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */,
+			);
+			name = SelectGridSize;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,6 +397,8 @@
 				E496C29A15CA21A40002DFEA /* ContinueAfterSaveViewController.xib in Resources */,
 				E496C2A415CA27FE0002DFEA /* UploadToSproutViewController.xib in Resources */,
 				E496C2AE15CA29510002DFEA /* CellSproutCustomView.xib in Resources */,
+				E4B82BA115CA3C6400B14E6A /* DragToSproutViewController.xib in Resources */,
+				E4B82BA715CA407300B14E6A /* SelectGridSizeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +456,8 @@
 				E496C29E15CA25E90002DFEA /* HiddenNavigationController.m in Sources */,
 				E496C2A315CA27FE0002DFEA /* UploadToSproutViewController.m in Sources */,
 				E496C2AC15CA29390002DFEA /* CellSproutCustomView.m in Sources */,
+				E4B82BA015CA3C6400B14E6A /* DragToSproutViewController.m in Sources */,
+				E4B82BA615CA407300B14E6A /* SelectGridSizeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
