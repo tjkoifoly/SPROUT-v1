@@ -6,9 +6,10 @@
 //  Copyright (c) 2012 BKHN. All rights reserved.
 //
 
-#import "SplashViewController.h"
+#import "TakePhotoViewController.h"
+#import "SaveorDiscardPhotoViewController.h"
 
-@implementation SplashViewController
+@implementation TakePhotoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +47,20 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma IBAction
+
+-(IBAction)capture:(id)sender
+{
+    SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
+    [self.navigationController pushViewController:saveViewController animated:YES];
+}
+
+-(IBAction)goToHome :(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
 }
 
 @end

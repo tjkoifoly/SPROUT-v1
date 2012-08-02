@@ -7,8 +7,12 @@
 //
 
 #import "UploadToSproutViewController.h"
+#import "CellSproutCustomView.h"
 
 @implementation UploadToSproutViewController
+
+@synthesize listSprout;
+@synthesize table;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +36,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    //UPDATE Data:
+    listSprout = [[NSArray alloc] initWithObjects:@"01/01/2012 - Hamish 0 to 6 months",@"23/03/2012 - Tomato plant", nil];
+    //UPDATE View
+    [table setBackgroundColor:[UIColor clearColor]];
+    table.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
 
 - (void)viewDidUnload
@@ -40,6 +49,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.listSprout = nil;
+    self.table = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -47,5 +58,51 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma TableViewDelegate & Datasource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [listSprout count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * SproutCellIdentifier = @"SproutCellIdentifier";
+    CellSproutCustomView *cell = [tableView dequeueReusableCellWithIdentifier:SproutCellIdentifier];
+    
+    if(cell == nil)
+    {
+        NSArray *nibObjects;
+        nibObjects = [[NSBundle mainBundle]loadNibNamed:@"CellSproutCustomView" owner:self options:nil];
+        
+        for(id currentObject in nibObjects)
+        {
+            cell = (CellSproutCustomView *)currentObject;
+        }
+    }
+    
+    cell.sproutInfoLabel.text = [listSprout objectAtIndex:indexPath.row];
+    [cell.sproutInfo addTarget:self action:@selector(tableView:didDeselectRowAtIndexPath:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //next to view
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+
+
+
+
+
 
 @end

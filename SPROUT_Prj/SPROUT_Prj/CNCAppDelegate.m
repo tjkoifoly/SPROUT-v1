@@ -7,7 +7,9 @@
 //
 
 #import "CNCAppDelegate.h"
-#import "SplashViewController.h"
+#import "TakePhotoViewController.h"
+#import "MainViewController.h"
+#import "HiddenNavigationController.h"
 
 @implementation CNCAppDelegate
 
@@ -15,14 +17,22 @@
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+@synthesize mainViewController;
+@synthesize navigationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    SplashViewController *splashViewController = [[SplashViewController alloc] initWithNibName:@"SplashViewController" bundle:nil];
-
-    self.window.rootViewController = splashViewController;
+    mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+    navigationController = [[HiddenNavigationController alloc] initWithRootViewController:mainViewController];
+    
+    self.window.rootViewController = navigationController;
+    
+    TakePhotoViewController *takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
+    
+    [navigationController pushViewController:takeViewController animated:NO];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

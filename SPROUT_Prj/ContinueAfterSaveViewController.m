@@ -7,6 +7,7 @@
 //
 
 #import "ContinueAfterSaveViewController.h"
+#import "UploadToSproutViewController.h"
 
 @implementation ContinueAfterSaveViewController
 
@@ -46,6 +47,30 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma IBAction
+
+-(IBAction)uploadToSprout:(id)sender
+{
+    UploadToSproutViewController *uploadViewController = [[UploadToSproutViewController alloc] initWithNibName:@"UploadToSproutViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:uploadViewController animated:YES];
+}
+
+-(IBAction)edit:(id)sender
+{
+    
+}
+
+-(IBAction)postToSocialNetwork:(id)sender
+{
+    
+}
+
+-(IBAction)goToHome:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

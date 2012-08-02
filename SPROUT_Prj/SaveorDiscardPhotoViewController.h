@@ -10,4 +10,8 @@
 
 @interface SaveorDiscardPhotoViewController : UIViewController
 
+-(IBAction)save:(id)sender;
+-(IBAction)discard:(id)sender;
+-(IBAction)goToHome:(id)sender;
+
 @end

@@ -21,10 +21,23 @@
 		E43FAE9715CA0C4300CF628C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7C15CA0C4200CF628C /* CoreData.framework */; };
 		E43FAE9F15CA0C4300CF628C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E43FAE9D15CA0C4300CF628C /* InfoPlist.strings */; };
 		E43FAEA215CA0C4300CF628C /* SPROUT_PrjTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E43FAEA115CA0C4300CF628C /* SPROUT_PrjTests.m */; };
-		E43FAEAF15CA0C6D00CF628C /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43FAEAD15CA0C6D00CF628C /* SplashViewController.m */; };
-		E43FAEB015CA0C6D00CF628C /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEAE15CA0C6D00CF628C /* SplashViewController.xib */; };
+		E43FAEAF15CA0C6D00CF628C /* TakePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43FAEAD15CA0C6D00CF628C /* TakePhotoViewController.m */; };
+		E43FAEB015CA0C6D00CF628C /* TakePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */; };
 		E43FAEB415CA0F1900CF628C /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB315CA0F1900CF628C /* Splash.png */; };
 		E43FAEB615CA0F5000CF628C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB515CA0F5000CF628C /* Default.png */; };
+		E496C28515CA16190002DFEA /* SaveorDiscardPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C28315CA16190002DFEA /* SaveorDiscardPhotoViewController.m */; };
+		E496C28615CA16190002DFEA /* SaveorDiscardPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C28415CA16190002DFEA /* SaveorDiscardPhotoViewController.xib */; };
+		E496C28815CA18E40002DFEA /* baby.png in Resources */ = {isa = PBXBuildFile; fileRef = E496C28715CA18E40002DFEA /* baby.png */; };
+		E496C29115CA1A400002DFEA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C28F15CA1A400002DFEA /* MainViewController.m */; };
+		E496C29215CA1A400002DFEA /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C29015CA1A400002DFEA /* MainViewController.xib */; };
+		E496C29415CA20F50002DFEA /* temCapture.png in Resources */ = {isa = PBXBuildFile; fileRef = E496C29315CA20F50002DFEA /* temCapture.png */; };
+		E496C29915CA21A40002DFEA /* ContinueAfterSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C29715CA21A40002DFEA /* ContinueAfterSaveViewController.m */; };
+		E496C29A15CA21A40002DFEA /* ContinueAfterSaveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C29815CA21A40002DFEA /* ContinueAfterSaveViewController.xib */; };
+		E496C29E15CA25E90002DFEA /* HiddenNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C29D15CA25E90002DFEA /* HiddenNavigationController.m */; };
+		E496C2A315CA27FE0002DFEA /* UploadToSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C2A115CA27FE0002DFEA /* UploadToSproutViewController.m */; };
+		E496C2A415CA27FE0002DFEA /* UploadToSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C2A215CA27FE0002DFEA /* UploadToSproutViewController.xib */; };
+		E496C2AC15CA29390002DFEA /* CellSproutCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C2AB15CA29390002DFEA /* CellSproutCustomView.m */; };
+		E496C2AE15CA29510002DFEA /* CellSproutCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C2AD15CA29510002DFEA /* CellSproutCustomView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,11 +69,30 @@
 		E43FAE9E15CA0C4300CF628C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E43FAEA015CA0C4300CF628C /* SPROUT_PrjTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPROUT_PrjTests.h; sourceTree = "<group>"; };
 		E43FAEA115CA0C4300CF628C /* SPROUT_PrjTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPROUT_PrjTests.m; sourceTree = "<group>"; };
-		E43FAEAC15CA0C6D00CF628C /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
-		E43FAEAD15CA0C6D00CF628C /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
-		E43FAEAE15CA0C6D00CF628C /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		E43FAEAC15CA0C6D00CF628C /* TakePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakePhotoViewController.h; sourceTree = "<group>"; };
+		E43FAEAD15CA0C6D00CF628C /* TakePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakePhotoViewController.m; sourceTree = "<group>"; };
+		E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakePhotoViewController.xib; sourceTree = "<group>"; };
 		E43FAEB315CA0F1900CF628C /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
 		E43FAEB515CA0F5000CF628C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E496C28215CA16190002DFEA /* SaveorDiscardPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveorDiscardPhotoViewController.h; sourceTree = "<group>"; };
+		E496C28315CA16190002DFEA /* SaveorDiscardPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveorDiscardPhotoViewController.m; sourceTree = "<group>"; };
+		E496C28415CA16190002DFEA /* SaveorDiscardPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaveorDiscardPhotoViewController.xib; sourceTree = "<group>"; };
+		E496C28715CA18E40002DFEA /* baby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baby.png; sourceTree = "<group>"; };
+		E496C28E15CA1A400002DFEA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		E496C28F15CA1A400002DFEA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		E496C29015CA1A400002DFEA /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		E496C29315CA20F50002DFEA /* temCapture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temCapture.png; sourceTree = "<group>"; };
+		E496C29615CA21A40002DFEA /* ContinueAfterSaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueAfterSaveViewController.h; sourceTree = "<group>"; };
+		E496C29715CA21A40002DFEA /* ContinueAfterSaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueAfterSaveViewController.m; sourceTree = "<group>"; };
+		E496C29815CA21A40002DFEA /* ContinueAfterSaveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContinueAfterSaveViewController.xib; sourceTree = "<group>"; };
+		E496C29C15CA25E90002DFEA /* HiddenNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiddenNavigationController.h; sourceTree = "<group>"; };
+		E496C29D15CA25E90002DFEA /* HiddenNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HiddenNavigationController.m; sourceTree = "<group>"; };
+		E496C2A015CA27FE0002DFEA /* UploadToSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadToSproutViewController.h; sourceTree = "<group>"; };
+		E496C2A115CA27FE0002DFEA /* UploadToSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadToSproutViewController.m; sourceTree = "<group>"; };
+		E496C2A215CA27FE0002DFEA /* UploadToSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadToSproutViewController.xib; sourceTree = "<group>"; };
+		E496C2AA15CA29390002DFEA /* CellSproutCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellSproutCustomView.h; sourceTree = "<group>"; };
+		E496C2AB15CA29390002DFEA /* CellSproutCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellSproutCustomView.m; sourceTree = "<group>"; };
+		E496C2AD15CA29510002DFEA /* CellSproutCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellSproutCustomView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +124,12 @@
 		E43FAE6715CA0C4200CF628C = {
 			isa = PBXGroup;
 			children = (
-				E43FAEB115CA0F0300CF628C /* Resources */,
-				E43FAEAB15CA0C4C00CF628C /* Splash */,
+				E496C29F15CA27BB0002DFEA /* UploadToSprout */,
+				E496C29B15CA25C60002DFEA /* Classes */,
+				E496C29515CA21510002DFEA /* SaveAndContinue */,
+				E496C28D15CA1A1F0002DFEA /* Splash */,
+				E496C28015CA143A0002DFEA /* SaveorDiscardPhoto */,
+				E43FAEAB15CA0C4C00CF628C /* TakePhoto */,
 				E43FAE7E15CA0C4200CF628C /* SPROUT_Prj */,
 				E43FAE9A15CA0C4300CF628C /* SPROUT_PrjTests */,
 				E43FAE7515CA0C4200CF628C /* Frameworks */,
@@ -125,6 +161,7 @@
 		E43FAE7E15CA0C4200CF628C /* SPROUT_Prj */ = {
 			isa = PBXGroup;
 			children = (
+				E43FAEB115CA0F0300CF628C /* Resources */,
 				E43FAE8715CA0C4200CF628C /* CNCAppDelegate.h */,
 				E43FAE8815CA0C4300CF628C /* CNCAppDelegate.m */,
 				E43FAE8A15CA0C4300CF628C /* SPROUT_Prj.xcdatamodeld */,
@@ -163,14 +200,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E43FAEAB15CA0C4C00CF628C /* Splash */ = {
+		E43FAEAB15CA0C4C00CF628C /* TakePhoto */ = {
 			isa = PBXGroup;
 			children = (
-				E43FAEAC15CA0C6D00CF628C /* SplashViewController.h */,
-				E43FAEAD15CA0C6D00CF628C /* SplashViewController.m */,
-				E43FAEAE15CA0C6D00CF628C /* SplashViewController.xib */,
+				E43FAEAC15CA0C6D00CF628C /* TakePhotoViewController.h */,
+				E43FAEAD15CA0C6D00CF628C /* TakePhotoViewController.m */,
+				E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */,
 			);
-			name = Splash;
+			name = TakePhoto;
 			sourceTree = "<group>";
 		};
 		E43FAEB115CA0F0300CF628C /* Resources */ = {
@@ -179,15 +216,70 @@
 				E43FAEB215CA0F0E00CF628C /* Images */,
 			);
 			name = Resources;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E43FAEB215CA0F0E00CF628C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E496C29315CA20F50002DFEA /* temCapture.png */,
+				E496C28715CA18E40002DFEA /* baby.png */,
 				E43FAEB515CA0F5000CF628C /* Default.png */,
 				E43FAEB315CA0F1900CF628C /* Splash.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		E496C28015CA143A0002DFEA /* SaveorDiscardPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				E496C28215CA16190002DFEA /* SaveorDiscardPhotoViewController.h */,
+				E496C28315CA16190002DFEA /* SaveorDiscardPhotoViewController.m */,
+				E496C28415CA16190002DFEA /* SaveorDiscardPhotoViewController.xib */,
+			);
+			name = SaveorDiscardPhoto;
+			sourceTree = "<group>";
+		};
+		E496C28D15CA1A1F0002DFEA /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				E496C28E15CA1A400002DFEA /* MainViewController.h */,
+				E496C28F15CA1A400002DFEA /* MainViewController.m */,
+				E496C29015CA1A400002DFEA /* MainViewController.xib */,
+			);
+			name = Splash;
+			sourceTree = "<group>";
+		};
+		E496C29515CA21510002DFEA /* SaveAndContinue */ = {
+			isa = PBXGroup;
+			children = (
+				E496C29615CA21A40002DFEA /* ContinueAfterSaveViewController.h */,
+				E496C29715CA21A40002DFEA /* ContinueAfterSaveViewController.m */,
+				E496C29815CA21A40002DFEA /* ContinueAfterSaveViewController.xib */,
+			);
+			name = SaveAndContinue;
+			sourceTree = "<group>";
+		};
+		E496C29B15CA25C60002DFEA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E496C29C15CA25E90002DFEA /* HiddenNavigationController.h */,
+				E496C29D15CA25E90002DFEA /* HiddenNavigationController.m */,
+				E496C2AA15CA29390002DFEA /* CellSproutCustomView.h */,
+				E496C2AB15CA29390002DFEA /* CellSproutCustomView.m */,
+				E496C2AD15CA29510002DFEA /* CellSproutCustomView.xib */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		E496C29F15CA27BB0002DFEA /* UploadToSprout */ = {
+			isa = PBXGroup;
+			children = (
+				E496C2A015CA27FE0002DFEA /* UploadToSproutViewController.h */,
+				E496C2A115CA27FE0002DFEA /* UploadToSproutViewController.m */,
+				E496C2A215CA27FE0002DFEA /* UploadToSproutViewController.xib */,
+			);
+			name = UploadToSprout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +292,7 @@
 				E43FAE6E15CA0C4200CF628C /* Sources */,
 				E43FAE6F15CA0C4200CF628C /* Frameworks */,
 				E43FAE7015CA0C4200CF628C /* Resources */,
+				E496C28115CA14DB0002DFEA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -262,9 +355,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E43FAE8315CA0C4200CF628C /* InfoPlist.strings in Resources */,
-				E43FAEB015CA0C6D00CF628C /* SplashViewController.xib in Resources */,
+				E43FAEB015CA0C6D00CF628C /* TakePhotoViewController.xib in Resources */,
 				E43FAEB415CA0F1900CF628C /* Splash.png in Resources */,
 				E43FAEB615CA0F5000CF628C /* Default.png in Resources */,
+				E496C28615CA16190002DFEA /* SaveorDiscardPhotoViewController.xib in Resources */,
+				E496C28815CA18E40002DFEA /* baby.png in Resources */,
+				E496C29215CA1A400002DFEA /* MainViewController.xib in Resources */,
+				E496C29415CA20F50002DFEA /* temCapture.png in Resources */,
+				E496C29A15CA21A40002DFEA /* ContinueAfterSaveViewController.xib in Resources */,
+				E496C2A415CA27FE0002DFEA /* UploadToSproutViewController.xib in Resources */,
+				E496C2AE15CA29510002DFEA /* CellSproutCustomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +392,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		E496C28115CA14DB0002DFEA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/tcsh;
+			shellScript = "";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -302,7 +415,13 @@
 				E43FAE8515CA0C4200CF628C /* main.m in Sources */,
 				E43FAE8915CA0C4300CF628C /* CNCAppDelegate.m in Sources */,
 				E43FAE8C15CA0C4300CF628C /* SPROUT_Prj.xcdatamodeld in Sources */,
-				E43FAEAF15CA0C6D00CF628C /* SplashViewController.m in Sources */,
+				E43FAEAF15CA0C6D00CF628C /* TakePhotoViewController.m in Sources */,
+				E496C28515CA16190002DFEA /* SaveorDiscardPhotoViewController.m in Sources */,
+				E496C29115CA1A400002DFEA /* MainViewController.m in Sources */,
+				E496C29915CA21A40002DFEA /* ContinueAfterSaveViewController.m in Sources */,
+				E496C29E15CA25E90002DFEA /* HiddenNavigationController.m in Sources */,
+				E496C2A315CA27FE0002DFEA /* UploadToSproutViewController.m in Sources */,
+				E496C2AC15CA29390002DFEA /* CellSproutCustomView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

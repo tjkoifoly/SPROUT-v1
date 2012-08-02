@@ -7,6 +7,7 @@
 //
 
 #import "SaveorDiscardPhotoViewController.h"
+#import "ContinueAfterSaveViewController.h"
 
 @implementation SaveorDiscardPhotoViewController
 
@@ -46,6 +47,23 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma IBAction
+-(IBAction)save:(id)sender
+{
+    ContinueAfterSaveViewController *updateImageViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
+    [self.navigationController pushViewController:updateImageViewController animated:YES];
+}
+
+-(IBAction)discard:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)goToHome:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

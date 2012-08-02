@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SplashViewController : UIViewController
+@interface TakePhotoViewController : UIViewController
+
+-(IBAction)capture:(id)sender;
+-(IBAction)goToHome :(id)sender;
 
 @end

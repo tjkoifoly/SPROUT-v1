@@ -10,4 +10,9 @@
 
 @interface CellSproutCustomView : UITableViewCell
 
+
+@property (strong, nonatomic) IBOutlet UIButton *sproutInfo;
+@property (strong, nonatomic) IBOutlet UILabel *sproutInfoLabel;
+
+
 @end

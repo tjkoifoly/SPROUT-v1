@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UploadToSproutViewController : UIViewController
+@interface UploadToSproutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) NSArray *listSprout;
+@property (strong, nonatomic) IBOutlet UITableView *table;
 
 @end

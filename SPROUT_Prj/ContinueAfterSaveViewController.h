@@ -10,4 +10,9 @@
 
 @interface ContinueAfterSaveViewController : UIViewController
 
+-(IBAction)uploadToSprout:(id)sender;
+-(IBAction)edit:(id)sender;
+-(IBAction)postToSocialNetwork:(id)sender;
+-(IBAction)goToHome:(id)sender;
+
 @end
