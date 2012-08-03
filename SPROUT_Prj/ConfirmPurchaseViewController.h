@@ -10,4 +10,12 @@
 
 @interface ConfirmPurchaseViewController : UIViewController
 
+@property (nonatomic) BOOL accept;
+@property (strong, nonatomic) IBOutlet UIImageView *acceptView;
+
+-(void) touchCheck;
+-(IBAction)goToHome:(id)sender;
+-(IBAction)confirmPurchase:(id)sender;
+-(IBAction)checkAccept:(id)sender;
+
 @end

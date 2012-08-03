@@ -10,4 +10,7 @@
 
 @interface ReminderViewController : UIViewController
 
+-(IBAction)back:(id)sender;
+-(IBAction)addReminder:(id)sender;
+
 @end

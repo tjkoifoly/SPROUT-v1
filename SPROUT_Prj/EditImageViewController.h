@@ -10,4 +10,12 @@
 
 @interface EditImageViewController : UIViewController
 
+-(IBAction)goToHome:(id)sender;
+-(IBAction)save:(id)sender;
+-(IBAction)exportImage:(id)sender;
+-(IBAction)changeColor:(id)sender;
+-(IBAction)cropImage:(id)sender;
+-(IBAction)changeEffect:(id)sender;
+-(IBAction)rotateImage:(id)sender;
+
 @end

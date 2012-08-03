@@ -10,6 +10,7 @@
 #import "TakePhotoViewController.h"
 #import "SelectGridSizeViewController.h"
 #import "ViewSproutViewController.h"
+#import "ReminderViewController.h"
 
 @implementation MainViewController
 
@@ -91,7 +92,9 @@
 
 -(IBAction)reminder :(id)sender
 {
+    ReminderViewController *reminderViewController = [[ReminderViewController alloc] initWithNibName: @"ReminderViewController" bundle:nil];
     
+    [self.navigationController pushViewController:reminderViewController animated:YES];
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "PurcharseCanvasViewController.h"
+#import "ConfirmPurchaseViewController.h"
 
 @implementation PurcharseCanvasViewController
 
@@ -47,5 +48,23 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma IBAction
+
+-(IBAction)goToHome:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(IBAction)chooseCanvas:(id)sender
+{
+    ConfirmPurchaseViewController *confirmViewController = [[ConfirmPurchaseViewController alloc] initWithNibName:@"ConfirmPurchaseViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:confirmViewController animated:YES];
+}
+
+
+
+
 
 @end

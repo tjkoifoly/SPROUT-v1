@@ -14,6 +14,9 @@
 
 @synthesize listSprout;
 @synthesize table;
+@synthesize imageView ;
+@synthesize imageInput;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +47,8 @@
     table.separatorColor=[UIColor clearColor];
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    self.imageView.image = imageInput;
+    
 }
 
 - (void)viewDidUnload
@@ -53,6 +58,8 @@
     // e.g. self.myOutlet = nil;
     self.listSprout = nil;
     self.table = nil;
+    self.imageView = nil;
+    self.imageInput = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -109,6 +116,7 @@
 {
     DragToSproutViewController *dragToSproutController = [[DragToSproutViewController alloc] initWithNibName:@"DragToSproutViewController" bundle:nil];
 
+    dragToSproutController.imageInput = self.imageInput;
     [self.navigationController pushViewController:dragToSproutController animated:YES];
 }
 

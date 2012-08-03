@@ -48,4 +48,20 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma IBAction
+-(IBAction)back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)addReminder:(id)sender
+{
+    
+}
+
+
+
+
+
+
 @end

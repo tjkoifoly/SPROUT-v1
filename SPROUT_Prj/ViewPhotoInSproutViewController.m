@@ -48,4 +48,22 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma IBAction
+
+-(IBAction)back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)preivousImage:(id)sender
+{
+    
+}
+
+-(IBAction)nextImage:(id)sender
+{
+    
+}
+
+
 @end

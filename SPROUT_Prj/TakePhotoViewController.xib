@@ -64,7 +64,6 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Home</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="742578474">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -76,6 +75,10 @@
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="869256544">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">viewS.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="892701562">
 							<int key="type">2</int>
@@ -99,7 +102,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Load</string>
 						<reference key="IBUIHighlightedTitleColor" ref="742578474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -107,13 +109,17 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="869256544"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">LoadI.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="892701562"/>
 						<reference key="IBUIFont" ref="842594281"/>
 					</object>
 					<object class="IBUIButton" id="180159782">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{119, 388}, {82, 37}}</string>
+						<string key="NSFrame">{{127, 381}, {57, 59}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -122,7 +128,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Capture</string>
 						<reference key="IBUIHighlightedTitleColor" ref="742578474"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -130,6 +135,10 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="869256544"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">Cap.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="892701562"/>
 						<reference key="IBUIFont" ref="842594281"/>
 					</object>
@@ -167,6 +176,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">10</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">loadImageFromLibrary:</string>
+						<reference key="source" ref="976536330"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">11</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -245,7 +263,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">10</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -255,6 +273,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="capture:">id</string>
 						<string key="goToHome:">id</string>
+						<string key="loadImageFromLibrary:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="capture:">
@@ -263,6 +282,10 @@
 						</object>
 						<object class="IBActionInfo" key="goToHome:">
 							<string key="name">goToHome:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="loadImageFromLibrary:">
+							<string key="name">loadImageFromLibrary:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
@@ -277,10 +300,12 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">temCapture.png</string>
-			<string key="NS.object.0">{152, 153}</string>
-		</object>
+		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="Cap.png">{52, 53}</string>
+			<string key="LoadI.png">{53, 57}</string>
+			<string key="temCapture.png">{152, 153}</string>
+			<string key="viewS.png">{43, 42}</string>
+		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>

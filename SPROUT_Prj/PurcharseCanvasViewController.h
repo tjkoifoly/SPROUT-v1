@@ -10,4 +10,7 @@
 
 @interface PurcharseCanvasViewController : UIViewController
 
+-(IBAction)goToHome:(id)sender;
+-(IBAction)chooseCanvas:(id)sender;
+
 @end

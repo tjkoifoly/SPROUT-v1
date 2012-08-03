@@ -8,8 +8,11 @@
 
 #import "TakePhotoViewController.h"
 #import "SaveorDiscardPhotoViewController.h"
+#import "ContinueAfterSaveViewController.h"
 
 @implementation TakePhotoViewController
+
+@synthesize pickerImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,8 +42,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.pickerImage = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -48,6 +50,36 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+#pragma PickerImage delegate
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *) picker 
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    NSLog(@"Image = %@", image);
+    NSLog(@"Info = %@",editingInfo);
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    UIImage *i = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    //    NSLog(@"Image = %@", i);
+    
+    ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
+    
+    continueViewController.imageInput = i;
+    
+    [self.navigationController pushViewController:continueViewController animated:YES];
+    
+    [self dismissModalViewControllerAnimated:YES];    
+}
+
+
+
 
 #pragma IBAction
 
@@ -60,7 +92,21 @@
 -(IBAction)goToHome :(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
-
 }
+
+-(IBAction)loadImageFromLibrary:(id)sender
+{
+    
+    if(self.pickerImage == nil)
+    {
+        self.pickerImage = [[UIImagePickerController alloc] init];
+        self.pickerImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+    self.pickerImage.delegate = self;
+    
+    [self presentModalViewController:pickerImage animated:YES];
+}
+
 
 @end

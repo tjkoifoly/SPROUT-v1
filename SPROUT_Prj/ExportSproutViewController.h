@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DisplaySproutViewController : UIViewController
+@interface ExportSproutViewController : UIViewController
+
+@property (strong, nonatomic) IBOutlet UIImageView *sproutToImage;
+@property (strong, nonatomic) IBOutlet UIButton *emailButton;
+@property (strong, nonatomic) IBOutlet UIButton *purchaseButton;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
+
+-(IBAction)goToHome:(id)sender;
+-(IBAction)sendViaEmail:(id)sender;
+-(IBAction)purcharseCanvas:(id)sender;
+-(IBAction)saveAsImage:(id)sender;
+-(IBAction)shareViaSocialNetwork:(id)sender;
 
 @end

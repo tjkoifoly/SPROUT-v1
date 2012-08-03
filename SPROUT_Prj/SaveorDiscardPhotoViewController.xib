@@ -64,18 +64,19 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Save</string>
+						<string key="IBUINormalTitle">SAVE</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="931182416">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="931182416"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="16113911">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">saveBut.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1002547729">
 							<int key="type">2</int>
@@ -100,13 +101,14 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Discard</string>
+						<string key="IBUINormalTitle">DISCARD</string>
 						<reference key="IBUIHighlightedTitleColor" ref="931182416"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="931182416"/>
 						<reference key="IBUINormalTitleShadowColor" ref="16113911"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">discardBut.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="1002547729"/>
 						<reference key="IBUIFont" ref="913712173"/>
 					</object>
@@ -130,6 +132,10 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="16113911"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">Homebut.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="1002547729"/>
 						<reference key="IBUIFont" ref="913712173"/>
 					</object>
@@ -291,10 +297,12 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">baby.png</string>
-			<string key="NS.object.0">{270, 293}</string>
-		</object>
+		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="Homebut.png">{63, 59}</string>
+			<string key="baby.png">{270, 293}</string>
+			<string key="discardBut.png">{89, 33}</string>
+			<string key="saveBut.png">{89, 38}</string>
+		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>

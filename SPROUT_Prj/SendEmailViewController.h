@@ -10,4 +10,7 @@
 
 @interface SendEmailViewController : UIViewController
 
+-(IBAction)goToHome:(id)sender;
+-(IBAction)send:(id)sender;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "EditImageViewController.h"
+#import "ExportSproutViewController.h"
 
 @implementation EditImageViewController
 
@@ -47,5 +48,47 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma IBAction
+
+-(IBAction)goToHome:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(IBAction)save:(id)sender
+{
+    
+}
+
+-(IBAction)exportImage:(id)sender
+{
+    ExportSproutViewController *exportSproutViewController = [[ExportSproutViewController alloc] initWithNibName:@"ExportSproutViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:exportSproutViewController animated:YES];
+}
+
+-(IBAction)changeColor:(id)sender
+{
+    
+}
+
+-(IBAction)cropImage:(id)sender
+{
+    
+}
+
+-(IBAction)changeEffect:(id)sender
+{
+    
+}
+
+-(IBAction)rotateImage:(id)sender
+{
+    
+}
+
+
+
 
 @end

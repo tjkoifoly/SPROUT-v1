@@ -10,4 +10,8 @@
 
 @interface ViewPhotoInSproutViewController : UIViewController
 
+-(IBAction)back:(id)sender;
+-(IBAction)preivousImage:(id)sender;
+-(IBAction)nextImage:(id)sender;
+
 @end

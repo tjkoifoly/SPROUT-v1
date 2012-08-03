@@ -25,6 +25,18 @@
 		E43FAEB015CA0C6D00CF628C /* TakePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */; };
 		E43FAEB415CA0F1900CF628C /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB315CA0F1900CF628C /* Splash.png */; };
 		E43FAEB615CA0F5000CF628C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB515CA0F5000CF628C /* Default.png */; };
+		E47AA0A615CB7D4400544164 /* SendEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0A415CB7D4400544164 /* SendEmailViewController.m */; };
+		E47AA0A715CB7D4400544164 /* SendEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0A515CB7D4400544164 /* SendEmailViewController.xib */; };
+		E47AA0AC15CB7F4D00544164 /* PurcharseCanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0AA15CB7F4D00544164 /* PurcharseCanvasViewController.m */; };
+		E47AA0AD15CB7F4D00544164 /* PurcharseCanvasViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0AB15CB7F4D00544164 /* PurcharseCanvasViewController.xib */; };
+		E47AA0B215CB812500544164 /* ConfirmPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0B015CB812500544164 /* ConfirmPurchaseViewController.m */; };
+		E47AA0B315CB812500544164 /* ConfirmPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0B115CB812500544164 /* ConfirmPurchaseViewController.xib */; };
+		E47AA0B815CB881F00544164 /* ViewPhotoInSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0B615CB881F00544164 /* ViewPhotoInSproutViewController.m */; };
+		E47AA0B915CB881F00544164 /* ViewPhotoInSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0B715CB881F00544164 /* ViewPhotoInSproutViewController.xib */; };
+		E47AA0BE15CB915A00544164 /* EditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0BC15CB915A00544164 /* EditImageViewController.m */; };
+		E47AA0BF15CB915A00544164 /* EditImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0BD15CB915A00544164 /* EditImageViewController.xib */; };
+		E47AA0C915CBACC000544164 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0C715CBACC000544164 /* ReminderViewController.m */; };
+		E47AA0CA15CBACC000544164 /* ReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0C815CBACC000544164 /* ReminderViewController.xib */; };
 		E496C28515CA16190002DFEA /* SaveorDiscardPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C28315CA16190002DFEA /* SaveorDiscardPhotoViewController.m */; };
 		E496C28615CA16190002DFEA /* SaveorDiscardPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C28415CA16190002DFEA /* SaveorDiscardPhotoViewController.xib */; };
 		E496C28815CA18E40002DFEA /* baby.png in Resources */ = {isa = PBXBuildFile; fileRef = E496C28715CA18E40002DFEA /* baby.png */; };
@@ -42,14 +54,36 @@
 		E4B82BA115CA3C6400B14E6A /* DragToSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82B9F15CA3C6400B14E6A /* DragToSproutViewController.xib */; };
 		E4B82BA615CA407300B14E6A /* SelectGridSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */; };
 		E4B82BA715CA407300B14E6A /* SelectGridSizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */; };
+		E4D9D96C15CBBA27007B94C5 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96815CBBA27007B94C5 /* face.png */; };
+		E4D9D96D15CBBA27007B94C5 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96915CBBA27007B94C5 /* up.png */; };
+		E4D9D96E15CBBA27007B94C5 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96A15CBBA27007B94C5 /* edit.png */; };
+		E4D9D96F15CBBA27007B94C5 /* twi.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96B15CBBA27007B94C5 /* twi.png */; };
+		E4D9D97815CBBAAA007B94C5 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D97115CBBAAA007B94C5 /* clock.png */; };
+		E4D9D97915CBBAAA007B94C5 /* viewS.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D97215CBBAAA007B94C5 /* viewS.png */; };
+		E4D9D97A15CBBAAA007B94C5 /* newS.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D97315CBBAAA007B94C5 /* newS.png */; };
+		E4D9D97B15CBBAAA007B94C5 /* CapI.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D97415CBBAAA007B94C5 /* CapI.png */; };
+		E4D9D97C15CBBAAA007B94C5 /* LogoS.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D97515CBBAAA007B94C5 /* LogoS.png */; };
+		E4D9D97D15CBBAAA007B94C5 /* LoadI.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D97615CBBAAA007B94C5 /* LoadI.png */; };
+		E4D9D97E15CBBAAA007B94C5 /* Cap.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D97715CBBAAA007B94C5 /* Cap.png */; };
+		E4D9D98215CBBD47007B94C5 /* Homebut.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D97F15CBBD45007B94C5 /* Homebut.png */; };
+		E4D9D98315CBBD47007B94C5 /* pur.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D98015CBBD46007B94C5 /* pur.png */; };
+		E4D9D98415CBBD47007B94C5 /* linkin.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D98115CBBD46007B94C5 /* linkin.png */; };
+		E4D9D98B15CBBEA1007B94C5 /* rot.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D98515CBBE9D007B94C5 /* rot.png */; };
+		E4D9D98C15CBBEA1007B94C5 /* eff.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D98615CBBE9E007B94C5 /* eff.png */; };
+		E4D9D98D15CBBEA1007B94C5 /* crop.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D98715CBBE9F007B94C5 /* crop.png */; };
+		E4D9D98E15CBBEA1007B94C5 /* cor.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D98815CBBE9F007B94C5 /* cor.png */; };
+		E4D9D98F15CBBEA1007B94C5 /* exp.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D98915CBBEA0007B94C5 /* exp.png */; };
+		E4D9D99015CBBEA1007B94C5 /* sav.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D98A15CBBEA1007B94C5 /* sav.png */; };
+		E4D9D99315CBBF8A007B94C5 /* saveBut.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D99115CBBF88007B94C5 /* saveBut.png */; };
+		E4D9D99415CBBF8A007B94C5 /* discardBut.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D99215CBBF89007B94C5 /* discardBut.png */; };
 		E4F6441315CA59C300E068AD /* CreateSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6441115CA59C300E068AD /* CreateSproutViewController.m */; };
 		E4F6441415CA59C300E068AD /* CreateSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6441215CA59C300E068AD /* CreateSproutViewController.xib */; };
 		E4F6442D15CA726D00E068AD /* SaveSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6442B15CA726D00E068AD /* SaveSproutViewController.m */; };
 		E4F6442E15CA726D00E068AD /* SaveSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6442C15CA726D00E068AD /* SaveSproutViewController.xib */; };
 		E4F6443315CA7BCC00E068AD /* ViewSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6443115CA7BCC00E068AD /* ViewSproutViewController.m */; };
 		E4F6443415CA7BCC00E068AD /* ViewSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6443215CA7BCC00E068AD /* ViewSproutViewController.xib */; };
-		E4F6443D15CA8F7500E068AD /* DisplaySproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6443B15CA8F7500E068AD /* DisplaySproutViewController.m */; };
-		E4F6443E15CA8F7500E068AD /* DisplaySproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6443C15CA8F7500E068AD /* DisplaySproutViewController.xib */; };
+		E4F6443D15CA8F7500E068AD /* ExportSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6443B15CA8F7500E068AD /* ExportSproutViewController.m */; };
+		E4F6443E15CA8F7500E068AD /* ExportSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6443C15CA8F7500E068AD /* ExportSproutViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +120,24 @@
 		E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakePhotoViewController.xib; sourceTree = "<group>"; };
 		E43FAEB315CA0F1900CF628C /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
 		E43FAEB515CA0F5000CF628C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E47AA0A315CB7D4400544164 /* SendEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmailViewController.h; sourceTree = "<group>"; };
+		E47AA0A415CB7D4400544164 /* SendEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmailViewController.m; sourceTree = "<group>"; };
+		E47AA0A515CB7D4400544164 /* SendEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendEmailViewController.xib; sourceTree = "<group>"; };
+		E47AA0A915CB7F4D00544164 /* PurcharseCanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurcharseCanvasViewController.h; sourceTree = "<group>"; };
+		E47AA0AA15CB7F4D00544164 /* PurcharseCanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurcharseCanvasViewController.m; sourceTree = "<group>"; };
+		E47AA0AB15CB7F4D00544164 /* PurcharseCanvasViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurcharseCanvasViewController.xib; sourceTree = "<group>"; };
+		E47AA0AF15CB812500544164 /* ConfirmPurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmPurchaseViewController.h; sourceTree = "<group>"; };
+		E47AA0B015CB812500544164 /* ConfirmPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmPurchaseViewController.m; sourceTree = "<group>"; };
+		E47AA0B115CB812500544164 /* ConfirmPurchaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmPurchaseViewController.xib; sourceTree = "<group>"; };
+		E47AA0B515CB881F00544164 /* ViewPhotoInSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPhotoInSproutViewController.h; sourceTree = "<group>"; };
+		E47AA0B615CB881F00544164 /* ViewPhotoInSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPhotoInSproutViewController.m; sourceTree = "<group>"; };
+		E47AA0B715CB881F00544164 /* ViewPhotoInSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewPhotoInSproutViewController.xib; sourceTree = "<group>"; };
+		E47AA0BB15CB915A00544164 /* EditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditImageViewController.h; sourceTree = "<group>"; };
+		E47AA0BC15CB915A00544164 /* EditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditImageViewController.m; sourceTree = "<group>"; };
+		E47AA0BD15CB915A00544164 /* EditImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditImageViewController.xib; sourceTree = "<group>"; };
+		E47AA0C615CBACC000544164 /* ReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderViewController.h; sourceTree = "<group>"; };
+		E47AA0C715CBACC000544164 /* ReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderViewController.m; sourceTree = "<group>"; };
+		E47AA0C815CBACC000544164 /* ReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReminderViewController.xib; sourceTree = "<group>"; };
 		E496C28215CA16190002DFEA /* SaveorDiscardPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveorDiscardPhotoViewController.h; sourceTree = "<group>"; };
 		E496C28315CA16190002DFEA /* SaveorDiscardPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveorDiscardPhotoViewController.m; sourceTree = "<group>"; };
 		E496C28415CA16190002DFEA /* SaveorDiscardPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaveorDiscardPhotoViewController.xib; sourceTree = "<group>"; };
@@ -111,6 +163,28 @@
 		E4B82BA315CA407300B14E6A /* SelectGridSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGridSizeViewController.h; sourceTree = "<group>"; };
 		E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGridSizeViewController.m; sourceTree = "<group>"; };
 		E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGridSizeViewController.xib; sourceTree = "<group>"; };
+		E4D9D96815CBBA27007B94C5 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
+		E4D9D96915CBBA27007B94C5 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
+		E4D9D96A15CBBA27007B94C5 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
+		E4D9D96B15CBBA27007B94C5 /* twi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twi.png; sourceTree = "<group>"; };
+		E4D9D97115CBBAAA007B94C5 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		E4D9D97215CBBAAA007B94C5 /* viewS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = viewS.png; sourceTree = "<group>"; };
+		E4D9D97315CBBAAA007B94C5 /* newS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newS.png; sourceTree = "<group>"; };
+		E4D9D97415CBBAAA007B94C5 /* CapI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CapI.png; sourceTree = "<group>"; };
+		E4D9D97515CBBAAA007B94C5 /* LogoS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoS.png; sourceTree = "<group>"; };
+		E4D9D97615CBBAAA007B94C5 /* LoadI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadI.png; sourceTree = "<group>"; };
+		E4D9D97715CBBAAA007B94C5 /* Cap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cap.png; sourceTree = "<group>"; };
+		E4D9D97F15CBBD45007B94C5 /* Homebut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Homebut.png; sourceTree = "<group>"; };
+		E4D9D98015CBBD46007B94C5 /* pur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pur.png; sourceTree = "<group>"; };
+		E4D9D98115CBBD46007B94C5 /* linkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linkin.png; sourceTree = "<group>"; };
+		E4D9D98515CBBE9D007B94C5 /* rot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rot.png; sourceTree = "<group>"; };
+		E4D9D98615CBBE9E007B94C5 /* eff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eff.png; sourceTree = "<group>"; };
+		E4D9D98715CBBE9F007B94C5 /* crop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crop.png; sourceTree = "<group>"; };
+		E4D9D98815CBBE9F007B94C5 /* cor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cor.png; sourceTree = "<group>"; };
+		E4D9D98915CBBEA0007B94C5 /* exp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exp.png; sourceTree = "<group>"; };
+		E4D9D98A15CBBEA1007B94C5 /* sav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sav.png; sourceTree = "<group>"; };
+		E4D9D99115CBBF88007B94C5 /* saveBut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveBut.png; sourceTree = "<group>"; };
+		E4D9D99215CBBF89007B94C5 /* discardBut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discardBut.png; sourceTree = "<group>"; };
 		E4F6441015CA59C300E068AD /* CreateSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSproutViewController.h; sourceTree = "<group>"; };
 		E4F6441115CA59C300E068AD /* CreateSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSproutViewController.m; sourceTree = "<group>"; };
 		E4F6441215CA59C300E068AD /* CreateSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateSproutViewController.xib; sourceTree = "<group>"; };
@@ -120,9 +194,9 @@
 		E4F6443015CA7BCC00E068AD /* ViewSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewSproutViewController.h; sourceTree = "<group>"; };
 		E4F6443115CA7BCC00E068AD /* ViewSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewSproutViewController.m; sourceTree = "<group>"; };
 		E4F6443215CA7BCC00E068AD /* ViewSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewSproutViewController.xib; sourceTree = "<group>"; };
-		E4F6443A15CA8F7500E068AD /* DisplaySproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplaySproutViewController.h; sourceTree = "<group>"; };
-		E4F6443B15CA8F7500E068AD /* DisplaySproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplaySproutViewController.m; sourceTree = "<group>"; };
-		E4F6443C15CA8F7500E068AD /* DisplaySproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplaySproutViewController.xib; sourceTree = "<group>"; };
+		E4F6443A15CA8F7500E068AD /* ExportSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportSproutViewController.h; sourceTree = "<group>"; };
+		E4F6443B15CA8F7500E068AD /* ExportSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportSproutViewController.m; sourceTree = "<group>"; };
+		E4F6443C15CA8F7500E068AD /* ExportSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportSproutViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +228,13 @@
 		E43FAE6715CA0C4200CF628C = {
 			isa = PBXGroup;
 			children = (
-				E4F6443915CA8F5A00E068AD /* DisplaySprout */,
+				E47AA0C415CBACA800544164 /* Reminder */,
+				E47AA0BA15CB914100544164 /* EditImage */,
+				E47AA0B415CB880600544164 /* ViewPhotoInSprout */,
+				E47AA0AE15CB80DF00544164 /* ConfirmPurchase */,
+				E47AA0A815CB7F2E00544164 /* Purcharse */,
+				E47AA0A215CB7D2C00544164 /* Email */,
+				E4F6443915CA8F5A00E068AD /* Export */,
 				E4F6442F15CA7BA700E068AD /* ViewSprout */,
 				E4F6442915CA724900E068AD /* SaveSprout */,
 				E4F6440E15CA599900E068AD /* CreateSprout */,
@@ -258,12 +338,94 @@
 		E43FAEB215CA0F0E00CF628C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E4D9D99115CBBF88007B94C5 /* saveBut.png */,
+				E4D9D99215CBBF89007B94C5 /* discardBut.png */,
+				E4D9D98515CBBE9D007B94C5 /* rot.png */,
+				E4D9D98615CBBE9E007B94C5 /* eff.png */,
+				E4D9D98715CBBE9F007B94C5 /* crop.png */,
+				E4D9D98815CBBE9F007B94C5 /* cor.png */,
+				E4D9D98915CBBEA0007B94C5 /* exp.png */,
+				E4D9D98A15CBBEA1007B94C5 /* sav.png */,
+				E4D9D97F15CBBD45007B94C5 /* Homebut.png */,
+				E4D9D98015CBBD46007B94C5 /* pur.png */,
+				E4D9D98115CBBD46007B94C5 /* linkin.png */,
+				E4D9D97115CBBAAA007B94C5 /* clock.png */,
+				E4D9D97215CBBAAA007B94C5 /* viewS.png */,
+				E4D9D97315CBBAAA007B94C5 /* newS.png */,
+				E4D9D97415CBBAAA007B94C5 /* CapI.png */,
+				E4D9D97515CBBAAA007B94C5 /* LogoS.png */,
+				E4D9D97615CBBAAA007B94C5 /* LoadI.png */,
+				E4D9D97715CBBAAA007B94C5 /* Cap.png */,
+				E4D9D96815CBBA27007B94C5 /* face.png */,
+				E4D9D96915CBBA27007B94C5 /* up.png */,
+				E4D9D96A15CBBA27007B94C5 /* edit.png */,
+				E4D9D96B15CBBA27007B94C5 /* twi.png */,
 				E496C29315CA20F50002DFEA /* temCapture.png */,
 				E496C28715CA18E40002DFEA /* baby.png */,
 				E43FAEB515CA0F5000CF628C /* Default.png */,
 				E43FAEB315CA0F1900CF628C /* Splash.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		E47AA0A215CB7D2C00544164 /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				E47AA0A315CB7D4400544164 /* SendEmailViewController.h */,
+				E47AA0A415CB7D4400544164 /* SendEmailViewController.m */,
+				E47AA0A515CB7D4400544164 /* SendEmailViewController.xib */,
+			);
+			name = Email;
+			sourceTree = "<group>";
+		};
+		E47AA0A815CB7F2E00544164 /* Purcharse */ = {
+			isa = PBXGroup;
+			children = (
+				E47AA0A915CB7F4D00544164 /* PurcharseCanvasViewController.h */,
+				E47AA0AA15CB7F4D00544164 /* PurcharseCanvasViewController.m */,
+				E47AA0AB15CB7F4D00544164 /* PurcharseCanvasViewController.xib */,
+			);
+			name = Purcharse;
+			sourceTree = "<group>";
+		};
+		E47AA0AE15CB80DF00544164 /* ConfirmPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				E47AA0AF15CB812500544164 /* ConfirmPurchaseViewController.h */,
+				E47AA0B015CB812500544164 /* ConfirmPurchaseViewController.m */,
+				E47AA0B115CB812500544164 /* ConfirmPurchaseViewController.xib */,
+			);
+			name = ConfirmPurchase;
+			sourceTree = "<group>";
+		};
+		E47AA0B415CB880600544164 /* ViewPhotoInSprout */ = {
+			isa = PBXGroup;
+			children = (
+				E47AA0B515CB881F00544164 /* ViewPhotoInSproutViewController.h */,
+				E47AA0B615CB881F00544164 /* ViewPhotoInSproutViewController.m */,
+				E47AA0B715CB881F00544164 /* ViewPhotoInSproutViewController.xib */,
+			);
+			name = ViewPhotoInSprout;
+			sourceTree = "<group>";
+		};
+		E47AA0BA15CB914100544164 /* EditImage */ = {
+			isa = PBXGroup;
+			children = (
+				E47AA0BB15CB915A00544164 /* EditImageViewController.h */,
+				E47AA0BC15CB915A00544164 /* EditImageViewController.m */,
+				E47AA0BD15CB915A00544164 /* EditImageViewController.xib */,
+			);
+			name = EditImage;
+			sourceTree = "<group>";
+		};
+		E47AA0C415CBACA800544164 /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				E47AA0C615CBACC000544164 /* ReminderViewController.h */,
+				E47AA0C715CBACC000544164 /* ReminderViewController.m */,
+				E47AA0C815CBACC000544164 /* ReminderViewController.xib */,
+			);
+			name = Reminder;
 			sourceTree = "<group>";
 		};
 		E496C28015CA143A0002DFEA /* SaveorDiscardPhoto */ = {
@@ -368,14 +530,14 @@
 			name = ViewSprout;
 			sourceTree = "<group>";
 		};
-		E4F6443915CA8F5A00E068AD /* DisplaySprout */ = {
+		E4F6443915CA8F5A00E068AD /* Export */ = {
 			isa = PBXGroup;
 			children = (
-				E4F6443A15CA8F7500E068AD /* DisplaySproutViewController.h */,
-				E4F6443B15CA8F7500E068AD /* DisplaySproutViewController.m */,
-				E4F6443C15CA8F7500E068AD /* DisplaySproutViewController.xib */,
+				E4F6443A15CA8F7500E068AD /* ExportSproutViewController.h */,
+				E4F6443B15CA8F7500E068AD /* ExportSproutViewController.m */,
+				E4F6443C15CA8F7500E068AD /* ExportSproutViewController.xib */,
 			);
-			name = DisplaySprout;
+			name = Export;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,7 +628,35 @@
 				E4F6441415CA59C300E068AD /* CreateSproutViewController.xib in Resources */,
 				E4F6442E15CA726D00E068AD /* SaveSproutViewController.xib in Resources */,
 				E4F6443415CA7BCC00E068AD /* ViewSproutViewController.xib in Resources */,
-				E4F6443E15CA8F7500E068AD /* DisplaySproutViewController.xib in Resources */,
+				E4F6443E15CA8F7500E068AD /* ExportSproutViewController.xib in Resources */,
+				E47AA0A715CB7D4400544164 /* SendEmailViewController.xib in Resources */,
+				E47AA0AD15CB7F4D00544164 /* PurcharseCanvasViewController.xib in Resources */,
+				E47AA0B315CB812500544164 /* ConfirmPurchaseViewController.xib in Resources */,
+				E47AA0B915CB881F00544164 /* ViewPhotoInSproutViewController.xib in Resources */,
+				E47AA0BF15CB915A00544164 /* EditImageViewController.xib in Resources */,
+				E47AA0CA15CBACC000544164 /* ReminderViewController.xib in Resources */,
+				E4D9D96C15CBBA27007B94C5 /* face.png in Resources */,
+				E4D9D96D15CBBA27007B94C5 /* up.png in Resources */,
+				E4D9D96E15CBBA27007B94C5 /* edit.png in Resources */,
+				E4D9D96F15CBBA27007B94C5 /* twi.png in Resources */,
+				E4D9D97815CBBAAA007B94C5 /* clock.png in Resources */,
+				E4D9D97915CBBAAA007B94C5 /* viewS.png in Resources */,
+				E4D9D97A15CBBAAA007B94C5 /* newS.png in Resources */,
+				E4D9D97B15CBBAAA007B94C5 /* CapI.png in Resources */,
+				E4D9D97C15CBBAAA007B94C5 /* LogoS.png in Resources */,
+				E4D9D97D15CBBAAA007B94C5 /* LoadI.png in Resources */,
+				E4D9D97E15CBBAAA007B94C5 /* Cap.png in Resources */,
+				E4D9D98215CBBD47007B94C5 /* Homebut.png in Resources */,
+				E4D9D98315CBBD47007B94C5 /* pur.png in Resources */,
+				E4D9D98415CBBD47007B94C5 /* linkin.png in Resources */,
+				E4D9D98B15CBBEA1007B94C5 /* rot.png in Resources */,
+				E4D9D98C15CBBEA1007B94C5 /* eff.png in Resources */,
+				E4D9D98D15CBBEA1007B94C5 /* crop.png in Resources */,
+				E4D9D98E15CBBEA1007B94C5 /* cor.png in Resources */,
+				E4D9D98F15CBBEA1007B94C5 /* exp.png in Resources */,
+				E4D9D99015CBBEA1007B94C5 /* sav.png in Resources */,
+				E4D9D99315CBBF8A007B94C5 /* saveBut.png in Resources */,
+				E4D9D99415CBBF8A007B94C5 /* discardBut.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +719,13 @@
 				E4F6441315CA59C300E068AD /* CreateSproutViewController.m in Sources */,
 				E4F6442D15CA726D00E068AD /* SaveSproutViewController.m in Sources */,
 				E4F6443315CA7BCC00E068AD /* ViewSproutViewController.m in Sources */,
-				E4F6443D15CA8F7500E068AD /* DisplaySproutViewController.m in Sources */,
+				E4F6443D15CA8F7500E068AD /* ExportSproutViewController.m in Sources */,
+				E47AA0A615CB7D4400544164 /* SendEmailViewController.m in Sources */,
+				E47AA0AC15CB7F4D00544164 /* PurcharseCanvasViewController.m in Sources */,
+				E47AA0B215CB812500544164 /* ConfirmPurchaseViewController.m in Sources */,
+				E47AA0B815CB881F00544164 /* ViewPhotoInSproutViewController.m in Sources */,
+				E47AA0BE15CB915A00544164 /* EditImageViewController.m in Sources */,
+				E47AA0C915CBACC000544164 /* ReminderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

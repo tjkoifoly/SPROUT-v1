@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface TakePhotoViewController : UIViewController
+<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+
+@property (strong, nonatomic) UIImagePickerController *pickerImage;
 
 -(IBAction)capture:(id)sender;
 -(IBAction)goToHome :(id)sender;
+-(IBAction)loadImageFromLibrary:(id)sender;
 
 @end

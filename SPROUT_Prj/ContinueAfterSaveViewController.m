@@ -8,8 +8,12 @@
 
 #import "ContinueAfterSaveViewController.h"
 #import "UploadToSproutViewController.h"
+#import "EditImageViewController.h"
 
 @implementation ContinueAfterSaveViewController
+
+@synthesize imageInput;
+@synthesize viewImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,14 +37,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    viewImage.image = imageInput;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.imageInput = nil;
+    self.viewImage = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -55,12 +59,15 @@
 {
     UploadToSproutViewController *uploadViewController = [[UploadToSproutViewController alloc] initWithNibName:@"UploadToSproutViewController" bundle:nil];
     
+    uploadViewController.imageInput = self.imageInput;
     [self.navigationController pushViewController:uploadViewController animated:YES];
 }
 
 -(IBAction)edit:(id)sender
 {
+    EditImageViewController *editViewController = [[EditImageViewController alloc] initWithNibName:@"EditImageViewController" bundle:nil];
     
+    [self.navigationController pushViewController:editViewController animated:YES];
 }
 
 -(IBAction)postToSocialNetwork:(id)sender

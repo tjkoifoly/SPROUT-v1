@@ -7,6 +7,7 @@
 //
 
 #import "SaveSproutViewController.h"
+#import "ExportSproutViewController.h"
 
 @implementation SaveSproutViewController
 
@@ -61,7 +62,9 @@
 
 -(IBAction)exportSport:(id)sender
 {
-    
+    ExportSproutViewController *exportSproutViewController = [[ExportSproutViewController alloc] initWithNibName:@"ExportSproutViewController" bundle:nil];
+
+    [self.navigationController pushViewController:exportSproutViewController animated:YES];
 }
 
 

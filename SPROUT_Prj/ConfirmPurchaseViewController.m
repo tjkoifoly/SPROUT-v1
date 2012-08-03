@@ -10,6 +10,9 @@
 
 @implementation ConfirmPurchaseViewController
 
+@synthesize accept;
+@synthesize acceptView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,14 +35,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    accept = NO;
+    [self touchCheck];
 }
+
+
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.acceptView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -47,5 +52,45 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma IBAction
+
+-(IBAction)goToHome:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(IBAction)confirmPurchase:(id)sender
+{
+    
+}
+
+-(IBAction)checkAccept:(id)sender
+{
+    
+}
+
+#pragma Touch in Check box
+
+-(void) touchCheck
+{
+    self.accept = !(self.accept);
+    if(accept)
+    {
+        //display tick
+        acceptView.image = [UIImage imageNamed:@"checked"];
+    }else
+    {
+        acceptView.image = [UIImage imageNamed:@"notChecked"];
+    }
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //if touch in check box
+}
+
+
+
 
 @end

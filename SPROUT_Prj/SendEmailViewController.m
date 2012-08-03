@@ -48,4 +48,19 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma IBAction
+
+-(IBAction)goToHome:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(IBAction)send:(id)sender
+{
+    
+}
+
+
+
+
 @end
