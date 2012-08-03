@@ -33,6 +33,8 @@
     
     [navigationController pushViewController:takeViewController animated:NO];
     
+     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

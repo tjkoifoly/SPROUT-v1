@@ -10,7 +10,19 @@
 
 @interface ReminderViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) IBOutlet UITextField *alertDescription;
+@property (strong, nonatomic) IBOutlet UITextField *alertLocation;
+@property (strong, nonatomic) IBOutlet  UISegmentedControl *alertSegmentControl;
+@property (strong, nonatomic) IBOutlet  UISegmentedControl *durationSegmentControl;
+@property (nonatomic, assign) NSInteger alertTime;
+@property (nonatomic, assign) NSInteger duration;
+
 -(IBAction)back:(id)sender;
 -(IBAction)addReminder:(id)sender;
+-(IBAction)selectAlertInfo:(id)sender;
+-(IBAction)addNotification:(id)sender;
+-(IBAction)dissmissKeyboard:(id)sender;
+
 
 @end
