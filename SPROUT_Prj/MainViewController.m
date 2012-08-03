@@ -8,10 +8,14 @@
 
 #import "MainViewController.h"
 #import "TakePhotoViewController.h"
+#import "SelectGridSizeViewController.h"
+#import "ViewSproutViewController.h"
 
 @implementation MainViewController
 
 @synthesize takePhotoViewController;
+@synthesize selectGridViewController;
+@synthesize viewSproutViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +47,8 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.takePhotoViewController = nil;
+    self.selectGridViewController = nil;
+    self.viewSproutViewController = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -65,12 +71,22 @@
 
 -(IBAction)createSprout:(id)sender
 {
+    if(selectGridViewController == nil)
+    {
+        selectGridViewController = [[SelectGridSizeViewController alloc]initWithNibName:@"SelectGridSizeViewController" bundle:nil];
+    }
     
+    [self.navigationController pushViewController:selectGridViewController animated:YES];
 }
 
 -(IBAction)viewSprout:(id)sender
 {
+    if(viewSproutViewController == nil)
+    {
+        viewSproutViewController = [[ViewSproutViewController alloc]initWithNibName:@"ViewSproutViewController" bundle:nil];
+    }
     
+    [self.navigationController pushViewController:viewSproutViewController animated:YES];
 }
 
 -(IBAction)reminder :(id)sender

@@ -14,6 +14,7 @@
 			<string>IBUIButton</string>
 			<string>IBUITableViewCell</string>
 			<string>IBUILabel</string>
+			<string>IBUIView</string>
 			<string>IBProxyObject</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -40,11 +41,29 @@
 						<reference key="NSNextResponder" ref="970074661"/>
 						<int key="NSvFlags">256</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIView" id="175112132">
+								<reference key="NSNextResponder" ref="628218047"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrameSize">{283, 36}</string>
+								<reference key="NSSuperview" ref="628218047"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="138360485"/>
+								<string key="NSReuseIdentifierKey">_NS:196</string>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace">
+										<int key="NSID">2</int>
+									</object>
+								</object>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
 							<object class="IBUIButton" id="138360485">
 								<reference key="NSNextResponder" ref="628218047"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{283, 30}</string>
+								<string key="NSFrame">{{0, 3}, {283, 30}}</string>
 								<reference key="NSSuperview" ref="628218047"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="557605159"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -82,8 +101,9 @@
 							<object class="IBUILabel" id="557605159">
 								<reference key="NSNextResponder" ref="628218047"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 3}, {243, 21}}</string>
+								<string key="NSFrame">{{20, 7}, {243, 21}}</string>
 								<reference key="NSSuperview" ref="628218047"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:328</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -110,9 +130,10 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{283, 29}</string>
+						<string key="NSFrameSize">{283, 35}</string>
 						<reference key="NSSuperview" ref="970074661"/>
-						<reference key="NSNextKeyView" ref="138360485"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="175112132"/>
 						<string key="NSReuseIdentifierKey">_NS:395</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -125,8 +146,9 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{283, 30}</string>
+				<string key="NSFrameSize">{283, 36}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="628218047"/>
 				<string key="NSReuseIdentifierKey">_NS:384</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -178,6 +200,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="138360485"/>
 							<reference ref="557605159"/>
+							<reference ref="175112132"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -191,6 +214,11 @@
 						<reference key="object" ref="557605159"/>
 						<reference key="parent" ref="970074661"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">14</int>
+						<reference key="object" ref="175112132"/>
+						<reference key="parent" ref="970074661"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -198,6 +226,7 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.CustomClassName">CellSproutCustomView</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -206,9 +235,34 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">13</int>
+			<int key="maxID">14</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">CellSproutCustomView</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="sproutInfo">UIButton</string>
+						<string key="sproutInfoLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="sproutInfo">
+							<string key="name">sproutInfo</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="sproutInfoLabel">
+							<string key="name">sproutInfoLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CellSproutCustomView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

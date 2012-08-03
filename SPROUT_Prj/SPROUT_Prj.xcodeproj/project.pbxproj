@@ -42,6 +42,14 @@
 		E4B82BA115CA3C6400B14E6A /* DragToSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82B9F15CA3C6400B14E6A /* DragToSproutViewController.xib */; };
 		E4B82BA615CA407300B14E6A /* SelectGridSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */; };
 		E4B82BA715CA407300B14E6A /* SelectGridSizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */; };
+		E4F6441315CA59C300E068AD /* CreateSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6441115CA59C300E068AD /* CreateSproutViewController.m */; };
+		E4F6441415CA59C300E068AD /* CreateSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6441215CA59C300E068AD /* CreateSproutViewController.xib */; };
+		E4F6442D15CA726D00E068AD /* SaveSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6442B15CA726D00E068AD /* SaveSproutViewController.m */; };
+		E4F6442E15CA726D00E068AD /* SaveSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6442C15CA726D00E068AD /* SaveSproutViewController.xib */; };
+		E4F6443315CA7BCC00E068AD /* ViewSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6443115CA7BCC00E068AD /* ViewSproutViewController.m */; };
+		E4F6443415CA7BCC00E068AD /* ViewSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6443215CA7BCC00E068AD /* ViewSproutViewController.xib */; };
+		E4F6443D15CA8F7500E068AD /* DisplaySproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6443B15CA8F7500E068AD /* DisplaySproutViewController.m */; };
+		E4F6443E15CA8F7500E068AD /* DisplaySproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6443C15CA8F7500E068AD /* DisplaySproutViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +111,18 @@
 		E4B82BA315CA407300B14E6A /* SelectGridSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGridSizeViewController.h; sourceTree = "<group>"; };
 		E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGridSizeViewController.m; sourceTree = "<group>"; };
 		E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGridSizeViewController.xib; sourceTree = "<group>"; };
+		E4F6441015CA59C300E068AD /* CreateSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSproutViewController.h; sourceTree = "<group>"; };
+		E4F6441115CA59C300E068AD /* CreateSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSproutViewController.m; sourceTree = "<group>"; };
+		E4F6441215CA59C300E068AD /* CreateSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateSproutViewController.xib; sourceTree = "<group>"; };
+		E4F6442A15CA726D00E068AD /* SaveSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveSproutViewController.h; sourceTree = "<group>"; };
+		E4F6442B15CA726D00E068AD /* SaveSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveSproutViewController.m; sourceTree = "<group>"; };
+		E4F6442C15CA726D00E068AD /* SaveSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaveSproutViewController.xib; sourceTree = "<group>"; };
+		E4F6443015CA7BCC00E068AD /* ViewSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewSproutViewController.h; sourceTree = "<group>"; };
+		E4F6443115CA7BCC00E068AD /* ViewSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewSproutViewController.m; sourceTree = "<group>"; };
+		E4F6443215CA7BCC00E068AD /* ViewSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewSproutViewController.xib; sourceTree = "<group>"; };
+		E4F6443A15CA8F7500E068AD /* DisplaySproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplaySproutViewController.h; sourceTree = "<group>"; };
+		E4F6443B15CA8F7500E068AD /* DisplaySproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplaySproutViewController.m; sourceTree = "<group>"; };
+		E4F6443C15CA8F7500E068AD /* DisplaySproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplaySproutViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +154,10 @@
 		E43FAE6715CA0C4200CF628C = {
 			isa = PBXGroup;
 			children = (
+				E4F6443915CA8F5A00E068AD /* DisplaySprout */,
+				E4F6442F15CA7BA700E068AD /* ViewSprout */,
+				E4F6442915CA724900E068AD /* SaveSprout */,
+				E4F6440E15CA599900E068AD /* CreateSprout */,
 				E4B82BA215CA404F00B14E6A /* SelectGridSize */,
 				E4B82B9B15CA3C3800B14E6A /* DragToSprout */,
 				E496C29F15CA27BB0002DFEA /* UploadToSprout */,
@@ -314,6 +338,46 @@
 			name = SelectGridSize;
 			sourceTree = "<group>";
 		};
+		E4F6440E15CA599900E068AD /* CreateSprout */ = {
+			isa = PBXGroup;
+			children = (
+				E4F6441015CA59C300E068AD /* CreateSproutViewController.h */,
+				E4F6441115CA59C300E068AD /* CreateSproutViewController.m */,
+				E4F6441215CA59C300E068AD /* CreateSproutViewController.xib */,
+			);
+			name = CreateSprout;
+			sourceTree = "<group>";
+		};
+		E4F6442915CA724900E068AD /* SaveSprout */ = {
+			isa = PBXGroup;
+			children = (
+				E4F6442A15CA726D00E068AD /* SaveSproutViewController.h */,
+				E4F6442B15CA726D00E068AD /* SaveSproutViewController.m */,
+				E4F6442C15CA726D00E068AD /* SaveSproutViewController.xib */,
+			);
+			name = SaveSprout;
+			sourceTree = "<group>";
+		};
+		E4F6442F15CA7BA700E068AD /* ViewSprout */ = {
+			isa = PBXGroup;
+			children = (
+				E4F6443015CA7BCC00E068AD /* ViewSproutViewController.h */,
+				E4F6443115CA7BCC00E068AD /* ViewSproutViewController.m */,
+				E4F6443215CA7BCC00E068AD /* ViewSproutViewController.xib */,
+			);
+			name = ViewSprout;
+			sourceTree = "<group>";
+		};
+		E4F6443915CA8F5A00E068AD /* DisplaySprout */ = {
+			isa = PBXGroup;
+			children = (
+				E4F6443A15CA8F7500E068AD /* DisplaySproutViewController.h */,
+				E4F6443B15CA8F7500E068AD /* DisplaySproutViewController.m */,
+				E4F6443C15CA8F7500E068AD /* DisplaySproutViewController.xib */,
+			);
+			name = DisplaySprout;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -399,6 +463,10 @@
 				E496C2AE15CA29510002DFEA /* CellSproutCustomView.xib in Resources */,
 				E4B82BA115CA3C6400B14E6A /* DragToSproutViewController.xib in Resources */,
 				E4B82BA715CA407300B14E6A /* SelectGridSizeViewController.xib in Resources */,
+				E4F6441415CA59C300E068AD /* CreateSproutViewController.xib in Resources */,
+				E4F6442E15CA726D00E068AD /* SaveSproutViewController.xib in Resources */,
+				E4F6443415CA7BCC00E068AD /* ViewSproutViewController.xib in Resources */,
+				E4F6443E15CA8F7500E068AD /* DisplaySproutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +526,10 @@
 				E496C2AC15CA29390002DFEA /* CellSproutCustomView.m in Sources */,
 				E4B82BA015CA3C6400B14E6A /* DragToSproutViewController.m in Sources */,
 				E4B82BA615CA407300B14E6A /* SelectGridSizeViewController.m in Sources */,
+				E4F6441315CA59C300E068AD /* CreateSproutViewController.m in Sources */,
+				E4F6442D15CA726D00E068AD /* SaveSproutViewController.m in Sources */,
+				E4F6443315CA7BCC00E068AD /* ViewSproutViewController.m in Sources */,
+				E4F6443D15CA8F7500E068AD /* DisplaySproutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

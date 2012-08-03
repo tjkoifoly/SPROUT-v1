@@ -1,19 +1,19 @@
 //
-//  UploadToSproutViewController.m
+//  ViewSproutViewController.m
 //  SPROUT_Prj
 //
 //  Created by Nguyen Chi Cong on 8/2/12.
 //  Copyright (c) 2012 BKHN. All rights reserved.
 //
 
-#import "UploadToSproutViewController.h"
+#import "ViewSproutViewController.h"
 #import "CellSproutCustomView.h"
-#import "DragToSproutViewController.h"
+#import "SaveSproutViewController.h"
 
-@implementation UploadToSproutViewController
+@implementation ViewSproutViewController
 
-@synthesize listSprout;
 @synthesize table;
+@synthesize listSprout;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,22 +37,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //UPDATE Data:
     listSprout = [[NSArray alloc] initWithObjects:@"01/01/2012 - Hamish 0 to 6 months",@"23/03/2012 - Tomato plant",@"05/05/2012 - Changeing weither", @"12/7/2012 - Carton practice", nil];
     //UPDATE View
     [table setBackgroundColor:[UIColor clearColor]];
     table.separatorColor=[UIColor clearColor];
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    self.listSprout = nil;
     self.table = nil;
+    self.listSprout = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -88,14 +84,17 @@
             cell = (CellSproutCustomView *)currentObject;
         }
     }
+    
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor=[UIColor clearColor];
     
     cell.sproutInfoLabel.text = [listSprout objectAtIndex:indexPath.row];
     
-    [cell.sproutInfo addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
-
+    cell.sproutInfo.tag = indexPath.row;
+    
+    [cell.sproutInfo addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 
@@ -105,11 +104,40 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
--(void) buttonPressed
+-(void) buttonPressed :(id)sender
 {
-    DragToSproutViewController *dragToSproutController = [[DragToSproutViewController alloc] initWithNibName:@"DragToSproutViewController" bundle:nil];
+    UIButton *button = (UIButton *)sender;
+    NSInteger tag = button.tag;
+    
+    switch (tag) {
+        case 0:
+            NSLog(@"%i", tag);
+            break;
+        case 1:
+            NSLog(@"%i", tag);
+            break;
+        case 2:
+            NSLog(@"%i", tag);
+            break;
+        case 3:
+            NSLog(@"%i", tag);
+            break;
 
-    [self.navigationController pushViewController:dragToSproutController animated:YES];
+        case 4:
+            NSLog(@"%i", tag);
+            break;
+            
+        case 5:
+            NSLog(@"%i", tag);
+            break;
+            
+        default:
+            break;
+    }
+    
+    SaveSproutViewController *displaySproutViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:displaySproutViewController animated:YES];
 }
 
 -(IBAction)goToHome:(id)sender

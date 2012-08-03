@@ -10,6 +10,9 @@
 
 @interface DragToSproutViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *imageForSprout;
+@property (strong, nonatomic) UIImage *imageInput;
+
 -(IBAction)goToHome:(id)sender;
 
 @end
