@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="878" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Images" syncable="YES">
+        <attribute name="locX" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="locY" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="tag" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="imageToSprout" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Sprouts" inverseName="sproutToImages" inverseEntity="Sprouts" syncable="YES"/>
+    </entity>
+    <entity name="Sprouts" syncable="YES">
+        <attribute name="colSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rowSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="sproutToImages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Images" inverseName="imageToSprout" inverseEntity="Images" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Sprouts" positionX="243" positionY="192" width="128" height="105"/>
+        <element name="Images" positionX="198" positionY="414" width="128" height="120"/>
+    </elements>
 </model>

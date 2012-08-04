@@ -17,9 +17,12 @@
 @synthesize locationx;
 @synthesize locationy;
 
--(id) initWithLocation
+-(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y
 {
-    return [self initWithFrame:CGRectMake(locationy*kWidth, locationx*kHeight, kWidth, kHeight)];
+    self.locationx = x;
+    self.locationy = y;
+    
+    return [super initWithFrame:CGRectMake(locationy*kWidth, locationx*kHeight, kWidth, kHeight)];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -28,19 +31,18 @@
     
     switch ([touch tapCount]) {
         case 1:
-        {
-            [self performSelector:@selector(oneTap:) withObject:self.image afterDelay:.5];
-        }
+            [self performSelector:@selector(oneTap) withObject:nil afterDelay:.5];
+        
             break;
             
         case 2:
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(oneTap:) object:nil];
-            [self performSelector:@selector(twoTaps:) withObject:self.image afterDelay:.5];
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(oneTap) object:nil];
+            [self performSelector:@selector(twoTaps) withObject:nil afterDelay:.5];
             break;
             
         case 3:
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(twoTaps:) object:nil];
-            [self performSelector:@selector(threeTaps:) withObject:self.image afterDelay:.5];
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(twoTaps) object:nil];
+            [self performSelector:@selector(threeTaps) withObject:nil afterDelay:.5];
             break;
             
         default:
@@ -48,20 +50,22 @@
     }
 }
 
--(void)oneTap:(UIImage *)i
+-(void)oneTap
 {
-    NSLog(@"%@", i);
     NSLog(@"Single tap");
+    NSLog(@"Tag = %i", self.tag);
 }
 
--(void)twoTaps :(UIImage *)i
+-(void)twoTaps
 {
     NSLog(@"Double tap");
+    NSLog(@"Tag = %i", self.tag);
 }
 
--(void)threeTaps :(UIImage *) i 
+-(void)threeTaps 
 {
     NSLog(@"Triple tap");
+    NSLog(@"Tag = %i", self.tag);
 }
 
 

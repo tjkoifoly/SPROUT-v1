@@ -8,11 +8,15 @@
 
 #import "DragToSproutViewController.h"
 #import "SaveSproutViewController.h"
+#import "SproutScrollView.h"
+#import "DragDropImageView.h"
 
 @implementation DragToSproutViewController
 
 @synthesize imageForSprout;
 @synthesize imageInput;
+@synthesize sproutView;
+@synthesize sproutScroll;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,6 +58,16 @@
         imageInput = [UIImage imageNamed:@"baby"];
     
     self.imageForSprout.image = imageInput;
+    
+    self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:3 andColSize:4];
+    
+    CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
+    
+    self.sproutScroll.center = center;
+    [self.sproutView addSubview:self.sproutScroll];
+    
+    
+    NSLog(@"%f %f",self.sproutScroll.center.x,self.sproutScroll.center.y );    
 }
 
 - (void)viewDidUnload
@@ -61,6 +75,8 @@
     [super viewDidUnload];
     self.imageForSprout = nil;
     self.imageInput = nil;
+    self.sproutView = nil;
+    self.sproutScroll = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

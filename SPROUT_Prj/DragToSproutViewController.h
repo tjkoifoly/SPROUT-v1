@@ -10,6 +10,8 @@
 
 @interface DragToSproutViewController : UIViewController
 
+@property (strong, nonatomic) UIScrollView *sproutScroll;
+@property (strong, nonatomic) IBOutlet UIView *sproutView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageForSprout;
 @property (strong, nonatomic) UIImage *imageInput;
 

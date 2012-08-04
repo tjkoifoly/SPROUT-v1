@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E40F7FC715CCCDEE00D354A7 /* DragDropImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */; };
+		E424F30015CCFC0B006B588F /* SproutScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E424F2FF15CCFC0B006B588F /* SproutScrollView.m */; };
 		E43FAE7715CA0C4200CF628C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7615CA0C4200CF628C /* UIKit.framework */; };
 		E43FAE7915CA0C4200CF628C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7815CA0C4200CF628C /* Foundation.framework */; };
 		E43FAE7B15CA0C4200CF628C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7A15CA0C4200CF628C /* CoreGraphics.framework */; };
@@ -100,6 +101,8 @@
 /* Begin PBXFileReference section */
 		E40F7FC515CCCDEE00D354A7 /* DragDropImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DragDropImageView.h; path = SproutView/DragDropImageView.h; sourceTree = "<group>"; };
 		E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DragDropImageView.m; path = SproutView/DragDropImageView.m; sourceTree = "<group>"; };
+		E424F2FE15CCFC0B006B588F /* SproutScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SproutScrollView.h; path = SproutView/SproutScrollView.h; sourceTree = "<group>"; };
+		E424F2FF15CCFC0B006B588F /* SproutScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SproutScrollView.m; path = SproutView/SproutScrollView.m; sourceTree = "<group>"; };
 		E43FAE7215CA0C4200CF628C /* SPROUT_Prj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPROUT_Prj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43FAE7615CA0C4200CF628C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E43FAE7815CA0C4200CF628C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -241,6 +244,8 @@
 			children = (
 				E40F7FC515CCCDEE00D354A7 /* DragDropImageView.h */,
 				E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */,
+				E424F2FE15CCFC0B006B588F /* SproutScrollView.h */,
+				E424F2FF15CCFC0B006B588F /* SproutScrollView.m */,
 			);
 			name = SproutObjects;
 			sourceTree = "<group>";
@@ -748,6 +753,7 @@
 				E47AA0BE15CB915A00544164 /* EditImageViewController.m in Sources */,
 				E47AA0C915CBACC000544164 /* ReminderViewController.m in Sources */,
 				E40F7FC715CCCDEE00D354A7 /* DragDropImageView.m in Sources */,
+				E424F30015CCFC0B006B588F /* SproutScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

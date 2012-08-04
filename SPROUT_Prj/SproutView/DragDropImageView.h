@@ -14,4 +14,6 @@
 @property (assign, nonatomic) int locationx;
 @property (assign, nonatomic) int locationy;
 
+-(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y;
+
 @end
