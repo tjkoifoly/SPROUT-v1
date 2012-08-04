@@ -85,7 +85,7 @@
                 alertTime = 0;
                 break;
             case 1:
-                alertTime = 15;
+                alertTime = 1;
                 break;
             case 2 :
                 alertTime = 60;
@@ -137,11 +137,17 @@
 -(IBAction)addNotification:(id)sender
 {
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    [localNotification setFireDate:[NSDate dateWithTimeIntervalSinceNow:[datePicker countDownDuration]]];
+    
+    //[localNotification setFireDate:[NSDate dateWithTimeIntervalSinceNow:[datePicker countDownDuration]]];
+    [localNotification setFireDate:[NSDate dateWithTimeInterval:60.0*self.alertTime sinceDate:[datePicker date]]];
+    
     
     [localNotification setAlertAction:@"Launch"];
+    
     [localNotification setAlertBody:[NSString stringWithFormat:@"%@ - Loaction: %@",[alertDescription text], [alertLocation text]]];
+    
     [localNotification setHasAction:YES];
+    
     [localNotification setApplicationIconBadgeNumber:[[UIApplication sharedApplication] applicationIconBadgeNumber] +1 ];
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
