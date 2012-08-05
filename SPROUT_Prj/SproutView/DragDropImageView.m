@@ -5,8 +5,9 @@
 //  Created by Nguyen Chi Cong on 8/4/12.
 //  Copyright (c) 2012 BKHN. All rights reserved.
 //
-
+#import <QuartzCore/QuartzCore.h>
 #import "DragDropImageView.h"
+#import "ViewPhotoInSproutViewController.h"
 
 #define kWidth 40
 #define kHeight 40
@@ -22,7 +23,12 @@
     self.locationx = x;
     self.locationy = y;
     
-    return [super initWithFrame:CGRectMake(locationy*kWidth, locationx*kHeight, kWidth, kHeight)];
+    self = [super initWithFrame:CGRectMake(locationy*kWidth, locationx*kHeight, kWidth, kHeight)];
+    
+    self.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.layer.borderWidth = 1.f;
+    
+    return self;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

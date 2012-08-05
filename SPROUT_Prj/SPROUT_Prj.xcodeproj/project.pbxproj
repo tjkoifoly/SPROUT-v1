@@ -39,6 +39,7 @@
 		E47AA0BF15CB915A00544164 /* EditImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0BD15CB915A00544164 /* EditImageViewController.xib */; };
 		E47AA0C915CBACC000544164 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0C715CBACC000544164 /* ReminderViewController.m */; };
 		E47AA0CA15CBACC000544164 /* ReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0C815CBACC000544164 /* ReminderViewController.xib */; };
+		E47ABE6E15CD301100CCDCF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47ABE6D15CD301100CCDCF0 /* QuartzCore.framework */; };
 		E496C28515CA16190002DFEA /* SaveorDiscardPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C28315CA16190002DFEA /* SaveorDiscardPhotoViewController.m */; };
 		E496C28615CA16190002DFEA /* SaveorDiscardPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C28415CA16190002DFEA /* SaveorDiscardPhotoViewController.xib */; };
 		E496C28815CA18E40002DFEA /* baby.png in Resources */ = {isa = PBXBuildFile; fileRef = E496C28715CA18E40002DFEA /* baby.png */; };
@@ -144,6 +145,7 @@
 		E47AA0C615CBACC000544164 /* ReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderViewController.h; sourceTree = "<group>"; };
 		E47AA0C715CBACC000544164 /* ReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderViewController.m; sourceTree = "<group>"; };
 		E47AA0C815CBACC000544164 /* ReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReminderViewController.xib; sourceTree = "<group>"; };
+		E47ABE6D15CD301100CCDCF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E496C28215CA16190002DFEA /* SaveorDiscardPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveorDiscardPhotoViewController.h; sourceTree = "<group>"; };
 		E496C28315CA16190002DFEA /* SaveorDiscardPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveorDiscardPhotoViewController.m; sourceTree = "<group>"; };
 		E496C28415CA16190002DFEA /* SaveorDiscardPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaveorDiscardPhotoViewController.xib; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E47ABE6E15CD301100CCDCF0 /* QuartzCore.framework in Frameworks */,
 				E43FAE7715CA0C4200CF628C /* UIKit.framework in Frameworks */,
 				E43FAE7915CA0C4200CF628C /* Foundation.framework in Frameworks */,
 				E43FAE7B15CA0C4200CF628C /* CoreGraphics.framework in Frameworks */,
@@ -291,6 +294,7 @@
 		E43FAE7515CA0C4200CF628C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E47ABE6D15CD301100CCDCF0 /* QuartzCore.framework */,
 				E43FAE7615CA0C4200CF628C /* UIKit.framework */,
 				E43FAE7815CA0C4200CF628C /* Foundation.framework */,
 				E43FAE7A15CA0C4200CF628C /* CoreGraphics.framework */,
@@ -816,10 +820,11 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PROVISIONING_PROFILE = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -837,11 +842,12 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -854,9 +860,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPROUT_Prj/SPROUT_Prj-Prefix.pch";
 				INFOPLIST_FILE = "SPROUT_Prj/SPROUT_Prj-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -869,9 +877,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPROUT_Prj/SPROUT_Prj-Prefix.pch";
 				INFOPLIST_FILE = "SPROUT_Prj/SPROUT_Prj-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

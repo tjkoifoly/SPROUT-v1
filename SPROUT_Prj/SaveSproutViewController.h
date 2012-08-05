@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DragDropImageView.h"
 
 @interface SaveSproutViewController : UIViewController
 

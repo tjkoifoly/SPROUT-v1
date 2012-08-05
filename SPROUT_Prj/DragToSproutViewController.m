@@ -10,6 +10,7 @@
 #import "SaveSproutViewController.h"
 #import "SproutScrollView.h"
 #import "DragDropImageView.h"
+#import "ViewPhotoInSproutViewController.h"
 
 @implementation DragToSproutViewController
 
@@ -65,9 +66,10 @@
     
     self.sproutScroll.center = center;
     [self.sproutView addSubview:self.sproutScroll];
+    self.sproutView.backgroundColor = [UIColor clearColor];
     
     
-    NSLog(@"%f %f",self.sproutScroll.center.x,self.sproutScroll.center.y );    
+    //NSLog(@"%f %f",self.sproutScroll.center.x,self.sproutScroll.center.y );    
 }
 
 - (void)viewDidUnload
@@ -89,6 +91,7 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 
 
 @end

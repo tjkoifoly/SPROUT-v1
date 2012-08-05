@@ -10,6 +10,8 @@
 
 @interface ViewPhotoInSproutViewController : UIViewController
 
+@property (strong, nonatomic) NSArray *listImages;
+
 -(IBAction)back:(id)sender;
 -(IBAction)preivousImage:(id)sender;
 -(IBAction)nextImage:(id)sender;

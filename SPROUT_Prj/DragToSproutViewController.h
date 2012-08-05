@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DragDropImageView.h"
+#import "SproutScrollView.h"
 
 @interface DragToSproutViewController : UIViewController
 
-@property (strong, nonatomic) UIScrollView *sproutScroll;
+@property (strong, nonatomic) SproutScrollView *sproutScroll;
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageForSprout;
 @property (strong, nonatomic) UIImage *imageInput;

@@ -8,6 +8,7 @@
 
 #import "SproutScrollView.h"
 #import "DragDropImageView.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define kWidth 40
 #define kHeight 40
@@ -43,8 +44,7 @@
     self = [super initWithFrame:CGRectMake(0.0f, 0.0f, maxWidth, maxHeight)];
     
     [self setContentSize:CGSizeMake(self.rowSize * kWidth, self.colSize *kHeight)];
-        [self setScrollEnabled:YES];
-        
+    [self setScrollEnabled:YES];
         for(int i = 0; i< self.rowSize ; i++)
         {
             for(int j = 0; j < self.colSize; j++)
@@ -54,13 +54,18 @@
                 imv.image = [UIImage imageNamed:@"baby"];
                 imv.tag = i * (self.colSize) + j;
                 imv.userInteractionEnabled = YES;
-                
                 [self addSubview:imv];
                 
                 NSLog(@"%i %i %i", i , j, imv.tag);
             }
         }
+    self.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.layer.borderWidth = 2.f;
 
+    if(((maxWidth<kMAXWidth)) && ((maxHeight<kMAXHeight)))
+    {
+        [self setScrollEnabled:NO];
+    }
     return self;
 }
 

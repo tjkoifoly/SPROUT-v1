@@ -15,7 +15,6 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSMutableArray *images;
 
-
 -(id)initWithrowSize: (NSInteger) rs andColSize: (NSInteger) cs;
 -(void) updateImageToSprout: (NSMutableArray *) imagesOfSprout;
 

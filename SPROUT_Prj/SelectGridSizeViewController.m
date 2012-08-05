@@ -8,6 +8,7 @@
 
 #import "SelectGridSizeViewController.h"
 #import "CreateSproutViewController.h"
+#import "SproutScrollView.h"
 
 @implementation SelectGridSizeViewController
 
@@ -39,11 +40,11 @@
 {
     [super viewDidLoad];
     
-    NSArray *a1 = [[NSArray alloc] initWithObjects:@"6",@"7",@"8",@"9",@"10", @"11",@"12", nil];
+    NSArray *a1 = [[NSArray alloc] initWithObjects:@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", @"11",@"12", @"13",@"14",@"15",nil];
     self.rowPickerData = a1;
     
      
-    NSArray *a2 = [[NSArray alloc] initWithObjects:@"2",@"3",@"4",@"5",@"6",@"7",@"8", nil];
+    NSArray *a2 = [[NSArray alloc] initWithObjects:@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", @"11",@"12", @"13",@"14",@"15", nil];
     self.colPickerData = a2;
 }
 
@@ -108,12 +109,15 @@
     
     CreateSproutViewController *createSproutViewController = [[CreateSproutViewController alloc] initWithNibName:@"CreateSproutViewController" bundle:nil];
     
+    SproutScrollView *s = [[SproutScrollView alloc] initWithrowSize:rowValue andColSize:colValue];
+    createSproutViewController.sprout = s;
+    
     [self.navigationController pushViewController:createSproutViewController animated:YES];
 }
 
 -(IBAction)goToHome:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

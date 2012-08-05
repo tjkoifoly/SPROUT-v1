@@ -6,13 +6,18 @@
 //  Copyright (c) 2012 BKHN. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "CreateSproutViewController.h"
 #import "DragToSproutViewController.h"
+#import "ExportSproutViewController.h"
+#import "SaveorDiscardPhotoViewController.h"
 
 @implementation CreateSproutViewController
 
 @synthesize pickerImage;
 @synthesize imageView;
+@synthesize sprout;
+@synthesize sproutView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,12 +42,22 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSLog(@"%i %i", sprout.rowSize, sprout.colSize);
+        
+    CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
+    
+    self.sprout.center = center;
+    [self.sproutView addSubview:self.sprout];
+    
+    self.sproutView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     self.pickerImage = nil;
+    self.sprout = nil;
+    self.sproutView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -109,16 +124,17 @@
 
 -(IBAction)share:(id)sender
 {
+    ExportSproutViewController *exportSproutViewController = [[ExportSproutViewController alloc] initWithNibName:@"ExportSproutViewController" bundle:nil];
     
+    [self.navigationController pushViewController:exportSproutViewController animated:YES];
 }
 
 -(IBAction)capture:(id)sender
 {
+    SaveorDiscardPhotoViewController *takePhotoViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
     
+    [self.navigationController pushViewController:takePhotoViewController animated:YES];
 }
-
-
-
 
 
 @end

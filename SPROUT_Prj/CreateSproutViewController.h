@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SproutScrollView.h"
 
 @interface CreateSproutViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) UIImagePickerController *pickerImage;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (strong, nonatomic) SproutScrollView *sprout;
+@property (strong, nonatomic) IBOutlet UIView *sproutView;
 
 
 

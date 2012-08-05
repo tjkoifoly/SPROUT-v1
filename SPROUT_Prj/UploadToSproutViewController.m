@@ -9,6 +9,7 @@
 #import "UploadToSproutViewController.h"
 #import "CellSproutCustomView.h"
 #import "DragToSproutViewController.h"
+#import "SelectGridSizeViewController.h"
 
 @implementation UploadToSproutViewController
 
@@ -125,6 +126,11 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+-(IBAction)createNewSprout:(id)sender
+{
+    SelectGridSizeViewController *newSrpoutController = [[SelectGridSizeViewController alloc] initWithNibName:@"SelectGridSizeViewController" bundle:nil];
+    [self.navigationController pushViewController:newSrpoutController animated:YES];
+}
 
 
 

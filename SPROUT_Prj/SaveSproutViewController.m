@@ -8,6 +8,7 @@
 
 #import "SaveSproutViewController.h"
 #import "ExportSproutViewController.h"
+#import "ViewPhotoInSproutViewController.h"
 
 @implementation SaveSproutViewController
 
@@ -66,6 +67,7 @@
 
     [self.navigationController pushViewController:exportSproutViewController animated:YES];
 }
+
 
 
 

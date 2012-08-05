@@ -53,6 +53,7 @@
 -(IBAction)save:(id)sender
 {
     ContinueAfterSaveViewController *updateImageViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
+    updateImageViewController.imageInput = [UIImage imageNamed:@"baby"];
     [self.navigationController pushViewController:updateImageViewController animated:YES];
 }
 
