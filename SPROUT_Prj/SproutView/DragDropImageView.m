@@ -17,6 +17,7 @@
 @synthesize tag;
 @synthesize locationx;
 @synthesize locationy;
+@synthesize delegate;
 
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y
 {
@@ -66,6 +67,7 @@
 {
     NSLog(@"Double tap");
     NSLog(@"Tag = %i", self.tag);
+    [self.delegate dragDropImageView:self];
 }
 
 -(void)threeTaps 

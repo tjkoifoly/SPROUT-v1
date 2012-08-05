@@ -11,6 +11,7 @@
 #import "SproutScrollView.h"
 
 @interface DragToSproutViewController : UIViewController
+<SproutDelegate>
 
 @property (strong, nonatomic) SproutScrollView *sproutScroll;
 @property (strong, nonatomic) IBOutlet UIView *sproutView;

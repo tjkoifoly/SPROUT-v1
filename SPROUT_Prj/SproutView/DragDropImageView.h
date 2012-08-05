@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class DragDropImageView;
 
+@protocol DragDropImageViewDelegate <NSObject>
+
+-(void)dragDropImageView: (DragDropImageView *) imageViewSelected;
+
+@end
 @interface DragDropImageView : UIImageView
+
+@property (retain, nonatomic) NSObject <DragDropImageViewDelegate> *delegate;
 
 @property (assign, nonatomic) int tag;
 @property (assign, nonatomic) int locationx;

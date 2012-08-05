@@ -61,6 +61,8 @@
     self.imageForSprout.image = imageInput;
     
     self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:3 andColSize:4];
+
+    self.sproutScroll.delegate = self;
     
     CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
     
@@ -90,6 +92,12 @@
 -(IBAction)goToHome:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected
+{
+    ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
+    [self.navigationController pushViewController:photoViewController animated:YES];
 }
 
 
