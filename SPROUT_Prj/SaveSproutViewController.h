@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "DragDropImageView.h"
+#import "SproutScrollView.h"
 
 @interface SaveSproutViewController : UIViewController
+<SproutDelegate>
+
+@property (strong, nonatomic) SproutScrollView *sproutScroll;
+@property (strong, nonatomic) IBOutlet UIView *sproutView;
+
+
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)save:(id)sender;

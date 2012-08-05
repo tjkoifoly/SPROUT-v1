@@ -10,7 +10,11 @@
 #import "ExportSproutViewController.h"
 #import "ViewPhotoInSproutViewController.h"
 
+
 @implementation SaveSproutViewController
+
+@synthesize sproutScroll;
+@synthesize sproutView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,14 +38,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:3 andColSize:4];
+    
+    self.sproutScroll.delegate = self;
+    
+    CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
+    
+    self.sproutScroll.center = center;
+    [self.sproutView addSubview:self.sproutScroll];
+    self.sproutView.backgroundColor = [UIColor clearColor];
+
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.sproutView = nil;
+    self.sproutScroll = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -68,7 +82,12 @@
     [self.navigationController pushViewController:exportSproutViewController animated:YES];
 }
 
+-(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected
+{
+    ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
+    [self.navigationController pushViewController:photoViewController animated:YES];
 
+}
 
 
 

@@ -11,6 +11,7 @@
 #import "DragToSproutViewController.h"
 #import "ExportSproutViewController.h"
 #import "SaveorDiscardPhotoViewController.h"
+#import "ViewPhotoInSproutViewController.h"
 
 @implementation CreateSproutViewController
 
@@ -45,7 +46,7 @@
     NSLog(@"%i %i", sprout.rowSize, sprout.colSize);
         
     CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
-    
+    self.sprout.delegate = self;
     self.sprout.center = center;
     [self.sproutView addSubview:self.sprout];
     
@@ -134,6 +135,14 @@
     SaveorDiscardPhotoViewController *takePhotoViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
     
     [self.navigationController pushViewController:takePhotoViewController animated:YES];
+}
+
+-(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected
+{
+    ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
+    [self.navigationController pushViewController:photoViewController animated:YES];
+    
+
 }
 
 
