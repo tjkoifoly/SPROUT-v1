@@ -21,14 +21,14 @@
 @property (nonatomic, assign) NSInteger rowSize;
 @property (nonatomic, assign) NSInteger colSize;
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSMutableArray *images;
+@property (strong, nonatomic) NSArray *images;
 @property (strong, nonatomic) DragDropImageView *imvSelected;
 @property (assign, nonatomic) id <SproutDelegate> delegate;
 
 
 -(id)initWithrowSize: (NSInteger) rs andColSize: (NSInteger) cs;
+-(id) initWithArrayImage: (NSInteger)rs : (NSInteger) cs: (NSArray*) ai;
 -(void) updateImageToSprout: (NSMutableArray *) imagesOfSprout;
-
 
 
 @end

@@ -148,9 +148,7 @@
 
 -(IBAction)capture:(id)sender
 {
-    SaveorDiscardPhotoViewController *takePhotoViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
     
-    [self.navigationController pushViewController:takePhotoViewController animated:YES];
 }
 
 -(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected

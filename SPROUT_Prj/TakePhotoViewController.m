@@ -10,6 +10,7 @@
 #import "SaveorDiscardPhotoViewController.h"
 #import "ContinueAfterSaveViewController.h"
 #import "DragDropImageView.h"
+#import "Sprout.h"
 
 @implementation TakePhotoViewController
 
@@ -41,6 +42,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 - (void)viewDidUnload
@@ -77,13 +79,6 @@
     ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
     
     continueViewController.imageInput = i;
-    
-    NSURL *urlImage = [info objectForKey:UIImagePickerControllerReferenceURL];
-    NSLog(@"About to load asset from %@", urlImage);
-    DragDropImageView *is = [[DragDropImageView alloc] init];
-    [is loadImageFromAssetURL:urlImage];
-   
-    NSLog(@"image out :%@", is.image);
     
     [self.navigationController pushViewController:continueViewController animated:YES];
     

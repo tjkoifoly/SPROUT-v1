@@ -14,5 +14,6 @@
 +(NSArray *) loadAllSprout;
 +(void)createSprout: (NSString *)sName : (NSInteger)sizeRow: (NSInteger) sizeCol;
 +(NSManagedObject *) sproutForName: (NSString *)sName;
++(NSManagedObject *)imageInSprout: (NSString *)sName: (NSInteger)tag;
 
 @end

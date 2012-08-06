@@ -20,6 +20,7 @@
 @synthesize locationx;
 @synthesize locationy;
 @synthesize delegate;
+@synthesize url;
 
 
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y
@@ -32,7 +33,25 @@
     self.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.layer.borderWidth = 1.f;
     
+    [self loadImageFromAssetURL:[NSURL URLWithString:self.url]];
+    
     return self;
+}
+
+-(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage
+{
+    self.locationx = x;
+    self.locationy = y;
+    
+    self = [super initWithFrame:CGRectMake(locationy*kWidth, locationx*kHeight, kWidth, kHeight)];
+    
+    self.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.layer.borderWidth = 1.f;
+    
+    [self loadImageFromAssetURL:[NSURL URLWithString:urlimage]];
+    
+    return self;
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -96,8 +115,12 @@
         CGImageRef cgImage = [assetRepresentation CGImageWithOptions:nil]; 
     
         if (cgImage)
+        {
     
-        NSLog(@" image from here: %@",[UIImage imageWithCGImage:cgImage]);
+            NSLog(@" image from here: %@",[UIImage imageWithCGImage:cgImage]);
+            self.image = [UIImage imageWithCGImage:cgImage];
+            NSLog(@"DCMCM: %@", self.image);
+        }
         
     };
     
@@ -106,7 +129,7 @@
     };
     
     [library assetForURL:assetURL resultBlock:result failureBlock:failure];
-        
+    
 }
 
 
