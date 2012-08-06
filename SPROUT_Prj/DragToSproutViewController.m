@@ -61,7 +61,7 @@
     
     self.imageForSprout.image = imageInput;
     
-    NSLog(@"SPROUT = %@", self.sprout);
+   // NSLog(@"SPROUT = %@", self.sprout);
     
     NSSet *imagesSet = [self.sprout valueForKey:@"sproutToImages"];
     NSArray *imagesArray = [imagesSet allObjects];

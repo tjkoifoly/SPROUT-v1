@@ -40,7 +40,10 @@
 {
     [super viewDidLoad];
     
-    self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:[[self.sprout valueForKey:@"rowSize"] intValue] andColSize:[[self.sprout valueForKey:@"colSize"] intValue]];
+    NSSet *imagesSet = [self.sprout valueForKey:@"sproutToImages"];
+    NSArray *imagesArray = [imagesSet allObjects];
+    
+    self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
     
     self.sproutScroll.delegate = self;
     
