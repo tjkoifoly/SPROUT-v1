@@ -92,6 +92,10 @@
     
     DragToSproutViewController *dragViewController = [[DragToSproutViewController alloc] initWithNibName:@"DragToSproutViewController" bundle:nil];
     dragViewController.imageInput = i;
+    
+    [Sprout createSprout:self.sprout.name :self.sprout.rowSize :self.sprout.colSize];
+    dragViewController.sprout = [Sprout sproutForName:self.sprout.name];
+    
     [self.navigationController pushViewController:dragViewController animated:YES];
     
     [self dismissModalViewControllerAnimated:YES];    
@@ -130,24 +134,7 @@
     NSLog(@"%@", documentDirectory);
 
     
-    CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSError *error;
-    
-    NSManagedObject *newSproutObject = [NSEntityDescription insertNewObjectForEntityForName:@"Sprouts" inManagedObjectContext:context];
-    [newSproutObject setValue:self.sprout.name forKey:@"name"];
-    [newSproutObject setValue:[NSNumber numberWithInt:self.sprout.rowSize ] forKey:@"rowSize"];
-    [newSproutObject setValue:[NSNumber numberWithInt:self.sprout.colSize] forKey:@"colSize"];    
-    
-    for(int i = 0; i< self.sprout.rowSize * self.sprout.colSize ; i++)
-    {
-        NSManagedObject *imageOfSprout = [NSEntityDescription insertNewObjectForEntityForName:@"Images" inManagedObjectContext:context];
-        [imageOfSprout setValue:nil forKey:@"url"];
-        [imageOfSprout setValue:[NSNumber numberWithInt:i] forKey:@"tag"];
-        [imageOfSprout setValue:newSproutObject forKey:@"imageToSprout"];
-    }
-    
-    [context save:&error];
+    [Sprout createSprout:self.sprout.name :self.sprout.rowSize :self.sprout.colSize];
     
     [self.navigationController popToViewController:[self.navigationController.childViewControllers objectAtIndex:([self.navigationController.childViewControllers indexOfObject:self] - 2)] animated:YES];
 }
