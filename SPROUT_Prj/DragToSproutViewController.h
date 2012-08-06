@@ -14,6 +14,7 @@
 <SproutDelegate>
 
 @property (strong, nonatomic) SproutScrollView *sproutScroll;
+@property (strong, nonatomic) NSManagedObject *sprout;
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageForSprout;
 @property (strong, nonatomic) UIImage *imageInput;

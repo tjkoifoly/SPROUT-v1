@@ -42,7 +42,8 @@
 {
     [super viewDidLoad];
     //UPDATE Data:
-    listSprout = [[NSArray alloc] initWithObjects:@"01/01/2012 - Hamish 0 to 6 months",@"23/03/2012 - Tomato plant",@"05/05/2012 - Changeing weither", @"12/7/2012 - Carton practice", nil];
+    //NSMutableArray *allSprouts = [[NSMutableArray alloc] initWithArray:[Sprout loadAllSprout]];
+    //self.listSprout = allSprouts;
     //UPDATE View
     [table setBackgroundColor:[UIColor clearColor]];
     table.separatorColor=[UIColor clearColor];
@@ -50,6 +51,14 @@
     
     self.imageView.image = imageInput;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    NSMutableArray *allSprouts = [[NSMutableArray alloc] initWithArray:[Sprout loadAllSprout]];
+    self.listSprout = allSprouts;
+    [table reloadData];
 }
 
 - (void)viewDidUnload
@@ -100,9 +109,10 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor=[UIColor clearColor];
     
-    cell.sproutInfoLabel.text = [listSprout objectAtIndex:indexPath.row];
+    cell.sproutInfoLabel.text = [[listSprout objectAtIndex:indexPath.row] valueForKey:@"name"];
     
-    [cell.sproutInfo addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [cell.sproutInfo addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    cell.sproutInfo.tag = indexPath.row ;
 
     return cell;
 }
@@ -113,11 +123,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
--(void) buttonPressed
+-(void) buttonPressed :(id)sender
 {
+    UIButton *button = (UIButton *)sender;
+    NSLog(@"%i", button.tag);
+    
     DragToSproutViewController *dragToSproutController = [[DragToSproutViewController alloc] initWithNibName:@"DragToSproutViewController" bundle:nil];
 
     dragToSproutController.imageInput = self.imageInput;
+    dragToSproutController.sprout = [self.listSprout objectAtIndex:button.tag];
+    
     [self.navigationController pushViewController:dragToSproutController animated:YES];
 }
 

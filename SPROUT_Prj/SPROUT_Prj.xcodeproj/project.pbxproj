@@ -27,6 +27,7 @@
 		E43FAEB015CA0C6D00CF628C /* TakePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */; };
 		E43FAEB415CA0F1900CF628C /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB315CA0F1900CF628C /* Splash.png */; };
 		E43FAEB615CA0F5000CF628C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB515CA0F5000CF628C /* Default.png */; };
+		E459323715CF71D1009A5D1C /* Sprout.m in Sources */ = {isa = PBXBuildFile; fileRef = E459323615CF71D1009A5D1C /* Sprout.m */; };
 		E47AA0A615CB7D4400544164 /* SendEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0A415CB7D4400544164 /* SendEmailViewController.m */; };
 		E47AA0A715CB7D4400544164 /* SendEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0A515CB7D4400544164 /* SendEmailViewController.xib */; };
 		E47AA0AC15CB7F4D00544164 /* PurcharseCanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0AA15CB7F4D00544164 /* PurcharseCanvasViewController.m */; };
@@ -134,6 +135,8 @@
 		E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakePhotoViewController.xib; sourceTree = "<group>"; };
 		E43FAEB315CA0F1900CF628C /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
 		E43FAEB515CA0F5000CF628C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E459323515CF71D1009A5D1C /* Sprout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprout.h; path = SproutView/Sprout.h; sourceTree = "<group>"; };
+		E459323615CF71D1009A5D1C /* Sprout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sprout.m; path = SproutView/Sprout.m; sourceTree = "<group>"; };
 		E47AA0A315CB7D4400544164 /* SendEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmailViewController.h; sourceTree = "<group>"; };
 		E47AA0A415CB7D4400544164 /* SendEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmailViewController.m; sourceTree = "<group>"; };
 		E47AA0A515CB7D4400544164 /* SendEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendEmailViewController.xib; sourceTree = "<group>"; };
@@ -268,6 +271,8 @@
 				E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */,
 				E424F2FE15CCFC0B006B588F /* SproutScrollView.h */,
 				E424F2FF15CCFC0B006B588F /* SproutScrollView.m */,
+				E459323515CF71D1009A5D1C /* Sprout.h */,
+				E459323615CF71D1009A5D1C /* Sprout.m */,
 			);
 			name = SproutObjects;
 			sourceTree = "<group>";
@@ -786,6 +791,7 @@
 				E47AA0C915CBACC000544164 /* ReminderViewController.m in Sources */,
 				E40F7FC715CCCDEE00D354A7 /* DragDropImageView.m in Sources */,
 				E424F30015CCFC0B006B588F /* SproutScrollView.m in Sources */,
+				E459323715CF71D1009A5D1C /* Sprout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

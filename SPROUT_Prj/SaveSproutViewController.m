@@ -15,6 +15,7 @@
 
 @synthesize sproutScroll;
 @synthesize sproutView;
+@synthesize sprout;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +40,7 @@
 {
     [super viewDidLoad];
     
-    self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:3 andColSize:4];
+    self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:[[self.sprout valueForKey:@"rowSize"] intValue] andColSize:[[self.sprout valueForKey:@"colSize"] intValue]];
     
     self.sproutScroll.delegate = self;
     
@@ -56,6 +57,7 @@
     [super viewDidUnload];
     self.sproutView = nil;
     self.sproutScroll = nil;
+    self.sprout = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

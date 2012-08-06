@@ -9,6 +9,8 @@
 #import "ViewSproutViewController.h"
 #import "CellSproutCustomView.h"
 #import "SaveSproutViewController.h"
+#import "CNCAppDelegate.h"
+#import "Sprout.h"
 
 @implementation ViewSproutViewController
 
@@ -37,11 +39,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    listSprout = [[NSArray alloc] initWithObjects:@"01/01/2012 - Hamish 0 to 6 months",@"23/03/2012 - Tomato plant",@"05/05/2012 - Changeing weither", @"12/7/2012 - Carton practice", nil];
+    //listSprout = [[NSArray alloc] initWithObjects:@"01/01/2012 - Hamish 0 to 6 months",@"23/03/2012 - Tomato plant",@"05/05/2012 - Changeing weither", @"12/7/2012 - Carton practice", nil]
     //UPDATE View
     [table setBackgroundColor:[UIColor clearColor]];
     table.separatorColor=[UIColor clearColor];
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    listSprout = [Sprout loadAllSprout];
+    [table reloadData];
 }
 
 - (void)viewDidUnload
@@ -89,7 +98,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor=[UIColor clearColor];
     
-    cell.sproutInfoLabel.text = [listSprout objectAtIndex:indexPath.row];
+    cell.sproutInfoLabel.text = [[listSprout objectAtIndex:indexPath.row] valueForKey:@"name"];
     
     cell.sproutInfo.tag = indexPath.row;
     
@@ -136,7 +145,7 @@
     }
     
     SaveSproutViewController *displaySproutViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
-    
+    displaySproutViewController.sprout = [self.listSprout objectAtIndex:tag];
     [self.navigationController pushViewController:displaySproutViewController animated:YES];
 }
 

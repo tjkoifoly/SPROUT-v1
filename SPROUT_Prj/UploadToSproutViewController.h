@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Sprout.h"
 
 @interface UploadToSproutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIImage *imageInput;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
-@property (strong, nonatomic) NSArray *listSprout;
+@property (strong, nonatomic) NSMutableArray *listSprout;
 @property (strong, nonatomic) IBOutlet UITableView *table;
 
 -(IBAction)goToHome:(id)sender;
