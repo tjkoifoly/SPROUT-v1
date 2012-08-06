@@ -9,6 +9,7 @@
 #import "ContinueAfterSaveViewController.h"
 #import "UploadToSproutViewController.h"
 #import "EditImageViewController.h"
+#import <Twitter/Twitter.h>
 
 @implementation ContinueAfterSaveViewController
 
@@ -72,7 +73,31 @@
 
 -(IBAction)postToSocialNetwork:(id)sender
 {
+    UIButton *shareButton = (UIButton *)sender;
     
+    //POST ON TWITTER
+    if(shareButton.tag == 1)
+    {
+        if([TWTweetComposeViewController canSendTweet])
+        {
+            TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc]init];
+            [tweetSheet setInitialText:@"You can write tittle for picture to post Twitter !"];
+            
+            //Set image in HERE
+            [tweetSheet addImage:[UIImage imageNamed:@"baby"]];
+            [self presentModalViewController:tweetSheet animated:YES];
+        }else
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"You can't send a tweet right now, make sure  your device has an internet connection and you have                                at least one Twitter account setup" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    }
+    //POST ON FACEBOOK
+    else if(shareButton.tag == 2)
+    {
+        
+    }
+
 }
 
 -(IBAction)goToHome:(id)sender

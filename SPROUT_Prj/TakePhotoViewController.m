@@ -9,10 +9,14 @@
 #import "TakePhotoViewController.h"
 #import "SaveorDiscardPhotoViewController.h"
 #import "ContinueAfterSaveViewController.h"
+#import "DragDropImageView.h"
 
 @implementation TakePhotoViewController
 
 @synthesize pickerImage;
+@synthesize imageView;
+@synthesize newMedia;
+@synthesize save;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +47,7 @@
 {
     [super viewDidUnload];
     self.pickerImage = nil;
+    self.imageView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -67,11 +72,18 @@
     
     UIImage *i = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    //    NSLog(@"Image = %@", i);
+        NSLog(@"Image = %@", i);
     
     ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
     
     continueViewController.imageInput = i;
+    
+    NSURL *urlImage = [info objectForKey:UIImagePickerControllerReferenceURL];
+    NSLog(@"About to load asset from %@", urlImage);
+    DragDropImageView *is = [[DragDropImageView alloc] init];
+    [is loadImageFromAssetURL:urlImage];
+   
+    NSLog(@"image out :%@", is.image);
     
     [self.navigationController pushViewController:continueViewController animated:YES];
     
@@ -85,8 +97,39 @@
 
 -(IBAction)capture:(id)sender
 {
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        
+        imagePicker.delegate = self;
+        imagePicker.sourceType = 
+        UIImagePickerControllerSourceTypeCamera;
+        
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        
+        imagePicker.allowsEditing = NO;
+        [self presentModalViewController:imagePicker 
+                                animated:YES];
+        newMedia = YES;
+    }else
+    {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"WARNING:"
+                              message: @"No detect camera on device!"
+                              delegate: nil
+                              cancelButtonTitle:@"Close"
+                              otherButtonTitles:nil];
+        [alert show];
+
+    }
+    /*
     SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
     [self.navigationController pushViewController:saveViewController animated:YES];
+     */
 }
 
 -(IBAction)goToHome :(id)sender
@@ -100,12 +143,41 @@
     if(self.pickerImage == nil)
     {
         self.pickerImage = [[UIImagePickerController alloc] init];
-        self.pickerImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        self.pickerImage.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     }
     
     self.pickerImage.delegate = self;
     
     [self presentModalViewController:pickerImage animated:YES];
+}
+
+-(void)image:(UIImage *)image
+    finishedSavingWithError:(NSError *)error 
+ contextInfo:(void *)contextInfo
+{
+    SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
+    saveViewController.delegate = self;
+    [self.navigationController pushViewController:saveViewController animated:YES];
+
+    if(self.save)
+    {
+        
+    }
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Save failed"
+                              message: @"Failed to save image"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+-(void)saveOrDiscardPhoto:(SaveorDiscardPhotoViewController *)controller :(BOOL)saved
+{
+    self.save = saved;
+    NSLog(@"%@", self.save);
 }
 
 

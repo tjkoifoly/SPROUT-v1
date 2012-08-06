@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import "SaveorDiscardPhotoViewController.h"
 
 @interface TakePhotoViewController : UIViewController
-<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, SaveOrDiscardPhotoDelegate>
 
 @property (strong, nonatomic) UIImagePickerController *pickerImage;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic) BOOL newMedia;
+@property (nonatomic) BOOL save;
 
 -(IBAction)capture:(id)sender;
 -(IBAction)goToHome :(id)sender;

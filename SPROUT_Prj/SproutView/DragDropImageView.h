@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
 
 @class DragDropImageView;
 
 @protocol DragDropImageViewDelegate <NSObject>
 
 -(void)dragDropImageView: (DragDropImageView *) imageViewSelected;
+-(void)touchInAImage: (DragDropImageView *) iSelected;
+-(void)dropInGrid: (DragDropImageView *)toImv;
 
 @end
 @interface DragDropImageView : UIImageView
@@ -24,5 +27,7 @@
 @property (assign, nonatomic) int locationy;
 
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y;
+
+- (void)loadImageFromAssetURL: (NSURL *)assetURL;
 
 @end

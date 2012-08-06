@@ -11,11 +11,17 @@
 #import "SproutScrollView.h"
 
 @implementation SelectGridSizeViewController
+{
+    double moveOrigin;
+}
 
 @synthesize rowPicker;
 @synthesize colPicker;
 @synthesize rowPickerData;
 @synthesize colPickerData;
+@synthesize nameField;
+@synthesize sproutName;
+@synthesize stayup;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +61,8 @@
     self.colPicker = nil;
     self.rowPickerData = nil;
     self.colPickerData = nil;
+    self.nameField = nil;
+    self.sproutName = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -99,6 +107,18 @@
 
 -(IBAction)create:(id)sender
 {
+    if ([self.nameField.text isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"WARNING:"
+                              message: @"Please enter sprout name!"
+                              delegate: nil
+                              cancelButtonTitle:@"Close"
+                              otherButtonTitles:nil];
+        [alert show];
+
+        return;
+    }
+    
     NSInteger rowSprout = [self.rowPicker selectedRowInComponent:0];
     
      NSInteger colSprout = [self.colPicker selectedRowInComponent:0];
@@ -110,6 +130,7 @@
     CreateSproutViewController *createSproutViewController = [[CreateSproutViewController alloc] initWithNibName:@"CreateSproutViewController" bundle:nil];
     
     SproutScrollView *s = [[SproutScrollView alloc] initWithrowSize:rowValue andColSize:colValue];
+    s.name = self.sproutName;
     createSproutViewController.sprout = s;
     
     [self.navigationController pushViewController:createSproutViewController animated:YES];
@@ -119,6 +140,54 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+-(IBAction)resignKeyboard:(id)sender
+{
+    [self resignFirstResponder];
+}
+
+-(void)setViewMoveUp: (BOOL) moveUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    CGRect rect = self.view.frame;
+    if(moveUp)
+    {
+        if(stayup)
+        {
+            rect.origin.y -= moveOrigin;
+        }
+    }else
+    {
+        if(stayup == NO)
+        {
+            rect.origin.y += moveOrigin;
+        }
+    }
+    
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    stayup = YES;
+    moveOrigin = textField.frame.origin.y - 6*textField.frame.size.height;
+    
+    [self setViewMoveUp:YES];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.sproutName = textField.text;
+    stayup = NO;
+    [self setViewMoveUp:NO];
+    [textField resignFirstResponder];
+}
+
 
 
 

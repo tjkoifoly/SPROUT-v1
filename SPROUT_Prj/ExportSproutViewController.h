@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface ExportSproutViewController : UIViewController
+@interface ExportSproutViewController : UIViewController 
 
 @property (strong, nonatomic) IBOutlet UIImageView *sproutToImage;
 @property (strong, nonatomic) IBOutlet UIButton *emailButton;
@@ -20,5 +21,6 @@
 -(IBAction)purcharseCanvas:(id)sender;
 -(IBAction)saveAsImage:(id)sender;
 -(IBAction)shareViaSocialNetwork:(id)sender;
+
 
 @end

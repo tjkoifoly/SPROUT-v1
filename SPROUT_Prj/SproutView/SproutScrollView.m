@@ -45,8 +45,12 @@
     //NSLog(@"row = %i, col = %i", self.rowSize, self.colSize);
     self = [super initWithFrame:CGRectMake(0.0f, 0.0f, maxWidth, maxHeight)];
     
-    [self setContentSize:CGSizeMake(self.rowSize * kWidth + 100, self.colSize *kHeight + 100)];
+    [self setContentSize:CGSizeMake((self.colSize * kWidth), (self.rowSize *kHeight))];
+    
     [self setScrollEnabled:YES];
+    [self setShowsHorizontalScrollIndicator:NO];
+    [self setShowsVerticalScrollIndicator:NO];
+    
         for(int i = 0; i< self.rowSize ; i++)
         {
             for(int j = 0; j < self.colSize; j++)
@@ -65,10 +69,6 @@
     self.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.layer.borderWidth = 2.f;
 
-    if(((maxWidth<kMAXWidth)) && ((maxHeight<kMAXHeight)))
-    {
-        [self setScrollEnabled:NO];
-    }
     return self;
 }
 
@@ -83,6 +83,15 @@
     
     [self.delegate sproutDidSelectedViewImage:self :self.imvSelected];
     NSLog(@"Delegate Selected");
+}
+
+-(void)touchInAImage:(DragDropImageView *)iSelected
+{
+    NSLog(@"From Image: %@", iSelected);
+}
+-(void)dropInGrid:(DragDropImageView *)toImv
+{
+    NSLog(@"To Image: %@", toImv);
 }
 
 @end

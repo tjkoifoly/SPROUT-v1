@@ -11,6 +11,9 @@
 
 @implementation SaveorDiscardPhotoViewController
 
+@synthesize delegate;
+@synthesize image;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,6 +44,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.delegate = nil;
+    self.image = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -52,13 +57,18 @@
 #pragma IBAction
 -(IBAction)save:(id)sender
 {
+    /*
     ContinueAfterSaveViewController *updateImageViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
     updateImageViewController.imageInput = [UIImage imageNamed:@"baby"];
     [self.navigationController pushViewController:updateImageViewController animated:YES];
+     */
+    [self.delegate saveOrDiscardPhoto:self :YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)discard:(id)sender
 {
+    [self.delegate saveOrDiscardPhoto:self :NO];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

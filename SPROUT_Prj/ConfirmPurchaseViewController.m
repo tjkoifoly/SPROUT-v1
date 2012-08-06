@@ -7,6 +7,7 @@
 //
 
 #import "ConfirmPurchaseViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ConfirmPurchaseViewController
 
@@ -35,7 +36,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    accept = NO;
+
+    self.acceptView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.acceptView.layer.borderWidth = 1.f;
+    
+    accept = YES;
     [self touchCheck];
 }
 
@@ -78,16 +83,28 @@
     if(accept)
     {
         //display tick
-        acceptView.image = [UIImage imageNamed:@"checked"];
+        self.acceptView.image = [UIImage imageNamed:@"checked"];
+        [self.acceptView setContentMode:UIViewContentModeScaleAspectFit];
     }else
     {
-        acceptView.image = [UIImage imageNamed:@"notChecked"];
+        self.acceptView.image = nil;
     }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     //if touch in check box
+    CGPoint activePoint = [[touches anyObject] locationInView:self.view];
+    
+    CGRect frameCheckBox = [self.acceptView frame];
+    
+    if(((activePoint.x > frameCheckBox.origin.x)
+        &&(activePoint.x < frameCheckBox.origin.x + frameCheckBox.size.width)
+        &&(activePoint.y > frameCheckBox.origin.y)
+        &&(activePoint.y < frameCheckBox.origin.y + frameCheckBox.size.height)))
+    {
+        [self performSelector:@selector(touchCheck)];
+    }
 }
 
 

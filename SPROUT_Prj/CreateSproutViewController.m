@@ -12,6 +12,8 @@
 #import "ExportSproutViewController.h"
 #import "SaveorDiscardPhotoViewController.h"
 #import "ViewPhotoInSproutViewController.h"
+#import "UploadToSproutViewController.h"
+#import "CNCAppDelegate.h"
 
 @implementation CreateSproutViewController
 
@@ -51,6 +53,8 @@
     [self.sproutView addSubview:self.sprout];
     
     self.sproutView.backgroundColor = [UIColor clearColor];
+    
+    NSLog(@"%@ - %i - %i", self.sprout.name, self.sprout.rowSize, self.sprout.colSize);
 }
 
 - (void)viewDidUnload
@@ -120,7 +124,10 @@
 
 -(IBAction)save:(id)sender
 {
+    //SAVE sprout to database method
+    //CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
+    [self.navigationController popToViewController:[self.navigationController.childViewControllers objectAtIndex:([self.navigationController.childViewControllers indexOfObject:self] - 2)] animated:YES];
 }
 
 -(IBAction)share:(id)sender

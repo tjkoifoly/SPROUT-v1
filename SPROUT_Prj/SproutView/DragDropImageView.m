@@ -8,6 +8,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DragDropImageView.h"
 #import "ViewPhotoInSproutViewController.h"
+#import <AssetsLibrary/ALAssetRepresentation.h>
+
 
 #define kWidth 40
 #define kHeight 40
@@ -18,6 +20,7 @@
 @synthesize locationx;
 @synthesize locationy;
 @synthesize delegate;
+
 
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y
 {
@@ -57,10 +60,17 @@
     }
 }
 
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.delegate touchInAImage:self];
+    NSLog(@"PASS");
+}
+
 -(void)oneTap
 {
     NSLog(@"Single tap");
     NSLog(@"Tag = %i", self.tag);
+    [self.delegate touchInAImage:self];
 }
 
 -(void)twoTaps
@@ -74,6 +84,29 @@
 {
     NSLog(@"Triple tap");
     NSLog(@"Tag = %i", self.tag);
+}
+
+- (void)loadImageFromAssetURL: (NSURL *)assetURL
+{
+    ALAssetsLibrary* library = [[ALAssetsLibrary alloc] init];
+    
+    ALAssetsLibraryAssetForURLResultBlock result = ^(ALAsset *__strong asset){
+        ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
+        // This data retrieval crashes on the simulator
+        CGImageRef cgImage = [assetRepresentation CGImageWithOptions:nil]; 
+    
+        if (cgImage)
+    
+        NSLog(@" image from here: %@",[UIImage imageWithCGImage:cgImage]);
+        
+    };
+    
+    ALAssetsLibraryAccessFailureBlock failure = ^(NSError *__strong error){
+        NSLog(@"Error retrieving asset from url: %@", [error localizedFailureReason]);
+    };
+    
+    [library assetForURL:assetURL resultBlock:result failureBlock:failure];
+        
 }
 
 
