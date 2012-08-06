@@ -33,21 +33,12 @@
     self.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.layer.borderWidth = 1.f;
     
-    [self loadImageFromAssetURL:[NSURL URLWithString:self.url]];
-    
     return self;
 }
 
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage
 {
-    self.locationx = x;
-    self.locationy = y;
-    
-    self = [super initWithFrame:CGRectMake(locationy*kWidth, locationx*kHeight, kWidth, kHeight)];
-    
-    self.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    self.layer.borderWidth = 1.f;
-    
+    self = [self initWithLocationX:x andY:y];
     [self loadImageFromAssetURL:[NSURL URLWithString:urlimage]];
     
     return self;

@@ -30,7 +30,7 @@
 {
     self.rowSize = rs;
     self.colSize = cs;
-    NSLog(@" INIT %@", ai);
+   // NSLog(@" INIT %@", ai);
     
     int maxWidth = self.colSize * kWidth;
     int maxHeight = self.rowSize * kHeight;
@@ -58,8 +58,18 @@
     {
         for(int j = 0; j < self.colSize; j++)
         {
+            NSString *u = @"URL";
             NSInteger t = i * (self.colSize) + j;
-            NSString *u = [[ai objectAtIndex:t] valueForKey:@"url"];
+            
+            for(id aoi in ai)
+            {
+                if([[aoi valueForKey:@"tag"] intValue] == t)
+                {
+                    u = [aoi valueForKey:@"url"];
+                }
+            }
+            
+            //NSLog(@"TAG %i - URL %@", t, u);
             
             DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u];
             
@@ -68,7 +78,6 @@
             imv.userInteractionEnabled = YES;
             imv.delegate = self;
             
-            NSLog(@"%@", imv.url);
             [self addSubview:imv];
             
             //NSLog(@"%i %i %i", i , j, imv.tag);
@@ -119,9 +128,6 @@
                 imv.tag = i * (self.colSize) + j;
                 imv.userInteractionEnabled = YES;
                 imv.delegate = self;
-                imv.url = [[self.images objectAtIndex:imv.tag] valueForKey:@"url"];
-
-                NSLog(@"%@", imv.url);
                 [self addSubview:imv];
                 
                 //NSLog(@"%i %i %i", i , j, imv.tag);
