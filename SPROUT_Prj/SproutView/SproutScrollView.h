@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSArray *images;
 @property (strong, nonatomic) DragDropImageView *imvSelected;
 @property (assign, nonatomic) id <SproutDelegate> delegate;
+@property (assign, nonatomic) BOOL enable;
 
 
 -(id)initWithrowSize: (NSInteger) rs andColSize: (NSInteger) cs;

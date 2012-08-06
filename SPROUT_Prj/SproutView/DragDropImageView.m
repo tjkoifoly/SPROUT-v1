@@ -72,7 +72,7 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.delegate touchInAImage:self];
+    [self.delegate dropInGrid:self];
     NSLog(@"PASS");
 }
 
@@ -94,6 +94,9 @@
 {
     NSLog(@"Triple tap");
     NSLog(@"Tag = %i", self.tag);
+
+    [self.delegate touchEnableScroll:self];
+    //[(UIScrollView *)self.superview setScrollEnabled:NO];
 }
 
 - (void)loadImageFromAssetURL: (NSURL *)assetURL

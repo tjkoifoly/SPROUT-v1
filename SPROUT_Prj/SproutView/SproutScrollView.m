@@ -25,9 +25,11 @@
 @synthesize images;
 @synthesize imvSelected;
 @synthesize delegate;
+@synthesize enable;
 
 -(id) initWithArrayImage: (NSInteger)rs : (NSInteger) cs: (NSArray*) ai
 {
+    enable = YES;
     self.rowSize = rs;
     self.colSize = cs;
    // NSLog(@" INIT %@", ai);
@@ -92,6 +94,7 @@
 
 -(id)initWithrowSize: (NSInteger) rs andColSize: (NSInteger) cs
 {
+    enable = YES;
     self.rowSize = rs;
     self.colSize = cs;
     NSLog(@" INIT %@", self.images);
@@ -160,6 +163,12 @@
 -(void)dropInGrid:(DragDropImageView *)toImv
 {
     NSLog(@"To Image: %@", toImv);
+}
+
+-(void)touchEnableScroll:(DragDropImageView *)sender
+{
+    self.enable = !self.enable;
+    [self setScrollEnabled:self.enable];
 }
 
 @end

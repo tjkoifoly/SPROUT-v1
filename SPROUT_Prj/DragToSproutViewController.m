@@ -13,6 +13,9 @@
 #import "ViewPhotoInSproutViewController.h"
 
 @implementation DragToSproutViewController
+{
+    UIImage *temp;
+}
 
 @synthesize imageForSprout;
 @synthesize imageInput;
@@ -42,12 +45,39 @@
     CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
     CGRect frameImage = [self.imageForSprout frame];
     
-    if (touchPoint.x > frameImage.origin.x && touchPoint.y > frameImage.origin.y) {
+    if (touchPoint.x > frameImage.origin.x 
+        && touchPoint.x < (frameImage.origin.x + frameImage.size.width)
+        && touchPoint.y > frameImage.origin.y
+        && (touchPoint.y < frameImage.origin.y + frameImage.size.height)) {
         
-        SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
-
-        [self.navigationController pushViewController:saveViewController animated:NO];
+        temp = self.imageInput;
+        
+//        SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
+//
+//        [self.navigationController pushViewController:saveViewController animated:NO];
     }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
+    CGRect frameImage = [self.sproutScroll frame];
+    
+    if (touchPoint.x > frameImage.origin.x 
+        && touchPoint.x < (frameImage.origin.x + frameImage.size.width)
+        && touchPoint.y > frameImage.origin.y
+        && (touchPoint.y < frameImage.origin.y + frameImage.size.height)) {
+        if(temp != nil)
+        {
+            SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
+            
+            [self.navigationController pushViewController:saveViewController animated:NO];
+        }
+        
+    }
+    
+    temp = nil;
+
 }
 
 #pragma mark - View lifecycle
@@ -55,6 +85,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    temp = nil;
     
     if(imageInput == nil)
         imageInput = [UIImage imageNamed:@"baby"];
@@ -107,6 +139,9 @@
     ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
     [self.navigationController pushViewController:photoViewController animated:YES];
 }
+
+
+
 
 
 

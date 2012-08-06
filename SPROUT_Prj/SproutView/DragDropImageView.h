@@ -18,6 +18,7 @@
 -(void)dragDropImageView: (DragDropImageView *) imageViewSelected;
 -(void)touchInAImage: (DragDropImageView *) iSelected;
 -(void)dropInGrid: (DragDropImageView *)toImv;
+-(void)touchEnableScroll: (DragDropImageView *) sender;
 
 @end
 @interface DragDropImageView : UIImageView
