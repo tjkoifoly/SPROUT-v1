@@ -14,6 +14,7 @@
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) UIImagePickerController *pickerImage;
+@property (strong, nonatomic) NSString *urlImage;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic) BOOL newMedia;
 @property (nonatomic) BOOL save;

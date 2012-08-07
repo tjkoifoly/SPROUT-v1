@@ -14,6 +14,10 @@
 
 #define kWidth 40
 #define kHeight 40
+
+#define kWidthLarge 60
+#define kHeightLarge 60
+
 #define kMAXWidth 280
 #define kMAXHeight 280
 
@@ -34,8 +38,17 @@
     self.colSize = cs;
    // NSLog(@" INIT %@", ai);
     
-    int maxWidth = self.colSize * kWidth;
-    int maxHeight = self.rowSize * kHeight;
+    int cellWidth = kWidth;
+    int cellHeight = kHeight;
+    
+    if (rs < 5 && cs < 5)
+        {
+            cellWidth = kWidthLarge;
+            cellHeight = kHeightLarge;
+        }
+    
+    int maxWidth = self.colSize * cellWidth;
+    int maxHeight = self.rowSize * cellHeight;
     
     if(maxWidth > kMAXWidth)
     {
@@ -50,7 +63,7 @@
     //NSLog(@"row = %i, col = %i", self.rowSize, self.colSize);
     self = [super initWithFrame:CGRectMake(0.0f, 0.0f, maxWidth, maxHeight)];
     
-    [self setContentSize:CGSizeMake((self.colSize * kWidth), (self.rowSize *kHeight))];
+    [self setContentSize:CGSizeMake((self.colSize * cellWidth), (self.rowSize *cellHeight))];
     
     [self setScrollEnabled:YES];
     [self setShowsHorizontalScrollIndicator:NO];
@@ -73,7 +86,7 @@
             
             //NSLog(@"TAG %i - URL %@", t, u);
             
-            DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u];
+            DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u : cellWidth];
             
             //imv.image = [UIImage imageNamed:@"baby"];
             imv.tag = t;
@@ -98,9 +111,18 @@
     self.rowSize = rs;
     self.colSize = cs;
     NSLog(@" INIT %@", self.images);
+    int cellWidth = kWidth;
+    int cellHeight = kHeight;
     
-    int maxWidth = self.colSize * kWidth;
-    int maxHeight = self.rowSize * kHeight;
+    if (rs < 5 && cs < 5)
+    {
+        cellWidth = kWidthLarge;
+        cellHeight = kHeightLarge;
+    }
+
+    
+    int maxWidth = self.colSize * cellWidth;
+    int maxHeight = self.rowSize * cellHeight;
     
     if(maxWidth > kMAXWidth)
     {
@@ -115,7 +137,7 @@
     //NSLog(@"row = %i, col = %i", self.rowSize, self.colSize);
     self = [super initWithFrame:CGRectMake(0.0f, 0.0f, maxWidth, maxHeight)];
     
-    [self setContentSize:CGSizeMake((self.colSize * kWidth), (self.rowSize *kHeight))];
+    [self setContentSize:CGSizeMake((self.colSize * cellWidth), (self.rowSize *cellHeight))];
     
     [self setScrollEnabled:YES];
     [self setShowsHorizontalScrollIndicator:NO];
@@ -125,7 +147,7 @@
         {
             for(int j = 0; j < self.colSize; j++)
             {
-                DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j];
+                DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j :cellWidth];
                 
                 //imv.image = [UIImage imageNamed:@"baby"];
                 imv.tag = i * (self.colSize) + j;

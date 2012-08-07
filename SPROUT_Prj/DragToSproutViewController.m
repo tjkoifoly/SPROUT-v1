@@ -23,6 +23,7 @@
 @synthesize sproutView;
 @synthesize sproutScroll;
 @synthesize sprout;
+@synthesize urlImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,7 +78,7 @@
             {
                 if([[x valueForKey:@"url"] isEqual:@"URL"])
                 {
-                    [x setValue:@"assets-library://asset/asset.JPG?id=109CAF18-3A70-4384-9205-41CA01373030&ext=JPG" forKey:@"url"];
+                    [x setValue:self.urlImage forKey:@"url"];
                     break;
                 }
             }
@@ -136,6 +137,7 @@
     self.sproutView = nil;
     self.sproutScroll = nil;
     self.sprout = nil;
+    self.urlImage = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -151,8 +153,26 @@
 
 -(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected
 {
-    ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
-    [self.navigationController pushViewController:photoViewController animated:YES];
+    NSArray *subSprouts = self.sproutScroll.subviews;
+    NSMutableArray *listImages = [[NSMutableArray alloc] init];
+    
+    for(id aImgV in subSprouts)
+    {
+        UIImage * i = [((DragDropImageView*)aImgV) image];
+        if(i != nil)
+            [listImages addObject:i];
+    }
+    
+    
+    if(listImages.count >0)
+    {
+        ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
+        photoViewController.current = imageSelected;
+        photoViewController.listImages = listImages;
+        
+        [self.navigationController pushViewController:photoViewController animated:YES];
+    }
+
 }
 
 

@@ -8,16 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class SaveorDiscardPhotoViewController;
-@protocol SaveOrDiscardPhotoDelegate <NSObject>
-
--(void) saveOrDiscardPhoto: (SaveorDiscardPhotoViewController *)controller: (BOOL) saved;
-
-@end
-
 @interface SaveorDiscardPhotoViewController : UIViewController
 
-@property (assign, nonatomic) id <SaveOrDiscardPhotoDelegate> delegate;
 @property (strong, nonatomic) UIImage *image;
 
 -(IBAction)save:(id)sender;

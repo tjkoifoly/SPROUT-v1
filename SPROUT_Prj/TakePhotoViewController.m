@@ -29,6 +29,7 @@
 @synthesize imageView;
 @synthesize newMedia;
 @synthesize save;
+@synthesize urlImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,6 +62,7 @@
     [super viewDidUnload];
     self.pickerImage = nil;
     self.imageView = nil;
+    self.urlImage = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -83,15 +85,35 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc]init];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
     if( [picker sourceType] == UIImagePickerControllerSourceTypeCamera )
     {
-        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc]init];
+        
+        __block NSString *urlString;
         
         [library writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error )
          {
-             NSLog(@"IMAGE SAVED TO PHOTO ALBUM");
+            urlString = [assetURL absoluteString];
+             /*
+             UIAlertView *alert = [[UIAlertView alloc]
+                                   initWithTitle: @"Saved to : "
+                                   message: urlString
+                                   delegate: nil
+                                   cancelButtonTitle:@"OK"
+                                   otherButtonTitles:nil];
+             [alert show];
+              */
+             
+             ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
+             
+             continueViewController.urlImage = [assetURL absoluteString];
+             continueViewController.imageInput = image;
+             
+             [self.navigationController pushViewController:continueViewController animated:YES];
+
+
              [library assetForURL:assetURL resultBlock:^(ALAsset *asset )
               {
                   NSLog(@"we have our ALAsset!");
@@ -103,19 +125,19 @@
          }];
     }else
     {
-    
-        UIImage *i = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-        NSLog(@"Image = %@", i);
+        //NSLog(@"Image = %@", i);
+        self.urlImage = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
     
         ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
     
-        continueViewController.imageInput = i;
+        continueViewController.urlImage = self.urlImage;
+        continueViewController.imageInput = image;
     
         [self.navigationController pushViewController:continueViewController animated:YES];
     }
+    self.imageView.image = image;
     
-    [self dismissModalViewControllerAnimated:YES];    
+    [self dismissModalViewControllerAnimated:NO];    
 }
 
 
@@ -149,7 +171,7 @@
         imagePicker.cameraOverlayView = overlay;
         
         [self presentModalViewController:imagePicker 
-                                animated:YES];
+                                animated:NO];
         newMedia = YES;
     }else
     {

@@ -10,10 +10,6 @@
 #import "ViewPhotoInSproutViewController.h"
 #import <AssetsLibrary/ALAssetRepresentation.h>
 
-
-#define kWidth 40
-#define kHeight 40
-
 @implementation DragDropImageView
 
 @synthesize tag;
@@ -23,12 +19,12 @@
 @synthesize url;
 
 
--(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y
+-(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y : (NSInteger)size
 {
     self.locationx = x;
     self.locationy = y;
     
-    self = [super initWithFrame:CGRectMake(locationy*kWidth, locationx*kHeight, kWidth, kHeight)];
+    self = [super initWithFrame:CGRectMake(locationy*size, locationx*size, size, size)];
     
     self.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.layer.borderWidth = 1.f;
@@ -36,9 +32,9 @@
     return self;
 }
 
--(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage
+-(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage : (NSInteger)size
 {
-    self = [self initWithLocationX:x andY:y];
+    self = [self initWithLocationX:x andY:y :size];
     [self loadImageFromAssetURL:[NSURL URLWithString:urlimage]];
     
     return self;

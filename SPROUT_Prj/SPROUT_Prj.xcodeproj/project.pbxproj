@@ -96,6 +96,7 @@
 		E4F6443415CA7BCC00E068AD /* ViewSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6443215CA7BCC00E068AD /* ViewSproutViewController.xib */; };
 		E4F6443D15CA8F7500E068AD /* ExportSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6443B15CA8F7500E068AD /* ExportSproutViewController.m */; };
 		E4F6443E15CA8F7500E068AD /* ExportSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6443C15CA8F7500E068AD /* ExportSproutViewController.xib */; };
+		E4F689D315D0F57600837FBD /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F689D215D0F57600837FBD /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +227,7 @@
 		E4F6443A15CA8F7500E068AD /* ExportSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportSproutViewController.h; sourceTree = "<group>"; };
 		E4F6443B15CA8F7500E068AD /* ExportSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportSproutViewController.m; sourceTree = "<group>"; };
 		E4F6443C15CA8F7500E068AD /* ExportSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportSproutViewController.xib; sourceTree = "<group>"; };
+		E4F689D215D0F57600837FBD /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,6 +405,7 @@
 		E43FAEB215CA0F0E00CF628C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E4F689D215D0F57600837FBD /* icon.png */,
 				E4F1B55F15D0AE7900558FFC /* overlaygraphic.png */,
 				E4D9D99115CBBF88007B94C5 /* saveBut.png */,
 				E4D9D99215CBBF89007B94C5 /* discardBut.png */,
@@ -727,6 +730,7 @@
 				E49F20A215CE7EB600D2A932 /* FacebookSDKResources.bundle in Resources */,
 				E49F20A615CE842D00D2A932 /* checked.png in Resources */,
 				E4F1B56015D0AE7900558FFC /* overlaygraphic.png in Resources */,
+				E4F689D315D0F57600837FBD /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

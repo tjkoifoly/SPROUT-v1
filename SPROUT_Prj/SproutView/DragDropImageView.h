@@ -30,8 +30,8 @@
 @property (assign, nonatomic) int locationy;
 @property (strong, nonatomic) NSString *url;
 
--(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y;
--(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage;
+-(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y : (NSInteger)size;
+-(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage : (NSInteger)size;
 
 - (void)loadImageFromAssetURL: (NSURL *)assetURL;
 

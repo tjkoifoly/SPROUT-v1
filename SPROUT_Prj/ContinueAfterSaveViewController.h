@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIImage *imageInput;
 @property (strong, nonatomic) IBOutlet UIImageView *viewImage;
+@property (strong, nonatomic) NSString *urlImage;
 
 -(IBAction)uploadToSprout:(id)sender;
 -(IBAction)edit:(id)sender;

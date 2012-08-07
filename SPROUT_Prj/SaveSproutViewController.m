@@ -77,11 +77,13 @@
 
 -(IBAction)save:(id)sender
 {
+    
     CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError *error;
     
     [context save:&error];
+
 }
 
 -(IBAction)exportSport:(id)sender
@@ -93,8 +95,25 @@
 
 -(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected
 {
-    ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
-    [self.navigationController pushViewController:photoViewController animated:YES];
+    NSArray *subSprouts = self.sproutScroll.subviews;
+    NSMutableArray *listImages = [[NSMutableArray alloc] init];
+    
+    for(id aImgV in subSprouts)
+    {
+        UIImage * i = [((DragDropImageView*)aImgV) image];
+        if(i != nil)
+            [listImages addObject:i];
+    }
+    
+    
+    if(listImages.count >0)
+    {
+        ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
+        photoViewController.current = imageSelected;
+        photoViewController.listImages = listImages;
+    
+        [self.navigationController pushViewController:photoViewController animated:YES];
+    }
 
 }
 

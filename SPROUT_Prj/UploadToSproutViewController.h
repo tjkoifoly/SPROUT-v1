@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) UIImage *imageInput;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) NSString *urlImage;
 
 @property (strong, nonatomic) NSMutableArray *listSprout;
 @property (strong, nonatomic) IBOutlet UITableView *table;

@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageForSprout;
 @property (strong, nonatomic) UIImage *imageInput;
+@property (strong, nonatomic) NSString *urlImage;
 
 -(IBAction)goToHome:(id)sender;
 

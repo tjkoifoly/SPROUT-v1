@@ -17,7 +17,7 @@
 @synthesize table;
 @synthesize imageView ;
 @synthesize imageInput;
-
+@synthesize urlImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -70,6 +70,7 @@
     self.table = nil;
     self.imageView = nil;
     self.imageInput = nil;
+    self.urlImage = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -132,6 +133,7 @@
 
     dragToSproutController.imageInput = self.imageInput;
     dragToSproutController.sprout = [self.listSprout objectAtIndex:button.tag];
+    dragToSproutController.urlImage = self.urlImage;
     
     [self.navigationController pushViewController:dragToSproutController animated:YES];
 }

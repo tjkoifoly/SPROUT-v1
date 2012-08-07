@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DragDropImageView.h"
 
 @interface ViewPhotoInSproutViewController : UIViewController
 
 @property (strong, nonatomic) NSArray *listImages;
+@property (strong, nonatomic) UIScrollView *scrollImages;
+@property (strong, nonatomic) DragDropImageView *current;
+
 
 -(IBAction)back:(id)sender;
--(IBAction)preivousImage:(id)sender;
--(IBAction)nextImage:(id)sender;
 
 @end

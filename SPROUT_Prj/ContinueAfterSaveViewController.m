@@ -15,6 +15,7 @@
 
 @synthesize imageInput;
 @synthesize viewImage;
+@synthesize urlImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +47,7 @@
     [super viewDidUnload];
     self.imageInput = nil;
     self.viewImage = nil;
+    self.urlImage = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -60,7 +62,9 @@
 {
     UploadToSproutViewController *uploadViewController = [[UploadToSproutViewController alloc] initWithNibName:@"UploadToSproutViewController" bundle:nil];
     
+    uploadViewController.urlImage = self.urlImage;
     uploadViewController.imageInput = self.imageInput;
+    
     [self.navigationController pushViewController:uploadViewController animated:YES];
 }
 
