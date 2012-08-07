@@ -41,7 +41,7 @@ const CGFloat kScrollObjWidth	= 300.f;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     
-    self.scrollImages = [[UIScrollView alloc] initWithFrame:CGRectMake(10.0f, 90.0f, kScrollObjWidth, kScrollObjHeight)];
+    self.scrollImages = [[UIScrollView alloc] initWithFrame:CGRectMake(10.0f, 80.0f, kScrollObjWidth, kScrollObjHeight)];
     [self.scrollImages setContentSize:CGSizeMake(kScrollObjWidth * self.listImages.count, kScrollObjHeight)];
     [self.scrollImages setScrollEnabled:YES];
     self.scrollImages.pagingEnabled = YES;

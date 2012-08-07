@@ -118,15 +118,25 @@
               otherButtonTitles:nil];
               [alert show];
               */
-             
+             [Sprout createSprout:self.sprout.name :self.sprout.rowSize :self.sprout.colSize];
+             /*
              ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
              
              continueViewController.urlImage = [assetURL absoluteString];
              continueViewController.imageInput = image;
              
-             [Sprout createSprout:self.sprout.name :self.sprout.rowSize :self.sprout.colSize];
-             [self.navigationController pushViewController:continueViewController animated:YES];
              
+             [self.navigationController pushViewController:continueViewController animated:YES];
+             */
+             DragToSproutViewController *dragViewController = [[DragToSproutViewController alloc] initWithNibName:@"DragToSproutViewController" bundle:nil];
+             
+             dragViewController.imageInput = image;
+             
+             dragViewController.urlImage = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
+             
+             dragViewController.sprout = [Sprout sproutForName:self.sprout.name];
+             
+             [self.navigationController pushViewController:dragViewController animated:YES];
              
              [library assetForURL:assetURL resultBlock:^(ALAsset *asset )
               {
