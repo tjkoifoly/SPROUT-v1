@@ -11,6 +11,7 @@
 #import "SproutScrollView.h"
 #import "DragDropImageView.h"
 #import "ViewPhotoInSproutViewController.h"
+#import "Sprout.h"
 
 @implementation DragToSproutViewController
 {
@@ -61,15 +62,29 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
+    CGRect frameView = [self.sproutView frame];
     CGRect frameImage = [self.sproutScroll frame];
     
-    if (touchPoint.x > frameImage.origin.x 
-        && touchPoint.x < (frameImage.origin.x + frameImage.size.width)
-        && touchPoint.y > frameImage.origin.y
-        && (touchPoint.y < frameImage.origin.y + frameImage.size.height)) {
+    if (touchPoint.x > (frameView.origin.x + frameImage.origin.x )
+        && touchPoint.x < (frameView.origin.x +frameImage.origin.x + frameImage.size.width)
+        && touchPoint.y > (frameImage.origin.y + frameView.origin.y)
+        && (touchPoint.y < (frameImage.origin.y + frameImage.size.height +frameView.origin.y))) {
         if(temp != nil)
         {
+            NSMutableArray *imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
+            
+            for(id x in imagesArray)
+            {
+                if([[x valueForKey:@"url"] isEqual:@"URL"])
+                {
+                    [x setValue:@"assets-library://asset/asset.JPG?id=109CAF18-3A70-4384-9205-41CA01373030&ext=JPG" forKey:@"url"];
+                    break;
+                }
+            }
+            
             SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
+            saveViewController.sprout = self.sprout;
+            saveViewController.imagesArray = imagesArray;
             
             [self.navigationController pushViewController:saveViewController animated:NO];
         }
@@ -95,9 +110,9 @@
     
    // NSLog(@"SPROUT = %@", self.sprout);
     
-    NSSet *imagesSet = [self.sprout valueForKey:@"sproutToImages"];
-    NSArray *imagesArray = [imagesSet allObjects];
-        
+    
+    NSMutableArray *imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
+    
     //self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:[[self.sprout valueForKey:@"rowSize"] intValue] andColSize:[[self.sprout valueForKey:@"colSize"] intValue]];
     self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
 

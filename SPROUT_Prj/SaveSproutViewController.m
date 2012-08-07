@@ -9,13 +9,14 @@
 #import "SaveSproutViewController.h"
 #import "ExportSproutViewController.h"
 #import "ViewPhotoInSproutViewController.h"
-
+#import "CNCAppDelegate.h"
 
 @implementation SaveSproutViewController
 
 @synthesize sproutScroll;
 @synthesize sproutView;
 @synthesize sprout;
+@synthesize imagesArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,16 +41,14 @@
 {
     [super viewDidLoad];
     
-    NSSet *imagesSet = [self.sprout valueForKey:@"sproutToImages"];
-    NSArray *imagesArray = [imagesSet allObjects];
-    
-    self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
+    self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :self.imagesArray];
     
     self.sproutScroll.delegate = self;
     
     CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
     
     self.sproutScroll.center = center;
+    
     [self.sproutView addSubview:self.sproutScroll];
     self.sproutView.backgroundColor = [UIColor clearColor];
 
@@ -61,6 +60,7 @@
     self.sproutView = nil;
     self.sproutScroll = nil;
     self.sprout = nil;
+    self.imagesArray = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -77,7 +77,11 @@
 
 -(IBAction)save:(id)sender
 {
+    CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
     
+    [context save:&error];
 }
 
 -(IBAction)exportSport:(id)sender

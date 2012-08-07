@@ -145,7 +145,12 @@
     }
     
     SaveSproutViewController *displaySproutViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
-    displaySproutViewController.sprout = [self.listSprout objectAtIndex:tag];
+    id s = [self.listSprout objectAtIndex:tag];
+    NSMutableArray *imgArray = [[NSMutableArray alloc]initWithArray:[Sprout imagesOfSrpout:s]];
+    
+    displaySproutViewController.imagesArray = imgArray;
+    displaySproutViewController.sprout = s;
+    
     [self.navigationController pushViewController:displaySproutViewController animated:YES];
 }
 

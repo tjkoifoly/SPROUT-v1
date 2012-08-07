@@ -54,8 +54,7 @@
 		E496C2A415CA27FE0002DFEA /* UploadToSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C2A215CA27FE0002DFEA /* UploadToSproutViewController.xib */; };
 		E496C2AC15CA29390002DFEA /* CellSproutCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E496C2AB15CA29390002DFEA /* CellSproutCustomView.m */; };
 		E496C2AE15CA29510002DFEA /* CellSproutCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E496C2AD15CA29510002DFEA /* CellSproutCustomView.xib */; };
-		E49F209715CE779300D2A932 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49F209615CE779300D2A932 /* Twitter.framework */; };
-		E49F209A15CE77B000D2A932 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49F209915CE77B000D2A932 /* Accounts.framework */; };
+		E49F209715CE779300D2A932 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49F209615CE779300D2A932 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E49F209C15CE77BB00D2A932 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49F209B15CE77BB00D2A932 /* AssetsLibrary.framework */; };
 		E49F20A215CE7EB600D2A932 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E49F20A115CE7EB600D2A932 /* FacebookSDKResources.bundle */; };
 		E49F20A415CE7F7D00D2A932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49F20A315CE7F7D00D2A932 /* FacebookSDK.framework */; };
@@ -87,6 +86,8 @@
 		E4D9D99015CBBEA1007B94C5 /* sav.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D98A15CBBEA1007B94C5 /* sav.png */; };
 		E4D9D99315CBBF8A007B94C5 /* saveBut.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D99115CBBF88007B94C5 /* saveBut.png */; };
 		E4D9D99415CBBF8A007B94C5 /* discardBut.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D99215CBBF89007B94C5 /* discardBut.png */; };
+		E4F1B55E15D0AD3C00558FFC /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1B55D15D0AD3C00558FFC /* OverlayView.m */; };
+		E4F1B56015D0AE7900558FFC /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F1B55F15D0AE7900558FFC /* overlaygraphic.png */; };
 		E4F6441315CA59C300E068AD /* CreateSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6441115CA59C300E068AD /* CreateSproutViewController.m */; };
 		E4F6441415CA59C300E068AD /* CreateSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6441215CA59C300E068AD /* CreateSproutViewController.xib */; };
 		E4F6442D15CA726D00E068AD /* SaveSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6442B15CA726D00E068AD /* SaveSproutViewController.m */; };
@@ -210,6 +211,9 @@
 		E4D9D98A15CBBEA1007B94C5 /* sav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sav.png; sourceTree = "<group>"; };
 		E4D9D99115CBBF88007B94C5 /* saveBut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveBut.png; sourceTree = "<group>"; };
 		E4D9D99215CBBF89007B94C5 /* discardBut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discardBut.png; sourceTree = "<group>"; };
+		E4F1B55C15D0AD3C00558FFC /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverlayView.h; path = Objects/OverlayView.h; sourceTree = "<group>"; };
+		E4F1B55D15D0AD3C00558FFC /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverlayView.m; path = Objects/OverlayView.m; sourceTree = "<group>"; };
+		E4F1B55F15D0AE7900558FFC /* overlaygraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlaygraphic.png; sourceTree = "<group>"; };
 		E4F6441015CA59C300E068AD /* CreateSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSproutViewController.h; sourceTree = "<group>"; };
 		E4F6441115CA59C300E068AD /* CreateSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSproutViewController.m; sourceTree = "<group>"; };
 		E4F6441215CA59C300E068AD /* CreateSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateSproutViewController.xib; sourceTree = "<group>"; };
@@ -231,7 +235,6 @@
 			files = (
 				E4BCEF7C15CE90AD006E7A0D /* MobileCoreServices.framework in Frameworks */,
 				E49F209C15CE77BB00D2A932 /* AssetsLibrary.framework in Frameworks */,
-				E49F209A15CE77B000D2A932 /* Accounts.framework in Frameworks */,
 				E49F209715CE779300D2A932 /* Twitter.framework in Frameworks */,
 				E47ABE6E15CD301100CCDCF0 /* QuartzCore.framework in Frameworks */,
 				E43FAE7715CA0C4200CF628C /* UIKit.framework in Frameworks */,
@@ -256,12 +259,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E40F7FC215CCCD7300D354A7 /* SproutView */ = {
+		E40F7FC215CCCD7300D354A7 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
 				E40F7FC415CCCD8000D354A7 /* SproutObjects */,
+				E4F1B55C15D0AD3C00558FFC /* OverlayView.h */,
+				E4F1B55D15D0AD3C00558FFC /* OverlayView.m */,
 			);
-			name = SproutView;
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		E40F7FC415CCCD8000D354A7 /* SproutObjects */ = {
@@ -280,7 +285,7 @@
 		E43FAE6715CA0C4200CF628C = {
 			isa = PBXGroup;
 			children = (
-				E40F7FC215CCCD7300D354A7 /* SproutView */,
+				E40F7FC215CCCD7300D354A7 /* Objects */,
 				E47AA0C415CBACA800544164 /* Reminder */,
 				E47AA0BA15CB914100544164 /* EditImage */,
 				E47AA0B415CB880600544164 /* ViewPhotoInSprout */,
@@ -398,6 +403,7 @@
 		E43FAEB215CA0F0E00CF628C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E4F1B55F15D0AE7900558FFC /* overlaygraphic.png */,
 				E4D9D99115CBBF88007B94C5 /* saveBut.png */,
 				E4D9D99215CBBF89007B94C5 /* discardBut.png */,
 				E4D9D98515CBBE9D007B94C5 /* rot.png */,
@@ -720,6 +726,7 @@
 				E4D9D99415CBBF8A007B94C5 /* discardBut.png in Resources */,
 				E49F20A215CE7EB600D2A932 /* FacebookSDKResources.bundle in Resources */,
 				E49F20A615CE842D00D2A932 /* checked.png in Resources */,
+				E4F1B56015D0AE7900558FFC /* overlaygraphic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +799,7 @@
 				E40F7FC715CCCDEE00D354A7 /* DragDropImageView.m in Sources */,
 				E424F30015CCFC0B006B588F /* SproutScrollView.m in Sources */,
 				E459323715CF71D1009A5D1C /* Sprout.m in Sources */,
+				E4F1B55E15D0AD3C00558FFC /* OverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

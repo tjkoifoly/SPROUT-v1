@@ -11,7 +11,7 @@
 #import "SaveorDiscardPhotoViewController.h"
 
 @interface TakePhotoViewController : UIViewController
-<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, SaveOrDiscardPhotoDelegate>
+<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) UIImagePickerController *pickerImage;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;

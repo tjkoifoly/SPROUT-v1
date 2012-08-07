@@ -16,7 +16,7 @@
 @property (strong, nonatomic) SproutScrollView *sproutScroll;
 @property (strong, nonatomic) NSManagedObject *sprout;
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
-
+@property (strong, nonatomic) NSMutableArray *imagesArray;
 
 
 -(IBAction)goToHome:(id)sender;

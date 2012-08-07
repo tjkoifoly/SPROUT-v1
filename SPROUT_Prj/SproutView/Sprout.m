@@ -87,4 +87,13 @@
 
 }
 
++(NSArray *)imagesOfSrpout: (NSManagedObject *)sprout
+{
+    NSSet *imagesSet = [sprout valueForKey:@"sproutToImages"];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"tag" ascending:YES];
+    NSArray *imagesArray = [[imagesSet allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    return imagesArray;
+}
+
 @end
