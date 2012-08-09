@@ -72,6 +72,8 @@
 {
     EditImageViewController *editViewController = [[EditImageViewController alloc] initWithNibName:@"EditImageViewController" bundle:nil];
     
+    editViewController.imageToEdit = self.imageInput;
+    
     [self.navigationController pushViewController:editViewController animated:YES];
 }
 

@@ -8,8 +8,14 @@
 
 #import "EditImageViewController.h"
 #import "ExportSproutViewController.h"
+#import "StyleColorView.h"
 
 @implementation EditImageViewController
+
+@synthesize imageToEdit;
+@synthesize frameForEdit;
+@synthesize areForEdit;
+@synthesize frontViewChangeColor;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,14 +39,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    //self.areForEdit.backgroundColor = [UIColor colorWithPatternImage:self.imageToEdit];
+    //self.frameForEdit.alpha = 0.0f;
+    //self.frameForEdit.backgroundColor = [UIColor clearColor];
+    self.frameForEdit.image = self.imageToEdit;
+    
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.imageToEdit = nil;
+    self.frameForEdit = nil;
+    self.areForEdit = nil;
+    self.frontViewChangeColor = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -70,7 +83,19 @@
 
 -(IBAction)changeColor:(id)sender
 {
+    StyleColorView *styleView;
+    NSArray *nibObjects;
+    nibObjects = [[NSBundle mainBundle]loadNibNamed:@"StyleColorView" owner:self options:nil];
     
+    for(id currentObject in nibObjects)
+    {
+        styleView = (StyleColorView *)currentObject;
+    }
+    
+    styleView.backgroundColor = [UIColor clearColor];
+    styleView.delegate = self;
+    [styleView loadViewController];
+    [self.view addSubview:styleView];
 }
 
 -(IBAction)cropImage:(id)sender
@@ -88,7 +113,11 @@
     
 }
 
-
+-(void)changeColor:(StyleColorView *)view valueRed:(CGFloat)red valueGreen:(CGFloat)green valueBlue:(CGFloat)blue
+{
+    NSLog(@"Red: %f Green : %f Blue: %f", red, green, blue);
+    self.frontViewChangeColor.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:0.5f];
+}
 
 
 @end

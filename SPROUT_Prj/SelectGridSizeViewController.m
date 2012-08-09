@@ -9,6 +9,7 @@
 #import "SelectGridSizeViewController.h"
 #import "CreateSproutViewController.h"
 #import "SproutScrollView.h"
+#import "Sprout.h"
 
 @implementation SelectGridSizeViewController
 {
@@ -121,9 +122,18 @@
                               cancelButtonTitle:@"Close"
                               otherButtonTitles:nil];
         [alert show];
+        
+        
+        
+        return;
+    }else if([Sprout anySproutForName:self.nameField.text])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"Sprout with this name readly exist\nYou can use it" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
 
         return;
     }
+
     
     NSInteger rowSprout = [self.rowPicker selectedRowInComponent:0];
     

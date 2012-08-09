@@ -106,9 +106,12 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) picker 
 {
-    [self dismissModalViewControllerAnimated:YES];
-    self.pickerImage = nil;
-    [self capture:nil];
+    if(!([picker sourceType] ==  UIImagePickerControllerSourceTypeCamera))
+    {
+        [self dismissModalViewControllerAnimated:YES];
+        self.pickerImage = nil;
+        [self capture:nil];
+    }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{

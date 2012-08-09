@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StyleColorView.h"
 
-@interface EditImageViewController : UIViewController
+@interface EditImageViewController : UIViewController<ChangeColorDelegate>
+
+@property (strong, nonatomic) UIImage *imageToEdit;
+@property (strong, nonatomic) IBOutlet UIImageView *frameForEdit;
+@property (strong, nonatomic) IBOutlet UIImageView *frontViewChangeColor;
+@property (strong, nonatomic) IBOutlet UIView *areForEdit;
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)save:(id)sender;
