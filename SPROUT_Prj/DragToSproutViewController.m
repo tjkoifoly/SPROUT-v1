@@ -207,9 +207,13 @@
 
 -(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(NSManagedObject *)object
 {
+    NSLog(@"Delete OK");
     NSInteger tag = [[object valueForKey:@"tag"] intValue];
     
     [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setImage:nil];
+    [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setUrlImage:@"URL"];
+    [[self.imagesArray objectAtIndex:tag] setValue:@"URL" forKey:@"url"];
+
 }
 
 
