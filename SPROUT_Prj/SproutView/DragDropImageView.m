@@ -8,9 +8,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DragDropImageView.h"
 #import "ViewPhotoInSproutViewController.h"
+#import "SproutScrollView.h"
 #import <AssetsLibrary/ALAssetRepresentation.h>
 
 @implementation DragDropImageView
+{
+    NSTimeInterval touchStartTime;
+}
 
 @synthesize tag;
 @synthesize locationx;
@@ -36,14 +40,23 @@
 {
     self = [self initWithLocationX:x andY:y :size];
     [self loadImageFromAssetURL:[NSURL URLWithString:urlimage]];
-    
+    self.url = urlimage;
     return self;
 
 }
 
+-(void)setUrlImage:(NSString *)urlString
+{
+    self.url = urlString;
+}
+
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    touchStartTime = [event timestamp];
+    
     UITouch *touch = [touches anyObject];
+    [(SproutScrollView *)self.superview imvSelected].alpha= 1.0f;
     
     switch ([touch tapCount]) {
         case 1:
@@ -68,31 +81,63 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.delegate dropInGrid:self];
-    NSLog(@"PASS");
+    NSTimeInterval touchTimeDuration = [event timestamp] - touchStartTime;
+    NSLog(@"Touch duration: %3.2f seconds", touchTimeDuration);
+    if(touchTimeDuration > 1.0f)
+    {
+        [self performSelector:@selector(threeTaps) withObject:nil];
+    }
 }
 
 -(void)oneTap
 {
     NSLog(@"Single tap");
     NSLog(@"Tag = %i", self.tag);
-    [self.delegate touchInAImage:self];
+    
+    if(![(SproutScrollView *)self.superview enable])
+    {
+        [self.delegate touchInAImage:self];
+        NSLog(@"URL = %@", self.url);
+        
+    }else
+    {
+        if(self.image == nil)
+        {
+            NSLog(@"Sending delegate ....");
+            
+            [self.delegate moveImageFrom:[(SproutScrollView *)self.superview imvSelected] to:self];
+            self.image = [(SproutScrollView *)self.superview imvSelected].image;
+            self.url = [(SproutScrollView *)self.superview imvSelected].url;
+            [[(SproutScrollView *)self.superview imvSelected] setImage:nil];
+            [(SproutScrollView *)self.superview imvSelected].url = @"URL";
+            //NSLog(@"%@", [(SproutScrollView *)self.superview imvSelected].url);
+        }
+        [self.delegate touchEnableScroll:nil moveable:NO];
+    }
+    
 }
 
 -(void)twoTaps
 {
     NSLog(@"Double tap");
     NSLog(@"Tag = %i", self.tag);
-    [self.delegate dragDropImageView:self];
+    [self.delegate touchEnableScroll:nil moveable:NO];
+    if(self.image != nil)    
+    {
+        [self.delegate dragDropImageView:self];
+    }
 }
 
 -(void)threeTaps 
 {
     NSLog(@"Triple tap");
     NSLog(@"Tag = %i", self.tag);
-
-    [self.delegate touchEnableScroll:self];
-    //[(UIScrollView *)self.superview setScrollEnabled:NO];
+    if(self.image != nil)
+    {
+        self.alpha = 0.35f;
+        [self.delegate touchEnableScroll:self moveable:YES];
+    }
+    
 }
 
 - (void)loadImageFromAssetURL: (NSURL *)assetURL
@@ -107,9 +152,9 @@
         if (cgImage)
         {
     
-            NSLog(@" image from here: %@",[UIImage imageWithCGImage:cgImage]);
+            //NSLog(@" image from here: %@",[UIImage imageWithCGImage:cgImage]);
             self.image = [UIImage imageWithCGImage:cgImage];
-            NSLog(@"DCMCM: %@", self.image);
+//            NSLog(@"DCMCM: %@", self.image);
         }
         
     };

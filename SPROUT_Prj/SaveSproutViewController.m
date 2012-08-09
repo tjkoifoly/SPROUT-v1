@@ -10,6 +10,8 @@
 #import "ExportSproutViewController.h"
 #import "ViewPhotoInSproutViewController.h"
 #import "CNCAppDelegate.h"
+#import "SaveorDiscardPhotoViewController.h"
+#import "Sprout.h"
 
 @implementation SaveSproutViewController
 
@@ -17,6 +19,8 @@
 @synthesize sproutView;
 @synthesize sprout;
 @synthesize imagesArray;
+@synthesize urlImage;
+@synthesize lastBlank;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,12 +45,23 @@
 {
     [super viewDidLoad];
     
-    self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :self.imagesArray];
+    
+    if(self.sproutScroll != nil && self.lastBlank != nil)
+    {
+        NSInteger index = [[lastBlank valueForKey:@"tag"] intValue];
+        
+        NSLog(@"%i", index);
+        
+        [self.sproutScroll updateImageToSprout:self.urlImage inTag:index];
+    }
+    if(self.sproutScroll == nil)
+    {
+        self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :self.imagesArray];
+    }
     
     self.sproutScroll.delegate = self;
     
     CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
-    
     self.sproutScroll.center = center;
     
     [self.sproutView addSubview:self.sproutScroll];
@@ -61,6 +76,14 @@
     self.sproutScroll = nil;
     self.sprout = nil;
     self.imagesArray = nil;
+    self.urlImage = nil;
+    self.lastBlank = nil;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -77,13 +100,12 @@
 
 -(IBAction)save:(id)sender
 {
-    
     CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError *error;
     
     [context save:&error];
-
+     
 }
 
 -(IBAction)exportSport:(id)sender
@@ -105,20 +127,55 @@
             [listImages addObject:i];
     }
     
+    NSMutableArray *imagesMng = [[NSMutableArray alloc] init];
+    NSManagedObject *currentImage;
+    
+    for(NSManagedObject *aImgObj in self.imagesArray)
+    {
+        if(![[aImgObj valueForKey:@"url"] isEqual:@"URL"])
+        {
+            [imagesMng addObject:aImgObj];
+        }
+    }
+    
+    currentImage = [self.imagesArray objectAtIndex:imageSelected.tag];
+    
+    //NSLog(@"LIST = %@; CURRENT = %@", imagesMng, currentImage);
     
     if(listImages.count >0)
     {
         ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
-        photoViewController.current = imageSelected;
+
+        photoViewController.delegate = self;
+        photoViewController.current = imageSelected.image;
         photoViewController.listImages = listImages;
+        photoViewController.imagesMgr = imagesMng;
+        photoViewController.currentObject = currentImage;
     
         [self.navigationController pushViewController:photoViewController animated:YES];
     }
 
 }
 
+-(void)moveImageInSprout:(SproutScrollView *)sprout from:(DragDropImageView *)fromItem to:(DragDropImageView *)toItem
+{
+    NSManagedObject *from = [self.imagesArray objectAtIndex:fromItem.tag];
+    [from setValue:toItem.url forKey:@"url"];
+    NSManagedObject *to = [self.imagesArray objectAtIndex:toItem.tag];
+    [to setValue:fromItem.url forKey:@"url"];
+    
+    //NSLog(@"%@", self.imagesArray);
+}
 
-
+-(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(NSManagedObject *)object
+{
+    NSLog(@"Delete OK");
+    NSInteger tag = [[object valueForKey:@"tag"] intValue];
+    
+    [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setImage:nil];
+    [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setUrlImage:@"URL"];
+    [[self.imagesArray objectAtIndex:tag] setValue:@"URL" forKey:@"url"];
+}
 
 
 @end

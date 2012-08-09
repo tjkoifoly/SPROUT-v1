@@ -7,13 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
+#import <AssetsLibrary/ALAssetRepresentation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface SaveorDiscardPhotoViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewBack;
 @property (strong, nonatomic) UIImage *image;
+@property (strong, nonatomic) NSString *urlImage;
 
 -(IBAction)save:(id)sender;
 -(IBAction)discard:(id)sender;
 -(IBAction)goToHome:(id)sender;
+- (UIImage *)imageByCropping:(UIImage *)imageToCrop toRect:(CGRect)rect;
 
 @end

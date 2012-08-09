@@ -49,12 +49,20 @@
 }
 
 #pragma mark - View lifecycle
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:NO];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        [self capture:nil];
+    }
+
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
 }
 
 - (void)viewDidUnload
@@ -70,17 +78,37 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+#pragma OverlayDelegate
+
+-(void)overlayButtonPressed:(OverlayView *)view withTag:(NSInteger)buttonTag
+{
+    switch (buttonTag) {
+        case 1:
+            [self dismissModalViewControllerAnimated:NO];
+            [self goToHome:nil];
+            break;
+        case 2:
+        {
+            [self dismissModalViewControllerAnimated:NO];
+            [self loadImageFromLibrary:nil];
+            break;
+        }
+        case 3:
+            [self.pickerImage takePicture];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 #pragma PickerImage delegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) picker 
 {
     [self dismissModalViewControllerAnimated:YES];
-}
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    NSLog(@"Image = %@", image);
-    NSLog(@"Info = %@",editingInfo);
+    self.pickerImage = nil;
+    [self capture:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
@@ -89,40 +117,14 @@
     
     if( [picker sourceType] == UIImagePickerControllerSourceTypeCamera )
     {
-        ALAssetsLibrary *library = [[ALAssetsLibrary alloc]init];
+        self.imageView.image = image;
+        SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
+        saveViewController.image = image;
         
-        __block NSString *urlString;
+        [self.navigationController pushViewController:saveViewController animated:YES];
         
-        [library writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error )
-         {
-            urlString = [assetURL absoluteString];
-             /*
-             UIAlertView *alert = [[UIAlertView alloc]
-                                   initWithTitle: @"Saved to : "
-                                   message: urlString
-                                   delegate: nil
-                                   cancelButtonTitle:@"OK"
-                                   otherButtonTitles:nil];
-             [alert show];
-              */
-             
-             ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
-             
-             continueViewController.urlImage = [assetURL absoluteString];
-             continueViewController.imageInput = image;
-             
-             [self.navigationController pushViewController:continueViewController animated:YES];
-
-
-             [library assetForURL:assetURL resultBlock:^(ALAsset *asset )
-              {
-                  NSLog(@"we have our ALAsset!");
-              } 
-                     failureBlock:^(NSError *error )
-              {
-                  NSLog(@"Error loading asset");
-              }];
-         }];
+        [self dismissModalViewControllerAnimated:NO];
+        
     }else
     {
         //NSLog(@"Image = %@", i);
@@ -134,14 +136,11 @@
         continueViewController.imageInput = image;
     
         [self.navigationController pushViewController:continueViewController animated:YES];
+        [self dismissModalViewControllerAnimated:YES]; 
     }
-    self.imageView.image = image;
+    self.pickerImage = nil;
     
-    [self dismissModalViewControllerAnimated:NO];    
-}
-
-
-
+    }
 
 #pragma IBAction
 
@@ -150,27 +149,40 @@
     if ([UIImagePickerController isSourceTypeAvailable:
          UIImagePickerControllerSourceTypeCamera])
     {
-        OverlayView *overlay = [[OverlayView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGTH)];
-        UIImagePickerController *imagePicker =
+        OverlayView *overlay;
+        NSArray *nibObjects;
+        nibObjects = [[NSBundle mainBundle]loadNibNamed:@"OverlayView" owner:self options:nil];
+        
+        for(id currentObject in nibObjects)
+        {
+            overlay = (OverlayView *)currentObject;
+        }
+        overlay.frame = CGRectMake(0.0f, 0.0f, 320.f, 480.f);
+        
+        overlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Untitled-1bg001.png"]];
+        overlay.delegate = self;
+
+        self.pickerImage =
         [[UIImagePickerController alloc] init];
         
-        imagePicker.delegate = self;
+        self.pickerImage.delegate = self;
         
-        imagePicker.sourceType = 
+        self.pickerImage.sourceType = 
         UIImagePickerControllerSourceTypeCamera;
         
-        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+        self.pickerImage.mediaTypes = [NSArray arrayWithObjects:
                                   (NSString *) kUTTypeImage,
                                   nil];
         
-        imagePicker.allowsEditing = NO;
+        self.pickerImage.allowsEditing = NO;
+        self.pickerImage.showsCameraControls = NO;
         //imagePicker.showsCameraControls = NO;
-        imagePicker.navigationBarHidden = YES;
-        imagePicker.cameraViewTransform = CGAffineTransformScale(imagePicker.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
+        self.pickerImage.navigationBarHidden = YES;
+        //self.pickerImage.cameraViewTransform = CGAffineTransformScale(self.pickerImage.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
         
-        imagePicker.cameraOverlayView = overlay;
+        self.pickerImage.cameraOverlayView = overlay;
         
-        [self presentModalViewController:imagePicker 
+        [self presentModalViewController:self.pickerImage 
                                 animated:NO];
         newMedia = YES;
     }else
@@ -197,31 +209,12 @@
 
 -(IBAction)loadImageFromLibrary:(id)sender
 {
-    
-    if(self.pickerImage == nil)
-    {
-        self.pickerImage = [[UIImagePickerController alloc] init];
-        self.pickerImage.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-    }
+    self.pickerImage = [[UIImagePickerController alloc] init];
+    self.pickerImage.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     
     self.pickerImage.delegate = self;
     
     [self presentModalViewController:pickerImage animated:YES];
-}
-
--(void)image:(UIImage *)image
-    finishedSavingWithError:(NSError *)error 
- contextInfo:(void *)contextInfo
-{
-    if (error) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Save failed"
-                              message: @"Failed to save image"
-                              delegate: nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
 }
 
 

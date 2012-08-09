@@ -24,6 +24,7 @@
 @synthesize sproutScroll;
 @synthesize sprout;
 @synthesize urlImage;
+@synthesize imagesArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -72,20 +73,23 @@
         && (touchPoint.y < (frameImage.origin.y + frameImage.size.height +frameView.origin.y))) {
         if(temp != nil)
         {
-            NSMutableArray *imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
+            SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
             
             for(id x in imagesArray)
             {
                 if([[x valueForKey:@"url"] isEqual:@"URL"])
                 {
                     [x setValue:self.urlImage forKey:@"url"];
+                    saveViewController.lastBlank = x;
                     break;
                 }
             }
             
-            SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
             saveViewController.sprout = self.sprout;
             saveViewController.imagesArray = imagesArray;
+            
+            saveViewController.sproutScroll = self.sproutScroll;
+            saveViewController.urlImage = self.urlImage;
             
             [self.navigationController pushViewController:saveViewController animated:NO];
         }
@@ -112,7 +116,7 @@
    // NSLog(@"SPROUT = %@", self.sprout);
     
     
-    NSMutableArray *imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
+    self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
     
     //self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:[[self.sprout valueForKey:@"rowSize"] intValue] andColSize:[[self.sprout valueForKey:@"colSize"] intValue]];
     self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
@@ -138,6 +142,7 @@
     self.sproutScroll = nil;
     self.sprout = nil;
     self.urlImage = nil;
+    self.imagesArray = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -163,20 +168,49 @@
             [listImages addObject:i];
     }
     
+    NSMutableArray *imagesMng = [[NSMutableArray alloc] init];
+    NSManagedObject *currentImage;
+    
+    for(NSManagedObject *aImgObj in self.imagesArray)
+    {
+        if(![[aImgObj valueForKey:@"url"] isEqual:@"URL"])
+        {
+            [imagesMng addObject:aImgObj];
+        }
+    }
+    
+    currentImage = [self.imagesArray objectAtIndex:imageSelected.tag];
     
     if(listImages.count >0)
     {
         ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
-        photoViewController.current = imageSelected;
+        photoViewController.current = imageSelected.image;
         photoViewController.listImages = listImages;
+        photoViewController.delegate = self;
+        photoViewController.imagesMgr = imagesMng;
+        photoViewController.currentObject = currentImage;
         
         [self.navigationController pushViewController:photoViewController animated:YES];
     }
 
 }
 
+-(void)moveImageInSprout:(SproutScrollView *)sprout from:(DragDropImageView *)fromItem to:(DragDropImageView *)toItem
+{
+    NSManagedObject *from = [self.imagesArray objectAtIndex:fromItem.tag];
+    [from setValue:toItem.url forKey:@"url"];
+    NSManagedObject *to = [self.imagesArray objectAtIndex:toItem.tag];
+    [to setValue:fromItem.url forKey:@"url"];
+    
+    //NSLog(@"%@", self.imagesArray);
+}
 
-
+-(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(NSManagedObject *)object
+{
+    NSInteger tag = [[object valueForKey:@"tag"] intValue];
+    
+    [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setImage:nil];
+}
 
 
 

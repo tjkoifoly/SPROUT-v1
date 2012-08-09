@@ -8,14 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "DragDropImageView.h"
+@class ViewPhotoInSproutViewController;
+@protocol DeletePhotoDelegate <NSObject>
 
-@interface ViewPhotoInSproutViewController : UIViewController
+-(void)deletePhoto : (ViewPhotoInSproutViewController *)controller : (NSManagedObject *)object;
 
-@property (strong, nonatomic) NSArray *listImages;
+@end
+
+@interface ViewPhotoInSproutViewController : UIViewController<UIScrollViewDelegate>
+
+@property (assign, nonatomic) id <DeletePhotoDelegate> delegate;
 @property (strong, nonatomic) UIScrollView *scrollImages;
-@property (strong, nonatomic) DragDropImageView *current;
+@property (strong, nonatomic) UIImage *current;
+@property (strong, nonatomic) NSMutableArray *listImages;
 
+@property (strong, nonatomic) NSMutableArray *imagesMgr;
+@property (strong, nonatomic) NSManagedObject *currentObject;
 
 -(IBAction)back:(id)sender;
+-(IBAction)deleteImage:(id)sender;
+-(UIScrollView *)loadScrollView: (NSArray *)list : (id)currentObj;
 
 @end

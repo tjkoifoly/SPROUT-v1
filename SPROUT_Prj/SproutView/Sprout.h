@@ -16,5 +16,7 @@
 +(NSManagedObject *) sproutForName: (NSString *)sName;
 +(NSManagedObject *)imageInSprout: (NSString *)sName: (NSInteger)tag;
 +(NSArray *)imagesOfSrpout: (NSManagedObject *)sprout;
++(BOOL)deleteObject : (NSManagedObject *)delObj;
++(BOOL)save;
 
 @end

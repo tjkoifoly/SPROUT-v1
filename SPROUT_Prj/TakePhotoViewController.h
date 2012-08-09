@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "SaveorDiscardPhotoViewController.h"
+#import "OverlayView.h"
 
 @interface TakePhotoViewController : UIViewController
-<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, OverlayViewDelegate>
 
 @property (strong, nonatomic) UIImagePickerController *pickerImage;
 @property (strong, nonatomic) NSString *urlImage;

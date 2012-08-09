@@ -18,10 +18,11 @@
 -(void)dragDropImageView: (DragDropImageView *) imageViewSelected;
 -(void)touchInAImage: (DragDropImageView *) iSelected;
 -(void)dropInGrid: (DragDropImageView *)toImv;
--(void)touchEnableScroll: (DragDropImageView *) sender;
+-(void)touchEnableScroll: (DragDropImageView *) sender moveable: (BOOL)enableOK;
+-(void)moveImageFrom: (DragDropImageView *)fromImage to: (DragDropImageView*)toImage;
 
 @end
-@interface DragDropImageView : UIImageView
+@interface DragDropImageView : UIImageView 
 
 @property (retain, nonatomic) NSObject <DragDropImageViewDelegate> *delegate;
 
@@ -34,5 +35,6 @@
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage : (NSInteger)size;
 
 - (void)loadImageFromAssetURL: (NSURL *)assetURL;
+-(void)setUrlImage:(NSString *)urlString;
 
 @end

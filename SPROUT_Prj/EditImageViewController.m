@@ -58,7 +58,7 @@
 
 -(IBAction)save:(id)sender
 {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)exportImage:(id)sender

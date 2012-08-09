@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4047AAB15D1413F00C20F23 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4047AAA15D1413F00C20F23 /* OverlayView.xib */; };
+		E4047AAE15D1425600C20F23 /* backgroundColor.png in Resources */ = {isa = PBXBuildFile; fileRef = E4047AAD15D1425600C20F23 /* backgroundColor.png */; };
 		E40F7FC715CCCDEE00D354A7 /* DragDropImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */; };
 		E424F30015CCFC0B006B588F /* SproutScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E424F2FF15CCFC0B006B588F /* SproutScrollView.m */; };
 		E43FAE7715CA0C4200CF628C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7615CA0C4200CF628C /* UIKit.framework */; };
@@ -26,7 +28,7 @@
 		E43FAEAF15CA0C6D00CF628C /* TakePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43FAEAD15CA0C6D00CF628C /* TakePhotoViewController.m */; };
 		E43FAEB015CA0C6D00CF628C /* TakePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */; };
 		E43FAEB415CA0F1900CF628C /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB315CA0F1900CF628C /* Splash.png */; };
-		E43FAEB615CA0F5000CF628C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB515CA0F5000CF628C /* Default.png */; };
+		E440676D15D35F7F00F7729D /* noPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = E440676C15D35F7F00F7729D /* noPhoto.png */; };
 		E459323715CF71D1009A5D1C /* Sprout.m in Sources */ = {isa = PBXBuildFile; fileRef = E459323615CF71D1009A5D1C /* Sprout.m */; };
 		E47AA0A615CB7D4400544164 /* SendEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0A415CB7D4400544164 /* SendEmailViewController.m */; };
 		E47AA0A715CB7D4400544164 /* SendEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0A515CB7D4400544164 /* SendEmailViewController.xib */; };
@@ -59,6 +61,9 @@
 		E49F20A215CE7EB600D2A932 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E49F20A115CE7EB600D2A932 /* FacebookSDKResources.bundle */; };
 		E49F20A415CE7F7D00D2A932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49F20A315CE7F7D00D2A932 /* FacebookSDK.framework */; };
 		E49F20A615CE842D00D2A932 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = E49F20A515CE842D00D2A932 /* checked.png */; };
+		E4A92C4B15D2795D001675FB /* backgroundColor copy.png in Resources */ = {isa = PBXBuildFile; fileRef = E4A92C4A15D2795D001675FB /* backgroundColor copy.png */; };
+		E4A92C4E15D27DB8001675FB /* Untitled-1bg001.png in Resources */ = {isa = PBXBuildFile; fileRef = E4A92C4C15D27DB8001675FB /* Untitled-1bg001.png */; };
+		E4A92C4F15D27DB8001675FB /* Untitled-1bg002.png in Resources */ = {isa = PBXBuildFile; fileRef = E4A92C4D15D27DB8001675FB /* Untitled-1bg002.png */; };
 		E4B82BA015CA3C6400B14E6A /* DragToSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B82B9E15CA3C6400B14E6A /* DragToSproutViewController.m */; };
 		E4B82BA115CA3C6400B14E6A /* DragToSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82B9F15CA3C6400B14E6A /* DragToSproutViewController.xib */; };
 		E4B82BA615CA407300B14E6A /* SelectGridSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */; };
@@ -110,6 +115,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E4047AAA15D1413F00C20F23 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		E4047AAD15D1425600C20F23 /* backgroundColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundColor.png; sourceTree = "<group>"; };
 		E40F7FC515CCCDEE00D354A7 /* DragDropImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DragDropImageView.h; path = SproutView/DragDropImageView.h; sourceTree = "<group>"; };
 		E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DragDropImageView.m; path = SproutView/DragDropImageView.m; sourceTree = "<group>"; };
 		E424F2FE15CCFC0B006B588F /* SproutScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SproutScrollView.h; path = SproutView/SproutScrollView.h; sourceTree = "<group>"; };
@@ -137,6 +144,7 @@
 		E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakePhotoViewController.xib; sourceTree = "<group>"; };
 		E43FAEB315CA0F1900CF628C /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
 		E43FAEB515CA0F5000CF628C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E440676C15D35F7F00F7729D /* noPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noPhoto.png; sourceTree = "<group>"; };
 		E459323515CF71D1009A5D1C /* Sprout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprout.h; path = SproutView/Sprout.h; sourceTree = "<group>"; };
 		E459323615CF71D1009A5D1C /* Sprout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sprout.m; path = SproutView/Sprout.m; sourceTree = "<group>"; };
 		E47AA0A315CB7D4400544164 /* SendEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmailViewController.h; sourceTree = "<group>"; };
@@ -183,6 +191,9 @@
 		E49F20A115CE7EB600D2A932 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		E49F20A315CE7F7D00D2A932 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		E49F20A515CE842D00D2A932 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
+		E4A92C4A15D2795D001675FB /* backgroundColor copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundColor copy.png"; sourceTree = "<group>"; };
+		E4A92C4C15D27DB8001675FB /* Untitled-1bg001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Untitled-1bg001.png"; sourceTree = "<group>"; };
+		E4A92C4D15D27DB8001675FB /* Untitled-1bg002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Untitled-1bg002.png"; sourceTree = "<group>"; };
 		E4B82B9D15CA3C6400B14E6A /* DragToSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragToSproutViewController.h; sourceTree = "<group>"; };
 		E4B82B9E15CA3C6400B14E6A /* DragToSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragToSproutViewController.m; sourceTree = "<group>"; };
 		E4B82B9F15CA3C6400B14E6A /* DragToSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragToSproutViewController.xib; sourceTree = "<group>"; };
@@ -267,6 +278,7 @@
 				E40F7FC415CCCD8000D354A7 /* SproutObjects */,
 				E4F1B55C15D0AD3C00558FFC /* OverlayView.h */,
 				E4F1B55D15D0AD3C00558FFC /* OverlayView.m */,
+				E4047AAA15D1413F00C20F23 /* OverlayView.xib */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -405,6 +417,11 @@
 		E43FAEB215CA0F0E00CF628C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E440676C15D35F7F00F7729D /* noPhoto.png */,
+				E4A92C4C15D27DB8001675FB /* Untitled-1bg001.png */,
+				E4A92C4D15D27DB8001675FB /* Untitled-1bg002.png */,
+				E4047AAD15D1425600C20F23 /* backgroundColor.png */,
+				E4A92C4A15D2795D001675FB /* backgroundColor copy.png */,
 				E4F689D215D0F57600837FBD /* icon.png */,
 				E4F1B55F15D0AE7900558FFC /* overlaygraphic.png */,
 				E4D9D99115CBBF88007B94C5 /* saveBut.png */,
@@ -685,7 +702,6 @@
 				E43FAE8315CA0C4200CF628C /* InfoPlist.strings in Resources */,
 				E43FAEB015CA0C6D00CF628C /* TakePhotoViewController.xib in Resources */,
 				E43FAEB415CA0F1900CF628C /* Splash.png in Resources */,
-				E43FAEB615CA0F5000CF628C /* Default.png in Resources */,
 				E496C28615CA16190002DFEA /* SaveorDiscardPhotoViewController.xib in Resources */,
 				E496C28815CA18E40002DFEA /* baby.png in Resources */,
 				E496C29215CA1A400002DFEA /* MainViewController.xib in Resources */,
@@ -731,6 +747,12 @@
 				E49F20A615CE842D00D2A932 /* checked.png in Resources */,
 				E4F1B56015D0AE7900558FFC /* overlaygraphic.png in Resources */,
 				E4F689D315D0F57600837FBD /* icon.png in Resources */,
+				E4047AAB15D1413F00C20F23 /* OverlayView.xib in Resources */,
+				E4047AAE15D1425600C20F23 /* backgroundColor.png in Resources */,
+				E4A92C4B15D2795D001675FB /* backgroundColor copy.png in Resources */,
+				E4A92C4E15D27DB8001675FB /* Untitled-1bg001.png in Resources */,
+				E4A92C4F15D27DB8001675FB /* Untitled-1bg002.png in Resources */,
+				E440676D15D35F7F00F7729D /* noPhoto.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <AssetsLibrary/ALAssetsLibrary.h>
 #import <AssetsLibrary/ALAssetRepresentation.h>
+#import "Sprout.h"
 
 #define kWidth 40
 #define kHeight 40
@@ -33,7 +34,7 @@
 
 -(id) initWithArrayImage: (NSInteger)rs : (NSInteger) cs: (NSArray*) ai
 {
-    enable = YES;
+    enable = NO;
     self.rowSize = rs;
     self.colSize = cs;
    // NSLog(@" INIT %@", ai);
@@ -107,7 +108,7 @@
 
 -(id)initWithrowSize: (NSInteger) rs andColSize: (NSInteger) cs
 {
-    enable = YES;
+    enable = NO;
     self.rowSize = rs;
     self.colSize = cs;
     NSLog(@" INIT %@", self.images);
@@ -164,10 +165,21 @@
     return self;
 }
 
--(void) updateImageToSprout: (NSMutableArray *) imagesOfSprout
+-(void) updateImageToSprout: (NSString *) imageURL  inTag:(NSInteger)cellTag
 {
-    [[self.subviews objectAtIndex:0] tag];
+    [((DragDropImageView*)[self.subviews objectAtIndex:cellTag]) loadImageFromAssetURL:[NSURL URLWithString:imageURL]];
+    ((DragDropImageView*)[self.subviews objectAtIndex:cellTag]).url = imageURL;
     
+}
+
+-(void) reloadImageOfSprout: (NSString *)sName
+{
+    NSManagedObject *sp = [Sprout sproutForName:sName];
+    NSArray *array = [Sprout imagesOfSrpout:sp];
+    for(id i in self.subviews)
+    {
+        [(DragDropImageView *)i loadImageFromAssetURL:[NSURL URLWithString:[[array objectAtIndex:[i tag]] valueForKey:@"url"]]];
+    }
 }
 
 -(void)dragDropImageView:(DragDropImageView *)imageViewSelected
@@ -187,10 +199,16 @@
     NSLog(@"To Image: %@", toImv);
 }
 
--(void)touchEnableScroll:(DragDropImageView *)sender
+-(void)touchEnableScroll:(DragDropImageView *)sender moveable:(BOOL)enableOK
 {
-    self.enable = !self.enable;
-    [self setScrollEnabled:self.enable];
+    self.enable = enableOK;
+    self.imvSelected = sender;
+}
+
+-(void)moveImageFrom:(DragDropImageView *)fromImage to:(DragDropImageView *)toImage
+{
+    NSLog(@"Move image from %@ to %@", fromImage.url, toImage.url);
+    [self.delegate moveImageInSprout:self from:fromImage to:toImage];
 }
 
 @end

@@ -9,15 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "DragDropImageView.h"
 #import "SproutScrollView.h"
+#import <QuartzCore/QuartzCore.h>
+#import "ViewPhotoInSproutViewController.h"
 
 @interface SaveSproutViewController : UIViewController
-<SproutDelegate>
+<SproutDelegate, DeletePhotoDelegate>
 
 @property (strong, nonatomic) SproutScrollView *sproutScroll;
 @property (strong, nonatomic) NSManagedObject *sprout;
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
 @property (strong, nonatomic) NSMutableArray *imagesArray;
-
+@property (strong, nonatomic) NSString *urlImage;
+@property (strong, nonatomic) DragDropImageView *lastBlank;
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)save:(id)sender;

@@ -96,4 +96,21 @@
     return imagesArray;
 }
 
++(BOOL)deleteObject : (NSManagedObject *)delObj
+{
+    CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    [context deleteObject:delObj];
+    return [context save:&error];
+}
++(BOOL)save
+{
+    CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    return [context save:&error];
+}
+
 @end

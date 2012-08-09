@@ -10,6 +10,11 @@
 
 @implementation OverlayView
 
+@synthesize buttonCap;
+@synthesize buttonLib;
+@synthesize buttonHome;
+@synthesize delegate;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -24,6 +29,24 @@
         
         [self addSubview:overlayGraphicView];
         
+        UIButton *homeButton =[UIButton buttonWithType:UIButtonTypeCustom];
+        [homeButton setBackgroundImage:[UIImage imageNamed:@"Homebut.png"] forState:UIControlStateNormal];
+        homeButton.frame = CGRectMake(0,0,100 ,100);
+        
+        [self addSubview:homeButton];
+        
+        UIButton *libButton =[UIButton buttonWithType:UIButtonTypeCustom];
+        [libButton setBackgroundImage:[UIImage imageNamed:@"LoadI.png"] forState:UIControlStateNormal];
+        libButton.frame = CGRectMake(220,0,100 ,100);
+        
+        [self addSubview:libButton];
+        
+        UIButton *capButton =[UIButton buttonWithType:UIButtonTypeCustom];
+        [capButton setBackgroundImage:[UIImage imageNamed:@"Cap.png"] forState:UIControlStateNormal];
+        capButton.frame = CGRectMake(127,381,57 ,59);
+        
+        [self addSubview:capButton];
+        
     }
     return self;
 }
@@ -36,5 +59,12 @@
     // Drawing code
 }
 */
+
+-(IBAction)buttonPressed:(id)sender
+{
+    UIButton * button = (UIButton *)sender;
+    
+    [self.delegate overlayButtonPressed:self withTag:button.tag];
+}
 
 @end

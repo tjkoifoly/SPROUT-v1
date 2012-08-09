@@ -14,6 +14,8 @@
 
 -(void)sproutDidSelectedViewImage: (SproutScrollView *) sprout: (DragDropImageView *) imageSelected;
 
+-(void) moveImageInSprout: (SproutScrollView *)sprout from: (DragDropImageView *)fromItem to:(DragDropImageView *) toItem;
+
 @end
 
 @interface SproutScrollView : UIScrollView <DragDropImageViewDelegate>
@@ -29,7 +31,9 @@
 
 -(id)initWithrowSize: (NSInteger) rs andColSize: (NSInteger) cs;
 -(id) initWithArrayImage: (NSInteger)rs : (NSInteger) cs: (NSArray*) ai;
--(void) updateImageToSprout: (NSMutableArray *) imagesOfSprout;
+-(void) updateImageToSprout: (NSString *) imageURL  inTag:(NSInteger)cellTag;
+-(void) reloadImageOfSprout: (NSString *)sName;
+
 
 
 @end

@@ -15,6 +15,7 @@
 #import "UploadToSproutViewController.h"
 #import "CNCAppDelegate.h"
 #import "OverlayView.h"
+#import "TakePhotoViewController.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
 #import <AssetsLibrary/ALAssetRepresentation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -77,6 +78,12 @@
     self.sproutView = nil;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -119,7 +126,7 @@
               [alert show];
               */
              [Sprout createSprout:self.sprout.name :self.sprout.rowSize :self.sprout.colSize];
-             /*
+             
              ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
              
              continueViewController.urlImage = [assetURL absoluteString];
@@ -127,16 +134,6 @@
              
              
              [self.navigationController pushViewController:continueViewController animated:YES];
-             */
-             DragToSproutViewController *dragViewController = [[DragToSproutViewController alloc] initWithNibName:@"DragToSproutViewController" bundle:nil];
-             
-             dragViewController.imageInput = image;
-             
-             dragViewController.urlImage = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
-             
-             dragViewController.sprout = [Sprout sproutForName:self.sprout.name];
-             
-             [self.navigationController pushViewController:dragViewController animated:YES];
              
              [library assetForURL:assetURL resultBlock:^(ALAsset *asset )
               {
@@ -169,9 +166,7 @@
         [self.navigationController pushViewController:dragViewController animated:YES];
     }
     
-    [self dismissModalViewControllerAnimated:YES];  
-    
-    
+    [self dismissModalViewControllerAnimated:YES]; 
 }
 
 
@@ -209,7 +204,7 @@
     
     [Sprout createSprout:self.sprout.name :self.sprout.rowSize :self.sprout.colSize];
     
-    [self.navigationController popToViewController:[self.navigationController.childViewControllers objectAtIndex:([self.navigationController.childViewControllers indexOfObject:self] - 2)] animated:YES];
+    //[self.navigationController popToViewController:[self.navigationController.childViewControllers objectAtIndex:([self.navigationController.childViewControllers indexOfObject:self] - 2)] animated:YES];
 }
 
 -(IBAction)share:(id)sender
@@ -221,45 +216,20 @@
 
 -(IBAction)capture:(id)sender
 {
-    if ([UIImagePickerController isSourceTypeAvailable:
-         UIImagePickerControllerSourceTypeCamera])
-    {
-        OverlayView *overlay = [[OverlayView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGTH)];
-        UIImagePickerController *imagePicker =
-        [[UIImagePickerController alloc] init];
-        
-        imagePicker.delegate = self;
-        
-        imagePicker.sourceType = 
-        UIImagePickerControllerSourceTypeCamera;
-        
-
-        
-        imagePicker.allowsEditing = NO;
-        //imagePicker.showsCameraControls = NO;
-        imagePicker.navigationBarHidden = YES;
-        imagePicker.cameraViewTransform = CGAffineTransformScale(imagePicker.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
-        
-        imagePicker.cameraOverlayView = overlay;
-        
-        [self presentModalViewController:imagePicker 
-                                animated:YES];
-    }else
-    {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"WARNING:"
-                              message: @"No detect camera on device!"
-                              delegate: nil
-                              cancelButtonTitle:@"Close"
-                              otherButtonTitles:nil];
-        [alert show];
-        
-    }
+    [Sprout createSprout:self.sprout.name :self.sprout.rowSize :self.sprout.colSize];
+    
+    TakePhotoViewController *takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:takeViewController animated:NO];
 }
 
 -(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected
 {
 }
 
+-(void)moveImageInSprout:(SproutScrollView *)sprout from:(DragDropImageView *)fromItem to:(DragDropImageView *)toItem
+{
+
+}
 
 @end
