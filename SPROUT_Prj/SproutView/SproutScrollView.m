@@ -99,7 +99,7 @@
             //NSLog(@"%i %i %i", i , j, imv.tag);
         }
     }
-    self.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
     self.layer.borderWidth = 2.f;
     
     return self;
@@ -159,7 +159,7 @@
                 //NSLog(@"%i %i %i", i , j, imv.tag);
             }
         }
-    self.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
     self.layer.borderWidth = 2.f;
 
     return self;

@@ -146,6 +146,7 @@
     
     SaveSproutViewController *displaySproutViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
     id s = [self.listSprout objectAtIndex:tag];
+    
     NSMutableArray *imgArray = [[NSMutableArray alloc]initWithArray:[Sprout imagesOfSrpout:s]];
     
     displaySproutViewController.imagesArray = imgArray;

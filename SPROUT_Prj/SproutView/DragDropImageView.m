@@ -30,7 +30,8 @@
     
     self = [super initWithFrame:CGRectMake(locationy*size, locationx*size, size, size)];
     
-    self.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.backgroundColor = [UIColor lightGrayColor];
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
     self.layer.borderWidth = 1.f;
     
     return self;
@@ -83,7 +84,7 @@
 {
     NSTimeInterval touchTimeDuration = [event timestamp] - touchStartTime;
     NSLog(@"Touch duration: %3.2f seconds", touchTimeDuration);
-    if(touchTimeDuration > 1.0f)
+    if(touchTimeDuration > 0.5f)
     {
         [self performSelector:@selector(threeTaps) withObject:nil];
     }

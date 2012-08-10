@@ -8,13 +8,29 @@
 
 #import <UIKit/UIKit.h>
 #import "StyleColorView.h"
+#import "SquareEditView.h"
+#import "StyleCropView.h"
+#import <AssetsLibrary/ALAssetsLibrary.h>
+#import <AssetsLibrary/ALAssetRepresentation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface EditImageViewController : UIViewController<ChangeColorDelegate>
+@class EditImageViewController;
+@protocol SaveForEditDelegate <NSObject>
+
+-(void)saveImage: (EditImageViewController *)controller withImage: (UIImage *)imageSaved andURL: (NSString *)urlOfImage;
+
+@end
+
+@interface EditImageViewController : UIViewController<ChangeColorDelegate, CropImageDelegate>
+@property(assign, nonatomic)id <SaveForEditDelegate> delegate;
+@property (strong, nonatomic) NSString *urlOfImage;
+@property (strong, nonatomic)UIImage *preoviousImage;
 
 @property (strong, nonatomic) UIImage *imageToEdit;
 @property (strong, nonatomic) IBOutlet UIImageView *frameForEdit;
 @property (strong, nonatomic) IBOutlet UIImageView *frontViewChangeColor;
-@property (strong, nonatomic) IBOutlet UIView *areForEdit;
+@property (strong, nonatomic) IBOutlet SquareEditView *areForEdit;
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)save:(id)sender;

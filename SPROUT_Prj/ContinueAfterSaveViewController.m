@@ -73,6 +73,7 @@
     EditImageViewController *editViewController = [[EditImageViewController alloc] initWithNibName:@"EditImageViewController" bundle:nil];
     
     editViewController.imageToEdit = self.imageInput;
+    editViewController.delegate = self;
     
     [self.navigationController pushViewController:editViewController animated:YES];
 }
@@ -109,6 +110,13 @@
 -(IBAction)goToHome:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void)saveImage:(EditImageViewController *)controller withImage:(UIImage *)imageSaved andURL:(NSString *)urlOfImage
+{
+    self.imageInput = imageSaved;
+    self.viewImage.image = self.imageInput;
+    self.urlImage = urlOfImage;
 }
 
 @end

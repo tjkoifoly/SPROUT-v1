@@ -56,7 +56,7 @@
     {
         [self capture:nil];
     }
-
+    
 }
 
 - (void)viewDidLoad
@@ -132,18 +132,18 @@
     {
         //NSLog(@"Image = %@", i);
         self.urlImage = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
-    
+        
         ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
-    
+        
         continueViewController.urlImage = self.urlImage;
         continueViewController.imageInput = image;
-    
+        
         [self.navigationController pushViewController:continueViewController animated:YES];
         [self dismissModalViewControllerAnimated:YES]; 
     }
     self.pickerImage = nil;
     
-    }
+}
 
 #pragma IBAction
 
@@ -164,7 +164,7 @@
         
         overlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Untitled-1bg001.png"]];
         overlay.delegate = self;
-
+        
         self.pickerImage =
         [[UIImagePickerController alloc] init];
         
@@ -174,8 +174,8 @@
         UIImagePickerControllerSourceTypeCamera;
         
         self.pickerImage.mediaTypes = [NSArray arrayWithObjects:
-                                  (NSString *) kUTTypeImage,
-                                  nil];
+                                       (NSString *) kUTTypeImage,
+                                       nil];
         
         self.pickerImage.allowsEditing = NO;
         self.pickerImage.showsCameraControls = NO;
@@ -197,11 +197,11 @@
                               cancelButtonTitle:@"Close"
                               otherButtonTitles:nil];
         [alert show];
-
+        
     }
     /*
-    SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
-    [self.navigationController pushViewController:saveViewController animated:YES];
+     SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
+     [self.navigationController pushViewController:saveViewController animated:YES];
      */
 }
 

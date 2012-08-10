@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditImageViewController.h"
 
-@interface ContinueAfterSaveViewController : UIViewController
+@interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate>
 
 @property (strong, nonatomic) UIImage *imageInput;
 @property (strong, nonatomic) IBOutlet UIImageView *viewImage;

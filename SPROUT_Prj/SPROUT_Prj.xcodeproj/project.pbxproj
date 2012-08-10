@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		E4047AAB15D1413F00C20F23 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4047AAA15D1413F00C20F23 /* OverlayView.xib */; };
 		E4047AAE15D1425600C20F23 /* backgroundColor.png in Resources */ = {isa = PBXBuildFile; fileRef = E4047AAD15D1425600C20F23 /* backgroundColor.png */; };
+		E40A8B9915D3F18D0004E841 /* SquareEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40A8B9815D3F18D0004E841 /* SquareEditView.m */; };
+		E40A8BA215D3FC840004E841 /* ImageToDag.m in Sources */ = {isa = PBXBuildFile; fileRef = E40A8BA115D3FC840004E841 /* ImageToDag.m */; };
+		E40A8BA515D3FEF30004E841 /* StyleCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40A8BA415D3FEF30004E841 /* StyleCropView.m */; };
+		E40A8BA715D3FF0B0004E841 /* StyleCropView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E40A8BA615D3FF0B0004E841 /* StyleCropView.xib */; };
 		E40F7FC715CCCDEE00D354A7 /* DragDropImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */; };
 		E424F30015CCFC0B006B588F /* SproutScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E424F2FF15CCFC0B006B588F /* SproutScrollView.m */; };
 		E43FAE7715CA0C4200CF628C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7615CA0C4200CF628C /* UIKit.framework */; };
@@ -70,6 +74,8 @@
 		E4B82BA615CA407300B14E6A /* SelectGridSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */; };
 		E4B82BA715CA407300B14E6A /* SelectGridSizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */; };
 		E4BCEF7C15CE90AD006E7A0D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BCEF7B15CE90AD006E7A0D /* MobileCoreServices.framework */; };
+		E4C9D5F915D4CBCB00A69C5C /* FiltersView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9D5F815D4CBCB00A69C5C /* FiltersView.m */; };
+		E4C9D5FC15D4CBDD00A69C5C /* FiltersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C9D5FB15D4CBDD00A69C5C /* FiltersView.xib */; };
 		E4D9D96C15CBBA27007B94C5 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96815CBBA27007B94C5 /* face.png */; };
 		E4D9D96D15CBBA27007B94C5 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96915CBBA27007B94C5 /* up.png */; };
 		E4D9D96E15CBBA27007B94C5 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96A15CBBA27007B94C5 /* edit.png */; };
@@ -125,6 +131,13 @@
 /* Begin PBXFileReference section */
 		E4047AAA15D1413F00C20F23 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		E4047AAD15D1425600C20F23 /* backgroundColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundColor.png; sourceTree = "<group>"; };
+		E40A8B9715D3F18D0004E841 /* SquareEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SquareEditView.h; path = EditObjects/SquareEditView.h; sourceTree = "<group>"; };
+		E40A8B9815D3F18D0004E841 /* SquareEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SquareEditView.m; path = EditObjects/SquareEditView.m; sourceTree = "<group>"; };
+		E40A8BA015D3FC840004E841 /* ImageToDag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToDag.h; sourceTree = "<group>"; };
+		E40A8BA115D3FC840004E841 /* ImageToDag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToDag.m; sourceTree = "<group>"; };
+		E40A8BA315D3FEF30004E841 /* StyleCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleCropView.h; path = EditObjects/StyleCropView.h; sourceTree = "<group>"; };
+		E40A8BA415D3FEF30004E841 /* StyleCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleCropView.m; path = EditObjects/StyleCropView.m; sourceTree = "<group>"; };
+		E40A8BA615D3FF0B0004E841 /* StyleCropView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StyleCropView.xib; sourceTree = "<group>"; };
 		E40F7FC515CCCDEE00D354A7 /* DragDropImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DragDropImageView.h; path = SproutView/DragDropImageView.h; sourceTree = "<group>"; };
 		E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DragDropImageView.m; path = SproutView/DragDropImageView.m; sourceTree = "<group>"; };
 		E424F2FE15CCFC0B006B588F /* SproutScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SproutScrollView.h; path = SproutView/SproutScrollView.h; sourceTree = "<group>"; };
@@ -210,6 +223,9 @@
 		E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGridSizeViewController.m; sourceTree = "<group>"; };
 		E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGridSizeViewController.xib; sourceTree = "<group>"; };
 		E4BCEF7B15CE90AD006E7A0D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		E4C9D5F715D4CBCB00A69C5C /* FiltersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiltersView.h; path = EditObjects/FiltersView.h; sourceTree = "<group>"; };
+		E4C9D5F815D4CBCB00A69C5C /* FiltersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiltersView.m; path = EditObjects/FiltersView.m; sourceTree = "<group>"; };
+		E4C9D5FB15D4CBDD00A69C5C /* FiltersView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersView.xib; sourceTree = "<group>"; };
 		E4D9D96815CBBA27007B94C5 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
 		E4D9D96915CBBA27007B94C5 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		E4D9D96A15CBBA27007B94C5 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
@@ -290,14 +306,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E40F7FC215CCCD7300D354A7 /* Objects */ = {
+		E40A8B9B15D3F3020004E841 /* Camrera */ = {
 			isa = PBXGroup;
 			children = (
-				E4E5809015D3AE8600EA9D54 /* EditObjects */,
-				E40F7FC415CCCD8000D354A7 /* SproutObjects */,
 				E4F1B55C15D0AD3C00558FFC /* OverlayView.h */,
 				E4F1B55D15D0AD3C00558FFC /* OverlayView.m */,
 				E4047AAA15D1413F00C20F23 /* OverlayView.xib */,
+			);
+			name = Camrera;
+			sourceTree = "<group>";
+		};
+		E40F7FC215CCCD7300D354A7 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				E40A8B9B15D3F3020004E841 /* Camrera */,
+				E4E5809015D3AE8600EA9D54 /* EditObjects */,
+				E40F7FC415CCCD8000D354A7 /* SproutObjects */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -615,9 +639,19 @@
 		E4E5809015D3AE8600EA9D54 /* EditObjects */ = {
 			isa = PBXGroup;
 			children = (
+				E40A8BA015D3FC840004E841 /* ImageToDag.h */,
+				E40A8BA115D3FC840004E841 /* ImageToDag.m */,
+				E40A8B9715D3F18D0004E841 /* SquareEditView.h */,
+				E40A8B9815D3F18D0004E841 /* SquareEditView.m */,
 				E4E5809215D3AEAC00EA9D54 /* StyleColorView.h */,
 				E4E5809315D3AEAC00EA9D54 /* StyleColorView.m */,
 				E4E5809515D3AEBD00EA9D54 /* StyleColorView.xib */,
+				E40A8BA315D3FEF30004E841 /* StyleCropView.h */,
+				E40A8BA415D3FEF30004E841 /* StyleCropView.m */,
+				E40A8BA615D3FF0B0004E841 /* StyleCropView.xib */,
+				E4C9D5F715D4CBCB00A69C5C /* FiltersView.h */,
+				E4C9D5F815D4CBCB00A69C5C /* FiltersView.m */,
+				E4C9D5FB15D4CBDD00A69C5C /* FiltersView.xib */,
 			);
 			name = EditObjects;
 			sourceTree = "<group>";
@@ -794,6 +828,8 @@
 				E4E5809E15D3B27200EA9D54 /* slider3.png in Resources */,
 				E4E5809F15D3B27200EA9D54 /* slider.png in Resources */,
 				E4E580A015D3B27200EA9D54 /* whiteslide.png in Resources */,
+				E40A8BA715D3FF0B0004E841 /* StyleCropView.xib in Resources */,
+				E4C9D5FC15D4CBDD00A69C5C /* FiltersView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +904,10 @@
 				E459323715CF71D1009A5D1C /* Sprout.m in Sources */,
 				E4F1B55E15D0AD3C00558FFC /* OverlayView.m in Sources */,
 				E4E5809415D3AEAC00EA9D54 /* StyleColorView.m in Sources */,
+				E40A8B9915D3F18D0004E841 /* SquareEditView.m in Sources */,
+				E40A8BA215D3FC840004E841 /* ImageToDag.m in Sources */,
+				E40A8BA515D3FEF30004E841 /* StyleCropView.m in Sources */,
+				E4C9D5F915D4CBCB00A69C5C /* FiltersView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
