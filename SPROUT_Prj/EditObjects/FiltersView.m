@@ -10,6 +10,8 @@
 
 @implementation FiltersView
 
+@synthesize delegate;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,5 +29,31 @@
     // Drawing code
 }
 */
+
+-(IBAction)close:(id)sender
+{
+    [self.delegate closeFilter:self];
+}
+
+-(IBAction)normal:(id)sender
+{
+    [self.delegate filterApply:self typeFilter:1];
+}
+-(IBAction)sepia:(id)sender
+{
+    [self.delegate filterApply:self typeFilter:2];    
+}
+-(IBAction)antique:(id)sender
+{
+    [self.delegate filterApply:self typeFilter:3];    
+}
+-(IBAction)blur:(id)sender
+{
+    [self.delegate filterApply:self typeFilter:4];    
+}
+-(IBAction)vignette:(id)sender
+{
+    [self.delegate filterApply:self typeFilter:5];    
+}
 
 @end

@@ -19,8 +19,6 @@
 @synthesize sproutView;
 @synthesize sprout;
 @synthesize imagesArray;
-@synthesize urlImage;
-@synthesize lastBlank;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,28 +43,17 @@
 {
     [super viewDidLoad];
     
-    
-    if(self.sproutScroll != nil && self.lastBlank != nil)
-    {
-        NSInteger index = [[lastBlank valueForKey:@"tag"] intValue];
-        
-        NSLog(@"%i", index);
-        
-        [self.sproutScroll updateImageToSprout:self.urlImage inTag:index];
-    }
+    self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
     if(self.sproutScroll == nil)
     {
         self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :self.imagesArray];
     }
     
     self.sproutScroll.delegate = self;
-    
     CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
     self.sproutScroll.center = center;
-    
     [self.sproutView addSubview:self.sproutScroll];
     self.sproutView.backgroundColor = [UIColor clearColor];
-
 }
 
 - (void)viewDidUnload
@@ -76,8 +63,6 @@
     self.sproutScroll = nil;
     self.sprout = nil;
     self.imagesArray = nil;
-    self.urlImage = nil;
-    self.lastBlank = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -104,7 +89,18 @@
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError *error;
     
-    [context save:&error];
+    NSArray *array = self.sproutScroll.subviews;
+    int i = 0;
+    for(i = 0; i< self.imagesArray.count; i++)
+    {
+        [[self.imagesArray objectAtIndex:i] setValue:[(DragDropImageView *)[array objectAtIndex:i] url] forKey:@"url"];
+    }
+    
+    if([context save:&error])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"Sprout saved!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
      
 }
 
@@ -124,11 +120,10 @@
     {
         UIImage * i = [((DragDropImageView*)aImgV) image];
         if(i != nil)
-            [listImages addObject:i];
+            [listImages addObject:aImgV];
     }
     
     NSMutableArray *imagesMng = [[NSMutableArray alloc] init];
-    NSManagedObject *currentImage;
     
     for(NSManagedObject *aImgObj in self.imagesArray)
     {
@@ -137,20 +132,19 @@
             [imagesMng addObject:aImgObj];
         }
     }
-    
-    currentImage = [self.imagesArray objectAtIndex:imageSelected.tag];
-    
     //NSLog(@"LIST = %@; CURRENT = %@", imagesMng, currentImage);
     
     if(listImages.count >0)
     {
         ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
-
         photoViewController.delegate = self;
-        photoViewController.current = imageSelected.image;
+
+//        photoViewController.current = imageSelected.image;
+        
         photoViewController.listImages = listImages;
-        photoViewController.imagesMgr = imagesMng;
-        photoViewController.currentObject = currentImage;
+
+        //photoViewController.imagesMgr = imagesMng;
+        photoViewController.currentObject = imageSelected;
     
         [self.navigationController pushViewController:photoViewController animated:YES];
     }
@@ -159,22 +153,25 @@
 
 -(void)moveImageInSprout:(SproutScrollView *)sprout from:(DragDropImageView *)fromItem to:(DragDropImageView *)toItem
 {
+    /*
     NSManagedObject *from = [self.imagesArray objectAtIndex:fromItem.tag];
     [from setValue:toItem.url forKey:@"url"];
     NSManagedObject *to = [self.imagesArray objectAtIndex:toItem.tag];
     [to setValue:fromItem.url forKey:@"url"];
-    
+    */
     //NSLog(@"%@", self.imagesArray);
 }
 
--(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(NSManagedObject *)object
+-(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(DragDropImageView *)object
 {
+    
     NSLog(@"Delete OK");
-    NSInteger tag = [[object valueForKey:@"tag"] intValue];
+    NSInteger tag = object.tag ;
     
     [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setImage:nil];
     [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setUrlImage:@"URL"];
-    [[self.imagesArray objectAtIndex:tag] setValue:@"URL" forKey:@"url"];
+    //[[self.imagesArray objectAtIndex:tag] setValue:@"URL" forKey:@"url"];
+     
 }
 
 

@@ -14,12 +14,20 @@
 @interface DragToSproutViewController : UIViewController
 <SproutDelegate, DeletePhotoDelegate>
 
+//SproutScroll as a array store all of images of sprout
 @property (strong, nonatomic) SproutScrollView *sproutScroll;
-@property (strong, nonatomic) NSManagedObject *sprout;
+//Frame for sprout
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
+//Image to drag in sprout
 @property (strong, nonatomic) IBOutlet UIImageView *imageForSprout;
+//Image
 @property (strong, nonatomic) UIImage *imageInput;
+
+//Sprout Object
+@property (strong, nonatomic) NSManagedObject *sprout;
+//URL of image input
 @property (strong, nonatomic) NSString *urlImage;
+//Array of objects image of sprout
 @property (strong, nonatomic) NSMutableArray *imagesArray;
 
 -(IBAction)goToHome:(id)sender;

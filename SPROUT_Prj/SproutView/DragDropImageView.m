@@ -57,6 +57,7 @@
     touchStartTime = [event timestamp];
     
     UITouch *touch = [touches anyObject];
+    
     [(SproutScrollView *)self.superview imvSelected].alpha= 1.0f;
     
     switch ([touch tapCount]) {
@@ -83,8 +84,10 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSTimeInterval touchTimeDuration = [event timestamp] - touchStartTime;
+    
     NSLog(@"Touch duration: %3.2f seconds", touchTimeDuration);
-    if(touchTimeDuration > 0.5f)
+    
+    if(touchTimeDuration > 0.8f)
     {
         [self performSelector:@selector(threeTaps) withObject:nil];
     }
@@ -106,7 +109,8 @@
         {
             NSLog(@"Sending delegate ....");
             
-            [self.delegate moveImageFrom:[(SproutScrollView *)self.superview imvSelected] to:self];
+            //[self.delegate moveImageFrom:[(SproutScrollView *)self.superview imvSelected] to:self];
+            
             self.image = [(SproutScrollView *)self.superview imvSelected].image;
             self.url = [(SproutScrollView *)self.superview imvSelected].url;
             [[(SproutScrollView *)self.superview imvSelected] setImage:nil];

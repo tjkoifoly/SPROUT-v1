@@ -11,7 +11,10 @@
 @class StyleColorView;
 @protocol ChangeColorDelegate <NSObject>
 
--(void)changeColor: (StyleColorView *)view valueRed: (CGFloat)red valueGreen: (CGFloat)green valueBlue: (CGFloat) blue;
+-(void)changeSatuation: (StyleColorView *)view withValue: (CGFloat)valueS;
+-(void)changeHue: (StyleColorView *)view withValue: (CGFloat)valueH;
+-(void)changeSystemColor: (StyleColorView *)view to: (NSInteger) indexColor;
+-(void)closeStyle: (StyleColorView *)view;
 
 @end
 
@@ -19,12 +22,13 @@
 
 @property (assign, nonatomic) id <ChangeColorDelegate> delegate;
 
-@property (strong, nonatomic) IBOutlet UISlider*  sliderColorRed;
-@property (strong, nonatomic) IBOutlet UISlider*  sliderColorGreen;
-@property (strong, nonatomic) IBOutlet UISlider*  sliderColorBlur;
 @property (strong, nonatomic) IBOutlet UIButton *closeStyleView;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *switchControl;
+@property (strong, nonatomic) IBOutlet UISlider *slider;
 
 -(IBAction)closeView:(id)sender;
+-(IBAction)sliderChange:(id)sender;
 -(void)loadViewController;
+-(IBAction)switchSystemColor:(id)sender;
 
 @end

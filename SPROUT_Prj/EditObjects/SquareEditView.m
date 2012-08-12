@@ -125,7 +125,7 @@
     [self.layer renderInContext:context];
     UIImage *imageX = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    self.areaToCrop.layer.borderWidth = 2.f;
+    //self.areaToCrop.layer.borderWidth = 2.f;
     return imageX;
 }
 

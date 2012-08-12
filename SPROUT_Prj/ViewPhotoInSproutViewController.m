@@ -19,8 +19,6 @@ const CGFloat kScrollObjWidth	= 300.f;
 
 @synthesize listImages;
 @synthesize scrollImages;
-@synthesize current;
-@synthesize imagesMgr;
 @synthesize currentObject;
 @synthesize delegate;
 
@@ -47,41 +45,8 @@ const CGFloat kScrollObjWidth	= 300.f;
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
-    /*
-    self.scrollImages = [[UIScrollView alloc] initWithFrame:CGRectMake(10.0f, 80.0f, kScrollObjWidth, kScrollObjHeight)];
-    [self.scrollImages setContentSize:CGSizeMake(kScrollObjWidth * self.listImages.count, kScrollObjHeight)];
     
-    [self.scrollImages setScrollEnabled:YES];
-    self.scrollImages.pagingEnabled = YES;
-    self.scrollImages.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    self.scrollImages.backgroundColor = [UIColor clearColor];
-    
-    NSUInteger i;
-	for (i = 0; i < self.listImages.count; i++)
-	{
-		UIImage *image = [self.listImages objectAtIndex:i];
-		UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * kScrollObjWidth, 0.0f,kScrollObjWidth , kScrollObjHeight)];
-        [imageView setImage:image];
-        [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        imageView.backgroundColor = [UIColor clearColor];
-		
-		// setup each frame to a default height and width, it will be properly placed when we call "updateScrollList"
-		CGRect rect = imageView.frame;
-		rect.size.height = kScrollObjHeight;
-		rect.size.width = kScrollObjWidth;
-		imageView.frame = rect;
-		imageView.tag = i;	
-        // tag our images for later use when we place them in serial fashion
-        
-		[self.scrollImages addSubview:imageView];
-
-	}
-    currentPoint = [self.listImages indexOfObject:current] * kScrollObjWidth;
-    
-    [self.scrollImages scrollRectToVisible:CGRectMake(currentPoint, 0.0f, kScrollObjWidth, kScrollObjHeight) animated:NO];
-    */
-    self.scrollImages = [self loadScrollView:self.listImages :self.current];
-    
+    self.scrollImages = [self loadScrollView:self.listImages :self.currentObject];
     [self.view addSubview:self.scrollImages];
     self.scrollImages.delegate = self;
 }
@@ -99,7 +64,8 @@ const CGFloat kScrollObjWidth	= 300.f;
     NSUInteger i;
 	for (i = 0; i < list.count; i++)
 	{
-		UIImage *image = [list objectAtIndex:i];
+		UIImage *image = [(DragDropImageView *)[list objectAtIndex:i] image];
+        
 		UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * kScrollObjWidth, 0.0f,kScrollObjWidth , kScrollObjHeight)];
         [imageView setImage:image];
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
@@ -129,8 +95,6 @@ const CGFloat kScrollObjWidth	= 300.f;
     [super viewDidUnload];
     self.listImages = nil;
     self.scrollImages = nil;
-    self.current = nil;
-    self.imagesMgr = nil;
     self.currentObject = nil;
     self.delegate = nil;
 }
@@ -150,40 +114,44 @@ const CGFloat kScrollObjWidth	= 300.f;
 
 -(IBAction)deleteImage:(id)sender
 {
-    NSLog(@"%i", currentPoint);
+    //NSLog(@"CURRENT POINT = %i", currentPoint);
    
     NSLog(@"%@ - at %i", [self.scrollImages.subviews objectAtIndex:currentPoint], currentPoint);
-    [self.listImages removeObjectAtIndex:currentPoint];
-        
-    if(self.imagesMgr.count > 0)
+    if(self.listImages.count > 0)
     {
-        [self.delegate deletePhoto:self :[self.imagesMgr objectAtIndex:currentPoint]];
-        [self.imagesMgr removeObjectAtIndex:currentPoint];
+        [self.delegate deletePhoto:self :[self.listImages objectAtIndex:currentPoint]];
+        [self.listImages removeObjectAtIndex:currentPoint];
         [self.scrollImages removeFromSuperview];
-    }
-    
-    if(self.listImages.count == 0)
+        
+        if(currentPoint > 0)
+        {
+            currentPoint --;
+        }
+        if(self.listImages.count > 0)
+        {
+        self.scrollImages = [self loadScrollView:self.listImages :[self.listImages objectAtIndex:currentPoint]];
+        [self.view addSubview:self.scrollImages];
+        }
+        else
+        {
+            UIImageView *imgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noPhoto"]];
+            [imgV setFrame:CGRectMake(10.0f, 50.f, kScrollObjWidth, kScrollObjHeight)];
+            [imgV setContentMode:UIViewContentModeScaleAspectFit];
+            [self.view addSubview:imgV];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"No photo in sprout" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+    }else
     {
-        [self.listImages addObject:[UIImage imageNamed:@"noPhoto"]];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"No photo in sprout" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
-    
-    if(currentPoint > 0)
-    {
-        currentPoint --;
-    }
-    
-    self.scrollImages = [self loadScrollView:self.listImages :[self.listImages objectAtIndex:currentPoint]];
-    [self.view addSubview:self.scrollImages];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     currentPoint = (int)([scrollView contentOffset].x / kScrollObjWidth);
 }
-
-
-
 
 @end

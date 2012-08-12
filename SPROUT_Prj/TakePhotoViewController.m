@@ -63,6 +63,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //UIImage *i = [UIImage imageWithContentsOfFile:@"/Users/FOLY/Library/Application Support/iPhone Simulator/5.0/Applications/DBD4B129-A847-4105-AA9B-C7E2C2DD32B7/Documents/FOLY.png"];
+    //self.imageView.image = i;
 }
 
 - (void)viewDidUnload

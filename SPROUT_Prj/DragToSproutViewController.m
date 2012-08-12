@@ -75,21 +75,23 @@
         {
             SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
             
-            for(id x in imagesArray)
+            for(id x in self.sproutScroll.subviews)
             {
-                if([[x valueForKey:@"url"] isEqual:@"URL"])
+                if([[(DragDropImageView *)x url] isEqual:@"URL"])
                 {
-                    [x setValue:self.urlImage forKey:@"url"];
-                    saveViewController.lastBlank = x;
+                    //[x setValue:self.urlImage forKey:@"url"];
+                    [(DragDropImageView *)x setUrlImage: self.urlImage];
+                    [(DragDropImageView *)x setImage:self.imageInput];
+                    //saveViewController.lastBlank = x;
                     break;
                 }
             }
             
             saveViewController.sprout = self.sprout;
-            saveViewController.imagesArray = imagesArray;
+            //saveViewController.imagesArray = imagesArray;
             
             saveViewController.sproutScroll = self.sproutScroll;
-            saveViewController.urlImage = self.urlImage;
+            //saveViewController.urlImage = self.urlImage;
             
             [self.navigationController pushViewController:saveViewController animated:NO];
         }
@@ -115,10 +117,10 @@
     
    // NSLog(@"SPROUT = %@", self.sprout);
     
-    
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
     
     //self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:[[self.sprout valueForKey:@"rowSize"] intValue] andColSize:[[self.sprout valueForKey:@"colSize"] intValue]];
+    
     self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
 
     self.sproutScroll.delegate = self;
@@ -136,13 +138,13 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.imageForSprout = nil;
-    self.imageInput = nil;
-    self.sproutView = nil;
-    self.sproutScroll = nil;
-    self.sprout = nil;
-    self.urlImage = nil;
-    self.imagesArray = nil;
+    self.imageForSprout     = nil;
+    self.imageInput         = nil;
+    self.sproutView         = nil;
+    self.sproutScroll       = nil;
+    self.sprout             = nil;
+    self.urlImage           = nil;
+    self.imagesArray        = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -158,6 +160,7 @@
 
 -(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected
 {
+    /*
     NSArray *subSprouts = self.sproutScroll.subviews;
     NSMutableArray *listImages = [[NSMutableArray alloc] init];
     
@@ -192,27 +195,29 @@
         
         [self.navigationController pushViewController:photoViewController animated:YES];
     }
-
+*/
 }
 
 -(void)moveImageInSprout:(SproutScrollView *)sprout from:(DragDropImageView *)fromItem to:(DragDropImageView *)toItem
 {
+    /*
     NSManagedObject *from = [self.imagesArray objectAtIndex:fromItem.tag];
     [from setValue:toItem.url forKey:@"url"];
     NSManagedObject *to = [self.imagesArray objectAtIndex:toItem.tag];
     [to setValue:fromItem.url forKey:@"url"];
     
     //NSLog(@"%@", self.imagesArray);
+     */
 }
 
--(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(NSManagedObject *)object
+-(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(DragDropImageView *)object
 {
     NSLog(@"Delete OK");
-    NSInteger tag = [[object valueForKey:@"tag"] intValue];
+    NSInteger tag = object.tag;
     
     [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setImage:nil];
     [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setUrlImage:@"URL"];
-    [[self.imagesArray objectAtIndex:tag] setValue:@"URL" forKey:@"url"];
+    //[[self.imagesArray objectAtIndex:tag] setValue:@"URL" forKey:@"url"];
 
 }
 

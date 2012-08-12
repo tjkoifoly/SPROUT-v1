@@ -14,6 +14,7 @@
 #import <AssetsLibrary/ALAssetRepresentation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <QuartzCore/QuartzCore.h>
+#import "FiltersView.h"
 
 @class EditImageViewController;
 @protocol SaveForEditDelegate <NSObject>
@@ -22,15 +23,15 @@
 
 @end
 
-@interface EditImageViewController : UIViewController<ChangeColorDelegate, CropImageDelegate>
-@property(assign, nonatomic)id <SaveForEditDelegate> delegate;
-@property (strong, nonatomic) NSString *urlOfImage;
-@property (strong, nonatomic)UIImage *preoviousImage;
+@interface EditImageViewController : UIViewController<ChangeColorDelegate, CropImageDelegate, FilterDelegate>
 
-@property (strong, nonatomic) UIImage *imageToEdit;
-@property (strong, nonatomic) IBOutlet UIImageView *frameForEdit;
-@property (strong, nonatomic) IBOutlet UIImageView *frontViewChangeColor;
-@property (strong, nonatomic) IBOutlet SquareEditView *areForEdit;
+@property(assign, nonatomic)    id <SaveForEditDelegate> delegate;
+@property (strong, nonatomic)   NSString *urlOfImage;
+@property (strong, nonatomic)   UIImage *preoviousImage;
+@property (strong, nonatomic)   UIImage *imageToEdit;
+
+@property (strong, nonatomic)   IBOutlet UIImageView *frameForEdit;
+@property (strong, nonatomic)   IBOutlet SquareEditView *areForEdit;
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)save:(id)sender;
@@ -39,5 +40,9 @@
 -(IBAction)cropImage:(id)sender;
 -(IBAction)changeEffect:(id)sender;
 -(IBAction)rotateImage:(id)sender;
+-(NSString *)dataPathFile;
+
+-(UIImage *)hueChangetoValue: (CGFloat)value withFilter: (CIFilter *)filterx andContext: (CIContext *)contextx;
+-(UIImage *)situationChangetoValue: (CGFloat)value withFilter: (CIFilter *)filterx andContext: (CIContext *)contextx;
 
 @end

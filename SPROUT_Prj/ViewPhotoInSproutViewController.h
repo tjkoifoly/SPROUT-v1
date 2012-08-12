@@ -11,19 +11,17 @@
 @class ViewPhotoInSproutViewController;
 @protocol DeletePhotoDelegate <NSObject>
 
--(void)deletePhoto : (ViewPhotoInSproutViewController *)controller : (NSManagedObject *)object;
+-(void)deletePhoto : (ViewPhotoInSproutViewController *)controller : (DragDropImageView *)object;
 
 @end
 
 @interface ViewPhotoInSproutViewController : UIViewController<UIScrollViewDelegate>
 
-@property (assign, nonatomic) id <DeletePhotoDelegate> delegate;
 @property (strong, nonatomic) UIScrollView *scrollImages;
-@property (strong, nonatomic) UIImage *current;
-@property (strong, nonatomic) NSMutableArray *listImages;
 
-@property (strong, nonatomic) NSMutableArray *imagesMgr;
-@property (strong, nonatomic) NSManagedObject *currentObject;
+@property (strong, nonatomic) NSMutableArray *listImages;
+@property (assign, nonatomic) id <DeletePhotoDelegate> delegate;
+@property (strong, nonatomic) DragDropImageView *currentObject;
 
 -(IBAction)back:(id)sender;
 -(IBAction)deleteImage:(id)sender;
