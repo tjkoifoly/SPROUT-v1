@@ -66,7 +66,7 @@
         takePhotoViewController = [[TakePhotoViewController alloc]initWithNibName:@"TakePhotoViewController" bundle:nil];
     }
     
-    [self.navigationController pushViewController:takePhotoViewController animated:YES];
+    [self.navigationController pushViewController:takePhotoViewController animated:NO];
 }
 
 -(IBAction)createSprout:(id)sender

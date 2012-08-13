@@ -25,9 +25,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *closeStyleView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *switchControl;
 @property (strong, nonatomic) IBOutlet UISlider *slider;
+@property (strong, nonatomic) IBOutlet UISlider *sSlider;
 
 -(IBAction)closeView:(id)sender;
 -(IBAction)sliderChange:(id)sender;
+-(IBAction)sSliderChange:(id)sender;
 -(void)loadViewController;
 -(IBAction)switchSystemColor:(id)sender;
 

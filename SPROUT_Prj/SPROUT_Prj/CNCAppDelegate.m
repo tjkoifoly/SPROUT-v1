@@ -30,7 +30,6 @@
     self.window.rootViewController = navigationController;
     
     TakePhotoViewController *takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
-    
     [navigationController pushViewController:takeViewController animated:NO];
     
      [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];

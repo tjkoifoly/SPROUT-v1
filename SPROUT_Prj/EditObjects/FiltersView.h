@@ -27,5 +27,6 @@
 -(IBAction)antique:(id)sender;
 -(IBAction)blur:(id)sender;
 -(IBAction)vignette:(id)sender;
+-(IBAction)blackWhite:(id)sender;
 
 @end

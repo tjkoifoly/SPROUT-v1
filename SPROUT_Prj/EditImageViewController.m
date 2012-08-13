@@ -10,6 +10,7 @@
 #import "ExportSproutViewController.h"
 #import "StyleColorView.h"
 #import "FiltersView.h"
+#import "UIImage+Gaussian.h"
 
 #define DEG2RAD (M_PI/180.0f)
 #define kFile @"FOLY.png"
@@ -59,7 +60,7 @@
 {
     [super viewDidLoad];
     self.frameForEdit.image = self.imageToEdit;
-    NSLog(@"Orientation = %@", self.imageToEdit.imageOrientation);
+    //NSLog(@"Orientation = %@", self.imageToEdit.imageOrientation);
     change          = NO;
     rotChange       = NO;
     cropChange      = NO;
@@ -153,15 +154,14 @@
 
 -(IBAction)changeColor:(id)sender
 {
-    /*
     //Save image to file get path
     NSString *path = [self dataPathFile];
     
     NSLog(@"Saved");
     UIImage *img = [self.areForEdit saveImage];
     [UIImagePNGRepresentation(img) writeToFile:path atomically:YES];
-    */
-    preoviousImage = [self.areForEdit saveImage];
+    
+    preoviousImage = [UIImage imageWithContentsOfFile:path];
     
     StyleColorView *styleView;
     NSArray *nibObjects;
@@ -180,8 +180,10 @@
     
     CIImage *inputImage = [[CIImage alloc] initWithImage:
                            preoviousImage];
-    
-    filter = [CIFilter filterWithName:@"CIHueAdjust" keysAndValues:kCIInputImageKey,inputImage, @"inputAngle", [NSNumber numberWithFloat:0.0], nil];
+    filter = [CIFilter filterWithName:@"CIHueAdjust"];
+    [filter setDefaults];
+    [filter setValue:inputImage forKey:@"inputImage"];
+    [filter setValue:[NSNumber numberWithFloat:0.0] forKey:@"inputAngle"];
     
     context = [CIContext contextWithOptions:nil];
 }
@@ -207,8 +209,7 @@
 
 -(IBAction)changeEffect:(id)sender
 {
-    
-    
+    preoviousImage = [self.areForEdit saveImage];
     FiltersView *filterView;
     NSArray *nibObjects;
     nibObjects = [[NSBundle mainBundle] loadNibNamed:@"FiltersView" owner:self options:nil];
@@ -227,68 +228,126 @@
     context = nil;
 }
 
+-(void)vignette: (UIImage*) im: (CGFloat)value
+{
+    CIImage *inputImage = [[CIImage alloc] initWithImage:
+                           im];
+    filter = [CIFilter filterWithName:@"CIVignette"];
+    [filter setDefaults];
+    [filter setValue:inputImage forKey:@"inputImage"];
+    [filter setValue:[NSNumber numberWithFloat:value] forKey:@"inputIntensity"];
+    context = [CIContext contextWithOptions:nil];
+    CIImage *outputImage = [filter outputImage];
+    
+    CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    UIImage *newImg = [UIImage imageWithCGImage:cgimg];
+    self.frameForEdit.image = newImg;
+    CGImageRelease(cgimg);
+}
+
+-(UIImage *)sepia: (UIImage *)im:(CGFloat)value
+{
+    CIImage *inputImage = [[CIImage alloc] initWithImage:
+                           im];
+    filter = [CIFilter filterWithName:@"CISepiaTone"];
+    [filter setDefaults];
+    [filter setValue:inputImage forKey:@"inputImage"];
+    [filter setValue:[NSNumber numberWithFloat:value] forKey:@"inputIntensity"];
+    context = [CIContext contextWithOptions:nil];
+    CIImage *outputImage = [filter outputImage];
+    
+    CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    UIImage *newImg = [UIImage imageWithCGImage:cgimg];
+    self.frameForEdit.image = newImg;
+    CGImageRelease(cgimg);
+    return newImg;
+}
+
+-(UIImage *)whitePoint: (UIImage *)im:(CIColor*)color
+{
+    CIImage *inputImage = [[CIImage alloc] initWithImage:
+                           im];
+    filter = [CIFilter filterWithName:@"CIWhitePointAdjust"];
+    [filter setValue:color forKey:@"inputColor"];
+    [filter setValue:inputImage forKey:@"inputImage"];
+    
+    context = [CIContext contextWithOptions:nil];
+    CIImage *outputImage = [filter outputImage];
+    
+    CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    UIImage *newImg = [UIImage imageWithCGImage:cgimg];
+    self.frameForEdit.image = newImg;
+    CGImageRelease(cgimg);
+    return newImg;
+}
+
+-(UIImage *)satiation: (UIImage *)im: (CGFloat)satu:(CGFloat)brig:(CGFloat)constra
+{
+    CIImage *inputImage = [[CIImage alloc] initWithImage:
+                           preoviousImage];
+    filter = [CIFilter filterWithName:@"CIColorControls"];
+    [filter setValue:inputImage forKey:@"inputImage"];
+    [filter setValue: [NSNumber numberWithFloat:satu] forKey:@"inputSaturation"];
+    [filter setValue: [NSNumber numberWithFloat:brig] forKey:@"inputBrightness"];
+    [filter setValue: [NSNumber numberWithFloat:constra] forKey:@"inputContrast"];
+    context = [CIContext contextWithOptions:nil];
+    CIImage *outputImage = [filter outputImage];
+    
+    CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    UIImage *newImg = [UIImage imageWithCGImage:cgimg];
+    self.frameForEdit.image = newImg;
+    CGImageRelease(cgimg);
+    
+    return newImg;
+}
+
 -(void)filterApply:(FiltersView *)view typeFilter:(NSInteger)type
 {
-    preoviousImage = [self.areForEdit saveImage];
+    filterChange = YES;
     switch (type) {
         case 1:
             NSLog(@"NORMAL");
+            filterChange = NO;
             self.frameForEdit.image = preoviousImage;
             break;
         case 2:
         {
-            CIImage *inputImage = [[CIImage alloc] initWithImage:
-                                   preoviousImage];
-            filter = [CIFilter filterWithName:@"CISepiaTone" keysAndValues:kCIInputImageKey,inputImage, @"inputIntensity", [NSNumber numberWithFloat:0.8], nil];
-            context = [CIContext contextWithOptions:nil];
-            CIImage *outputImage = [filter outputImage];
-            
-            CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
-            UIImage *newImg = [UIImage imageWithCGImage:cgimg];
-            self.frameForEdit.image = newImg;
-            CGImageRelease(cgimg);
+            [self sepia:preoviousImage:1.0];
         }
             break;
         case 3:
+        {
+            UIImage *i = [self satiation:preoviousImage:0.93 :0. :0.98];
+            i = [i imageWith3x3GaussianBlur];
+            CIColor *color = [CIColor colorWithRed:124 green:121 blue:90 alpha:1.f];
+            i = [self whitePoint:i:color];
+            i = [self sepia:i:0.2];
+            [self vignette:i:4.f];
+            
+        }
             break;
         case 4:
         {
-            /*
-            CIImage *inputImage = [[CIImage alloc] initWithImage:
-                                   preoviousImage];
-            filter = [CIFilter filterWithName:@"CIBoxBlur" keysAndValues:kCIInputImageKey,inputImage, nil];
-            [filter setDefaults];
-            [filter setValue:[NSNumber numberWithFloat:50.] forKey:@"inputRadius"];
-            context = [CIContext contextWithOptions:nil];
-            CIImage *outputImage = [filter outputImage];
-            
-            CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
-            UIImage *newImg = [UIImage imageWithCGImage:cgimg];
-            self.frameForEdit.image = newImg;
-            CGImageRelease(cgimg);
-             */
+            UIImage * i = [preoviousImage imageWith5x5GaussianBlur];
+            self.frameForEdit.image = i;
              
         }
             break;
         case 5:
         {
-            CIImage *inputImage = [[CIImage alloc] initWithImage:
-                                   preoviousImage];
-            filter = [CIFilter filterWithName:@"CIVignette" keysAndValues:kCIInputImageKey,inputImage, nil];
-            [filter setDefaults];
-            [filter setValue:[NSNumber numberWithFloat:5.] forKey:@"inputIntensity"];
-            context = [CIContext contextWithOptions:nil];
-            CIImage *outputImage = [filter outputImage];
-            
-            CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
-            UIImage *newImg = [UIImage imageWithCGImage:cgimg];
-            self.frameForEdit.image = newImg;
-            CGImageRelease(cgimg);
+            [self vignette: preoviousImage: 5.0];
+        }
+            break;
+        case 6:
+        {
+            [self satiation:preoviousImage:0.0 :0.0 :1.0];
         }
             break;
         default:
             break;
     }
+    filter = nil;
+    context = nil;
 }
 
 #pragma CROPCONTROL delegate
@@ -393,10 +452,12 @@
         case 0:
         {
             NSLog(@"HUE");
-            CIImage *inputImage = [[CIImage alloc] initWithImage:
-                                   [self.areForEdit saveImage]];
+            CIImage *inputImage = [[CIImage alloc] initWithImage:[self.areForEdit saveImage]];
             
-            filter = [CIFilter filterWithName:@"CIHueAdjust" keysAndValues:kCIInputImageKey,inputImage, @"inputAngle", [NSNumber numberWithFloat:0.0], nil];
+            filter = [CIFilter filterWithName:@"CIHueAdjust"];
+            [filter setDefaults];
+            [filter setValue:inputImage forKey:@"inputImage"];
+            [filter setValue:[NSNumber numberWithFloat:0.0] forKey:@"inputAngle"];
             
             context = [CIContext contextWithOptions:nil];
         }

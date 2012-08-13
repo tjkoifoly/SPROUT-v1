@@ -55,5 +55,9 @@
 {
     [self.delegate filterApply:self typeFilter:5];    
 }
+-(IBAction)blackWhite:(id)sender
+{
+    [self.delegate filterApply:self typeFilter:6];
+}
 
 @end

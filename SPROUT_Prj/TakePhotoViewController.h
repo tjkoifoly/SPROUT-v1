@@ -15,10 +15,10 @@
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, OverlayViewDelegate>
 
 @property (strong, nonatomic) UIImagePickerController *pickerImage;
-@property (strong, nonatomic) NSString *urlImage;
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (nonatomic) BOOL newMedia;
+
 @property (nonatomic) BOOL save;
+@property (nonatomic) BOOL isLibrary;
+@property (strong, nonatomic) NSString *urlImage;
 
 -(IBAction)capture:(id)sender;
 -(IBAction)goToHome :(id)sender;

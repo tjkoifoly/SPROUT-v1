@@ -14,6 +14,7 @@
 @synthesize delegate;
 @synthesize switchControl;
 @synthesize slider;
+@synthesize sSlider;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -39,13 +40,12 @@
 
 -(IBAction)sliderChange:(id)sender
 {
-    if(switchControl.selectedSegmentIndex == 1)
-    {
-        [self.delegate changeSatuation:self withValue:((UISlider *)sender).value];
-    }else
-    {
-        [self.delegate changeHue:self withValue:((UISlider *)sender).value];
-    }
+    [self.delegate changeHue:self withValue:((UISlider *)sender).value];
+}
+
+-(IBAction)sSliderChange:(id)sender
+{
+    [self.delegate changeSatuation:self withValue:((UISlider *)sender).value];
 }
 
 -(IBAction)closeView:(id)sender
@@ -59,15 +59,15 @@
     
     [self.delegate changeSystemColor:self to:(int)[seg selectedSegmentIndex]];
     
-    
     if([seg selectedSegmentIndex] == 1)
     {
-        [slider setMinimumValue:0.];
-        [slider setValue:1.0];
+        slider.hidden = YES;
+        sSlider.hidden = NO;
+        
     }else
     {
-        [slider setMinimumValue:-2.0];
-        [slider setValue:0.0];
+        slider.hidden = NO;
+        sSlider.hidden = YES;
     }
 }
 

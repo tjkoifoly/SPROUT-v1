@@ -53,10 +53,7 @@
     [super viewDidLoad];
     
     self.imageViewBack.image = self.image;
-    /*
-    UIImage *imageX = [self imageByCropping:self.image toRect:CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, self.imageView.frame.size.width, self.imageView.frame.size.height)];
-    imageView.image = imageX;
-     */
+    
     CGSize viewSize = self.imageViewBack.bounds.size;
     UIGraphicsBeginImageContextWithOptions(viewSize, NO, 1.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -74,42 +71,9 @@
     UIImage *croppedImage = [UIImage imageWithCGImage:cropOfImage];
     //imageView.image = croppedImage;
     self.image = croppedImage;
-   /* 
-    CGSize viewSize = self.imageView.bounds.size;
-    UIGraphicsBeginImageContextWithOptions(viewSize, NO, 0.0);
-
-    CGContextRef context = UIGraphicsGetCurrentContext();
-
-    CGContextSaveGState(context);
-    CGContextTranslateCTM(context, [self.imageViewBack center].x, [self.imageViewBack center].y);
-    CGContextTranslateCTM(context,
-                          -self.imageView.bounds.size.width * [[self.imageViewBack layer] anchorPoint].x,
-                          -self.imageView.bounds.size.height * [[self.imageViewBack layer] anchorPoint].y);
-    [self.imageViewBack.layer renderInContext:context];
-
-    // Read the UIImage object
-    UIImage *imageX = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    NSLog(@"%@", imageX);
-    
-    //imageViewBack.image = nil;
-    imageView.image = imageX;
-    */
-    /*
-    CGFloat ratioWith = self.imageView.bounds.size.width / self.imageViewBack.bounds.size.width;
-    CGFloat ratioHeiht = self.imageView.bounds.size.height / self.imageViewBack.bounds.size.height;
-    
-    CGFloat ratioX = self.imageView.frame.origin.x / self.view.bounds.size.width;
-    CGFloat ratioY = self.imageView.frame.origin.y / self.view.bounds.size.height;
-    CGFloat imageWith = self.image.size.width;
-    CGFloat imageHeith = self.image.size.height;
-    
-    CGImageRef cropOfImage = CGImageCreateWithImageInRect(self.image.CGImage, CGRectMake(ratioX * imageWith, ratioY*imageHeith, ratioWith * imageWith, ratioHeiht *imageHeith));
-    
-    UIImage *imageX = [UIImage imageWithCGImage:cropOfImage];
-    self.imageView.image = imageX;
-     */
+     
+    //self.imageView.image = self.image;
+   
 }
 
 - (void)viewDidUnLoad

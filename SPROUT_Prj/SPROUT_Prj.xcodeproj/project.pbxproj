@@ -15,6 +15,7 @@
 		E40A8BA715D3FF0B0004E841 /* StyleCropView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E40A8BA615D3FF0B0004E841 /* StyleCropView.xib */; };
 		E40F7FC715CCCDEE00D354A7 /* DragDropImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */; };
 		E424F30015CCFC0B006B588F /* SproutScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E424F2FF15CCFC0B006B588F /* SproutScrollView.m */; };
+		E431B83C15D8FB0C00C83039 /* UIImage+Gaussian.m in Sources */ = {isa = PBXBuildFile; fileRef = E431B83B15D8FB0C00C83039 /* UIImage+Gaussian.m */; };
 		E43FAE7715CA0C4200CF628C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7615CA0C4200CF628C /* UIKit.framework */; };
 		E43FAE7915CA0C4200CF628C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7815CA0C4200CF628C /* Foundation.framework */; };
 		E43FAE7B15CA0C4200CF628C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7A15CA0C4200CF628C /* CoreGraphics.framework */; };
@@ -76,6 +77,7 @@
 		E4BCEF7C15CE90AD006E7A0D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BCEF7B15CE90AD006E7A0D /* MobileCoreServices.framework */; };
 		E4C9D5F915D4CBCB00A69C5C /* FiltersView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9D5F815D4CBCB00A69C5C /* FiltersView.m */; };
 		E4C9D5FC15D4CBDD00A69C5C /* FiltersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C9D5FB15D4CBDD00A69C5C /* FiltersView.xib */; };
+		E4D8B6F515D8B76700FFF447 /* status.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D8B6F415D8B76600FFF447 /* status.png */; };
 		E4D9D96C15CBBA27007B94C5 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96815CBBA27007B94C5 /* face.png */; };
 		E4D9D96D15CBBA27007B94C5 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96915CBBA27007B94C5 /* up.png */; };
 		E4D9D96E15CBBA27007B94C5 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D9D96A15CBBA27007B94C5 /* edit.png */; };
@@ -143,6 +145,8 @@
 		E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DragDropImageView.m; path = SproutView/DragDropImageView.m; sourceTree = "<group>"; };
 		E424F2FE15CCFC0B006B588F /* SproutScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SproutScrollView.h; path = SproutView/SproutScrollView.h; sourceTree = "<group>"; };
 		E424F2FF15CCFC0B006B588F /* SproutScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SproutScrollView.m; path = SproutView/SproutScrollView.m; sourceTree = "<group>"; };
+		E431B83A15D8FB0C00C83039 /* UIImage+Gaussian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gaussian.h"; sourceTree = "<group>"; };
+		E431B83B15D8FB0C00C83039 /* UIImage+Gaussian.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Gaussian.m"; sourceTree = "<group>"; };
 		E43FAE7215CA0C4200CF628C /* SPROUT_Prj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPROUT_Prj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43FAE7615CA0C4200CF628C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E43FAE7815CA0C4200CF628C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -227,6 +231,7 @@
 		E4C9D5F715D4CBCB00A69C5C /* FiltersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiltersView.h; path = EditObjects/FiltersView.h; sourceTree = "<group>"; };
 		E4C9D5F815D4CBCB00A69C5C /* FiltersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiltersView.m; path = EditObjects/FiltersView.m; sourceTree = "<group>"; };
 		E4C9D5FB15D4CBDD00A69C5C /* FiltersView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersView.xib; sourceTree = "<group>"; };
+		E4D8B6F415D8B76600FFF447 /* status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status.png; sourceTree = "<group>"; };
 		E4D9D96815CBBA27007B94C5 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
 		E4D9D96915CBBA27007B94C5 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		E4D9D96A15CBBA27007B94C5 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
@@ -466,6 +471,7 @@
 		E43FAEB215CA0F0E00CF628C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E4D8B6F415D8B76600FFF447 /* status.png */,
 				E4E5809715D3B27200EA9D54 /* slider1.png */,
 				E4E5809815D3B27200EA9D54 /* slider2.png */,
 				E4E5809915D3B27200EA9D54 /* slider3.png */,
@@ -644,6 +650,8 @@
 		E4C9D65115D4F38C00A69C5C /* ImageProcesser */ = {
 			isa = PBXGroup;
 			children = (
+				E431B83A15D8FB0C00C83039 /* UIImage+Gaussian.h */,
+				E431B83B15D8FB0C00C83039 /* UIImage+Gaussian.m */,
 			);
 			name = ImageProcesser;
 			sourceTree = "<group>";
@@ -842,6 +850,7 @@
 				E4E580A015D3B27200EA9D54 /* whiteslide.png in Resources */,
 				E40A8BA715D3FF0B0004E841 /* StyleCropView.xib in Resources */,
 				E4C9D5FC15D4CBDD00A69C5C /* FiltersView.xib in Resources */,
+				E4D8B6F515D8B76700FFF447 /* status.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,6 +929,7 @@
 				E40A8BA215D3FC840004E841 /* ImageToDag.m in Sources */,
 				E40A8BA515D3FEF30004E841 /* StyleCropView.m in Sources */,
 				E4C9D5F915D4CBCB00A69C5C /* FiltersView.m in Sources */,
+				E431B83C15D8FB0C00C83039 /* UIImage+Gaussian.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
