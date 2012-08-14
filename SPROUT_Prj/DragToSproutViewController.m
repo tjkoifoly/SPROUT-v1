@@ -61,11 +61,6 @@
         temView.alpha = 0.5f;
         temView.center = touchPoint;
         [self.view addSubview:temView];
-        
-        
-//        SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
-//
-//        [self.navigationController pushViewController:saveViewController animated:NO];
     }
 }
 

@@ -10,8 +10,12 @@
 #import "UploadToSproutViewController.h"
 #import "EditImageViewController.h"
 #import <Twitter/Twitter.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation ContinueAfterSaveViewController
+{
+    BOOL logged;
+}
 
 @synthesize imageInput;
 @synthesize viewImage;
@@ -45,9 +49,9 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.imageInput = nil;
-    self.viewImage = nil;
-    self.urlImage = nil;
+    self.imageInput     = nil;
+    self.viewImage      = nil;
+    self.urlImage       = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -102,10 +106,52 @@
     //POST ON FACEBOOK
     else if(shareButton.tag == 2)
     {
+        __block UIView *tempView = [[UIView alloc] initWithFrame:self.view.frame];
+        tempView.backgroundColor = [UIColor blackColor];
+        tempView.alpha = 0.5f;
+        __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        indicator.center = tempView.center;
+        //indicator.color = [UIColor blackColor];
+        indicator.hidesWhenStopped = YES;
+        [tempView addSubview:indicator];
+        [indicator startAnimating];
+        [self.view addSubview:tempView];
         
+        [FBSession sessionOpenWithPermissions:nil 
+                            completionHandler:^(FBSession *session, 
+                                                FBSessionState status, 
+                                                NSError *error) {
+                                // session might now be open.  
+                                if (session.isOpen) {
+                                    FBRequest *me = [FBRequest requestForMe];
+                                    [me startWithCompletionHandler: ^(FBRequestConnection *connection, 
+                                                                      NSDictionary<FBGraphUser> *my,
+                                                                      NSError *error) {
+                                        logged = YES;
+                                        NSLog(@"%@", my.first_name);
+                                        UIImage *imgToPost = self.imageInput;
+                                        FBRequest *photoUploadRequest = [FBRequest requestForUploadPhoto:imgToPost];
+                                        
+                                        [photoUploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {        
+                                            if(error == nil)
+                                            {
+                                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Image was posted on your facebok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                                [alert show];
+                                                
+                                                [indicator stopAnimating];
+                                                [tempView removeFromSuperview];
+                                                tempView = nil;
+                                            }
+                                            
+                                        }];
+
+                                    }];
+                                }
+                            }];
     }
 
-}
+}//END POST
+
 
 -(IBAction)goToHome:(id)sender
 {

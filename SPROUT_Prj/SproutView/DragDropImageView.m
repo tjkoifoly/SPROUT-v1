@@ -21,7 +21,6 @@
 @synthesize locationy;
 @synthesize delegate;
 @synthesize url;
-@synthesize indicator;
 
 
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y : (NSInteger)size
@@ -34,11 +33,6 @@
     self.backgroundColor = [UIColor lightGrayColor];
     self.layer.borderColor = [UIColor whiteColor].CGColor;
     self.layer.borderWidth = 1.f;
-    
-    indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indicator.hidesWhenStopped = YES;
-    indicator.center = self.center;
-    [self addSubview:indicator];
     
     return self;
 }
@@ -155,6 +149,11 @@
 {
     ALAssetsLibrary* library = [[ALAssetsLibrary alloc] init];
     
+    __block UIActivityIndicatorView * indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    indicator.hidesWhenStopped = YES;
+    indicator.center = self.center;
+    [self addSubview:indicator];
     [indicator startAnimating];
     
     ALAssetsLibraryAssetForURLResultBlock result = ^(ALAsset *__strong asset){
@@ -168,6 +167,7 @@
             self.image = [UIImage imageWithCGImage:cgImage];
         }
         [indicator stopAnimating];
+        [indicator removeFromSuperview];
     };
     
     ALAssetsLibraryAccessFailureBlock failure = ^(NSError *__strong error){

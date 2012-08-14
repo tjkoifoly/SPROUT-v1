@@ -7,6 +7,7 @@
 //
 
 #import "CNCAppDelegate.h"
+#import <FacebookSDK/FacebookSDK.h>
 #import "TakePhotoViewController.h"
 #import "MainViewController.h"
 #import "HiddenNavigationController.h"
@@ -39,6 +40,15 @@
     return YES;
 }
 
+
+- (BOOL)application:(UIApplication *)application 
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication 
+         annotation:(id)annotation 
+{
+    return [FBSession.activeSession handleOpenURL:url]; 
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
@@ -60,10 +70,10 @@
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    TakePhotoViewController *takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
+    //[self.navigationController popToRootViewControllerAnimated:NO];
+    //TakePhotoViewController *takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
     
-    [self.navigationController pushViewController:takeViewController animated:NO];
+    //[self.navigationController pushViewController:takeViewController animated:NO];
     
 }
 

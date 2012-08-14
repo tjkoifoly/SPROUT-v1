@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface SendEmailViewController : UIViewController
+@interface SendEmailViewController : UIViewController<MFMailComposeViewControllerDelegate>
+
+@property (strong, nonatomic) UIImage *imageToSend;
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)send:(id)sender;
+-(IBAction)resignKeyboard:(id)sender;
 
 @end
