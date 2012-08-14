@@ -24,7 +24,7 @@
     
 }
 
-+(void)createSprout: (NSString *)sName : (NSInteger)sizeRow: (NSInteger) sizeCol
++(BOOL)createSprout: (NSString *)sName : (NSInteger)sizeRow: (NSInteger) sizeCol
 {
     if([Sprout anySproutForName:sName] == NO)
     {
@@ -45,11 +45,11 @@
             [imageOfSprout setValue:newSproutObject forKey:@"imageToSprout"];
         }
     
-        [context save:&error];
+        if([context save:&error]) return YES;
     }else
     {
     }
-
+    return NO;
 }
 
 +(NSManagedObject *) sproutForName: (NSString *)sName
@@ -136,6 +136,20 @@
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError *error;
     return [context save:&error];
+}
+
++(BOOL)sproutFinished: (NSManagedObject *)sprout
+{
+    NSSet *imagesSet = [sprout valueForKey:@"sproutToImages"];
+    NSArray *imagesArray = [imagesSet allObjects] ;
+    for(id i in imagesArray)
+    {
+        if([[i valueForKey:@"url"] isEqual:@"URL"])
+        {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 @end

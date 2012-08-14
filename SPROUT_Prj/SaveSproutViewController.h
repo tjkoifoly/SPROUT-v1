@@ -19,6 +19,7 @@
 
 
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
+@property (strong, nonatomic) IBOutlet UIButton *exportButton;
 
 @property (strong, nonatomic) NSManagedObject *sprout;
 @property (strong, nonatomic) NSMutableArray *imagesArray;
@@ -26,5 +27,6 @@
 -(IBAction)goToHome:(id)sender;
 -(IBAction)save:(id)sender;
 -(IBAction)exportSport:(id)sender;
+-(void)enableExport;
 
 @end

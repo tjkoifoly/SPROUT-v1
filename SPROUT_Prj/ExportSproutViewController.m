@@ -12,6 +12,7 @@
 #import <Twitter/Twitter.h>
 #import "CNCAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ExportSproutViewController
 
@@ -19,6 +20,7 @@
 @synthesize emailButton;
 @synthesize purchaseButton;
 @synthesize saveButton;
+@synthesize sproutScroll;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,10 +49,11 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.sproutToImage = nil;
-    self.emailButton = nil;
-    self.purchaseButton = nil;
-    self.saveButton = nil;
+    self.sproutToImage      = nil;
+    self.emailButton        = nil;
+    self.purchaseButton     = nil;
+    self.saveButton         = nil;
+    self.sproutScroll       = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -80,11 +83,41 @@
     [self.navigationController pushViewController:purchaseViewController animated:YES];
 }
 
+-(UIImage *)imageCaptureSave: (UIView *)viewInput
+{
+    CGSize viewSize = viewInput.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(viewSize, NO, 1.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [viewInput.layer renderInContext:context];
+    UIImage *imageX = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return imageX;
+}
+
 -(IBAction)saveAsImage:(id)sender
 {
     self.emailButton.hidden = YES;
     self.purchaseButton.hidden = YES;
     self.saveButton.hidden = YES;
+    
+    CGSize sizeOfSprout = [self.sproutScroll contentSize];
+    UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0, sizeOfSprout.width, sizeOfSprout.height)];
+    for(id ix in self.sproutScroll.subviews)
+    {
+        [tempView addSubview:ix];
+    }
+    //[self.view addSubview:tempView];
+    
+    UIImage *imageX = [self imageCaptureSave:tempView];
+    self.sproutToImage.image = imageX;
+
+    //Save image to asset library
+    CGPoint pointCenter = [self.sproutToImage center];
+    if(tempView.bounds.size.width < self.sproutToImage.bounds.size.width)
+    {
+        [self.sproutToImage setFrame:tempView.frame];
+        self.sproutToImage.center = pointCenter;
+    }
     
     self.sproutToImage.hidden = NO;
 }
@@ -102,7 +135,7 @@
             [tweetSheet setInitialText:@"You can write tittle for picture to post Twitter !"];
             
             //Set image in HERE
-            [tweetSheet addImage:[UIImage imageNamed:@"baby"]];
+            [tweetSheet addImage:self.sproutToImage.image];
             [self presentModalViewController:tweetSheet animated:YES];
         }else
         {

@@ -16,6 +16,7 @@
 @implementation DragToSproutViewController
 {
     UIImage *temp;
+    UIImageView *temView;
 }
 
 @synthesize imageForSprout;
@@ -48,12 +49,19 @@
     CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
     CGRect frameImage = [self.imageForSprout frame];
     
+    //IF active point check in image
     if (touchPoint.x > frameImage.origin.x 
         && touchPoint.x < (frameImage.origin.x + frameImage.size.width)
         && touchPoint.y > frameImage.origin.y
         && (touchPoint.y < frameImage.origin.y + frameImage.size.height)) {
         
         temp = self.imageInput;
+        temView = [[UIImageView alloc] initWithImage:temp];
+        [temView setFrame:self.imageForSprout.frame];
+        temView.alpha = 0.5f;
+        temView.center = touchPoint;
+        [self.view addSubview:temView];
+        
         
 //        SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
 //
@@ -61,8 +69,17 @@
     }
 }
 
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
+    temView.center = touchPoint;
+}
+
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [temView removeFromSuperview];
+    temView = nil;
+    
     CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
     CGRect frameView = [self.sproutView frame];
     CGRect frameImage = [self.sproutScroll frame];
@@ -71,6 +88,13 @@
         && touchPoint.x < (frameView.origin.x +frameImage.origin.x + frameImage.size.width)
         && touchPoint.y > (frameImage.origin.y + frameView.origin.y)
         && (touchPoint.y < (frameImage.origin.y + frameImage.size.height +frameView.origin.y))) {
+        if([Sprout sproutFinished:self.sprout])
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"Sprout is full!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }
+        
         if(temp != nil)
         {
             SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];

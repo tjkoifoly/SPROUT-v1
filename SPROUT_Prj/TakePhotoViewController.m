@@ -201,7 +201,8 @@
 
 -(IBAction)capture:(id)sender
 {
-    [self.pickerImage takePicture];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        [self.pickerImage takePicture];
 }
 
 -(IBAction)goToHome :(id)sender

@@ -12,12 +12,13 @@
 @interface Sprout : NSObject
 
 +(NSArray *) loadAllSprout;
-+(void)createSprout: (NSString *)sName : (NSInteger)sizeRow: (NSInteger) sizeCol;
++(BOOL)createSprout: (NSString *)sName : (NSInteger)sizeRow: (NSInteger) sizeCol;
 +(NSManagedObject *) sproutForName: (NSString *)sName;
 +(BOOL) anySproutForName: (NSString *)sName;
 +(NSManagedObject *)imageInSprout: (NSString *)sName: (NSInteger)tag;
 +(NSArray *)imagesOfSrpout: (NSManagedObject *)sprout;
 +(BOOL)deleteObject : (NSManagedObject *)delObj;
 +(BOOL)save;
++(BOOL)sproutFinished:(NSManagedObject *)sprout;
 
 @end

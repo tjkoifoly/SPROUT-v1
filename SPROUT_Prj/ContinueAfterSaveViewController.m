@@ -91,7 +91,7 @@
             [tweetSheet setInitialText:@"You can write tittle for picture to post Twitter !"];
             
             //Set image in HERE
-            [tweetSheet addImage:[UIImage imageNamed:@"baby"]];
+            [tweetSheet addImage:self.imageInput];
             [self presentModalViewController:tweetSheet animated:YES];
         }else
         {

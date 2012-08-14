@@ -19,6 +19,7 @@
 @synthesize sproutView;
 @synthesize sprout;
 @synthesize imagesArray;
+@synthesize exportButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,15 +55,29 @@
     self.sproutScroll.center = center;
     [self.sproutView addSubview:self.sproutScroll];
     self.sproutView.backgroundColor = [UIColor clearColor];
+    
+    [self enableExport];
+}
+
+-(void)enableExport
+{
+    if([Sprout sproutFinished:self.sprout])
+    {
+        self.exportButton.enabled = YES;
+    }else
+    {
+        self.exportButton.enabled = NO;
+    }
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.sproutView = nil;
-    self.sproutScroll = nil;
-    self.sprout = nil;
-    self.imagesArray = nil;
+    self.sproutView         = nil;
+    self.sproutScroll       = nil;
+    self.sprout             = nil;
+    self.imagesArray        = nil;
+    self.exportButton       = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -100,14 +115,18 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"Sprout saved!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
+        [self enableExport];
     }
+    
      
 }
 
 -(IBAction)exportSport:(id)sender
 {
     ExportSproutViewController *exportSproutViewController = [[ExportSproutViewController alloc] initWithNibName:@"ExportSproutViewController" bundle:nil];
-
+    
+    exportSproutViewController.sproutScroll = self.sproutScroll;
+    
     [self.navigationController pushViewController:exportSproutViewController animated:YES];
 }
 
@@ -160,11 +179,12 @@
     [to setValue:fromItem.url forKey:@"url"];
     */
     //NSLog(@"%@", self.imagesArray);
+    self.exportButton.enabled = NO;
 }
 
 -(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(DragDropImageView *)object
 {
-    
+    self.exportButton.enabled = NO;
     NSLog(@"Delete OK");
     NSInteger tag = object.tag ;
     

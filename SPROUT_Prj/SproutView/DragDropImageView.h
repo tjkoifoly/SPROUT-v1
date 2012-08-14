@@ -30,6 +30,7 @@
 @property (assign, nonatomic) int locationx;
 @property (assign, nonatomic) int locationy;
 @property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) __block UIActivityIndicatorView *indicator;
 
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y : (NSInteger)size;
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage : (NSInteger)size;

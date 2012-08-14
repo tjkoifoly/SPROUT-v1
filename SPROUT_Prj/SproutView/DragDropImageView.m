@@ -21,6 +21,7 @@
 @synthesize locationy;
 @synthesize delegate;
 @synthesize url;
+@synthesize indicator;
 
 
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y : (NSInteger)size
@@ -33,6 +34,11 @@
     self.backgroundColor = [UIColor lightGrayColor];
     self.layer.borderColor = [UIColor whiteColor].CGColor;
     self.layer.borderWidth = 1.f;
+    
+    indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicator.hidesWhenStopped = YES;
+    indicator.center = self.center;
+    [self addSubview:indicator];
     
     return self;
 }
@@ -149,6 +155,8 @@
 {
     ALAssetsLibrary* library = [[ALAssetsLibrary alloc] init];
     
+    [indicator startAnimating];
+    
     ALAssetsLibraryAssetForURLResultBlock result = ^(ALAsset *__strong asset){
         ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
         // This data retrieval crashes on the simulator
@@ -156,20 +164,17 @@
     
         if (cgImage)
         {
-    
-            //NSLog(@" image from here: %@",[UIImage imageWithCGImage:cgImage]);
+                //NSLog(@" image from here: %@",[UIImage imageWithCGImage:cgImage]);
             self.image = [UIImage imageWithCGImage:cgImage];
-//            NSLog(@"DCMCM: %@", self.image);
         }
-        
+        [indicator stopAnimating];
     };
     
     ALAssetsLibraryAccessFailureBlock failure = ^(NSError *__strong error){
         NSLog(@"Error retrieving asset from url: %@", [error localizedFailureReason]);
     };
-    
     [library assetForURL:assetURL resultBlock:result failureBlock:failure];
-    
+        
 }
 
 

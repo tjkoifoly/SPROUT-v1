@@ -8,6 +8,7 @@
 
 #import "ViewPhotoInSproutViewController.h"
 #import "Sprout.h"
+#import <QuartzCore/QuartzCore.h>
 
 const CGFloat kScrollObjHeight	= 400.f;
 const CGFloat kScrollObjWidth	= 300.f;
@@ -15,6 +16,7 @@ const CGFloat kScrollObjWidth	= 300.f;
 @implementation ViewPhotoInSproutViewController
 {
     int currentPoint;
+    UIView *viewScroll;
 }
 
 @synthesize listImages;
@@ -39,6 +41,25 @@ const CGFloat kScrollObjWidth	= 300.f;
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(UIImage *)imageCaptureSave: (UIView *)viewInput
+{
+    CGSize viewSize = viewInput.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(viewSize, NO, 1.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [viewInput.layer renderInContext:context];
+    UIImage *imageX = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return imageX;
+}
+
+-(IBAction)saveScroll:(id)sender
+{
+    UIImage *im = [self imageCaptureSave:viewScroll];
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 30.f, 320.f, 400.f)];
+    iv.image = im;
+    [self.view addSubview:iv];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -55,6 +76,9 @@ const CGFloat kScrollObjWidth	= 300.f;
 {
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(10.0f, 50.f, kScrollObjWidth, kScrollObjHeight)];
     [scrollView setContentSize:CGSizeMake(kScrollObjWidth * list.count, kScrollObjHeight)];
+
+    viewScroll = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, kScrollObjWidth*list.count, kScrollObjHeight)];
+    [scrollView addSubview:viewScroll];
     
     [scrollView setScrollEnabled:YES];
     scrollView.pagingEnabled = YES;
@@ -79,7 +103,8 @@ const CGFloat kScrollObjWidth	= 300.f;
 		imageView.tag = i;	
         // tag our images for later use when we place them in serial fashion
         
-		[scrollView addSubview:imageView];
+		//[scrollView addSubview:imageView];
+        [viewScroll addSubview:imageView];
         
 	}
     currentPoint = [list indexOfObject:currentObj];
@@ -116,7 +141,7 @@ const CGFloat kScrollObjWidth	= 300.f;
 {
     //NSLog(@"CURRENT POINT = %i", currentPoint);
    
-    NSLog(@"%@ - at %i", [self.scrollImages.subviews objectAtIndex:currentPoint], currentPoint);
+    //NSLog(@"%@ - at %i", [self.scrollImages.subviews objectAtIndex:currentPoint], currentPoint);
     if(self.listImages.count > 0)
     {
         [self.delegate deletePhoto:self :[self.listImages objectAtIndex:currentPoint]];

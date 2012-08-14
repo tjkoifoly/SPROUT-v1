@@ -29,6 +29,7 @@
 @property (strong, nonatomic)   NSString *urlOfImage;
 @property (strong, nonatomic)   UIImage *preoviousImage;
 @property (strong, nonatomic)   UIImage *imageToEdit;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *editingIndicator;
 
 @property (strong, nonatomic)   IBOutlet UIImageView *frameForEdit;
 @property (strong, nonatomic)   IBOutlet SquareEditView *areForEdit;

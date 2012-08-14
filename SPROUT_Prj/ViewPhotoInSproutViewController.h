@@ -25,6 +25,8 @@
 
 -(IBAction)back:(id)sender;
 -(IBAction)deleteImage:(id)sender;
+-(IBAction)saveScroll:(id)sender;
+
 -(UIScrollView *)loadScrollView: (NSArray *)list : (id)currentObj;
 
 @end

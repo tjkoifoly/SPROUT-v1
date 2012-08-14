@@ -107,7 +107,7 @@
 		E4E5809E15D3B27200EA9D54 /* slider3.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E5809915D3B27200EA9D54 /* slider3.png */; };
 		E4E5809F15D3B27200EA9D54 /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E5809A15D3B27200EA9D54 /* slider.png */; };
 		E4E580A015D3B27200EA9D54 /* whiteslide.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E5809B15D3B27200EA9D54 /* whiteslide.png */; };
-		E4EAFDCB15D577D200D91BE9 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EAFDCA15D577D200D91BE9 /* CoreImage.framework */; };
+		E4EAFDCB15D577D200D91BE9 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EAFDCA15D577D200D91BE9 /* CoreImage.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E4F1B55E15D0AD3C00558FFC /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1B55D15D0AD3C00558FFC /* OverlayView.m */; };
 		E4F1B56015D0AE7900558FFC /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F1B55F15D0AE7900558FFC /* overlaygraphic.png */; };
 		E4F6441315CA59C300E068AD /* CreateSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6441115CA59C300E068AD /* CreateSproutViewController.m */; };
