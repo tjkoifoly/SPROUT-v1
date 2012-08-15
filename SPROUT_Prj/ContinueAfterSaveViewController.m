@@ -10,11 +10,16 @@
 #import "UploadToSproutViewController.h"
 #import "EditImageViewController.h"
 #import <Twitter/Twitter.h>
-#import <FacebookSDK/FacebookSDK.h>
+#import <FacebookSDK/FacebookSDK.h> 
+#import "SA_OAuthTwitterEngine.h"
+
+#define kOAuthConsumerKey        @"sm1Qgf3RlbCtsC4GgLZw"         //REPLACE With Twitter App OAuth Key    
+#define kOAuthConsumerSecret    @"S9ghHLlgPLAJ4dN2bAKyAqR2pF58FrygQUxhSKEieI"     //REPLACE With Twitter App OAuth Secret  
 
 @implementation ContinueAfterSaveViewController
 {
     BOOL logged;
+    SA_OAuthTwitterEngine *_engine;
 }
 
 @synthesize imageInput;
@@ -52,13 +57,61 @@
     self.imageInput     = nil;
     self.viewImage      = nil;
     self.urlImage       = nil;
+    _engine = nil;
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+}
+
+-(void)postTwitteriOS4
+{
+    if(!_engine){  
+        _engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate:self];  
+        _engine.consumerKey    = kOAuthConsumerKey;  
+        _engine.consumerSecret = kOAuthConsumerSecret;    
+    }  
+    if(![_engine isAuthorized]){  
+        UIViewController *controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine:_engine delegate:self];  
+        
+        if (controller){  
+            [self presentModalViewController: controller animated: YES];  
+        }
+    }  else
+    {
+        [_engine sendUpdate:@"OK DCM VCL"];
+    }
+    
+}
+
+#pragma mark SA_OAuthTwitterEngineDelegate  
+- (void) storeCachedTwitterOAuthData: (NSString *) data forUsername: (NSString *) username {  
+    NSUserDefaults          *defaults = [NSUserDefaults standardUserDefaults];  
+    
+    [defaults setObject: data forKey: @"authData"];  
+    [defaults synchronize];  
+}  
+
+- (NSString *) cachedTwitterOAuthDataForUsername: (NSString *) username { 
+    //NSLog(@"%@", username);
+    return [[NSUserDefaults standardUserDefaults] objectForKey: @"authData"];  
+}  
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma mark TwitterEngineDelegate  
+- (void) requestSucceeded: (NSString *) requestIdentifier {  
+    NSLog(@"Request %@ succeeded", requestIdentifier);  
+}  
+
+- (void) requestFailed: (NSString *) requestIdentifier withError: (NSError *) error {  
+    NSLog(@"Request %@ failed with error: %@", requestIdentifier, error);  
+} 
 
 #pragma IBAction
 
@@ -82,6 +135,23 @@
     [self.navigationController pushViewController:editViewController animated:YES];
 }
 
+-(void) postTwitter: (UIImage *)imageToPost
+{
+    if([TWTweetComposeViewController canSendTweet])
+    {
+        TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc]init];
+        [tweetSheet setInitialText:@"You can write tittle for picture to post Twitter !"];
+        
+        //Set image in HERE
+        [tweetSheet addImage:imageToPost];
+        [self presentModalViewController:tweetSheet animated:YES];
+    }else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"You can't send a tweet right now, make sure  your device has an internet connection and you have                                at least one Twitter account setup" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+}
+
 -(IBAction)postToSocialNetwork:(id)sender
 {
     UIButton *shareButton = (UIButton *)sender;
@@ -89,19 +159,17 @@
     //POST ON TWITTER
     if(shareButton.tag == 1)
     {
-        if([TWTweetComposeViewController canSendTweet])
+        NSString *reqSysVer = @"5.0";
+        NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+        if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
         {
-            TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc]init];
-            [tweetSheet setInitialText:@"You can write tittle for picture to post Twitter !"];
-            
-            //Set image in HERE
-            [tweetSheet addImage:self.imageInput];
-            [self presentModalViewController:tweetSheet animated:YES];
-        }else
-        {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"You can't send a tweet right now, make sure  your device has an internet connection and you have                                at least one Twitter account setup" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alertView show];
+            [self postTwitter:self.imageInput];
+        }else{
+            [self postTwitteriOS4];
+            //[_engine sendUpdate:@"FOLY"];
         }
+        
+        
     }
     //POST ON FACEBOOK
     else if(shareButton.tag == 2)

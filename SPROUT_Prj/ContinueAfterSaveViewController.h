@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "EditImageViewController.h"
+#import "SA_OAuthTwitterController.h" 
 
-@interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate>
+@interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate, SA_OAuthTwitterControllerDelegate>
 
 @property (strong, nonatomic) UIImage *imageInput;
 @property (strong, nonatomic) IBOutlet UIImageView *viewImage;
