@@ -10,6 +10,9 @@
 #import "ReminderManagerViewController.h"
 
 @implementation ReminderViewController
+{
+    NSCalendarUnit unit;
+}
 
 @synthesize datePicker;
 @synthesize alertLocation;
@@ -17,7 +20,6 @@
 @synthesize alertSegmentControl;
 @synthesize durationSegmentControl;
 @synthesize alertTime;
-@synthesize duration;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,14 +45,19 @@
     [super viewDidLoad];
     
     self.alertTime = 0;
-    self.duration = 0;
+    unit = 0;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = YES;
+    [super viewWillAppear:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    NSArray *notificationsArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    NSLog(@"%@", notificationsArray );
+    //NSArray *notificationsArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    //NSLog(@"%@", notificationsArray );
 }
 
 - (void)viewDidUnload
@@ -100,7 +107,7 @@
                 alertTime = 0;
                 break;
             case 1:
-                alertTime = 1;
+                alertTime = 15;
                 break;
             case 2 :
                 alertTime = 60;
@@ -122,46 +129,48 @@
     {
         switch (index) {
             case 0:
-                duration = 0;
+                unit = 0;
+                
                 break;
             case 1:
-                duration = 15;
+                unit = NSHourCalendarUnit;
                 break;
             case 2:
-                duration = 30;
+                unit = NSDayCalendarUnit;
                 break;
             case 3:
-                duration = 60;
+                unit = NSWeekCalendarUnit;
                 break;
-            case 4:
-                duration = 61;
-                break;
-                
             default:
                 break;
         }
-        
-        if(duration < 60)
-            NSLog(@"Duration changed to %i min", duration);
-        else
-            NSLog(@"Duration changed to allDay");
     }
     
 }
 
 -(IBAction)addNotification:(id)sender
 {
+    if([alertDescription.text isEqualToString:@""])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"You should enter a description." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     
     //[localNotification setFireDate:[NSDate dateWithTimeIntervalSinceNow:[datePicker countDownDuration]]];
+     NSString *location = @"";
+    if(![alertLocation.text isEqualToString:@""])
+    {
+       location = [NSString stringWithFormat:@" at location: %@", alertLocation.text];
+    }
     [localNotification setFireDate:[NSDate dateWithTimeInterval:60.0*self.alertTime sinceDate:[datePicker date]]];
-    
-    
     [localNotification setAlertAction:@"Launch"];
-    [localNotification setAlertBody:[NSString stringWithFormat:@"%@\nLoaction: %@",[alertDescription text], [alertLocation text]]];
+    [localNotification setAlertBody:[NSString stringWithFormat:@"%@%@",[alertDescription text], location]];
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     [localNotification setHasAction:YES];
-    localNotification.repeatInterval = NSMinuteCalendarUnit;
+    localNotification.repeatInterval = unit;
     
     [localNotification setApplicationIconBadgeNumber:[[UIApplication sharedApplication] applicationIconBadgeNumber] +1 ];
     

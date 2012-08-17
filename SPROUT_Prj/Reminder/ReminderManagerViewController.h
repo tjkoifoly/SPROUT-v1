@@ -11,10 +11,13 @@
 @interface ReminderManagerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
+@property (strong, nonatomic) IBOutlet UIButton *editButton;
 
-@property (strong, nonatomic) NSArray *listNotifications;
 
--(IBAction)backPrevious:(id)sender;
+@property (strong, nonatomic) NSMutableArray *listNotifications;
+
 -(IBAction)deleteAll:(id)sender;
+-(IBAction)toggleEdit:(id)sender;
+-(void) reloadTable;
 
 @end

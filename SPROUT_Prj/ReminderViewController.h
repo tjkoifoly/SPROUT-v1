@@ -17,7 +17,6 @@
 @property (strong, nonatomic) IBOutlet  UISegmentedControl *durationSegmentControl;
 
 @property (nonatomic, assign) NSInteger alertTime;
-@property (nonatomic, assign) NSInteger duration;
 
 -(IBAction)back:(id)sender;
 -(IBAction)addReminder:(id)sender;
