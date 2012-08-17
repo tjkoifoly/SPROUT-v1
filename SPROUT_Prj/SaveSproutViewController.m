@@ -47,7 +47,8 @@
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
     if(self.sproutScroll == nil)
     {
-        self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :self.imagesArray];
+        //self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :self.imagesArray];
+        self.sproutScroll = [[SproutScrollView alloc] initWithName:[self.sprout valueForKey:@"name"] :[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
     }
     
     self.sproutScroll.delegate = self;
@@ -57,6 +58,10 @@
     self.sproutView.backgroundColor = [UIColor clearColor];
     
     [self enableExport];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
 }
 
 -(void)enableExport
@@ -123,11 +128,23 @@
 
 -(IBAction)exportSport:(id)sender
 {
-    ExportSproutViewController *exportSproutViewController = [[ExportSproutViewController alloc] initWithNibName:@"ExportSproutViewController" bundle:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"Rending sprout as a image might use much memory.\nSafely, you should quit other applications before export!" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:@"Accept", nil];
+    [alert show];
     
-    exportSproutViewController.sproutScroll = self.sproutScroll;
-    
-    [self.navigationController pushViewController:exportSproutViewController animated:YES];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+//    NSLog(@"BUTTON INDEX SELECTED : %i", buttonIndex);
+    if(buttonIndex == 0) return;
+    else
+    {
+        ExportSproutViewController *exportSproutViewController = [[ExportSproutViewController alloc] initWithNibName:@"ExportSproutViewController" bundle:nil];
+        
+        exportSproutViewController.sproutScroll = self.sproutScroll;
+        
+        [self.navigationController pushViewController:exportSproutViewController animated:YES];
+    }
 }
 
 -(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected

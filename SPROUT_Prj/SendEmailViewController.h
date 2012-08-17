@@ -11,6 +11,8 @@
 
 @interface SendEmailViewController : UIViewController<MFMailComposeViewControllerDelegate>
 
+@property (strong, nonatomic) MFMailComposeViewController *mailer;
+
 @property (strong, nonatomic) UIImage *imageToSend;
 
 -(IBAction)goToHome:(id)sender;

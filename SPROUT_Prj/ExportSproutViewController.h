@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "SproutScrollView.h"
+#import <MessageUI/MessageUI.h>
 
-@interface ExportSproutViewController : UIViewController 
+@interface ExportSproutViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *sproutToImage;
 @property (strong, nonatomic) IBOutlet UIButton *emailButton;
@@ -25,6 +26,7 @@
 -(IBAction)saveAsImage:(id)sender;
 -(IBAction)shareViaSocialNetwork:(id)sender;
 -(UIImage *)imageCaptureSave: (UIView *)viewInput;
+-(UIImage *)thumnailImageFromImageView: (UIImage *)inputImage;
 
 
 @end

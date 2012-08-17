@@ -15,6 +15,8 @@
 
 #define kOAuthConsumerKey        @"sm1Qgf3RlbCtsC4GgLZw"         //REPLACE With Twitter App OAuth Key    
 #define kOAuthConsumerSecret    @"S9ghHLlgPLAJ4dN2bAKyAqR2pF58FrygQUxhSKEieI"     //REPLACE With Twitter App OAuth Secret  
+#define TWITPIC_API_KEY @"aafcc77fdeabf72e2839bf746040a06f"
+#define TWITPIC_API_FORMAT @"json"
 
 @implementation ContinueAfterSaveViewController
 {
@@ -80,10 +82,71 @@
         }
     }  else
     {
-        [_engine sendUpdate:@"OK DCM VCL"];
+        //[_engine sendUpdate:@"OK DCM VCL"];
     }
     
+    //[self dispatchButtonPushed:nil];
+    NSLog(@"POST");
+    
 }
+
+- (NSData*)encodeDictionary:(NSDictionary*)dictionary {
+    NSMutableArray *parts = [[NSMutableArray alloc] init];
+    for (NSString *key in dictionary) {
+        NSString *encodedValue = [[dictionary objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; 
+        NSString *part = [NSString stringWithFormat: @"%@=%@", encodedKey, encodedValue];
+        [parts addObject:part];
+    }
+    NSString *encodedDictionary = [parts componentsJoinedByString:@"&"];
+    return [encodedDictionary dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (IBAction)dispatchButtonPushed:(id)sender {
+    
+    NSURL *url = [NSURL URLWithString:@"http://www.apple.com/"];
+    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitpic.com/1/upload.%@", TWITPIC_API_FORMAT]];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:@"user", @"username", 
+                              @"password", @"password", nil];
+    NSData *postData = [self encodeDictionary:postDict];
+    
+    // Create teh requyest
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:[NSString stringWithFormat:@"%d", postData.length] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // Peform the request
+        NSURLResponse *response;
+        NSError *error = nil;
+        NSData *receivedData = [NSURLConnection sendSynchronousRequest:request  
+                                                     returningResponse:&response
+                                                                 error:&error];    
+        if (error) {
+            // Deal with your error
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+                NSLog(@"HTTP Error: %d %@", httpResponse.statusCode, error);
+                return;
+            }
+            NSLog(@"Error %@", error);
+            return;
+        }
+        
+        NSString *responeString = [[NSString alloc] initWithData:receivedData
+                                                        encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", responeString);
+        // Assume lowercase 
+        if ([responeString isEqualToString:@"true"]) {
+            // Deal with true
+            return;
+        }    
+        // Deal with an error
+    }); 
+}
+
 
 #pragma mark SA_OAuthTwitterEngineDelegate  
 - (void) storeCachedTwitterOAuthData: (NSString *) data forUsername: (NSString *) username {  
@@ -205,11 +268,11 @@
                                             {
                                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Image was posted on your facebok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                                 [alert show];
-                                                
-                                                [indicator stopAnimating];
-                                                [tempView removeFromSuperview];
-                                                tempView = nil;
                                             }
+                                            
+                                            [indicator stopAnimating];
+                                            [tempView removeFromSuperview];
+                                            tempView = nil;
                                             
                                         }];
 

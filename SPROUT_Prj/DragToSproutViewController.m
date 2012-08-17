@@ -92,6 +92,8 @@
         
         if(temp != nil)
         {
+            
+            
             SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
             
             for(id x in self.sproutScroll.subviews)
@@ -99,8 +101,15 @@
                 if([[(DragDropImageView *)x url] isEqual:@"URL"])
                 {
                     //[x setValue:self.urlImage forKey:@"url"];
+                    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", [self.sprout valueForKey:@"name"], [x tag]];
+                    
+                    UIImage *imageOfCell =[self thumnailImageFromImageView:self.imageInput];
+                    [self getImageFromFile:fileName input:imageOfCell];
+                    
                     [(DragDropImageView *)x setUrlImage: self.urlImage];
-                    [(DragDropImageView *)x setImage:self.imageInput];
+                    [(DragDropImageView *)x setImage:imageOfCell];
+                    [self.sproutScroll scrollRectToVisible:[x frame] animated:YES];
+                    
                     //saveViewController.lastBlank = x;
                     break;
                 }
@@ -123,6 +132,11 @@
 
 #pragma mark - View lifecycle
 
+-(void) viewDidDisappear:(BOOL)animated
+{
+    self.sproutScroll = nil;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -139,8 +153,8 @@
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
     
     //self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:[[self.sprout valueForKey:@"rowSize"] intValue] andColSize:[[self.sprout valueForKey:@"colSize"] intValue]];
-    
-    self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
+    //self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
+    self.sproutScroll = [[SproutScrollView alloc] initWithName:[self.sprout valueForKey:@"name"] :[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
 
     self.sproutScroll.delegate = self;
     
@@ -240,6 +254,49 @@
 
 }
 
+-(NSString *)dataPathFile:(NSString *)fileName
+{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDirectory, YES);
+    NSString *documentDirectory = [path objectAtIndex:0];
+    
+    NSLog(@"%@", documentDirectory);
+    
+    return [documentDirectory stringByAppendingPathComponent:fileName];
+}
+
+-(void)getImageFromFile : (NSString *)fileName input: (UIImage *)inputImage
+{
+    NSString *path = [self dataPathFile:fileName];    
+    [UIImagePNGRepresentation(inputImage) writeToFile:path atomically:YES];
+    NSLog(@"Saved");
+    //return [UIImage imageWithContentsOfFile:path];
+}
+
+-(UIImage *)imageCaptureSave: (UIView *)viewInput
+{
+    CGSize viewSize = viewInput.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(viewSize, NO, 1.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [viewInput.layer renderInContext:context];
+    UIImage *imageX = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return imageX;
+}
+
+-(UIImage *)thumnailImageFromImageView: (UIImage *)inputImage
+{
+    UIImageView *imvToRender = [[UIImageView alloc] initWithImage:inputImage];
+
+    if(self.sproutScroll.colSize < 5 && self.sproutScroll.rowSize < 5)
+        [imvToRender setFrame:CGRectMake(0.0, 0.0, 100, 100)];
+    else
+    {
+        [imvToRender setFrame:CGRectMake(0.0, 0.0, 60, 60)];
+    }
+    [imvToRender setContentMode:UIViewContentModeScaleToFill];
+    
+    return [self imageCaptureSave:imvToRender];
+}
 
 
 @end

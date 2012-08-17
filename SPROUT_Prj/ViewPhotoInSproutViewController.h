@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DragDropImageView.h"
+#import "UIImageView+loadImage.h"
+
 @class ViewPhotoInSproutViewController;
 @protocol DeletePhotoDelegate <NSObject>
 
@@ -28,5 +30,6 @@
 -(IBAction)saveScroll:(id)sender;
 
 -(UIScrollView *)loadScrollView: (NSArray *)list : (id)currentObj;
+-(void)loadImageinPoint: (NSInteger)point;
 
 @end

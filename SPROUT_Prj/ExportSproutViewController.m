@@ -13,14 +13,18 @@
 #import "CNCAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <QuartzCore/QuartzCore.h>
+#import "UIImageView+loadImage.h"
 
 #define kSize 200
+#define kMaxSize 2000
+#define kSizeToPost 600
 
 @implementation ExportSproutViewController
 {
     UIImage *imageToSave;
-    UIView *tempView;
+    __block UIView *tempView;
     BOOL saved;
+    __block UIView *tView;
 }
 
 @synthesize sproutToImage;
@@ -48,25 +52,80 @@
 
 #pragma mark - View lifecycle
 
+-(void)loadData
+{
+    
+    tView  = [[UIView alloc] initWithFrame:self.view.frame];
+    tView.backgroundColor = [UIColor blackColor];
+    tView.alpha = 0.8f;
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    indicator.center = tView.center;
+    //indicator.color = [UIColor blackColor];
+    indicator.hidesWhenStopped = YES;
+    [tView addSubview:indicator];
+    [indicator startAnimating];
+    [self.view addSubview:tView];
+    
+    NSInteger standardSize = kSize;
+    int row = sproutScroll.rowSize;
+    int col = sproutScroll.colSize;
+    if( row > 10 || col > 10)
+    {
+        int greater = row;
+        if(col > row) greater = col;
+        standardSize = kMaxSize/greater;
+    } 
+    
+    NSLog(@"%i", standardSize);
+    
+    tempView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0, col * standardSize, row *standardSize)];
+    tempView.layer.borderColor = [UIColor whiteColor].CGColor;
+    tempView.layer.borderWidth = 2.0f;
+    
+    __block int x;
+    __block int y;
+    __block UIImageView *imvX;
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+    
+    for(id ix in self.sproutScroll.subviews)
+    {
+        dispatch_sync(queue, ^{
+        
+        imvX = [[UIImageView alloc] init];
+        y = [ix tag]%(self.sproutScroll.colSize);
+        x = [ix tag]/(self.sproutScroll.colSize);
+        [imvX setFrame:CGRectMake(y*standardSize, x*standardSize, standardSize, standardSize)];
+        imvX.layer.borderColor = [UIColor whiteColor].CGColor;
+        imvX.layer.borderWidth = 1.f;
+        [imvX loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
+        // [(UIImageView *)ix loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
+        [tempView addSubview:imvX];
+        imvX = nil;
+            
+        });
+    }
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"SAVED");
+    imageToSave = [self imageCaptureSave:tempView];
+    tempView = nil;
+    [tView removeFromSuperview];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //CGSize sizeOfSprout = [self.sproutScroll contentSize];
-    tempView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0, self.sproutScroll.colSize * kSize, self.sproutScroll.rowSize *kSize)];
-    tempView.layer.borderColor = [UIColor whiteColor].CGColor;
-    tempView.layer.borderWidth = 2.0f;
-    int x;
-    int y;
-    for(id ix in self.sproutScroll.subviews)
-    {
-        y = [ix tag]%(self.sproutScroll.colSize);
-        x = [ix tag]/(self.sproutScroll.colSize);
+    dispatch_async(dispatch_get_main_queue(), ^{
+         [self loadData];
+    });
+   
+    NSLog(@"LOADING...");
         
-        [ix setFrame:CGRectMake(y*kSize, x*kSize, kSize, kSize)];
-        [tempView addSubview:ix];
-    }
+    //Render sprout to image
     
-    imageToSave = [self imageCaptureSave:tempView];
     saved = NO;
 }
 
@@ -85,8 +144,8 @@
           {
               NSLog(@"we have our ALAsset!");
               
-              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successfull" message:
-                                    [NSString stringWithFormat:@"Save sprout as image to Library!%@"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful" message:
+                                    [NSString stringWithFormat:@"Sprout was saved as image to Library!"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
               [alert show];
           } 
                  failureBlock:^(NSError *error )
@@ -122,11 +181,102 @@
 }
 
 -(IBAction)sendViaEmail:(id)sender
-{
+{/*
     SendEmailViewController *sendEmailViewController = [[SendEmailViewController alloc] initWithNibName:@"SendEmailViewController" bundle:nil];
 
     sendEmailViewController.imageToSend = imageToSave;
     [self.navigationController pushViewController:sendEmailViewController animated:YES];
+  */
+    
+    UIImage *mailImage = [self thumnailImageFromImageView:imageToSave];
+    
+    if ([MFMailComposeViewController canSendMail])
+    {
+        __block MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc]init];
+        //mailer.navigationItem.rightBarButtonItem.title = @"OK";
+        mailer.mailComposeDelegate = self;
+        
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+
+            [mailer setSubject:@"Your sprout to send"];
+            NSArray *toRecipients = [NSArray arrayWithObjects:nil];
+            [mailer setToRecipients:toRecipients];
+            
+            UIImage *myImage = mailImage;
+            NSLog(@"%f x %f", myImage.size.width, myImage.size.height);
+            NSData *imageData = UIImagePNGRepresentation(myImage);
+            [mailer addAttachmentData:imageData mimeType:@"image/png" fileName:@"MyCoolSprout"];
+            
+            NSString *emailBody = @"Comment ........";
+            [mailer setMessageBody:emailBody isHTML:NO];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentModalViewController:mailer animated:YES];
+            });
+        
+        });
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        alert = nil;
+    }
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+        {
+            NSLog(@"Mail cancelled: you cancelled the operation and no email message was queued.");
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail cancelled: you cancelled the operation and no email message was queued." delegate:nil cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            alert = nil;
+        }
+            break;
+        case MFMailComposeResultSaved:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail saved: you saved the email message in the drafts folder." delegate:nil cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            alert = nil;
+            
+            NSLog(@"Mail saved: you saved the email message in the drafts folder.");
+        }
+            break;
+        case MFMailComposeResultSent:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail send: the email message is queued in the outbox. It is ready to send." delegate:nil cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            alert = nil;
+            
+            NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send.");
+        }
+            break;
+        case MFMailComposeResultFailed:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail failed: the email message was not saved or queued, possibly due to an error." delegate:nil cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            alert = nil;
+
+            
+            NSLog(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
+        }
+            break;
+        default:
+            NSLog(@"Mail not sent.");
+            break;
+    }
+    
+    // Remove the mail view
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(IBAction)purcharseCanvas:(id)sender
@@ -147,9 +297,36 @@
     return imageX;
 }
 
+-(UIImage *)thumnailImageFromImageView: (UIImage *)inputImage
+{
+    float w = imageToSave.size.width;
+    float h = imageToSave.size.height;
+    float greater = w;
+    if(h>w) greater = h;
+    if(greater > kSizeToPost) greater = kSizeToPost;
+    if(w > h)
+    {
+        h = ((1.0)*h/w)*greater;
+        w = greater;
+    }else
+    {
+        w = (1.0 *w/h)*greater;
+        h = greater;
+    }
+    
+    //NSLog(@"%f x %f", w, h);
+    
+    UIImageView *imvToRender = [[UIImageView alloc] initWithImage:inputImage];
+    [imvToRender setFrame:CGRectMake(0.0, 0.0, w, h)];
+    [imvToRender setContentMode:UIViewContentModeScaleToFill];
+    
+    return [self imageCaptureSave:imvToRender];
+}
+
 -(IBAction)saveAsImage:(id)sender
 {
     saved = YES;
+    //imageToSave = [self imageCaptureSave:tempView];
     
     self.emailButton.hidden = YES;
     self.purchaseButton.hidden = YES;
@@ -158,12 +335,14 @@
     self.sproutToImage.image = imageToSave;
 
     //Save image to asset library
+    /*
     CGPoint pointCenter = [self.sproutToImage center];
     if(tempView.bounds.size.width < self.sproutToImage.bounds.size.width)
     {
         [self.sproutToImage setFrame:tempView.frame];
         self.sproutToImage.center = pointCenter;
     }
+     */
     
     [self saveToLibrary:imageToSave];
     self.sproutToImage.hidden = NO;
@@ -172,15 +351,7 @@
 
 -(IBAction)shareViaSocialNetwork:(id)sender
 {
-    /*
-    if(!saved)
-    {
-        UIAlertView *alertSave = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"Sprout has not been saved.\nPlease save sprout before share." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertSave show];
-        return;
-    }
-     */
-    
+    UIImage *postImage = [self thumnailImageFromImageView:imageToSave];
     UIButton *shareButton = (UIButton *)sender;
     
     //POST ON TWITTER
@@ -192,7 +363,7 @@
             [tweetSheet setInitialText:@"You can write tittle for picture to post Twitter !"];
             
             //Set image in HERE
-            [tweetSheet addImage:self.sproutToImage.image];
+            [tweetSheet addImage:postImage];
             [self presentModalViewController:tweetSheet animated:YES];
         }else
         {
@@ -226,7 +397,7 @@
                                                                       NSDictionary<FBGraphUser> *my,
                                                                       NSError *error) {
                                         NSLog(@"%@", my.first_name);
-                                        UIImage *imgToPost = imageToSave;
+                                        UIImage *imgToPost = postImage;
                                         FBRequest *photoUploadRequest = [FBRequest requestForUploadPhoto:imgToPost];
                                         
                                         [photoUploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {        

@@ -87,7 +87,9 @@
             
             //NSLog(@"TAG %i - URL %@", t, u);
             
-            DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u : cellWidth];
+            //DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u : cellWidth];
+            DragDropImageView *imv =  [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u :cellWidth andPath:[NSString stringWithFormat:@"%@-atTag-%i", name, t]];
+            NSLog(@"%@", [NSString stringWithFormat:@"%@-atTag-%i", name, t]);
             
             //imv.image = [UIImage imageNamed:@"baby"];
             imv.tag = t;
@@ -104,6 +106,82 @@
     
     return self;
 
+}
+
+-(id) initWithName:(NSString *)sName: (NSInteger)rs : (NSInteger) cs: (NSArray*) ai
+{
+    name = sName;
+    enable = NO;
+    self.rowSize = rs;
+    self.colSize = cs;
+    // NSLog(@" INIT %@", ai);
+    
+    int cellWidth = kWidth;
+    int cellHeight = kHeight;
+    
+    if (rs < 5 && cs < 5)
+    {
+        cellWidth = kWidthLarge;
+        cellHeight = kHeightLarge;
+    }
+    
+    int maxWidth = self.colSize * cellWidth;
+    int maxHeight = self.rowSize * cellHeight;
+    
+    if(maxWidth > kMAXWidth)
+    {
+        maxWidth = kMAXWidth;
+    }
+    
+    if (maxHeight > kMAXHeight)
+    {
+        maxHeight = kMAXHeight;
+    }
+    
+    //NSLog(@"row = %i, col = %i", self.rowSize, self.colSize);
+    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, maxWidth, maxHeight)];
+    
+    [self setContentSize:CGSizeMake((self.colSize * cellWidth), (self.rowSize *cellHeight))];
+    
+    [self setScrollEnabled:YES];
+    [self setShowsHorizontalScrollIndicator:NO];
+    [self setShowsVerticalScrollIndicator:NO];
+    
+    for(int i = 0; i< self.rowSize ; i++)
+    {
+        for(int j = 0; j < self.colSize; j++)
+        {
+            NSString *u = @"URL";
+            NSInteger t = i * (self.colSize) + j;
+            
+            for(id aoi in ai)
+            {
+                if([[aoi valueForKey:@"tag"] intValue] == t)
+                {
+                    u = [aoi valueForKey:@"url"];
+                }
+            }
+            
+            //NSLog(@"TAG %i - URL %@", t, u);
+            
+            //DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u : cellWidth];
+            DragDropImageView *imv =  [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u :cellWidth andPath:[NSString stringWithFormat:@"%@-atTag-%i", sName, t]];
+            //NSLog(@"%@", [NSString stringWithFormat:@"%@-atTag-%i", sName, t]);
+            
+            //imv.image = [UIImage imageNamed:@"baby"];
+            imv.tag = t;
+            imv.userInteractionEnabled = YES;
+            imv.delegate = self;
+            
+            [self addSubview:imv];
+            
+            //NSLog(@"%i %i %i", i , j, imv.tag);
+        }
+    }
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.layer.borderWidth = 2.f;
+    
+    return self;
 }
 
 -(id)initWithrowSize: (NSInteger) rs andColSize: (NSInteger) cs

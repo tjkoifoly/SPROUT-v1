@@ -43,6 +43,13 @@
     
     self.alertTime = 0;
     self.duration = 0;
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSArray *notificationsArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    NSLog(@"%@", notificationsArray );
 }
 
 - (void)viewDidUnload
@@ -145,6 +152,7 @@
     [localNotification setAlertAction:@"Launch"];
     
     [localNotification setAlertBody:[NSString stringWithFormat:@"%@ - Loaction: %@",[alertDescription text], [alertLocation text]]];
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
     
     [localNotification setHasAction:YES];
     

@@ -15,6 +15,7 @@
 		E40A8BA715D3FF0B0004E841 /* StyleCropView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E40A8BA615D3FF0B0004E841 /* StyleCropView.xib */; };
 		E40F7FC715CCCDEE00D354A7 /* DragDropImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */; };
 		E424F30015CCFC0B006B588F /* SproutScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E424F2FF15CCFC0B006B588F /* SproutScrollView.m */; };
+		E42A159F15DB9E3A008C2B58 /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E42A159E15DB9E3A008C2B58 /* HTTPRequest.m */; };
 		E431B83C15D8FB0C00C83039 /* UIImage+Gaussian.m in Sources */ = {isa = PBXBuildFile; fileRef = E431B83B15D8FB0C00C83039 /* UIImage+Gaussian.m */; };
 		E43FAE7715CA0C4200CF628C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7615CA0C4200CF628C /* UIKit.framework */; };
 		E43FAE7915CA0C4200CF628C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43FAE7815CA0C4200CF628C /* Foundation.framework */; };
@@ -96,6 +97,7 @@
 		E4B82BA115CA3C6400B14E6A /* DragToSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82B9F15CA3C6400B14E6A /* DragToSproutViewController.xib */; };
 		E4B82BA615CA407300B14E6A /* SelectGridSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */; };
 		E4B82BA715CA407300B14E6A /* SelectGridSizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */; };
+		E4BC9BB615DCD1D500A10645 /* UIImageView+loadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BC9BB515DCD1D500A10645 /* UIImageView+loadImage.m */; };
 		E4BCEF7C15CE90AD006E7A0D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BCEF7B15CE90AD006E7A0D /* MobileCoreServices.framework */; };
 		E4C9D5F915D4CBCB00A69C5C /* FiltersView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C9D5F815D4CBCB00A69C5C /* FiltersView.m */; };
 		E4C9D5FC15D4CBDD00A69C5C /* FiltersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C9D5FB15D4CBDD00A69C5C /* FiltersView.xib */; };
@@ -167,6 +169,8 @@
 		E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DragDropImageView.m; path = SproutView/DragDropImageView.m; sourceTree = "<group>"; };
 		E424F2FE15CCFC0B006B588F /* SproutScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SproutScrollView.h; path = SproutView/SproutScrollView.h; sourceTree = "<group>"; };
 		E424F2FF15CCFC0B006B588F /* SproutScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SproutScrollView.m; path = SproutView/SproutScrollView.m; sourceTree = "<group>"; };
+		E42A159D15DB9E3A008C2B58 /* HTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequest.h; sourceTree = "<group>"; };
+		E42A159E15DB9E3A008C2B58 /* HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
 		E431B83A15D8FB0C00C83039 /* UIImage+Gaussian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gaussian.h"; sourceTree = "<group>"; };
 		E431B83B15D8FB0C00C83039 /* UIImage+Gaussian.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Gaussian.m"; sourceTree = "<group>"; };
 		E43FAE7215CA0C4200CF628C /* SPROUT_Prj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPROUT_Prj.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -306,6 +310,8 @@
 		E4B82BA315CA407300B14E6A /* SelectGridSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGridSizeViewController.h; sourceTree = "<group>"; };
 		E4B82BA415CA407300B14E6A /* SelectGridSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGridSizeViewController.m; sourceTree = "<group>"; };
 		E4B82BA515CA407300B14E6A /* SelectGridSizeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectGridSizeViewController.xib; sourceTree = "<group>"; };
+		E4BC9BB415DCD1D500A10645 /* UIImageView+loadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+loadImage.h"; path = "Objects/UIImageView+loadImage.h"; sourceTree = "<group>"; };
+		E4BC9BB515DCD1D500A10645 /* UIImageView+loadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+loadImage.m"; path = "Objects/UIImageView+loadImage.m"; sourceTree = "<group>"; };
 		E4BCEF7B15CE90AD006E7A0D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E4C9D5F715D4CBCB00A69C5C /* FiltersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiltersView.h; path = EditObjects/FiltersView.h; sourceTree = "<group>"; };
 		E4C9D5F815D4CBCB00A69C5C /* FiltersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiltersView.m; path = EditObjects/FiltersView.m; sourceTree = "<group>"; };
@@ -430,10 +436,27 @@
 			name = SproutObjects;
 			sourceTree = "<group>";
 		};
+		E4201ADD15DC8D9000064F6F /* TWITTER */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TWITTER;
+			sourceTree = "<group>";
+		};
+		E4201ADE15DC8DA100064F6F /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E42A159D15DB9E3A008C2B58 /* HTTPRequest.h */,
+				E42A159E15DB9E3A008C2B58 /* HTTPRequest.m */,
+			);
+			name = Request;
+			sourceTree = "<group>";
+		};
 		E43FAE6715CA0C4200CF628C = {
 			isa = PBXGroup;
 			children = (
-				E480D71215DB431D00D801D3 /* libxml2.dylib */,
+				E4201ADE15DC8DA100064F6F /* Request */,
+				E4201ADD15DC8D9000064F6F /* TWITTER */,
 				E480D6C115DB42F000D801D3 /* Twitter+OAuth */,
 				E40F7FC215CCCD7300D354A7 /* Objects */,
 				E47AA0C415CBACA800544164 /* Reminder */,
@@ -473,6 +496,7 @@
 		E43FAE7515CA0C4200CF628C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E480D71215DB431D00D801D3 /* libxml2.dylib */,
 				E45B5D3515D9FDEB0065D932 /* MessageUI.framework */,
 				E4EAFDCA15D577D200D91BE9 /* CoreImage.framework */,
 				E462064815D3C6BF00CDCA0F /* OpenGLES.framework */,
@@ -831,6 +855,8 @@
 			children = (
 				E431B83A15D8FB0C00C83039 /* UIImage+Gaussian.h */,
 				E431B83B15D8FB0C00C83039 /* UIImage+Gaussian.m */,
+				E4BC9BB415DCD1D500A10645 /* UIImageView+loadImage.h */,
+				E4BC9BB515DCD1D500A10645 /* UIImageView+loadImage.m */,
 			);
 			name = ImageProcesser;
 			sourceTree = "<group>";
@@ -1128,6 +1154,8 @@
 				E480D70D15DB42F100D801D3 /* NSString+UUID.m in Sources */,
 				E480D70E15DB42F100D801D3 /* SA_OAuthTwitterController.m in Sources */,
 				E480D70F15DB42F100D801D3 /* SA_OAuthTwitterEngine.m in Sources */,
+				E42A159F15DB9E3A008C2B58 /* HTTPRequest.m in Sources */,
+				E4BC9BB615DCD1D500A10645 /* UIImageView+loadImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1233,6 +1261,7 @@
 		E43FAEA615CA0C4300CF628C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1260,6 +1289,7 @@
 		E43FAEA715CA0C4300CF628C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Thao Nguyen Minh";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thao Nguyen Minh";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -39,7 +39,6 @@
 
 {
     CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], rect);
-    
     UIImage *cropped = [UIImage imageWithCGImage:imageRef];
     
     CGImageRelease(imageRef);

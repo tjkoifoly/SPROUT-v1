@@ -13,7 +13,7 @@
 #import "ViewPhotoInSproutViewController.h"
 
 @interface SaveSproutViewController : UIViewController
-<SproutDelegate, DeletePhotoDelegate>
+<SproutDelegate, DeletePhotoDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) SproutScrollView *sproutScroll;
 

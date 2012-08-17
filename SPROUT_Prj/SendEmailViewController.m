@@ -11,6 +11,7 @@
 @implementation SendEmailViewController
 
 @synthesize imageToSend;
+@synthesize mailer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +36,33 @@
 {
     [super viewDidLoad];
     //Check device can send mail
+    if ([MFMailComposeViewController canSendMail])
+    {
+        mailer = [[MFMailComposeViewController alloc]init];
+        //mailer.navigationItem.rightBarButtonItem.title = @"OK";
+        mailer.mailComposeDelegate = self;
+        
+        [mailer setSubject:@"Your sprout to send"];
+        NSArray *toRecipients = [NSArray arrayWithObjects:nil];
+        [mailer setToRecipients:toRecipients];
+        
+        UIImage *myImage = self.imageToSend;
+        NSData *imageData = UIImagePNGRepresentation(myImage);
+        [mailer addAttachmentData:imageData mimeType:@"image/png" fileName:@"MyCoolSprout"];
+        
+        NSString *emailBody = @"Comment ........";
+        [mailer setMessageBody:emailBody isHTML:NO];
+        
+        [self presentModalViewController:mailer animated:YES];
+        
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        alert = nil;
+    }
    
 }
 
@@ -67,6 +95,7 @@
 {
     [super viewDidUnload];
     self.imageToSend        = nil;
+    self.mailer             = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -84,33 +113,9 @@
 
 -(IBAction)send:(id)sender
 {
-    if ([MFMailComposeViewController canSendMail])
-    {
-        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc]init];
-        mailer.navigationItem.rightBarButtonItem.title = @"OK";
-        mailer.mailComposeDelegate = self;
-        [mailer setSubject:@"Your sprout to send"];
-        
-        NSArray *toRecipients = [NSArray arrayWithObjects:nil];
-        [mailer setToRecipients:toRecipients];
-        
-        UIImage *myImage = self.imageToSend;
-        NSData *imageData = UIImagePNGRepresentation(myImage);
-        [mailer addAttachmentData:imageData mimeType:@"image/png" fileName:@"MyCoolSprout"];
-        
-        NSString *emailBody = @"Comment ........";
-        [mailer setMessageBody:emailBody isHTML:NO];
-        
-        [self presentModalViewController:mailer animated:YES];
-        
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        alert = nil;
-    }
+//    UIBarButtonItem *sendBtn = mailer.navigationBar.topItem.rightBarButtonItem;
+//    id targ = sendBtn.target;
+//    //[targ performSelector:sendBtn.action withObject:sendBtn];
 }
 
 -(IBAction)resignKeyboard:(id)sender

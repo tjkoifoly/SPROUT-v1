@@ -33,8 +33,12 @@
 
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y : (NSInteger)size;
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage : (NSInteger)size;
+-(id) initWithLocationX:(NSInteger)x andY:(NSInteger)y fromURL:(NSString *)urlimage :(NSInteger)size andPath: (NSString *)fileName;
 
 - (void)loadImageFromAssetURL: (NSURL *)assetURL;
 -(void)setUrlImage:(NSString *)urlString;
+-(NSString *)dataPathFile:(NSString *)fileName;
+-(UIImage *)loadImageFromFile: (NSString *)fileName;
+-(void)getImageFromFile : (NSString *)fileName input: (UIImage *)inputImage;
 
 @end

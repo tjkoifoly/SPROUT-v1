@@ -31,6 +31,7 @@
 
 -(id)initWithrowSize: (NSInteger) rs andColSize: (NSInteger) cs;
 -(id) initWithArrayImage: (NSInteger)rs : (NSInteger) cs: (NSArray*) ai;
+-(id) initWithName:(NSString *)sName: (NSInteger)rs : (NSInteger) cs: (NSArray*) ai;
 -(void) updateImageToSprout: (NSString *) imageURL  inTag:(NSInteger)cellTag;
 -(void) reloadImageOfSprout: (NSString *)sName;
 

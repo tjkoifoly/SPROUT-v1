@@ -31,5 +31,8 @@
 @property (strong, nonatomic) NSMutableArray *imagesArray;
 
 -(IBAction)goToHome:(id)sender;
+-(void)getImageFromFile : (NSString *)fileName input: (UIImage *)inputImage;
+-(UIImage *)thumnailImageFromImageView: (UIImage *)inputImage;
+
 
 @end

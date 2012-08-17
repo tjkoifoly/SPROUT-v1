@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "EditImageViewController.h"
-#import "SA_OAuthTwitterController.h" 
+#import "SA_OAuthTwitterController.h"
+#import "HTTPRequest.h"
 
-@interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate, SA_OAuthTwitterControllerDelegate>
+@interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate, SA_OAuthTwitterControllerDelegate, HTTPRequestDelegate>
 
 @property (strong, nonatomic) UIImage *imageInput;
 @property (strong, nonatomic) IBOutlet UIImageView *viewImage;
@@ -20,5 +21,6 @@
 -(IBAction)edit:(id)sender;
 -(IBAction)postToSocialNetwork:(id)sender;
 -(IBAction)goToHome:(id)sender;
+- (IBAction)dispatchButtonPushed:(id)sender;
 
 @end

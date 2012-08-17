@@ -40,10 +40,25 @@
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage : (NSInteger)size
 {
     self = [self initWithLocationX:x andY:y :size];
-    [self loadImageFromAssetURL:[NSURL URLWithString:urlimage]];
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self loadImageFromAssetURL:[NSURL URLWithString:urlimage]];
+    });
+     
     self.url = urlimage;
     return self;
 
+}
+
+-(id) initWithLocationX:(NSInteger)x andY:(NSInteger)y fromURL:(NSString *)urlimage :(NSInteger)size andPath:(NSString *)fileName
+{
+    self = [self initWithLocationX:x andY:y :size];
+    self.url = urlimage;
+    //[self loadImageFromFile:fileName];
+    if([urlimage isEqualToString:@"URL"] == NO)
+        self.image = [self loadImageFromFile:fileName];
+    return self;
 }
 
 -(void)setUrlImage:(NSString *)urlString
@@ -112,6 +127,9 @@
             //[self.delegate moveImageFrom:[(SproutScrollView *)self.superview imvSelected] to:self];
             
             self.image = [(SproutScrollView *)self.superview imvSelected].image;
+            NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", [(SproutScrollView *)self.superview name],self.tag];
+            [self getImageFromFile:fileName input:self.image];
+            
             self.url = [(SproutScrollView *)self.superview imvSelected].url;
             [[(SproutScrollView *)self.superview imvSelected] setImage:nil];
             [(SproutScrollView *)self.superview imvSelected].url = @"URL";
@@ -120,6 +138,13 @@
         [self.delegate touchEnableScroll:nil moveable:NO];
     }
     
+}
+
+-(void)getImageFromFile : (NSString *)fileName input: (UIImage *)inputImage
+{
+    NSString *path = [self dataPathFile:fileName];    
+    [UIImagePNGRepresentation(inputImage) writeToFile:path atomically:YES];
+    NSLog(@"Saved");
 }
 
 -(void)twoTaps
@@ -150,7 +175,6 @@
     ALAssetsLibrary* library = [[ALAssetsLibrary alloc] init];
     
     __block UIActivityIndicatorView * indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
     indicator.hidesWhenStopped = YES;
     indicator.center = self.center;
     [self addSubview:indicator];
@@ -176,6 +200,24 @@
     [library assetForURL:assetURL resultBlock:result failureBlock:failure];
         
 }
+
+-(UIImage *)loadImageFromFile: (NSString *)fileName
+{
+    UIImage *iFF = [UIImage imageWithContentsOfFile:[self dataPathFile:fileName]];
+    //NSLog(@"%@", [self dataPathFile:fileName]);
+    return iFF;
+}
+
+-(NSString *)dataPathFile:(NSString *)fileName
+{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDirectory, YES);
+    NSString *documentDirectory = [path objectAtIndex:0];
+    
+    NSLog(@"%@", documentDirectory);
+    
+    return [documentDirectory stringByAppendingPathComponent:fileName];
+}
+
 
 
 @end

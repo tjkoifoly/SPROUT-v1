@@ -17,6 +17,8 @@ const CGFloat kScrollObjWidth	= 300.f;
 {
     int currentPoint;
     UIView *viewScroll;
+    BOOL loaded;
+    NSMutableArray *imagesList;
 }
 
 @synthesize listImages;
@@ -66,10 +68,11 @@ const CGFloat kScrollObjWidth	= 300.f;
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
-    
+    loaded = NO;
     self.scrollImages = [self loadScrollView:self.listImages :self.currentObject];
     [self.view addSubview:self.scrollImages];
     self.scrollImages.delegate = self;
+    
 }
 
 -(UIScrollView *)loadScrollView: (NSArray *)list : (id)currentObj
@@ -91,7 +94,12 @@ const CGFloat kScrollObjWidth	= 300.f;
 		UIImage *image = [(DragDropImageView *)[list objectAtIndex:i] image];
         
 		UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * kScrollObjWidth, 0.0f,kScrollObjWidth , kScrollObjHeight)];
-        [imageView setImage:image];
+        /*
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [imageView loadImageFromLibAssetURL:[(DragDropImageView *)[list objectAtIndex:i] url]];
+        });
+        */
+        imageView.image = image;
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
         imageView.backgroundColor = [UIColor clearColor];
 		
@@ -100,7 +108,7 @@ const CGFloat kScrollObjWidth	= 300.f;
 		rect.size.height = kScrollObjHeight;
 		rect.size.width = kScrollObjWidth;
 		imageView.frame = rect;
-		imageView.tag = i;	
+		imageView.tag = 0;	
         // tag our images for later use when we place them in serial fashion
         
 		//[scrollView addSubview:imageView];
@@ -109,6 +117,11 @@ const CGFloat kScrollObjWidth	= 300.f;
 	}
     currentPoint = [list indexOfObject:currentObj];
     
+    if(currentPoint > 0)
+        [((UIImageView *)[[viewScroll subviews] objectAtIndex:(currentPoint -1)]) loadImageFromLibAssetURL:[(DragDropImageView *)[list objectAtIndex:(currentPoint -1)] url]];
+    [((UIImageView *)[[viewScroll subviews] objectAtIndex:currentPoint]) loadImageFromLibAssetURL:[(DragDropImageView *)[list objectAtIndex:currentPoint] url]];
+    if(currentPoint < (list.count -1))
+        [((UIImageView *)[[viewScroll subviews] objectAtIndex:(currentPoint + 1)]) loadImageFromLibAssetURL:[(DragDropImageView *)[list objectAtIndex:(currentPoint+1)] url]];
     [scrollView scrollRectToVisible:CGRectMake(currentPoint  * kScrollObjWidth, 0.0f, kScrollObjWidth, kScrollObjHeight) animated:NO];
     scrollView.delegate = self;
 
@@ -177,6 +190,40 @@ const CGFloat kScrollObjWidth	= 300.f;
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     currentPoint = (int)([scrollView contentOffset].x / kScrollObjWidth);
+    
+    if(currentPoint > 1)
+    {
+        [[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:(currentPoint - 2)]setTag:0];
+        [[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:(currentPoint - 2)]setImage:nil];
+    }
+    
+    if(currentPoint < listImages.count - 2)
+    {
+        [[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:(currentPoint + 2)]setTag:0];
+        [[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:(currentPoint + 2)]setImage:nil];
+    }
+    
+    /*
+    if([[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:currentPoint]tag] == 0)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [(UIImageView *)[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:currentPoint] loadImageFromLibAssetURL:[(DragDropImageView *)[self.listImages objectAtIndex:currentPoint] url]];
+        [[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:currentPoint] setTag:1];
+    });
+    */
+    if(currentPoint > 0)
+        [self loadImageinPoint:(currentPoint -1)];
+    if(currentPoint < listImages.count - 1)
+        [self loadImageinPoint:(currentPoint +1)];
+    
+}
+
+-(void)loadImageinPoint: (NSInteger)point
+{
+    if([[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:point]tag] == 0)
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [(UIImageView *)[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:point] loadImageFromLibAssetURL:[(DragDropImageView *)[self.listImages objectAtIndex:point] url]];
+            [[[[[self.scrollImages subviews] objectAtIndex:0]subviews] objectAtIndex:point] setTag:1];
+        });
 }
 
 @end
