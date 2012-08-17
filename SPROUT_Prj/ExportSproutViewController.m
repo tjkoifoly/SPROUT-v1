@@ -229,6 +229,35 @@
     }
 }
 
+-(void)alertCancel
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail cancelled: you cancelled the operation and no email message was queued." delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    alert = nil;
+}
+-(void)alertSaved
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail saved: you saved the email message in the drafts folder." delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    alert = nil;
+}
+-(void)alertSent
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail send: the email message is queued in the outbox. It is ready to send." delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    alert = nil;
+}
+-(void)alertFailed
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail failed: the email message was not saved or queued, possibly due to an error." delegate:nil cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    alert = nil;
+}
+
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     switch (result)
@@ -236,41 +265,25 @@
         case MFMailComposeResultCancelled:
         {
             NSLog(@"Mail cancelled: you cancelled the operation and no email message was queued.");
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail cancelled: you cancelled the operation and no email message was queued." delegate:nil cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            alert = nil;
+            [self performSelector:@selector(alertCancel) withObject:nil afterDelay:0.1f];
         }
             break;
         case MFMailComposeResultSaved:
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail saved: you saved the email message in the drafts folder." delegate:nil cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            alert = nil;
             
+            [self performSelector:@selector(alertSaved) withObject:nil afterDelay:0.1f];
             NSLog(@"Mail saved: you saved the email message in the drafts folder.");
         }
             break;
         case MFMailComposeResultSent:
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail send: the email message is queued in the outbox. It is ready to send." delegate:nil cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            alert = nil;
-            
+            [self performSelector:@selector(alertSent) withObject:nil afterDelay:0.1f];
             NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send.");
         }
             break;
         case MFMailComposeResultFailed:
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Mail failed: the email message was not saved or queued, possibly due to an error." delegate:nil cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            alert = nil;
-
-            
+            [self performSelector:@selector(alertFailed) withObject:nil afterDelay:0.1f];
             NSLog(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
         }
             break;
