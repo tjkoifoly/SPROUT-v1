@@ -142,6 +142,9 @@
 		E4F6443415CA7BCC00E068AD /* ViewSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6443215CA7BCC00E068AD /* ViewSproutViewController.xib */; };
 		E4F6443D15CA8F7500E068AD /* ExportSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6443B15CA8F7500E068AD /* ExportSproutViewController.m */; };
 		E4F6443E15CA8F7500E068AD /* ExportSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F6443C15CA8F7500E068AD /* ExportSproutViewController.xib */; };
+		E4F65F2915DE028700D236F7 /* ReminderManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F65F2715DE028700D236F7 /* ReminderManagerViewController.m */; };
+		E4F65F2A15DE028700D236F7 /* ReminderManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F65F2815DE028700D236F7 /* ReminderManagerViewController.xib */; };
+		E4F65F3115DE297C00D236F7 /* btnBack.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F65F3015DE297C00D236F7 /* btnBack.png */; };
 		E4F689D315D0F57600837FBD /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F689D215D0F57600837FBD /* icon.png */; };
 /* End PBXBuildFile section */
 
@@ -363,6 +366,10 @@
 		E4F6443A15CA8F7500E068AD /* ExportSproutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportSproutViewController.h; sourceTree = "<group>"; };
 		E4F6443B15CA8F7500E068AD /* ExportSproutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportSproutViewController.m; sourceTree = "<group>"; };
 		E4F6443C15CA8F7500E068AD /* ExportSproutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportSproutViewController.xib; sourceTree = "<group>"; };
+		E4F65F2615DE028700D236F7 /* ReminderManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReminderManagerViewController.h; path = Reminder/ReminderManagerViewController.h; sourceTree = "<group>"; };
+		E4F65F2715DE028700D236F7 /* ReminderManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReminderManagerViewController.m; path = Reminder/ReminderManagerViewController.m; sourceTree = "<group>"; };
+		E4F65F2815DE028700D236F7 /* ReminderManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ReminderManagerViewController.xib; path = Reminder/ReminderManagerViewController.xib; sourceTree = "<group>"; };
+		E4F65F3015DE297C00D236F7 /* btnBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBack.png; sourceTree = "<group>"; };
 		E4F689D215D0F57600837FBD /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -580,6 +587,7 @@
 		E43FAEB215CA0F0E00CF628C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E4F65F3015DE297C00D236F7 /* btnBack.png */,
 				E4D8B6F415D8B76600FFF447 /* status.png */,
 				E4E5809715D3B27200EA9D54 /* slider1.png */,
 				E4E5809815D3B27200EA9D54 /* slider2.png */,
@@ -680,6 +688,9 @@
 				E47AA0C615CBACC000544164 /* ReminderViewController.h */,
 				E47AA0C715CBACC000544164 /* ReminderViewController.m */,
 				E47AA0C815CBACC000544164 /* ReminderViewController.xib */,
+				E4F65F2615DE028700D236F7 /* ReminderManagerViewController.h */,
+				E4F65F2715DE028700D236F7 /* ReminderManagerViewController.m */,
+				E4F65F2815DE028700D236F7 /* ReminderManagerViewController.xib */,
 			);
 			name = Reminder;
 			sourceTree = "<group>";
@@ -1059,6 +1070,8 @@
 				E480D6FD15DB42F100D801D3 /* jQueryInject.txt in Resources */,
 				E480D6FE15DB42F100D801D3 /* jQueryInjectLandscape.txt in Resources */,
 				E480D71015DB42F100D801D3 /* twitter_load.png in Resources */,
+				E4F65F2A15DE028700D236F7 /* ReminderManagerViewController.xib in Resources */,
+				E4F65F3115DE297C00D236F7 /* btnBack.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,6 +1169,7 @@
 				E480D70F15DB42F100D801D3 /* SA_OAuthTwitterEngine.m in Sources */,
 				E42A159F15DB9E3A008C2B58 /* HTTPRequest.m in Sources */,
 				E4BC9BB615DCD1D500A10645 /* UIImageView+loadImage.m in Sources */,
+				E4F65F2915DE028700D236F7 /* ReminderManagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

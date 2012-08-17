@@ -7,6 +7,7 @@
 //
 
 #import "ReminderViewController.h"
+#import "ReminderManagerViewController.h"
 
 @implementation ReminderViewController
 
@@ -55,10 +56,10 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.datePicker = nil;
-    self.alertLocation = nil;
-    self.alertDescription = nil;
-    self.alertSegmentControl = nil;
+    self.datePicker             = nil;
+    self.alertLocation          = nil;
+    self.alertDescription       = nil;
+    self.alertSegmentControl    = nil;
     self.durationSegmentControl = nil;
 }
 
@@ -77,6 +78,13 @@
 -(IBAction)addReminder:(id)sender
 {
     
+}
+
+-(IBAction)showListReminder:(id)sender
+{
+    ReminderManagerViewController *reminderManager = [[ReminderManagerViewController alloc] initWithNibName:@"ReminderManagerViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:reminderManager animated:YES];
 }
 
 -(IBAction)selectAlertInfo:(id)sender
@@ -150,16 +158,17 @@
     
     
     [localNotification setAlertAction:@"Launch"];
-    
-    [localNotification setAlertBody:[NSString stringWithFormat:@"%@ - Loaction: %@",[alertDescription text], [alertLocation text]]];
+    [localNotification setAlertBody:[NSString stringWithFormat:@"%@\nLoaction: %@",[alertDescription text], [alertLocation text]]];
     localNotification.soundName = UILocalNotificationDefaultSoundName;
-    
     [localNotification setHasAction:YES];
+    localNotification.repeatInterval = NSMinuteCalendarUnit;
     
     [localNotification setApplicationIconBadgeNumber:[[UIApplication sharedApplication] applicationIconBadgeNumber] +1 ];
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Added a reminder succeed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
     NSLog(@"Added a reminder succeed.");
 }
 

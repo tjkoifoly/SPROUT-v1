@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *alertLocation;
 @property (strong, nonatomic) IBOutlet  UISegmentedControl *alertSegmentControl;
 @property (strong, nonatomic) IBOutlet  UISegmentedControl *durationSegmentControl;
+
 @property (nonatomic, assign) NSInteger alertTime;
 @property (nonatomic, assign) NSInteger duration;
 
@@ -23,6 +24,7 @@
 -(IBAction)selectAlertInfo:(id)sender;
 -(IBAction)addNotification:(id)sender;
 -(IBAction)dissmissKeyboard:(id)sender;
+-(IBAction)showListReminder:(id)sender;
 
 
 @end
