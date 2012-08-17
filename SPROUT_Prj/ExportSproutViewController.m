@@ -109,10 +109,15 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"SAVED");
-    imageToSave = [self imageCaptureSave:tempView];
-    tempView = nil;
-    [tView removeFromSuperview];
+    if(saved == NO)
+    {
+        imageToSave = [self imageCaptureSave:tempView];
+        tempView = nil;
+        saved = YES;
+        NSLog(@"SAVED.");
+        [tView removeFromSuperview];
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -125,7 +130,6 @@
     NSLog(@"LOADING...");
         
     //Render sprout to image
-    
     saved = NO;
 }
 
@@ -276,6 +280,7 @@
     }
     
     // Remove the mail view
+    controller.delegate = nil;
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -325,7 +330,6 @@
 
 -(IBAction)saveAsImage:(id)sender
 {
-    saved = YES;
     //imageToSave = [self imageCaptureSave:tempView];
     
     self.emailButton.hidden = YES;
