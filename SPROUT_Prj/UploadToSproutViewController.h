@@ -20,5 +20,6 @@
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)createNewSprout:(id)sender;
+-(NSString *)dataPathFile:(NSString *)fileName;
 
 @end

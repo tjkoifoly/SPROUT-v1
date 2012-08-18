@@ -49,7 +49,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    listSprout = [Sprout loadAllSprout];
+    listSprout = [[NSMutableArray alloc] initWithArray:[Sprout loadAllSprout]];
     [table reloadData];
 }
 
@@ -113,36 +113,52 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id sproutObject = [listSprout objectAtIndex:indexPath.row];
+    //Remove all temp image
+    int size = [[sproutObject valueForKey:@"rowSize"] intValue]*[[sproutObject valueForKey:@"colSize"] intValue];
+    int i;
+    NSString *fileName = nil;
+    NSString *sName = [sproutObject valueForKey:@"name"];
+    NSFileManager *filemgr;
+    
+    filemgr = [NSFileManager defaultManager];
+    for(i = 0; i< size; i++)
+    {
+        fileName = [NSString stringWithFormat:@"%@-atTag-%i",sName, i];
+        if ([filemgr removeItemAtPath: [self dataPathFile:fileName] error: NULL]  == YES)
+            NSLog (@"Remove successful");
+    }
+    //Remove image Object in sprout from database
+    NSSet *imageSet = [sproutObject valueForKey:@"sproutToImages"];
+    NSArray *imgArray = [imageSet allObjects];
+    for(id imgObj in imgArray)
+    {
+        [Sprout deleteObject:imgObj];
+    }
+    
+    //Remove sprout from database
+    [listSprout removeObject:sproutObject];
+    [Sprout deleteObject:sproutObject];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+-(NSString *)dataPathFile:(NSString *)fileName
+{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDirectory, YES);
+    NSString *documentDirectory = [path objectAtIndex:0];
+    
+    NSLog(@"%@", documentDirectory);
+    
+    return [documentDirectory stringByAppendingPathComponent:fileName];
+}
+
+
 -(void) buttonPressed :(id)sender
 {
     UIButton *button = (UIButton *)sender;
     NSInteger tag = button.tag;
-    
-    switch (tag) {
-        case 0:
-            NSLog(@"%i", tag);
-            break;
-        case 1:
-            NSLog(@"%i", tag);
-            break;
-        case 2:
-            NSLog(@"%i", tag);
-            break;
-        case 3:
-            NSLog(@"%i", tag);
-            break;
-
-        case 4:
-            NSLog(@"%i", tag);
-            break;
-            
-        case 5:
-            NSLog(@"%i", tag);
-            break;
-            
-        default:
-            break;
-    }
     
     SaveSproutViewController *displaySproutViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
     id s = [self.listSprout objectAtIndex:tag];

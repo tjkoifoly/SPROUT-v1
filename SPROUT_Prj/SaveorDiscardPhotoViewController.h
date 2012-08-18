@@ -19,10 +19,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageViewBack;
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSString *urlImage;
+@property (nonatomic) BOOL fromLib;
 
 -(IBAction)save:(id)sender;
 -(IBAction)discard:(id)sender;
 -(IBAction)goToHome:(id)sender;
 - (UIImage *)imageByCropping:(UIImage *)imageToCrop toRect:(CGRect)rect;
+-(UIImage *)imageCaptureSave: (UIView *)viewInput;
 
 @end

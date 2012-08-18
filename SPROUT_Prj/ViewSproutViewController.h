@@ -11,7 +11,8 @@
 @interface ViewSproutViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
-@property (strong, nonatomic) NSArray *listSprout;
+@property (strong, nonatomic) NSMutableArray *listSprout;
 -(IBAction)goToHome:(id)sender;
+-(NSString *)dataPathFile:(NSString *)fileName;
 
 @end

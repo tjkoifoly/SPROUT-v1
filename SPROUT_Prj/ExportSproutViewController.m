@@ -23,8 +23,9 @@
 {
     UIImage *imageToSave;
     __block UIView *tempView;
-    BOOL saved;
     __block UIView *tView;
+    __block UIView *tempViewPost;
+    BOOL saved;
 }
 
 @synthesize sproutToImage;
@@ -120,6 +121,21 @@
     
 }
 
+-(void)applicationWillResignActive
+{
+    if(tempViewPost != nil)
+    {
+        [tempViewPost removeFromSuperview];
+        tempViewPost = nil;
+        NSLog(@"QUIT FROM POST");
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -128,9 +144,10 @@
     });
    
     NSLog(@"LOADING...");
-        
     //Render sprout to image
     saved = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive)
+                                                 name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
 }
 
 -(void)saveToLibrary: (UIImage *)imageForSave
@@ -391,10 +408,9 @@
     //POST ON FACEBOOK
     else if(shareButton.tag == 2)
     {
-        
-        __block UIView *tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
+        tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
         tempViewPost.backgroundColor = [UIColor blackColor];
-        tempViewPost.alpha = 0.5f;
+        tempViewPost.alpha = 0.8f;
         __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         indicator.center = tempViewPost.center;
         //indicator.color = [UIColor blackColor];
@@ -416,14 +432,19 @@
                                         NSLog(@"%@", my.first_name);
                                         UIImage *imgToPost = postImage;
                                         FBRequest *photoUploadRequest = [FBRequest requestForUploadPhoto:imgToPost];
-                                        
-                                        [photoUploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {        
+                                        [photoUploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                                             if(error == nil)
                                             {
                                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Sprout was posted on your facebok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                                 [alert show];
-                                                
-                                                [indicator stopAnimating];
+                                            }else
+                                            {
+                                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Please check again network connection." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                                [alert show];
+                                            }
+                                            if(tempViewPost != nil)
+                                            {
+                                                //[indicator stopAnimating];
                                                 [tempViewPost removeFromSuperview];
                                                 tempViewPost = nil;
                                             }

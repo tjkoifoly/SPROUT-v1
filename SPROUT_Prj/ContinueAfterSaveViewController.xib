@@ -232,7 +232,7 @@
 					<object class="IBUIImageView" id="960892471">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{232, 20}, {68, 76}}</string>
+						<string key="NSFrame">{{220, 20}, {80, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="673208946"/>
@@ -441,12 +441,17 @@
 					<string key="className">ContinueAfterSaveViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="dispatchButtonPushed:">id</string>
 						<string key="edit:">id</string>
 						<string key="goToHome:">id</string>
 						<string key="postToSocialNetwork:">id</string>
 						<string key="uploadToSprout:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="dispatchButtonPushed:">
+							<string key="name">dispatchButtonPushed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="edit:">
 							<string key="name">edit:</string>
 							<string key="candidateClassName">id</string>

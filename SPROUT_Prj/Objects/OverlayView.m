@@ -14,6 +14,8 @@
 @synthesize buttonLib;
 @synthesize buttonHome;
 @synthesize delegate;
+@synthesize switchButtonCamrera;
+@synthesize turnFlash;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -65,6 +67,22 @@
     UIButton * button = (UIButton *)sender;
     
     [self.delegate overlayButtonPressed:self withTag:button.tag];
+}
+
+-(IBAction)turnFlashAction:(id)sender
+{
+    UISwitch *btnSwt = (UISwitch *)sender;
+    if([btnSwt isOn])
+        [self.delegate turnFlash:self withState:YES];
+    else
+    {
+        [self.delegate turnFlash:self withState:NO];
+    }
+}
+
+-(IBAction)switchCameraType:(id)sender
+{
+    [self.delegate switchCamera:self];
 }
 
 @end

@@ -259,7 +259,7 @@
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDirectory, YES);
     NSString *documentDirectory = [path objectAtIndex:0];
     
-    NSLog(@"%@", documentDirectory);
+    //NSLog(@"%@", documentDirectory);
     
     return [documentDirectory stringByAppendingPathComponent:fileName];
 }

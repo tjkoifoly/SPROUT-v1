@@ -149,6 +149,46 @@
     [self.navigationController pushViewController:newSrpoutController animated:YES];
 }
 
+-(NSString *)dataPathFile:(NSString *)fileName
+{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDirectory, YES);
+    NSString *documentDirectory = [path objectAtIndex:0];
+    
+    NSLog(@"%@", documentDirectory);
+    
+    return [documentDirectory stringByAppendingPathComponent:fileName];
+}
+
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id sproutObject = [listSprout objectAtIndex:indexPath.row];
+    //Remove all temp image
+    int size = [[sproutObject valueForKey:@"rowSize"] intValue]*[[sproutObject valueForKey:@"colSize"] intValue];
+    int i;
+    NSString *fileName = nil;
+    NSString *sName = [sproutObject valueForKey:@"name"];
+    NSFileManager *filemgr;
+    
+    filemgr = [NSFileManager defaultManager];
+    for(i = 0; i< size; i++)
+    {
+        fileName = [NSString stringWithFormat:@"%@-atTag-%i",sName, i];
+        if ([filemgr removeItemAtPath: [self dataPathFile:fileName] error: NULL]  == YES)
+            NSLog (@"Remove successful");
+    }
+    //Remove image Object in sprout from database
+    NSSet *imageSet = [sproutObject valueForKey:@"sproutToImages"];
+    NSArray *imgArray = [imageSet allObjects];
+    for(id imgObj in imgArray)
+    {
+        [Sprout deleteObject:imgObj];
+    }
+    
+    //Remove sprout from database
+    [listSprout removeObject:sproutObject];
+    [Sprout deleteObject:sproutObject];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
 
 

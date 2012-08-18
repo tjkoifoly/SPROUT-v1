@@ -10,11 +10,15 @@
 #import "ContinueAfterSaveViewController.h"
 
 @implementation SaveorDiscardPhotoViewController
+{
+    UIScrollView *scrollImage;
+}
 
 @synthesize image;
 @synthesize imageView;
 @synthesize urlImage ;
 @synthesize imageViewBack;
+@synthesize fromLib;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,28 +55,56 @@
 {
     [super viewDidLoad];
     
-    self.imageViewBack.image = self.image;
+    if(fromLib == NO)
+    {
+        self.imageViewBack.image = self.image;
     
-    CGSize viewSize = self.imageViewBack.bounds.size;
+        CGSize viewSize = self.imageViewBack.bounds.size;
+        UIGraphicsBeginImageContextWithOptions(viewSize, NO, 1.0);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [self.imageViewBack.layer renderInContext:context];
+        UIImage *imageX = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    
+        CGFloat x = self.imageView.frame.origin.x;
+        CGFloat y = self.imageView.frame.origin.y;
+        CGFloat width = self.imageView.frame.size.width;
+        CGFloat height = self.imageView.frame.size.height;
+    
+        CGImageRef cropOfImage = CGImageCreateWithImageInRect(imageX.CGImage, CGRectMake(x, y, width, height));
+    
+        UIImage *croppedImage = [UIImage imageWithCGImage:cropOfImage];
+        //imageView.image = croppedImage;
+        self.image = croppedImage;
+        //self.imageView.image = self.image;
+    }else
+    {
+        scrollImage = [[UIScrollView alloc] initWithFrame:self.imageView.frame];
+        [scrollImage setScrollEnabled:YES];
+        //[scrollImage setContentSize:self.image.size];
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:self.image];
+        [imgView setFrame:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
+        
+        
+        [scrollImage setContentSize:imgView.frame.size];
+        [scrollImage setShowsHorizontalScrollIndicator:NO];
+        [scrollImage setShowsVerticalScrollIndicator:NO];
+
+        [scrollImage addSubview:imgView];
+        [self.view addSubview:scrollImage];
+    }
+   
+}
+
+-(UIImage *)imageCaptureSave: (UIView *)viewInput
+{
+    CGSize viewSize = viewInput.bounds.size;
     UIGraphicsBeginImageContextWithOptions(viewSize, NO, 1.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [self.imageViewBack.layer renderInContext:context];
+    [viewInput.layer renderInContext:context];
     UIImage *imageX = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    CGFloat x = self.imageView.frame.origin.x;
-    CGFloat y = self.imageView.frame.origin.y;
-    CGFloat width = self.imageView.frame.size.width;
-    CGFloat height = self.imageView.frame.size.height;
-    
-    CGImageRef cropOfImage = CGImageCreateWithImageInRect(imageX.CGImage, CGRectMake(x, y, width, height));
-    
-    UIImage *croppedImage = [UIImage imageWithCGImage:cropOfImage];
-    //imageView.image = croppedImage;
-    self.image = croppedImage;
-     
-    //self.imageView.image = self.image;
-   
+    return imageX;
 }
 
 - (void)viewDidUnLoad
@@ -95,9 +127,22 @@
 #pragma IBAction
 -(IBAction)save:(id)sender
 {
+    if(fromLib)
+    {
+        UIImage *viewImage = [self imageCaptureSave:self.view];
+        CGFloat x = self.imageView.frame.origin.x;
+        CGFloat y = self.imageView.frame.origin.y;
+        CGFloat width = self.imageView.frame.size.width;
+        CGFloat height = self.imageView.frame.size.height;
+        
+        CGImageRef cropOfImage = CGImageCreateWithImageInRect(viewImage.CGImage, CGRectMake(x, y, width, height));
+        
+        UIImage *croppedImage = [UIImage imageWithCGImage:cropOfImage];
+        //imageView.image = croppedImage;
+        self.image = croppedImage;
+    }
     
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc]init];
-    
     __block NSString *urlString;
     
     [library writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error )
@@ -120,7 +165,6 @@
               NSLog(@"Error loading asset");
           }];
      }];
-    
 }
 
 

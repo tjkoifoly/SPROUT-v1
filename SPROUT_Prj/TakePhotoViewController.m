@@ -92,10 +92,7 @@
         {
             overlay.hidden = NO;
         }
-        
-        
         [self.view addSubview:self.pickerImage.view];
-        
     }
     
 }
@@ -149,6 +146,36 @@
     }
 }
 
+-(void)switchCamera:(OverlayView *)oView
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        if (pickerImage.cameraDevice == UIImagePickerControllerCameraDeviceRear) {
+            pickerImage.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+            
+        }
+        else {
+            pickerImage.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+            
+        }
+    }
+}
+
+-(void)turnFlash:(OverlayView *)oView withState:(BOOL)state
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        if(state)
+        {
+            self.pickerImage.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+        }else
+        {
+            self.pickerImage.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        }
+        
+    }
+}
+
 #pragma PickerImage delegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) picker 
@@ -192,6 +219,13 @@
         
         [self.navigationController pushViewController:continueViewController animated:YES];
         [self dismissModalViewControllerAnimated:NO];
+        /*
+        SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
+        saveViewController.image = image;
+        saveViewController.fromLib = YES;
+        
+        [self.navigationController pushViewController:saveViewController animated:YES];
+         */
     }
     
     

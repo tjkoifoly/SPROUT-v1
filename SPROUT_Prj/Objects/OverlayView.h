@@ -12,6 +12,8 @@
 @protocol OverlayViewDelegate <NSObject>
 
 -(void)overlayButtonPressed: (OverlayView *) view withTag: (NSInteger)buttonTag;
+-(void)switchCamera: (OverlayView *)oView;
+-(void)turnFlash: (OverlayView*)oView withState:(BOOL) state;
 
 @end
 
@@ -21,7 +23,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *buttonHome;
 @property (strong, nonatomic) IBOutlet UIButton *buttonLib;
 @property (strong, nonatomic) IBOutlet UIButton *buttonCap;
-
+@property (strong, nonatomic) IBOutlet UIButton *switchButtonCamrera;
+@property (strong, nonatomic) IBOutlet UISwitch *turnFlash;
+ 
 -(IBAction)buttonPressed:(id)sender;
+-(IBAction)turnFlashAction:(id)sender;
+-(IBAction)switchCameraType:(id)sender;
 
 @end

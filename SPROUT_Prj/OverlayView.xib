@@ -11,9 +11,10 @@
 			<string key="NS.object.0">933</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBProxyObject</string>
-			<string>IBUIView</string>
 			<string>IBUIButton</string>
+			<string>IBUISwitch</string>
+			<string>IBUIView</string>
+			<string>IBProxyObject</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -81,7 +82,7 @@
 						<string key="NSFrame">{{124, 365}, {72, 75}}</string>
 						<reference key="NSSuperview" ref="1052835258"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="62102504"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">3</int>
@@ -108,7 +109,7 @@
 						<string key="NSFrame">{{228, 27}, {72, 75}}</string>
 						<reference key="NSSuperview" ref="1052835258"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="655065616"/>
+						<reference key="NSNextKeyView" ref="453783021"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2</int>
@@ -129,11 +130,47 @@
 						<reference key="IBUIFontDescription" ref="502281185"/>
 						<reference key="IBUIFont" ref="267420117"/>
 					</object>
+					<object class="IBUIButton" id="62102504">
+						<reference key="NSNextResponder" ref="1052835258"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{228, 403}, {73, 37}}</string>
+						<reference key="NSSuperview" ref="1052835258"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<string key="NSReuseIdentifierKey">_NS:225</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">Switch</string>
+						<reference key="IBUIHighlightedTitleColor" ref="708674318"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="474141943"/>
+						<reference key="IBUIFontDescription" ref="502281185"/>
+						<reference key="IBUIFont" ref="267420117"/>
+					</object>
+					<object class="IBUISwitch" id="453783021">
+						<reference key="NSNextResponder" ref="1052835258"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{5, 413}, {94, 27}}</string>
+						<reference key="NSSuperview" ref="1052835258"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="655065616"/>
+						<string key="NSReuseIdentifierKey">_NS:606</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+					</object>
 				</array>
 				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="181373828"/>
 				<string key="NSReuseIdentifierKey">_NS:196</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -172,6 +209,22 @@
 					<int key="connectionID">18</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">switchButtonCamrera</string>
+						<reference key="source" ref="1052835258"/>
+						<reference key="destination" ref="62102504"/>
+					</object>
+					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">turnFlash</string>
+						<reference key="source" ref="1052835258"/>
+						<reference key="destination" ref="453783021"/>
+					</object>
+					<int key="connectionID">26</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">buttonPressed:</string>
 						<reference key="source" ref="181373828"/>
@@ -197,6 +250,24 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">20</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">switchCameraType:</string>
+						<reference key="source" ref="62102504"/>
+						<reference key="destination" ref="1052835258"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">27</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">turnFlashAction:</string>
+						<reference key="source" ref="453783021"/>
+						<reference key="destination" ref="1052835258"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">28</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -225,6 +296,8 @@
 							<reference ref="164540942"/>
 							<reference ref="655065616"/>
 							<reference ref="181373828"/>
+							<reference ref="62102504"/>
+							<reference ref="453783021"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -243,6 +316,16 @@
 						<reference key="object" ref="164540942"/>
 						<reference key="parent" ref="1052835258"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">23</int>
+						<reference key="object" ref="62102504"/>
+						<reference key="parent" ref="1052835258"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">24</int>
+						<reference key="object" ref="453783021"/>
+						<reference key="parent" ref="1052835258"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -254,33 +337,45 @@
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">28</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">OverlayView</string>
 					<string key="superclassName">UIView</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">buttonPressed:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">buttonPressed:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="buttonPressed:">id</string>
+						<string key="switchCameraType:">id</string>
+						<string key="turnFlashAction:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="buttonPressed:">
 							<string key="name">buttonPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="switchCameraType:">
+							<string key="name">switchCameraType:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="turnFlashAction:">
+							<string key="name">turnFlashAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="buttonCap">UIButton</string>
 						<string key="buttonHome">UIButton</string>
 						<string key="buttonLib">UIButton</string>
+						<string key="switchButtonCamrera">UIButton</string>
+						<string key="turnFlash">UISwitch</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="buttonCap">
@@ -294,6 +389,14 @@
 						<object class="IBToOneOutletInfo" key="buttonLib">
 							<string key="name">buttonLib</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="switchButtonCamrera">
+							<string key="name">switchButtonCamrera</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="turnFlash">
+							<string key="name">turnFlash</string>
+							<string key="candidateClassName">UISwitch</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

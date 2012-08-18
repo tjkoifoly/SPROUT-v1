@@ -22,6 +22,7 @@
 {
     BOOL logged;
     SA_OAuthTwitterEngine *_engine;
+    __block UIView *tempView;
 }
 
 @synthesize imageInput;
@@ -51,6 +52,18 @@
 {
     [super viewDidLoad];
     viewImage.image = imageInput;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive)
+                                                 name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
+}
+
+-(void)applicationWillResignActive
+{
+    if(tempView != nil)
+    {
+        [tempView removeFromSuperview];
+        tempView = nil;
+        NSLog(@"QUIT FROM POST");
+    }
 }
 
 - (void)viewDidUnload
@@ -59,7 +72,8 @@
     self.imageInput     = nil;
     self.viewImage      = nil;
     self.urlImage       = nil;
-    _engine = nil;
+    _engine             = nil;
+    tempView            = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -237,7 +251,7 @@
     //POST ON FACEBOOK
     else if(shareButton.tag == 2)
     {
-        __block UIView *tempView = [[UIView alloc] initWithFrame:self.view.frame];
+        tempView = [[UIView alloc] initWithFrame:self.view.frame];
         tempView.backgroundColor = [UIColor blackColor];
         tempView.alpha = 0.5f;
         __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -270,9 +284,12 @@
                                                 [alert show];
                                             }
                                             
-                                            [indicator stopAnimating];
-                                            [tempView removeFromSuperview];
-                                            tempView = nil;
+                                            if(tempView != nil)
+                                            {
+                                                [indicator stopAnimating];
+                                                [tempView removeFromSuperview];
+                                                tempView = nil;
+                                            }
                                             
                                         }];
 
