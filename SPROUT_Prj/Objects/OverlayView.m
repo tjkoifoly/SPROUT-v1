@@ -62,6 +62,12 @@
 }
 */
 
+-(void)loadView
+{
+    BOOL onFlash = [turnFlash isOn];
+    [self.delegate turnFlash:self withState:onFlash];
+}
+
 -(IBAction)buttonPressed:(id)sender
 {
     UIButton * button = (UIButton *)sender;

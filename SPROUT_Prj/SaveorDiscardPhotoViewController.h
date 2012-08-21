@@ -13,7 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@interface SaveorDiscardPhotoViewController : UIViewController
+@interface SaveorDiscardPhotoViewController : UIViewController<UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIImageView *imageViewBack;

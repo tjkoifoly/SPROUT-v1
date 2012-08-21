@@ -12,22 +12,23 @@
 #import <Twitter/Twitter.h>
 #import <FacebookSDK/FacebookSDK.h> 
 #import "SA_OAuthTwitterEngine.h"
-
-#define kOAuthConsumerKey        @"sm1Qgf3RlbCtsC4GgLZw"         //REPLACE With Twitter App OAuth Key    
-#define kOAuthConsumerSecret    @"S9ghHLlgPLAJ4dN2bAKyAqR2pF58FrygQUxhSKEieI"     //REPLACE With Twitter App OAuth Secret  
-#define TWITPIC_API_KEY @"aafcc77fdeabf72e2839bf746040a06f"
+//#define kOAuthConsumerKey        @"38Sta1K1CLYsGrIZ8Vhxw"         //REPLACE With Twitter App OAuth Key    
+//#define kOAuthConsumerSecret    @"3PFrnOPxcU0t1lpNQfTAkmlEp18sHw9divmAnz2zyPo"     //REPLACE With Twitter App OAuth Secret  
+#define TWITPIC_API_KEY @"ee5b53769c6055e2a9cd022c3d9e6f4c"
 #define TWITPIC_API_FORMAT @"json"
 
 @implementation ContinueAfterSaveViewController
 {
     BOOL logged;
     SA_OAuthTwitterEngine *_engine;
+    GSTwitPicEngine *twitpicEngine;
     __block UIView *tempView;
 }
 
 @synthesize imageInput;
 @synthesize viewImage;
 @synthesize urlImage;
+@synthesize imageLinks;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,8 +53,10 @@
 {
     [super viewDidLoad];
     viewImage.image = imageInput;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive)
                                                  name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
+     
 }
 
 -(void)applicationWillResignActive
@@ -64,6 +67,7 @@
         tempView = nil;
         NSLog(@"QUIT FROM POST");
     }
+  
 }
 
 - (void)viewDidUnload
@@ -74,6 +78,8 @@
     self.urlImage       = nil;
     _engine             = nil;
     tempView            = nil;
+    self.imageLinks     = nil;
+    twitpicEngine       = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -83,25 +89,23 @@
 
 -(void)postTwitteriOS4
 {
-    if(!_engine){  
-        _engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate:self];  
-        _engine.consumerKey    = kOAuthConsumerKey;  
-        _engine.consumerSecret = kOAuthConsumerSecret;    
-    }  
+    twitpicEngine = (GSTwitPicEngine *)[GSTwitPicEngine twitpicEngineWithDelegate:self];      
+    if (_engine == nil) {
+        _engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate:self];
+        _engine.consumerKey = TWITTER_OAUTH_CONSUMER_KEY;
+        _engine.consumerSecret = TWITTER_OAUTH_CONSUMER_SECRET;        
+    }
+    //[_engine clearAccessToken];
     if(![_engine isAuthorized]){  
         UIViewController *controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine:_engine delegate:self];  
-        
-        if (controller){  
-            [self presentModalViewController: controller animated: YES];  
-        }
+        [_engine requestAccessToken];
+        [self presentModalViewController:controller animated:YES];  
     }  else
     {
-        //[_engine sendUpdate:@"OK DCM VCL"];
+        [twitpicEngine setAccessToken:[_engine getAccessToken]];
+        [twitpicEngine uploadPicture:self.imageInput withMessage:@"Post from my iPhone"];
+        NSLog(@"POST");
     }
-    
-    //[self dispatchButtonPushed:nil];
-    NSLog(@"POST");
-    
 }
 
 - (NSData*)encodeDictionary:(NSDictionary*)dictionary {
@@ -116,69 +120,50 @@
     return [encodedDictionary dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (IBAction)dispatchButtonPushed:(id)sender {
-    
-    NSURL *url = [NSURL URLWithString:@"http://www.apple.com/"];
-    //NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitpic.com/1/upload.%@", TWITPIC_API_FORMAT]];
-    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:@"user", @"username", 
-                              @"password", @"password", nil];
-    NSData *postData = [self encodeDictionary:postDict];
-    
-    // Create teh requyest
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:[NSString stringWithFormat:@"%d", postData.length] forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // Peform the request
-        NSURLResponse *response;
-        NSError *error = nil;
-        NSData *receivedData = [NSURLConnection sendSynchronousRequest:request  
-                                                     returningResponse:&response
-                                                                 error:&error];    
-        if (error) {
-            // Deal with your error
-            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-                NSLog(@"HTTP Error: %d %@", httpResponse.statusCode, error);
-                return;
-            }
-            NSLog(@"Error %@", error);
-            return;
-        }
-        
-        NSString *responeString = [[NSString alloc] initWithData:receivedData
-                                                        encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", responeString);
-        // Assume lowercase 
-        if ([responeString isEqualToString:@"true"]) {
-            // Deal with true
-            return;
-        }    
-        // Deal with an error
-    }); 
-}
 
-
-#pragma mark SA_OAuthTwitterEngineDelegate  
-- (void) storeCachedTwitterOAuthData: (NSString *) data forUsername: (NSString *) username {  
-    NSUserDefaults          *defaults = [NSUserDefaults standardUserDefaults];  
-    
-    [defaults setObject: data forKey: @"authData"];  
-    [defaults synchronize];  
-}  
-
-- (NSString *) cachedTwitterOAuthDataForUsername: (NSString *) username { 
-    //NSLog(@"%@", username);
-    return [[NSUserDefaults standardUserDefaults] objectForKey: @"authData"];  
-}  
+#pragma mark SA_OAuthTwitterEngineDelegate    
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void) OAuthTwitterController: (SA_OAuthTwitterController *) controller authenticatedWithUsername: (NSString *) username {
+	NSLog(@"Authenicated for %@", username);
+    
+    [twitpicEngine setAccessToken:[_engine getAccessToken]];
+    [twitpicEngine uploadPicture:self.imageInput withMessage:@"Post from my iPhone"];
+}
+
+- (void) OAuthTwitterControllerFailed: (SA_OAuthTwitterController *) controller {
+    if(tempView != nil)
+    {
+        [tempView removeFromSuperview];
+        tempView = nil;
+    }
+	NSLog(@"Authentication Failed!");
+}
+
+- (void) OAuthTwitterControllerCanceled: (SA_OAuthTwitterController *) controller {
+    if(tempView != nil)
+    {
+        [tempView removeFromSuperview];
+        tempView = nil;
+    }
+	NSLog(@"Authentication Canceled.");
+}
+
+- (void) storeCachedTwitterOAuthData: (NSString *) data forUsername: (NSString *) username {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:data forKey: @"authData"];
+	[defaults synchronize];
+    NSLog(@"Data: %@",data);
+}
+
+- (NSString *) cachedTwitterOAuthDataForUsername: (NSString *) username {
+    NSLog(@"Data: %@",[[NSUserDefaults standardUserDefaults] objectForKey: @"authData"]);
+	return [[NSUserDefaults standardUserDefaults] objectForKey: @"authData"];
 }
 
 #pragma mark TwitterEngineDelegate  
@@ -189,6 +174,54 @@
 - (void) requestFailed: (NSString *) requestIdentifier withError: (NSError *) error {  
     NSLog(@"Request %@ failed with error: %@", requestIdentifier, error);  
 } 
+
+#pragma mark -
+#pragma mark - GSTwitPicEngineDelegate
+- (void)twitpicDidFinishUpload:(NSDictionary *)response {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Photo was posted on your twitter." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    if(tempView != nil)
+    {
+        [tempView removeFromSuperview];
+        tempView = nil;
+    }
+    NSLog(@"TwitPic finished uploading: %@", response);
+    
+    // [response objectForKey:@"parsedResponse"] gives an NSDictionary of the response one of the parsing libraries was available.
+    // Otherwise, use [[response objectForKey:@"request"] objectForKey:@"responseString"] to parse yourself.
+    
+    //    if ([[[response objectForKey:@"request"] userInfo] objectForKey:@"message"] > 0 && [[response objectForKey:@"parsedResponse"] count] > 0) {
+    // Uncomment to update status upon successful upload, using MGTwitterEngine's instance.
+    //        [twitterEngine sendUpdate:[NSString stringWithFormat:@"%@ %@", [[[response objectForKey:@"request"] userInfo] objectForKey:@"message"], [[response objectForKey:@"parsedResponse"] objectForKey:@"url"]]];
+    //    }
+    NSDictionary *parsedResponse = [response objectForKey:@"parsedResponse"];
+    NSString *imageLink = [parsedResponse objectForKey:@"url"];
+//    [imageLinks addObject:imageLink];
+//    if (imageLinks.count == 1) {
+//        NSString *links = [NSString stringWithFormat:@"%@", [imageLinks objectAtIndex:0]];
+//        NSLog(@"links: %@", links);
+        NSString *update = [NSString stringWithFormat:@"Images: %@", imageLink];
+        [_engine sendUpdate:update];
+        
+        
+//    }
+}
+
+- (void)twitpicDidFailUpload:(NSDictionary *)error {
+    
+    if(tempView != nil)
+    {
+        [tempView removeFromSuperview];
+        tempView = nil;
+    }
+    NSLog(@"TwitPic failed to upload: %@", error);
+    
+    if ([[error objectForKey:@"request"] responseStatusCode] == 401) {
+        //        UIAlertViewQuick(@"Authentication failed", [error objectForKey:@"errorDescription"], @"OK");
+    }    
+}
+
 
 #pragma IBAction
 
@@ -242,6 +275,17 @@
         {
             [self postTwitter:self.imageInput];
         }else{
+            tempView = [[UIView alloc] initWithFrame:self.view.frame];
+            tempView.backgroundColor = [UIColor blackColor];
+            tempView.alpha = 0.5f;
+            __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            indicator.center = tempView.center;
+            //indicator.color = [UIColor blackColor];
+            indicator.hidesWhenStopped = YES;
+            [tempView addSubview:indicator];
+            [indicator startAnimating];
+            [self.view addSubview:tempView];
+            
             [self postTwitteriOS4];
             //[_engine sendUpdate:@"FOLY"];
         }
@@ -280,7 +324,7 @@
                                         [photoUploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {        
                                             if(error == nil)
                                             {
-                                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Image was posted on your facebok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Photo was posted on your facebok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                                 [alert show];
                                             }
                                             

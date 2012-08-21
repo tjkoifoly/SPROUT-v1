@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Sprout.h"
 
-@interface UploadToSproutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface UploadToSproutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 @property (strong, nonatomic) UIImage *imageInput;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;

@@ -7,12 +7,15 @@
 //
 
 #import "ReminderManagerViewController.h"
+#import "ReminderDetail.h"
+#import "Sprout.h"
 
 @implementation ReminderManagerViewController
 
 @synthesize table;
 @synthesize listNotifications;
 @synthesize editButton;
+@synthesize listReminders;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,18 +36,6 @@
 
 #pragma mark - View lifecycle
 
--(IBAction)deleteAll:(id)sender
-{
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    [self reloadTable];
-}
-
--(void) reloadTable
-{
-    self.listNotifications = [NSMutableArray arrayWithArray:[[UIApplication sharedApplication] scheduledLocalNotifications]] ;
-    [table reloadData];
-}
-
 -(IBAction)toggleEdit:(id)sender
 {
     [self.table setEditing:!self.table.editing animated:YES];
@@ -64,7 +55,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.listNotifications = [NSMutableArray arrayWithArray:[[UIApplication sharedApplication] scheduledLocalNotifications]] ;
+    self.listNotifications = [NSMutableArray arrayWithArray:[[UIApplication sharedApplication] scheduledLocalNotifications]];
+    
+    self.listReminders = [[NSMutableArray alloc] initWithArray: [Sprout getReminders]];
+    
+    self.navigationItem.title = @"Reminder";
     
     self.navigationController.navigationBarHidden = NO;
     //Back Button
@@ -78,9 +73,23 @@
     
     if(listNotifications.count == 0)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"You have no reminder." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"NOTICE" message:@"All reminder are really finished." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
     }
+}
+
+-(UILocalNotification *)checkFinished: (NSString *)desc
+{
+    for(UILocalNotification *n in listNotifications)
+    {
+        //NSLog(@"%@",[n.userInfo valueForKey:@"DESC"]);
+        
+        if([[n.userInfo valueForKey:@"DESC"] isEqualToString:desc])
+        {
+            return n;
+        }
+    }
+    return nil;
 }
 
 - (void)viewDidUnload
@@ -89,6 +98,7 @@
     self.table          = nil;
     self.listNotifications = nil;
     self.editButton     = nil;
+    self.listReminders  = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -107,36 +117,74 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [listNotifications count];
+    return [listReminders count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    ReminderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        NSArray *nibObjects;
+        nibObjects = [[NSBundle mainBundle]loadNibNamed:@"ReminderCell" owner:self options:nil];
+        
+        for(id currentObject in nibObjects)
+        {
+            cell = (ReminderCell *)currentObject;
+        }
     }
     
-    UILocalNotification *notifcation = [self.listNotifications objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = [notifcation alertBody];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mma"];
-    [[cell detailTextLabel] setText:[dateFormatter stringFromDate:notifcation.fireDate]];
+    cell.desc.text = [[listReminders objectAtIndex:indexPath.row] valueForKey:@"discription"];
+    UILocalNotification *noti = [self checkFinished:cell.desc.text];
+    cell.notifi = noti;
+    if(noti == nil)
+    {
+        cell.date.text = @"Finished";
+        cell.icon.image = [UIImage imageNamed:@"arlm1"];
+    }else
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mma"];
+        [[cell date] setText:[dateFormatter stringFromDate:noti.fireDate]];
+        cell.icon.image = [UIImage imageNamed:@"arlm2"];
+    }
     
     return cell;
 }
 
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UILocalNotification *notifcation = [self.listNotifications objectAtIndex:indexPath.row];
-    [[UIApplication sharedApplication] cancelLocalNotification:notifcation];
-    [self.listNotifications removeObjectAtIndex:indexPath.row];
-    //[self reloadTable];
+    /*
+    UILocalNotification *notifcation = [self.listReminders objectAtIndex:indexPath.row];
+    
+     */
+    NSManagedObject *remindObj = [self.listReminders objectAtIndex:indexPath.row];
+    [self.listReminders removeObjectAtIndex:indexPath.row];
+    [Sprout deleteObject:remindObj];
+    
+    UILocalNotification *n = [(ReminderCell *)[tableView cellForRowAtIndexPath:indexPath] notifi];
+    if(n != nil)
+    {
+        [listNotifications removeObject:n];
+        [[UIApplication sharedApplication] cancelLocalNotification:n];
+    }
+
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"PASS");
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ReminderDetail *reminderDetail = [[ReminderDetail alloc] initWithNibName:@"ReminderDetail" bundle:nil];
+    reminderDetail.remind = [self.listReminders objectAtIndex:indexPath.row];
+    reminderDetail.notification = [[(ReminderCell *)[tableView cellForRowAtIndexPath:indexPath] date] text];
+    
+    [self.navigationController pushViewController:reminderDetail animated:YES];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewSproutViewController : UIViewController
+@interface ViewSproutViewController : UIViewController<UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) NSMutableArray *listSprout;

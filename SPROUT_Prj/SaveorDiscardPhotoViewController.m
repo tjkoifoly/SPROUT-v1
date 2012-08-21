@@ -9,9 +9,12 @@
 #import "SaveorDiscardPhotoViewController.h"
 #import "ContinueAfterSaveViewController.h"
 
+#define kImageSize 220.f
+
 @implementation SaveorDiscardPhotoViewController
 {
     UIScrollView *scrollImage;
+    UIImageView *imgView;
 }
 
 @synthesize image;
@@ -81,10 +84,25 @@
     {
         scrollImage = [[UIScrollView alloc] initWithFrame:self.imageView.frame];
         [scrollImage setScrollEnabled:YES];
+        [scrollImage setMaximumZoomScale:5.0f];
+        [scrollImage setMinimumZoomScale:1.0f];
+        scrollImage.delegate = self;
         //[scrollImage setContentSize:self.image.size];
-        UIImageView *imgView = [[UIImageView alloc] initWithImage:self.image];
-        [imgView setFrame:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
+        float w = self.image.size.width;
+        float h = self.image.size.height;
         
+        if(w<h)
+        {
+            h = (h/w)*220.f;
+            w = 220.f;
+        }else
+        {
+            w = (w/h)*220.f;
+            h = 220.f;
+        }
+        
+        imgView = [[UIImageView alloc] initWithImage:self.image];
+        [imgView setFrame:CGRectMake(0.0, 0.0, w, h)];
         
         [scrollImage setContentSize:imgView.frame.size];
         [scrollImage setShowsHorizontalScrollIndicator:NO];
@@ -94,6 +112,11 @@
         [self.view addSubview:scrollImage];
     }
    
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return imgView;
 }
 
 -(UIImage *)imageCaptureSave: (UIView *)viewInput
@@ -129,17 +152,27 @@
 {
     if(fromLib)
     {
+        if((self.image.size.width == scrollImage.bounds.size.width) || (self.image.size.height == scrollImage.bounds.size.height))
+        {
+            ContinueAfterSaveViewController *updateImageViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
+            updateImageViewController.imageInput = self.image;
+            updateImageViewController.urlImage = self.urlImage;
+            
+            [self.navigationController pushViewController:updateImageViewController animated:YES];
+            return;
+        }
         UIImage *viewImage = [self imageCaptureSave:self.view];
-        CGFloat x = self.imageView.frame.origin.x;
-        CGFloat y = self.imageView.frame.origin.y;
-        CGFloat width = self.imageView.frame.size.width;
-        CGFloat height = self.imageView.frame.size.height;
+        CGFloat x = scrollImage.frame.origin.x;
+        CGFloat y = scrollImage.frame.origin.y;
+        CGFloat width = scrollImage.frame.size.width;
+        CGFloat height = scrollImage.frame.size.height;
         
         CGImageRef cropOfImage = CGImageCreateWithImageInRect(viewImage.CGImage, CGRectMake(x, y, width, height));
         
         UIImage *croppedImage = [UIImage imageWithCGImage:cropOfImage];
         //imageView.image = croppedImage;
         self.image = croppedImage;
+        
     }
     
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc]init];

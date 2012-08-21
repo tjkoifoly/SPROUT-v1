@@ -11,6 +11,8 @@
 #import "SelectGridSizeViewController.h"
 #import "ViewSproutViewController.h"
 #import "ReminderViewController.h"
+#import "ContinueAfterSaveViewController.h"
+#import "ExportSproutViewController.h"
 
 @implementation MainViewController
 
@@ -96,7 +98,43 @@
     [self.navigationController pushViewController:reminderViewController animated:YES];
 }
 
+-(void)captureContinue:(SaveSproutViewController *)controller
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self captureSprout:nil];
+}
 
+-(void)loadFromLibContinue:(SaveSproutViewController *)controller toView:(ContinueAfterSaveViewController *)continueViewController
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    [self.navigationController pushViewController:continueViewController animated:YES];
+}
+
+-(void)exportSproutOK:(SaveSproutViewController *)controller toView:(ExportSproutViewController *)expController
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController pushViewController:expController animated:YES];
+}
+
+-(void)loadFromLibToContinue:(SaveorDiscardPhotoViewController *)controller
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma Create delegate
+-(void)gotoCapturePhoto
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self captureSprout:nil];
+}
+
+-(void)loadFromLibOK:(SaveorDiscardPhotoViewController *)controller
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 
 

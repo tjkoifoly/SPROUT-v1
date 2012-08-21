@@ -24,6 +24,58 @@
     
 }
 
++(BOOL)createReminder: (NSString *)desc :(NSString *)location: (NSDate *)startTime: (NSString *)duration
+{
+    CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSManagedObject *newReminder = [NSEntityDescription insertNewObjectForEntityForName:@"Reminders" inManagedObjectContext:context];
+    [newReminder setValue:desc forKey:@"discription"];
+    [newReminder setValue:location forKey:@"location"];
+    [newReminder setValue:startTime forKey:@"startTime"];
+    [newReminder setValue:duration forKey:@"duration"];
+    
+    if([context save:&error]) return YES;
+    return NO;
+}
+
++(NSArray *)getReminders
+{
+    CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Reminders" inManagedObjectContext:context];
+    NSArray *reminders = [context executeFetchRequest:request error:&error];
+    
+    return reminders;
+}
+
++(BOOL)checkReminder:(NSString *)desc
+{
+    CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Reminders" inManagedObjectContext:context];
+    request.predicate = [NSPredicate predicateWithFormat:@"discription = %@", desc];
+    
+    NSArray *sprouts = [context executeFetchRequest:request error:&error];
+    
+    if (sprouts.count > 0)
+    {
+        return YES;
+    }else
+    {
+        return NO;
+    }
+
+}
+
+
 +(BOOL)createSprout: (NSString *)sName : (NSInteger)sizeRow: (NSInteger) sizeCol
 {
     if([Sprout anySproutForName:sName] == NO)
@@ -151,5 +203,7 @@
     }
     return YES;
 }
+
+
 
 @end

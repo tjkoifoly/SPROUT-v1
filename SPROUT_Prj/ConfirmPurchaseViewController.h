@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MKStoreManager.h"
 
 @interface ConfirmPurchaseViewController : UIViewController
+<MKStoreKitDelegate>
 
+
+@property (strong, nonatomic) NSString *product;
 @property (nonatomic) BOOL accept;
+
 @property (strong, nonatomic) IBOutlet UIImageView *acceptView;
 
 -(void) touchCheck;

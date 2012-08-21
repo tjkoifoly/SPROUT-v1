@@ -34,6 +34,7 @@
 @synthesize imageView;
 @synthesize sprout;
 @synthesize sproutView;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,6 +77,7 @@
     self.pickerImage = nil;
     self.sprout = nil;
     self.sproutView = nil;
+    self.delegate = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -103,7 +105,8 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    
+    [self dismissModalViewControllerAnimated:YES]; 
+
     if( [picker sourceType] == UIImagePickerControllerSourceTypeCamera )
     {
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc]init];
@@ -154,7 +157,16 @@
         
         UIImage *i = [info objectForKey:UIImagePickerControllerOriginalImage];
         self.imageView.image = i;
-    
+        NSString *urlImage = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
+        SaveorDiscardPhotoViewController *saveOrDiscardVC = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
+        saveOrDiscardVC.image = i;
+        saveOrDiscardVC.urlImage = urlImage;
+        saveOrDiscardVC.fromLib = YES;
+        
+        self.delegate = [[self.navigationController viewControllers]objectAtIndex:0];
+        
+        [self.delegate loadFromLibOK:saveOrDiscardVC];
+    /*
         DragToSproutViewController *dragViewController = [[DragToSproutViewController alloc] initWithNibName:@"DragToSproutViewController" bundle:nil];
     
         dragViewController.imageInput = i;
@@ -164,9 +176,9 @@
         dragViewController.sprout = [Sprout sproutForName:self.sprout.name];
     
         [self.navigationController pushViewController:dragViewController animated:YES];
+     */
     }
     
-    [self dismissModalViewControllerAnimated:YES]; 
 }
 
 
@@ -221,9 +233,8 @@
 {
     [Sprout createSprout:self.sprout.name :self.sprout.rowSize :self.sprout.colSize];
     
-    TakePhotoViewController *takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
-    
-    [self.navigationController pushViewController:takeViewController animated:NO];
+    self.delegate = [[self.navigationController viewControllers]objectAtIndex:0];
+    [self.delegate gotoCapturePhoto];
 }
 
 -(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected

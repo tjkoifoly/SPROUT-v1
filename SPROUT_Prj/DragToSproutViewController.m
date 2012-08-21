@@ -92,9 +92,8 @@
         
         if(temp != nil)
         {
-            
-            
             SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
+            saveViewController.fromDrag = YES;
             
             for(id x in self.sproutScroll.subviews)
             {

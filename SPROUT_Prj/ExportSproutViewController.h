@@ -10,8 +10,11 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "SproutScrollView.h"
 #import <MessageUI/MessageUI.h>
+#import "SA_OAuthTwitterEngine.h"
+#import "SA_OAuthTwitterController.h"
+#import "GSTwitPicEngine.h"
 
-@interface ExportSproutViewController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface ExportSproutViewController : UIViewController <SA_OAuthTwitterControllerDelegate,MFMailComposeViewControllerDelegate, UIScrollViewDelegate, GSTwitPicEngineDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *sproutToImage;
 @property (strong, nonatomic) IBOutlet UIButton *emailButton;
@@ -27,6 +30,8 @@
 -(IBAction)shareViaSocialNetwork:(id)sender;
 -(UIImage *)imageCaptureSave: (UIView *)viewInput;
 -(UIImage *)thumnailImageFromImageView: (UIImage *)inputImage;
+-(void)viewPhoto;
+-(void) postTwitter: (UIImage *)imageToPost;
 
 
 @end

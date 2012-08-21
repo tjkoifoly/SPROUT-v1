@@ -354,4 +354,9 @@
 	
 }
 
+- (OAToken *) getAccessToken
+{
+    return _accessToken;
+}
+
 @end

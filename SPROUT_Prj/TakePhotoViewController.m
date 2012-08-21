@@ -91,6 +91,7 @@
         }else
         {
             overlay.hidden = NO;
+            [overlay loadView];
         }
         [self.view addSubview:self.pickerImage.view];
     }
@@ -211,7 +212,7 @@
     {
         //NSLog(@"Image = %@", i);
         self.urlImage = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
-        
+        /*
         ContinueAfterSaveViewController *continueViewController = [[ContinueAfterSaveViewController alloc] initWithNibName:@"ContinueAfterSaveViewController" bundle:nil];
         
         continueViewController.urlImage = self.urlImage;
@@ -219,13 +220,16 @@
         
         [self.navigationController pushViewController:continueViewController animated:YES];
         [self dismissModalViewControllerAnimated:NO];
-        /*
+        */
         SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
         saveViewController.image = image;
         saveViewController.fromLib = YES;
+        saveViewController.urlImage = self.urlImage;
         
         [self.navigationController pushViewController:saveViewController animated:YES];
-         */
+        [self dismissModalViewControllerAnimated:NO];
+
+         
     }
     
     
@@ -249,7 +253,7 @@
     self.isLibrary = YES;
     overlay.hidden = YES;
     
-    self.pickerImage.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    self.pickerImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {

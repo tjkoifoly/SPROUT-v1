@@ -13,6 +13,10 @@
 
 +(NSArray *) loadAllSprout;
 +(BOOL)createSprout: (NSString *)sName : (NSInteger)sizeRow: (NSInteger) sizeCol;
++(BOOL)createReminder: (NSString *)desc :(NSString *)location: (NSDate *)startTime: (NSString *)duration;
++(BOOL)checkReminder: (NSString *)desc;
++(NSArray *)getReminders;
+
 +(NSManagedObject *) sproutForName: (NSString *)sName;
 +(BOOL) anySproutForName: (NSString *)sName;
 +(NSManagedObject *)imageInSprout: (NSString *)sName: (NSInteger)tag;

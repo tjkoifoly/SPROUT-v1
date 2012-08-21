@@ -12,6 +12,9 @@
 #import "SelectGridSizeViewController.h"
 
 @implementation UploadToSproutViewController
+{
+    NSIndexPath *pathDelete;
+}
 
 @synthesize listSprout;
 @synthesize table;
@@ -161,6 +164,13 @@
 
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    pathDelete = indexPath;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"DELETE A SPROUT" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:nil, nil];
+    [actionSheet showInView:self.view];
+}
+
+-(void)deleteASproutInPath: (NSIndexPath*)indexPath
+{
     id sproutObject = [listSprout objectAtIndex:indexPath.row];
     //Remove all temp image
     int size = [[sproutObject valueForKey:@"rowSize"] intValue]*[[sproutObject valueForKey:@"colSize"] intValue];
@@ -187,8 +197,23 @@
     //Remove sprout from database
     [listSprout removeObject:sproutObject];
     [Sprout deleteObject:sproutObject];
-    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [table deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //NSLog(@"%i in Path : %@", buttonIndex, pathDelete);
+    if(buttonIndex == 0)
+        [self deleteASproutInPath:pathDelete];
+    [self performSelector:@selector(reload) withObject:nil afterDelay:0.5f];
+    pathDelete = nil;
+}
+
+-(void)reload
+{
+    [table reloadData];
+}
+
 
 
 

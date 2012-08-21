@@ -12,14 +12,27 @@
 #import "CNCAppDelegate.h"
 #import "SaveorDiscardPhotoViewController.h"
 #import "Sprout.h"
+#import "ContinueAfterSaveViewController.h"
+#import "NYOBetterZoomUIScrollView.h"
 
 @implementation SaveSproutViewController
+{
+    NYOBetterZoomUIScrollView *imageScrollView;
+    UIView *backView;
+    UIView *fullView;
+    CGPoint staticCenterDefault;
+}
 
 @synthesize sproutScroll;
 @synthesize sproutView;
 @synthesize sprout;
 @synthesize imagesArray;
 @synthesize exportButton;
+@synthesize capButton;
+@synthesize libButton;
+@synthesize statusLabel;
+@synthesize fromDrag;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +56,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Display button after drag
+    if(fromDrag)
+    {
+        capButton.hidden    = NO;
+        libButton.hidden    = NO;
+        statusLabel.hidden  = YES;
+        self.delegate = [[self.navigationController viewControllers]objectAtIndex:0];
+    }
     
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
     if(self.sproutScroll == nil)
@@ -83,6 +105,11 @@
     self.sprout             = nil;
     self.imagesArray        = nil;
     self.exportButton       = nil;
+    self.statusLabel        = nil;
+    self.capButton          = nil;
+    self.libButton          = nil;
+    self.delegate           = nil;
+    fullView                = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -128,10 +155,51 @@
 
 -(IBAction)exportSport:(id)sender
 {
+    /*
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"Rending sprout as a image might use much memory.\nSafely, you should quit other applications before export!" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:@"Accept", nil];
     [alert show];
+     */
+    [self exportFunction];
     
 }
+
+-(IBAction)capturePressed:(id)sender;
+{
+
+    NSLog(@"%@", [[self.navigationController viewControllers]objectAtIndex:0]);
+    [self.delegate captureContinue:self];
+}
+
+-(IBAction)loadLibPressed:(id)sender
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentModalViewController:picker animated:YES];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self dismissModalViewControllerAnimated:YES];
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSString *urlImage = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
+    
+    SaveorDiscardPhotoViewController *saveOrDiscardViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
+    saveOrDiscardViewController.urlImage = urlImage;
+    saveOrDiscardViewController.image = image;
+    saveOrDiscardViewController.fromLib = YES;
+    
+    [self.delegate loadFromLibToContinue:saveOrDiscardViewController];
+}
+
+
+
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -139,12 +207,21 @@
     if(buttonIndex == 0) return;
     else
     {
-        ExportSproutViewController *exportSproutViewController = [[ExportSproutViewController alloc] initWithNibName:@"ExportSproutViewController" bundle:nil];
-        
-        exportSproutViewController.sproutScroll = self.sproutScroll;
-        
-        [self.navigationController pushViewController:exportSproutViewController animated:YES];
+        [self exportFunction];
     }
+}
+
+-(void)exportFunction
+{
+    ExportSproutViewController *exportSproutViewController = [[ExportSproutViewController alloc] initWithNibName:@"ExportSproutViewController" bundle:nil];
+    
+    exportSproutViewController.sproutScroll = self.sproutScroll;
+
+    self.delegate = [[self.navigationController viewControllers] objectAtIndex:0];
+    
+    [self.delegate exportSproutOK:self toView:exportSproutViewController];
+    
+    //[self.navigationController pushViewController:exportSproutViewController animated:YES];
 }
 
 -(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected
@@ -210,6 +287,132 @@
     //[[self.imagesArray objectAtIndex:tag] setValue:@"URL" forKey:@"url"];
      
 }
+
+-(IBAction)viewFullScreen:(id)sender
+{
+    float w = self.sproutScroll.contentSize.width;
+    float h = self.sproutScroll.contentSize.height;
+    float x = 0.0f;
+    float y = 0.0f;
+    
+    fullView = [[UIView alloc] initWithFrame:CGRectMake(x, y,w ,h )] ;
+    
+    for(id ix in self.sproutScroll.subviews)
+    {
+        UIImageView *x = [[UIImageView alloc] initWithFrame:[ix frame]];
+        x.image = [ix image];
+        if([ix image] == nil)
+        {
+            x.backgroundColor = [UIColor lightGrayColor];
+        }
+        x.layer.borderColor = [UIColor whiteColor].CGColor;
+        x.layer.borderWidth= 0.8f;
+        fullView.layer.borderWidth = 1.5f;
+        fullView.layer.borderColor = [UIColor whiteColor].CGColor;
+        
+        [fullView addSubview:x];
+    }
+     
+    staticCenterDefault = fullView.center;
+    
+    imageScrollView = [[NYOBetterZoomUIScrollView alloc] initWithFrame:self.view.frame andChildView:fullView];
+    [imageScrollView setBackgroundColor:[UIColor blackColor]];
+    imageScrollView.delegate = self;
+    imageScrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    [imageScrollView setContentMode:UIViewContentModeScaleAspectFit];
+    [imageScrollView setMaximumZoomScale:2.0f];
+    float minScale = 1.0f;
+    if(MAX(w, h) > 320.f)
+        minScale = (320.f/ MAX(w, h));
+    [imageScrollView setMinimumZoomScale:minScale];
+    [imageScrollView setContentSize:self.sproutScroll.contentSize];
+    [imageScrollView setShowsVerticalScrollIndicator:NO];
+    [imageScrollView setShowsHorizontalScrollIndicator:NO];
+    imageScrollView.touchDelegate = self;
+    //[imageScrollView setChildView:fullView];
+    
+    [self setMinimumZoomForCurrentFrame];
+    [imageScrollView setZoomScale:imageScrollView.minimumZoomScale animated:NO];
+    
+    [self.view addSubview:imageScrollView];
+    
+    backView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, 40)];
+    backView.backgroundColor = [UIColor clearColor];
+    UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    backButton.frame = CGRectMake(0,5,60,30);
+    [backButton addTarget:self action:@selector(backtoPreviousView) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:backButton];
+    [self.view addSubview:backView];
+}
+
+-(void)backtoPreviousView
+{
+    [backView removeFromSuperview];
+    [imageScrollView removeFromSuperview];
+}
+
+#pragma UIScrollDelegate
+- (void)setMinimumZoomForCurrentFrame {
+	UIView *imageView = (UIView *)[imageScrollView childView];
+    
+	// Work out a nice minimum zoom for the image - if it's smaller than the ScrollView then 1.0x zoom otherwise a scaled down zoom so it fits in the ScrollView entirely when zoomed out
+	CGSize imageSize = imageView.frame.size;
+	CGSize scrollSize = imageScrollView.frame.size;
+	CGFloat widthRatio = scrollSize.width / imageSize.width;
+	CGFloat heightRatio = scrollSize.height / imageSize.height;
+	CGFloat minimumZoom = MIN(1.0, (widthRatio > heightRatio) ? heightRatio : widthRatio);
+	
+	[imageScrollView setMinimumZoomScale:minimumZoom];
+}
+
+- (void)setMinimumZoomForCurrentFrameAndAnimateIfNecessary {
+	BOOL wasAtMinimumZoom = NO;
+    
+	if(imageScrollView.zoomScale == imageScrollView.minimumZoomScale) {
+		wasAtMinimumZoom = YES;
+	}
+	
+	[self setMinimumZoomForCurrentFrame];
+	
+	if(wasAtMinimumZoom || imageScrollView.zoomScale < imageScrollView.minimumZoomScale) {
+		[imageScrollView setZoomScale:imageScrollView.minimumZoomScale animated:YES];
+	}	
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    if(scrollView == imageScrollView)
+    {
+        return [imageScrollView childView];
+    }
+    return nil;
+}
+
+- (void)scrollViewDidEndZooming:(NYOBetterZoomUIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
+#ifdef DEBUG
+	UIView *theView = [scrollView childView];
+	NSLog(@"view frame: %@", NSStringFromCGRect(theView.frame));
+	NSLog(@"view bounds: %@", NSStringFromCGRect(theView.bounds));
+#endif
+}
+
+-(void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
+{
+    backView.hidden = YES;
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    backView.hidden = YES;
+}
+
+-(void)backView
+{
+    backView.hidden = NO;
+}
+
+
 
 
 @end

@@ -144,6 +144,9 @@
     [self setContentSize:CGSizeMake((self.colSize * cellWidth), (self.rowSize *cellHeight))];
     
     [self setScrollEnabled:YES];
+    [self setMinimumZoomScale:1.f];
+    [self setMaximumZoomScale:2.f];
+    [self setMultipleTouchEnabled:YES];
     [self setShowsHorizontalScrollIndicator:NO];
     [self setShowsVerticalScrollIndicator:NO];
     

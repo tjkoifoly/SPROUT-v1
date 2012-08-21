@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "SproutScrollView.h"
+#import "SaveorDiscardPhotoViewController.h"
+@class CreateSproutViewController;
+@protocol CreateSproutDelegate <NSObject>
+
+-(void)gotoCapturePhoto;
+-(void)loadFromLibOK:(SaveorDiscardPhotoViewController *)controller;
+
+@end
 
 @interface CreateSproutViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, SproutDelegate>
 
+@property (unsafe_unretained, nonatomic) id<CreateSproutDelegate>delegate;
 @property (strong, nonatomic) UIImagePickerController *pickerImage;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 

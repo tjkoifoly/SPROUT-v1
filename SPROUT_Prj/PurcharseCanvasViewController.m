@@ -39,8 +39,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -59,6 +57,27 @@
 -(IBAction)chooseCanvas:(id)sender
 {
     ConfirmPurchaseViewController *confirmViewController = [[ConfirmPurchaseViewController alloc] initWithNibName:@"ConfirmPurchaseViewController" bundle:nil];
+    
+    UIButton *buttonCanvas = (UIButton*)sender;
+    NSInteger tagCanvas = [buttonCanvas tag];
+    NSString *productName;
+    switch (tagCanvas) {
+        case 1:
+            productName = @"Item_0";
+            break;
+        case 2:
+            productName = @"Item_1";
+            break;
+        case 3:
+            productName = @"Item_2";
+            break;
+        case 4:
+            productName = @"Item_3";
+            break;
+        default:
+            break;
+    }
+    confirmViewController.product = productName;
     
     [self.navigationController pushViewController:confirmViewController animated:YES];
 }

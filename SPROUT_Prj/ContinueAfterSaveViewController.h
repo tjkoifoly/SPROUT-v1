@@ -9,18 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "EditImageViewController.h"
 #import "SA_OAuthTwitterController.h"
+#import "GSTwitPicEngine.h"
 #import "HTTPRequest.h"
 
-@interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate, SA_OAuthTwitterControllerDelegate, HTTPRequestDelegate>
+@class SA_OAuthTwitterEngine;
+
+@interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate, SA_OAuthTwitterControllerDelegate, HTTPRequestDelegate, GSTwitPicEngineDelegate>
 
 @property (strong, nonatomic) UIImage *imageInput;
 @property (strong, nonatomic) IBOutlet UIImageView *viewImage;
 @property (strong, nonatomic) NSString *urlImage;
+@property (nonatomic, retain) NSMutableArray *imageLinks;
 
 -(IBAction)uploadToSprout:(id)sender;
 -(IBAction)edit:(id)sender;
 -(IBAction)postToSocialNetwork:(id)sender;
 -(IBAction)goToHome:(id)sender;
-- (IBAction)dispatchButtonPushed:(id)sender;
 
 @end

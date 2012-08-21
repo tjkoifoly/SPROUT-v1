@@ -8,6 +8,7 @@
 
 #import "ReminderViewController.h"
 #import "ReminderManagerViewController.h"
+#import "Sprout.h"
 
 @implementation ReminderViewController
 {
@@ -89,6 +90,8 @@
 
 -(IBAction)showListReminder:(id)sender
 {
+    //NSLog(@"DCM MMM");
+    
     ReminderManagerViewController *reminderManager = [[ReminderManagerViewController alloc] initWithNibName:@"ReminderManagerViewController" bundle:nil];
     
     [self.navigationController pushViewController:reminderManager animated:YES];
@@ -150,24 +153,44 @@
 
 -(IBAction)addNotification:(id)sender
 {
-    if([alertDescription.text isEqualToString:@""])
+    NSString *desc = alertDescription.text;
+    
+    if([desc isEqualToString:@""])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"You should enter a description." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         return;
     }
     
+    if([Sprout checkReminder:desc] == YES)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"A reminder with description is really exists. You should enter other description." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    NSString *duration  = [self.durationSegmentControl titleForSegmentAtIndex:[self.durationSegmentControl selectedSegmentIndex]];
+    
+    //NSDate *date = [NSDate dateWithTimeInterval:60.0*self.alertTime sinceDate:[datePicker date]];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+    
+    [Sprout  createReminder:desc: alertLocation.text :date :duration];
+    
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     
     //[localNotification setFireDate:[NSDate dateWithTimeIntervalSinceNow:[datePicker countDownDuration]]];
      NSString *location = @"";
-    if(![alertLocation.text isEqualToString:@""])
+    if(![desc isEqualToString:@""])
     {
        location = [NSString stringWithFormat:@" at location: %@", alertLocation.text];
     }
     [localNotification setFireDate:[NSDate dateWithTimeInterval:60.0*self.alertTime sinceDate:[datePicker date]]];
     [localNotification setAlertAction:@"Launch"];
-    [localNotification setAlertBody:[NSString stringWithFormat:@"%@%@",[alertDescription text], location]];
+    [localNotification setAlertBody:[NSString stringWithFormat:@"%@%@",desc, location]];
+    
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:@"SPROUT",@"APP",desc, @"DESC", nil];
+    [localNotification setUserInfo:dict];
+    
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     [localNotification setHasAction:YES];
     localNotification.repeatInterval = unit;
@@ -178,6 +201,7 @@
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Added a reminder succeed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
+    
     NSLog(@"Added a reminder succeed.");
 }
 

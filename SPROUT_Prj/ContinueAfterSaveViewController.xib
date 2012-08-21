@@ -163,7 +163,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">face.png</string>
+							<string key="NSResourceName">twi.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="229226127">
@@ -202,7 +202,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">twi.png</string>
+							<string key="NSResourceName">face.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="622472436">
@@ -441,17 +441,12 @@
 					<string key="className">ContinueAfterSaveViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="dispatchButtonPushed:">id</string>
 						<string key="edit:">id</string>
 						<string key="goToHome:">id</string>
 						<string key="postToSocialNetwork:">id</string>
 						<string key="uploadToSprout:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="dispatchButtonPushed:">
-							<string key="name">dispatchButtonPushed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="edit:">
 							<string key="name">edit:</string>
 							<string key="candidateClassName">id</string>

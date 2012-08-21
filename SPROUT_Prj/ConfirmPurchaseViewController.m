@@ -13,6 +13,7 @@
 
 @synthesize accept;
 @synthesize acceptView;
+@synthesize product;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,7 +41,7 @@
     self.acceptView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.acceptView.layer.borderWidth = 1.f;
     
-    accept = YES;
+    accept = NO;
     [self touchCheck];
 }
 
@@ -50,6 +51,7 @@
 {
     [super viewDidUnload];
     self.acceptView = nil;
+    self.product    = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -67,7 +69,36 @@
 
 -(IBAction)confirmPurchase:(id)sender
 {
+    [MKStoreManager setDelegate:self];
     
+    if(accept)
+    {
+        [[MKStoreManager sharedManager] buyFeature:self.product];
+        NSLog(@"Product: %@", self.product);
+    }else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR!" message:@"You must acept for term." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+
+#pragma IPA delegate
+-(void)productFetchComplete
+{
+    NSLog(@"ProductFetchComplete");
+}
+
+-(void)transactionCanceled
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR!" message:@"Buy canvas faile." delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+-(void)productPurchased:(NSString *)productId
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"You have bought a canvas successfully." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 -(IBAction)checkAccept:(id)sender
