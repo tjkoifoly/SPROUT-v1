@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "SaveSproutViewController.h"
 #import "CreateSproutViewController.h"
+#import "PurcharseCanvasViewController.h"
 
 @class TakePhotoViewController;
 @class SelectGridSizeViewController;
 @class ViewSproutViewController;
 
-@interface MainViewController : UIViewController<SaveSproutDelegate,CreateSproutDelegate >
+@interface MainViewController : UIViewController<SaveSproutDelegate,CreateSproutDelegate , PurcharseDelegate>
 
 @property (strong, nonatomic) TakePhotoViewController *takePhotoViewController;
 @property (strong, nonatomic) SelectGridSizeViewController *selectGridViewController;

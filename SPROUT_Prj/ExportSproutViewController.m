@@ -90,7 +90,6 @@
     __block int y;
     __block UIImageView *imvX;
     dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
-    
     for(id ix in self.sproutScroll.subviews)
     {
         dispatch_sync(queue, ^{
@@ -107,19 +106,27 @@
         imvX = nil;
         });
     }
+    dispatch_release(queue);
     self.sproutScroll = nil;
     
+}
+
+-(void)getImage
+{
+    imageToSave = [self imageCaptureSave:tempView];
+    saved = YES;
+    NSLog(@"SAVED.");
+    [tView removeFromSuperview];
+    tView = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     if(saved == NO)
     {
-        imageToSave = [self imageCaptureSave:tempView];
-        saved = YES;
-        NSLog(@"SAVED.");
-        [tView removeFromSuperview];
-        tView = nil;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self performSelector:@selector(getImage) withObject:nil afterDelay:0.5f];
+        });
     }
     
 }

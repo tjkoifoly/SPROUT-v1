@@ -12,6 +12,7 @@
 @implementation PurcharseCanvasViewController
 
 @synthesize imageToPrint;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +43,7 @@
 {
     [super viewDidUnload];
     self.imageToPrint = nil;
+    self.delegate = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -83,8 +85,10 @@
             break;
     }
     confirmViewController.product = productName;
+    self.delegate = [[self.navigationController viewControllers] objectAtIndex:0];
+    [self.delegate gotoConfirm:self toView:confirmViewController];
     
-    [self.navigationController pushViewController:confirmViewController animated:YES];
+    //[self.navigationController pushViewController:confirmViewController animated:YES];
 }
 
 

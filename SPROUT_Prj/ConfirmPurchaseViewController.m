@@ -65,6 +65,9 @@
             //[imageData release];
             NSString *emailBody = [NSString stringWithFormat:@"Size of canvas : %@", self.product] ;
             [mailer setMessageBody:emailBody isHTML:NO];
+            
+            [imageToPrint release];
+            NSLog(@"%i",[imageToPrint retainCount]);
         });
         
         dispatch_release(queue);
@@ -84,7 +87,7 @@
     product = nil;
     //[self.imageToPrint release];
     self.imageToPrint = nil;
-    [HUD release];
+    //[HUD release];
     HUD = nil;
     [conditionAlert release];
     conditionAlert = nil;

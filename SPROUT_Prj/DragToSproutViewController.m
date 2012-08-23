@@ -119,7 +119,7 @@
             
             saveViewController.sproutScroll = self.sproutScroll;
             //saveViewController.urlImage = self.urlImage;
-            
+            [self viewDidUnload];
             [self.navigationController pushViewController:saveViewController animated:NO];
         }
         

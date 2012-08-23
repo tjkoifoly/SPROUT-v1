@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class PurcharseCanvasViewController;
+@class ConfirmPurchaseViewController;
+@protocol PurcharseDelegate <NSObject>
+
+-(void)gotoConfirm: (PurcharseCanvasViewController *)controller toView: (ConfirmPurchaseViewController *)confirmView;
+
+@end
+
 @interface PurcharseCanvasViewController : UIViewController
 
+@property (unsafe_unretained, nonatomic) id <PurcharseDelegate> delegate;
 @property (strong, nonatomic) UIImage *imageToPrint;
 
 -(IBAction)goToHome:(id)sender;

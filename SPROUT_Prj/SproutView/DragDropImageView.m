@@ -13,7 +13,7 @@
 
 @implementation DragDropImageView
 {
-    NSTimeInterval touchStartTime;
+    //NSTimeInterval touchStartTime;
 }
 
 @synthesize tag;
@@ -64,10 +64,9 @@
     self.url = urlString;
 }
 
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    touchStartTime = [event timestamp];
+    //touchStartTime = [event timestamp];
     
     UITouch *touch = [touches anyObject];
     
@@ -75,18 +74,18 @@
     
     switch ([touch tapCount]) {
         case 1:
-            [self performSelector:@selector(oneTap) withObject:nil afterDelay:.1];
+            //[self performSelector:@selector(oneTap) withObject:nil afterDelay:.1];
             //[self performSelector:@selector(threeTaps) withObject:nil afterDelay:0.8f];
             break;
             
         case 2:
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(oneTap) object:nil];
+            //[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(oneTap) object:nil];
             [self performSelector:@selector(twoTaps) withObject:nil afterDelay:.1];
             break;
             
         case 3:
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(twoTaps) object:nil];
-            [self performSelector:@selector(threeTaps) withObject:nil afterDelay:.1];
+            //[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(twoTaps) object:nil];
+            //[self performSelector:@selector(threeTaps) withObject:nil afterDelay:.1];
             break;
             
         default:
@@ -97,6 +96,7 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     //[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(threeTaps) object:nil];
+    /*
     NSTimeInterval touchTimeDuration = [event timestamp] - touchStartTime;
     
     NSLog(@"Touch duration: %3.2f seconds", touchTimeDuration);
@@ -105,10 +105,11 @@
     {
         [self performSelector:@selector(threeTaps) withObject:nil];
     }
+     */
 }
 
 -(void)oneTap
-{
+{/*
     NSLog(@"Single tap");
     NSLog(@"Tag = %i", self.tag);
     
@@ -136,7 +137,7 @@
         }
         [self.delegate touchEnableScroll:nil moveable:NO];
     }
-    
+    */
 }
 
 -(void)getImageFromFile : (NSString *)fileName input: (UIImage *)inputImage
@@ -158,7 +159,7 @@
 }
 
 -(void)threeTaps 
-{
+{/*
     NSLog(@"Triple tap");
     NSLog(@"Tag = %i", self.tag);
     if(self.image != nil)
@@ -166,7 +167,7 @@
         self.alpha = 0.35f;
         [self.delegate touchEnableScroll:self moveable:YES];
     }
-    
+    */
 }
 
 - (void)loadImageFromAssetURL: (NSURL *)assetURL

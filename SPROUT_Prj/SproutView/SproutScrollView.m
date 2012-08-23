@@ -23,6 +23,12 @@
 #define kMAXHeight 280
 
 @implementation SproutScrollView
+{
+    NSInteger fromTag;
+    NSInteger toTag;
+    UIImageView *okMen;
+
+}
 
 @synthesize rowSize;
 @synthesize colSize;
@@ -110,6 +116,13 @@
 
 -(id) initWithName:(NSString *)sName: (NSInteger)rs : (NSInteger) cs: (NSArray*) ai
 {
+    UILongPressGestureRecognizer *changeImage = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(moveToBlank:)];
+    
+    changeImage.delegate = self;
+    changeImage.minimumPressDuration = 0.8f;
+    
+    [self addGestureRecognizer:changeImage];
+    
     name = sName;
     enable = NO;
     self.rowSize = rs;
@@ -253,6 +266,86 @@
     
 }
 
+- (void)moveToBlank:(UILongPressGestureRecognizer *)recognizer 
+{
+    if(recognizer.state == UIGestureRecognizerStateBegan)
+    {
+        NSLog(@"Long Press OK");
+        CGPoint currentPoint = [recognizer locationInView:self];
+        //NSLog(@"%f x %f", currentPoint.x, currentPoint.y);
+        fromTag = [self cellInPoint:currentPoint];
+        if([(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] image] != nil)
+        {
+            float widthCell = [[self.subviews objectAtIndex:0]frame].size.width;
+            okMen = [[UIImageView alloc] initWithImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] image]];
+            [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setAlpha:0.5f];
+            [okMen setFrame:CGRectMake(0.0, 0.0, widthCell, widthCell)];
+            okMen.center = currentPoint;
+            [self  addSubview:okMen];
+            NSLog(@"%i", fromTag);
+        }
+        
+    }else if(recognizer.state == UIGestureRecognizerStateChanged)
+    {
+        NSLog(@"Change Location");
+         NSLog(@"%i", fromTag);
+        if(okMen != nil)
+        {
+            CGPoint currentPoint = [recognizer locationInView:self];
+            okMen.center = currentPoint;
+        }
+        
+    }else if(recognizer.state == UIGestureRecognizerStateEnded)
+    {
+        NSLog(@"End OK");
+        CGPoint currentPoint = [recognizer locationInView:self];
+        toTag = [self cellInPoint:currentPoint];
+        if(okMen != nil)
+        {
+            [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setAlpha:1.f];
+            [okMen removeFromSuperview];
+            okMen = nil;
+        }
+        
+        NSLog(@"%i to % i", fromTag, toTag);
+        
+        if([(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] image] != nil)
+        {
+            if([(DragDropImageView *)[[self subviews]objectAtIndex:toTag] image] == nil)
+            {
+                //SWAP
+                [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] image]];
+                [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setImage:nil];
+                
+                [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setUrl:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] url]];
+                [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setUrl:@"URL"];
+                
+                NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", self.name, toTag];
+                [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] getImageFromFile:fileName input:[(DragDropImageView *)[[self subviews]objectAtIndex:toTag] image]];
+                
+            }
+        }
+         
+         
+    }
+}
+
+-(NSInteger)cellInPoint: (CGPoint) curPoint
+{
+    float cellWidth = [[[self subviews]objectAtIndex:0] frame].size.width;
+    float cellHeight = [[[self subviews]objectAtIndex:0] frame].size.height;
+    
+    int localY = (int)curPoint.x / cellWidth;
+    int localX = (int) curPoint.y / cellHeight;
+    
+    int inTag = localX * self.colSize + localY;
+    
+    NSLog(@"%i", inTag);
+    return inTag;
+}
+
+
+
 -(void) reloadImageOfSprout: (NSString *)sName
 {
     NSManagedObject *sp = [Sprout sproutForName:sName];
@@ -273,11 +366,11 @@
 
 -(void)touchInAImage:(DragDropImageView *)iSelected
 {
-    NSLog(@"From Image: %@", iSelected);
+    //NSLog(@"From Image: %@", iSelected);
 }
 -(void)dropInGrid:(DragDropImageView *)toImv
 {
-    NSLog(@"To Image: %@", toImv);
+    //NSLog(@"To Image: %@", toImv);
 }
 
 -(void)touchEnableScroll:(DragDropImageView *)sender moveable:(BOOL)enableOK
@@ -288,8 +381,8 @@
 
 -(void)moveImageFrom:(DragDropImageView *)fromImage to:(DragDropImageView *)toImage
 {
-    NSLog(@"Move image from %@ to %@", fromImage.url, toImage.url);
-    [self.delegate moveImageInSprout:self from:fromImage to:toImage];
+    //NSLog(@"Move image from %@ to %@", fromImage.url, toImage.url);
+    //[self.delegate moveImageInSprout:self from:fromImage to:toImage];
 }
 
 @end

@@ -18,7 +18,7 @@
 
 @end
 
-@interface SproutScrollView : UIScrollView <DragDropImageViewDelegate>
+@interface SproutScrollView : UIScrollView <DragDropImageViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) NSInteger rowSize;
 @property (nonatomic, assign) NSInteger colSize;
@@ -34,7 +34,7 @@
 -(id) initWithName:(NSString *)sName: (NSInteger)rs : (NSInteger) cs: (NSArray*) ai;
 -(void) updateImageToSprout: (NSString *) imageURL  inTag:(NSInteger)cellTag;
 -(void) reloadImageOfSprout: (NSString *)sName;
-
+-(NSInteger)cellInPoint: (CGPoint) curPoint;
 
 
 @end

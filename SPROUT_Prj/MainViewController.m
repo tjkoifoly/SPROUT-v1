@@ -12,6 +12,7 @@
 #import "ViewSproutViewController.h"
 #import "ReminderViewController.h"
 #import "ContinueAfterSaveViewController.h"
+#import "ConfirmPurchaseViewController.h"
 #import "ExportSproutViewController.h"
 
 @implementation MainViewController
@@ -140,7 +141,14 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-
+#pragma Purcharse Delgate
+-(void) gotoConfirm:(PurcharseCanvasViewController *)controller toView:(ConfirmPurchaseViewController *)confirmView
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController pushViewController:confirmView animated:YES];
+    confirmView = nil;
+    controller = nil;
+}
 
 
 
