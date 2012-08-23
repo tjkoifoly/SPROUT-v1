@@ -1547,8 +1547,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Thao Nguyen Minh (CJ2KDSD4NE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thao Nguyen Minh";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thao Nguyen Minh (MPL3WCSWL5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thao Nguyen Minh (MPL3WCSWL5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1564,8 +1564,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "18B4F83E-D062-4B2E-A204-EDDCA5523FD4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DCAAB76-2F04-433A-A8D8-28B734C87CD3";
+				PROVISIONING_PROFILE = "8AA20944-0378-4EFD-ABBE-D7152AC09257";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8AA20944-0378-4EFD-ABBE-D7152AC09257";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_LDFLAGS = "-lsqlite3.0";
 				WRAPPER_EXTENSION = app;
@@ -1576,8 +1576,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Thao Nguyen Minh";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thao Nguyen Minh";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thao Nguyen Minh (MPL3WCSWL5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thao Nguyen Minh (MPL3WCSWL5)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1593,8 +1593,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9DCAAB76-2F04-433A-A8D8-28B734C87CD3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DCAAB76-2F04-433A-A8D8-28B734C87CD3";
+				PROVISIONING_PROFILE = "8AA20944-0378-4EFD-ABBE-D7152AC09257";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8AA20944-0378-4EFD-ABBE-D7152AC09257";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_LDFLAGS = "-lsqlite3.0";
 				WRAPPER_EXTENSION = app;

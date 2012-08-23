@@ -425,8 +425,13 @@
         [self presentModalViewController:controller animated:YES];  
     }  else
     {
-        [twitpicEngine setAccessToken:[_engine getAccessToken]];
-        [twitpicEngine uploadPicture:imageInput withMessage:@"Post sprout from my iPhone"];
+        SA_OAuthTwitterController *controller1 = [[SA_OAuthTwitterController alloc] initWithEngine: _engine andOrientation: UIInterfaceOrientationPortrait];
+        controller1.delegate = self;
+        
+        [self presentModalViewController:controller1 animated:YES];
+        
+        //[twitpicEngine setAccessToken:[_engine getAccessToken]];
+        //[twitpicEngine uploadPicture:imageInput withMessage:@"Post sprout from my iPhone"];
         NSLog(@"POST");
     }
 }

@@ -12,6 +12,7 @@
 @implementation ConfirmPurchaseViewController
 {
     MFMailComposeViewController *mailer;
+    UIAlertView *conditionAlert;
 }
 
 @synthesize accept;
@@ -52,19 +53,17 @@
         dispatch_async(queue, ^{
             mailer = [[MFMailComposeViewController alloc]init];
             mailer.mailComposeDelegate = self;
+            [mailer setTitle:@"PRINT"];
             [mailer setSubject:@"Request printing a canvas"];
-            NSString *serviceMail = @"congnguyen@cnc.com.vn";
+            NSString *serviceMail =  @"congnguyen@cnc.com.vn";
             NSArray *toRecipients = [NSArray arrayWithObjects:serviceMail, nil];
-            
             [mailer setToRecipients:toRecipients];
-            
-            UIImage *myImage = self.imageToPrint;
-            NSLog(@"%f x %f", myImage.size.width, myImage.size.height);
-            
-            NSData *imageData = UIImageJPEGRepresentation(myImage, 0);
+            //[toRecipients release];
+            NSData *imageData = [UIImageJPEGRepresentation(self.imageToPrint, 1.0) retain];
             [mailer addAttachmentData:imageData mimeType:@"image/jpg" fileName:@"MyCoolSprout"];
             
-            NSString *emailBody = [NSString stringWithFormat:@"Size of canvas : %@", self.product];
+            //[imageData release];
+            NSString *emailBody = [NSString stringWithFormat:@"Size of canvas : %@", self.product] ;
             [mailer setMessageBody:emailBody isHTML:NO];
         });
         
@@ -83,8 +82,12 @@
     acceptView = nil;
     [product release];
     product = nil;
-    [self.imageToPrint release];
+    //[self.imageToPrint release];
     self.imageToPrint = nil;
+    [HUD release];
+    HUD = nil;
+    [conditionAlert release];
+    conditionAlert = nil;
     [super dealloc];
 }
 
@@ -95,6 +98,7 @@
     self.product    = nil;
     self.imageToPrint = nil;
     HUD = nil;
+    conditionAlert = nil;
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -158,8 +162,6 @@
         [sendBtn release];
         sendBtn = nil;
          */
-        [mailer release];
-        mailer = nil;
     }
     else
     {
@@ -175,16 +177,27 @@
 
 -(void)alertCancel
 {
-    
+    [self hudWasHidden:HUD];
+    conditionAlert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"You have bought a canvas successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    conditionAlert.delegate = self;
+    [conditionAlert show];
+    NSLog(@"Cancel");
 }
 -(void)alertSaved
 {
-    
+    [self hudWasHidden:HUD];
+    conditionAlert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"You have bought a canvas successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    conditionAlert.delegate = self;
+    [conditionAlert show];
+    NSLog(@"Saved");
 }
 -(void)alertSent
 {
     [self hudWasHidden:HUD];
-    
+    [mailer release];
+    mailer           = nil;
+    [conditionAlert release];
+    conditionAlert   = nil;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"You have bought a canvas successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     alert.delegate = self;
     [alert show];
@@ -197,13 +210,20 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if(alertView != conditionAlert)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else
+    {
+        [self presentModalViewController:mailer animated:YES];
+    }
 }
 
 
 -(void)alertFailed
 {
     [self hudWasHidden:HUD];
+    NSLog(@"Failed");
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error

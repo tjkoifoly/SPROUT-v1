@@ -75,18 +75,18 @@
     
     switch ([touch tapCount]) {
         case 1:
-            [self performSelector:@selector(oneTap) withObject:nil afterDelay:.5];
-        
+            [self performSelector:@selector(oneTap) withObject:nil afterDelay:.1];
+            //[self performSelector:@selector(threeTaps) withObject:nil afterDelay:0.8f];
             break;
             
         case 2:
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(oneTap) object:nil];
-            [self performSelector:@selector(twoTaps) withObject:nil afterDelay:.5];
+            [self performSelector:@selector(twoTaps) withObject:nil afterDelay:.1];
             break;
             
         case 3:
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(twoTaps) object:nil];
-            [self performSelector:@selector(threeTaps) withObject:nil afterDelay:.5];
+            [self performSelector:@selector(threeTaps) withObject:nil afterDelay:.1];
             break;
             
         default:
@@ -96,6 +96,7 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    //[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(threeTaps) object:nil];
     NSTimeInterval touchTimeDuration = [event timestamp] - touchStartTime;
     
     NSLog(@"Touch duration: %3.2f seconds", touchTimeDuration);

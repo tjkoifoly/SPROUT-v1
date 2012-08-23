@@ -97,15 +97,19 @@
         _engine.consumerKey = TWITTER_OAUTH_CONSUMER_KEY;
         _engine.consumerSecret = TWITTER_OAUTH_CONSUMER_SECRET;      
     }
-    //[_engine clearAccessToken];
+   
     if(![_engine isAuthorized]){  
         UIViewController *controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine:_engine delegate:self];  
-        //[_engine requestAccessToken];
+        
         [self presentModalViewController:controller animated:YES];  
     }  else
     {
-        [twitpicEngine setAccessToken:[_engine getAccessToken]];
-        [twitpicEngine uploadPicture:self.imageInput withMessage:@"Post from my iPhone"];
+        SA_OAuthTwitterController *controller1 = [[SA_OAuthTwitterController alloc] initWithEngine: _engine andOrientation: UIInterfaceOrientationPortrait];
+        controller1.delegate = self;
+        
+        [self presentModalViewController:controller1 animated:YES];
+        //[twitpicEngine setAccessToken:[_engine getAccessToken]];
+        //[twitpicEngine uploadPicture:self.imageInput withMessage:@"Post from my iPhone"];
     }
 }
 
@@ -132,9 +136,10 @@
 
 - (void) OAuthTwitterController: (SA_OAuthTwitterController *) controller authenticatedWithUsername: (NSString *) username {
 	NSLog(@"Authenicated for %@", username);
-    
+   
     [twitpicEngine setAccessToken:[_engine getAccessToken]];
     [twitpicEngine uploadPicture:self.imageInput withMessage:@"Post from my iPhone"];
+    
 }
 
 - (void) OAuthTwitterControllerFailed: (SA_OAuthTwitterController *) controller {
