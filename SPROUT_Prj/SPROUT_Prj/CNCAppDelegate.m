@@ -11,8 +11,12 @@
 #import "TakePhotoViewController.h"
 #import "MainViewController.h"
 #import "HiddenNavigationController.h"
+#import "LoadingViewController.h"
 
 @implementation CNCAppDelegate
+{
+    TakePhotoViewController *takeViewController ;
+}
 
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -20,6 +24,7 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize mainViewController;
 @synthesize navigationController;
+@synthesize startViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -30,7 +35,7 @@
     
     self.window.rootViewController = navigationController;
     
-    TakePhotoViewController *takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
+    takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
     [navigationController pushViewController:takeViewController animated:NO];
     
      [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
@@ -71,11 +76,31 @@
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-    //[self.navigationController popToRootViewControllerAnimated:NO];
-    //TakePhotoViewController *takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
+    //
+    NSLog(@"Enter Foreground - %i", [[UIApplication sharedApplication]applicationIconBadgeNumber]);
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    NSLog(@"Notification");
+    if(startViewController == nil)
+    {
+        startViewController = [[LoadingViewController alloc] initWithNibName:@"LoadingViewController" bundle:nil];
+    }
+    [self.navigationController.view addSubview:startViewController.view];
     
-    //[self.navigationController pushViewController:takeViewController animated:NO];
+    [self.navigationController popToRootViewControllerAnimated:NO];
     
+    if(takeViewController == nil)
+    {
+        takeViewController = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
+    }
+    
+    [self.navigationController pushViewController:takeViewController animated:NO];
+    
+    sleep(3);
+    [startViewController.view removeFromSuperview];
+    startViewController = nil;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -83,6 +108,8 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    NSLog(@"Become active");
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

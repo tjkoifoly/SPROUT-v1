@@ -10,6 +10,8 @@
 
 @interface PurcharseCanvasViewController : UIViewController
 
+@property (strong, nonatomic) UIImage *imageToPrint;
+
 -(IBAction)goToHome:(id)sender;
 -(IBAction)chooseCanvas:(id)sender;
 

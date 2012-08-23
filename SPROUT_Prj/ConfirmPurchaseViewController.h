@@ -8,19 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "MKStoreManager.h"
+#import "MBProgressHUD.h"
+#import <MessageUI/MessageUI.h>
 
 @interface ConfirmPurchaseViewController : UIViewController
-<MKStoreKitDelegate>
-
+<MKStoreKitDelegate, MBProgressHUDDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
+{
+    MBProgressHUD *HUD;
+}
 
 @property (strong, nonatomic) NSString *product;
 @property (nonatomic) BOOL accept;
 
 @property (strong, nonatomic) IBOutlet UIImageView *acceptView;
+@property (strong, nonatomic) UIImage *imageToPrint;
 
 -(void) touchCheck;
 -(IBAction)goToHome:(id)sender;
 -(IBAction)confirmPurchase:(id)sender;
 -(IBAction)checkAccept:(id)sender;
+-(void)showHUDwithTitle: (NSString*)title;
 
 @end

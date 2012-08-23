@@ -169,15 +169,15 @@
             
             //DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u : cellWidth];
             DragDropImageView *imv =  [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u :cellWidth andPath:[NSString stringWithFormat:@"%@-atTag-%i", sName, t]];
-            //NSLog(@"%@", [NSString stringWithFormat:@"%@-atTag-%i", sName, t]);
-            
-            //imv.image = [UIImage imageNamed:@"baby"];
+                //NSLog(@"%@", [NSString stringWithFormat:@"%@-atTag-%i", sName, t]);
+                
+                //imv.image = [UIImage imageNamed:@"baby"];
             imv.tag = t;
             imv.userInteractionEnabled = YES;
             imv.delegate = self;
             
             [self addSubview:imv];
-            
+            imv = nil;
             //NSLog(@"%i %i %i", i , j, imv.tag);
         }
     }

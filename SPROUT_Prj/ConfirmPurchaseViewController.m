@@ -10,10 +10,14 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation ConfirmPurchaseViewController
+{
+    MFMailComposeViewController *mailer;
+}
 
 @synthesize accept;
 @synthesize acceptView;
 @synthesize product;
+@synthesize imageToPrint;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,17 +45,62 @@
     self.acceptView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.acceptView.layer.borderWidth = 1.f;
     
+    if ([MFMailComposeViewController canSendMail])
+    {
+        dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+        
+        dispatch_async(queue, ^{
+            mailer = [[MFMailComposeViewController alloc]init];
+            mailer.mailComposeDelegate = self;
+            [mailer setSubject:@"Request printing a canvas"];
+            NSString *serviceMail = @"congnguyen@cnc.com.vn";
+            NSArray *toRecipients = [NSArray arrayWithObjects:serviceMail, nil];
+            
+            [mailer setToRecipients:toRecipients];
+            
+            UIImage *myImage = self.imageToPrint;
+            NSLog(@"%f x %f", myImage.size.width, myImage.size.height);
+            
+            NSData *imageData = UIImageJPEGRepresentation(myImage, 0);
+            [mailer addAttachmentData:imageData mimeType:@"image/jpg" fileName:@"MyCoolSprout"];
+            
+            NSString *emailBody = [NSString stringWithFormat:@"Size of canvas : %@", self.product];
+            [mailer setMessageBody:emailBody isHTML:NO];
+        });
+        
+        dispatch_release(queue);
+        
+    }
+    
     accept = NO;
     [self touchCheck];
 }
 
-
+-(void)dealloc
+{
+    //[self hudWasHidden:HUD];
+    [acceptView release];
+    acceptView = nil;
+    [product release];
+    product = nil;
+    [self.imageToPrint release];
+    self.imageToPrint = nil;
+    [super dealloc];
+}
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     self.acceptView = nil;
     self.product    = nil;
+    self.imageToPrint = nil;
+    HUD = nil;
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    //[self hudWasHidden:HUD];
+    [super viewDidDisappear:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -69,18 +118,133 @@
 
 -(IBAction)confirmPurchase:(id)sender
 {
-    [MKStoreManager setDelegate:self];
-    
     if(accept)
     {
+        [MKStoreManager setDelegate:self];
         [[MKStoreManager sharedManager] buyFeature:self.product];
+        
+        [self showHUDwithTitle:@"Loading ...."];
         NSLog(@"Product: %@", self.product);
     }else
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR!" message:@"You must acept for term." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
+        [alert release];
     }
 }
+
+-(void)showHUDwithTitle: (NSString*)title
+{
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    HUD.delegate = self;
+    HUD.labelText = title;
+    [HUD show:YES];
+
+}
+
+-(void)sendMailToSupport
+{
+    //[self hudWasHidden:HUD];
+    if ([MFMailComposeViewController canSendMail])
+    {
+        [self presentModalViewController:mailer animated:YES];
+        //Send email programingly
+        /*
+        UIBarButtonItem *sendBtn = mailer.navigationBar.topItem.rightBarButtonItem;
+        id targ = sendBtn.target;
+        [targ performSelector:sendBtn.action withObject:sendBtn];
+        [sendBtn release];
+        sendBtn = nil;
+         */
+        [mailer release];
+        mailer = nil;
+    }
+    else
+    {
+        //[self hudWasHidden:HUD];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        alert = nil;
+    }
+}
+
+
+-(void)alertCancel
+{
+    
+}
+-(void)alertSaved
+{
+    
+}
+-(void)alertSent
+{
+    [self hudWasHidden:HUD];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"You have bought a canvas successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    alert.delegate = self;
+    [alert show];
+    [alert release]; 
+    NSLog(@"OK");
+}
+
+#pragma mark
+#pragma UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+-(void)alertFailed
+{
+    [self hudWasHidden:HUD];
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+        {
+            NSLog(@"Mail cancelled: you cancelled the operation and no email message was queued.");
+            [self performSelector:@selector(alertCancel) withObject:nil afterDelay:0.1f];
+        }
+            break;
+        case MFMailComposeResultSaved:
+        {
+            
+            [self performSelector:@selector(alertSaved) withObject:nil afterDelay:0.1f];
+            NSLog(@"Mail saved: you saved the email message in the drafts folder.");
+        }
+            break;
+        case MFMailComposeResultSent:
+        {
+            [self performSelector:@selector(alertSent) withObject:nil afterDelay:0.1f];
+            NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send.");
+        }
+            break;
+        case MFMailComposeResultFailed:
+        {
+            [self performSelector:@selector(alertFailed) withObject:nil afterDelay:0.1f];
+            NSLog(@"Mail failed: the email message was not saved or queued, possibly due to an error.");
+        }
+            break;
+        default:
+            NSLog(@"Mail not sent.");
+            break;
+    }
+    
+    // Remove the mail view
+    controller.delegate = nil;
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 
 #pragma IPA delegate
@@ -91,14 +255,20 @@
 
 -(void)transactionCanceled
 {
+    [self hudWasHidden:HUD];
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR!" message:@"Buy canvas faile." delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil];
     [alert show];
+    [alert release];
+    NSLog(@"Cancel");
 }
 
 -(void)productPurchased:(NSString *)productId
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"You have bought a canvas successfully." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alert show];
+    NSLog(@"OKMEN");
+    //[self showHUDwithTitle:@"Sending email\nto request ...."];
+    [self sendMailToSupport];
+    
 }
 
 -(IBAction)checkAccept:(id)sender
@@ -138,6 +308,14 @@
     }
 }
 
+#pragma --
+#pragma HUD delegate
+-(void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [hud removeFromSuperview];
+    [hud release];
+    hud = nil;
+}
 
 
 

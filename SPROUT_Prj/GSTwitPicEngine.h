@@ -16,8 +16,8 @@
 // Define these API credentials as per your applicationss.
 
 // Get here: http://twitter.com/apps
-#define TWITTER_OAUTH_CONSUMER_KEY @"sEVxwXn5H10tXdVLiqJA"
-#define TWITTER_OAUTH_CONSUMER_SECRET @"WgYJzcKLTbpvsaGoKrETsEMK7tWNu5pVC45J7zB6Y"
+#define TWITTER_OAUTH_CONSUMER_KEY @"xsUE9NVpHg54JGhmJVhyqQ"
+#define TWITTER_OAUTH_CONSUMER_SECRET @"LJor8qnpsiBkaA5mipG0xhMQunjoFc9eQbqXwTTQc"
 
 // Get here: http://dev.twitpic.com/apps/
 #define TWITPIC_API_KEY @"ee5b53769c6055e2a9cd022c3d9e6f4c"

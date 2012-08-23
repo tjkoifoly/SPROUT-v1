@@ -68,6 +68,7 @@
         NSLog(@"QUIT FROM POST");
     }
   
+    [self hudWasHidden:HUD];
 }
 
 - (void)viewDidUnload
@@ -89,22 +90,22 @@
 
 -(void)postTwitteriOS4
 {
-    twitpicEngine = (GSTwitPicEngine *)[GSTwitPicEngine twitpicEngineWithDelegate:self];      
+    twitpicEngine = (GSTwitPicEngine *)[GSTwitPicEngine twitpicEngineWithDelegate:self];   
+    
     if (_engine == nil) {
         _engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate:self];
         _engine.consumerKey = TWITTER_OAUTH_CONSUMER_KEY;
-        _engine.consumerSecret = TWITTER_OAUTH_CONSUMER_SECRET;        
+        _engine.consumerSecret = TWITTER_OAUTH_CONSUMER_SECRET;      
     }
     //[_engine clearAccessToken];
     if(![_engine isAuthorized]){  
         UIViewController *controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine:_engine delegate:self];  
-        [_engine requestAccessToken];
+        //[_engine requestAccessToken];
         [self presentModalViewController:controller animated:YES];  
     }  else
     {
         [twitpicEngine setAccessToken:[_engine getAccessToken]];
         [twitpicEngine uploadPicture:self.imageInput withMessage:@"Post from my iPhone"];
-        NSLog(@"POST");
     }
 }
 
@@ -151,6 +152,7 @@
         [tempView removeFromSuperview];
         tempView = nil;
     }
+    [self hudWasHidden:HUD];
 	NSLog(@"Authentication Canceled.");
 }
 
@@ -178,6 +180,8 @@
 #pragma mark -
 #pragma mark - GSTwitPicEngineDelegate
 - (void)twitpicDidFinishUpload:(NSDictionary *)response {
+    
+    [self hudWasHidden:HUD];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Photo was posted on your twitter." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
@@ -215,6 +219,9 @@
         [tempView removeFromSuperview];
         tempView = nil;
     }
+    
+    [self hudWasHidden:HUD];
+    
     NSLog(@"TwitPic failed to upload: %@", error);
     
     if ([[error objectForKey:@"request"] responseStatusCode] == 401) {
@@ -269,6 +276,7 @@
     //POST ON TWITTER
     if(shareButton.tag == 1)
     {
+        /*
         NSString *reqSysVer = @"5.0";
         NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
         if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
@@ -289,7 +297,18 @@
             [self postTwitteriOS4];
             //[_engine sendUpdate:@"FOLY"];
         }
+         */
         
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+        
+        HUD.delegate = self;
+        HUD.labelText = @"Loading";
+        [HUD show:YES];
+        
+        //[HUD showWhileExecuting:@selector(postTwitteriOS4) onTarget:self withObject:nil animated:YES];
+        
+        [self postTwitteriOS4];
         
     }
     //POST ON FACEBOOK
@@ -355,6 +374,14 @@
     self.imageInput = imageSaved;
     self.viewImage.image = self.imageInput;
     self.urlImage = urlOfImage;
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	// Remove HUD from screen when the HUD was hidded
+	[HUD removeFromSuperview];
+	HUD = nil;
 }
 
 @end

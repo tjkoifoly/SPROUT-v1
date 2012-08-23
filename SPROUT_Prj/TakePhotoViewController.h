@@ -14,7 +14,7 @@
 @interface TakePhotoViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, OverlayViewDelegate>
 
-@property (strong, nonatomic) UIImagePickerController *pickerImage;
+@property (retain, nonatomic) UIImagePickerController *pickerImage;
 
 @property (nonatomic) BOOL save;
 @property (nonatomic) BOOL isLibrary;

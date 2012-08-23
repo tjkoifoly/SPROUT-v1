@@ -23,7 +23,7 @@
 
 -(void)loadFromLibContinue: (SaveSproutViewController *)controller toView: (ContinueAfterSaveViewController *)continueViewController;
 
--(void)loadFromLibToContinue: (SaveorDiscardPhotoViewController *)controller;
+-(void)loadFromLibToContinue:(SaveSproutViewController *)fromController to: (SaveorDiscardPhotoViewController *)controller;
 
 -(void)exportSproutOK: (SaveSproutViewController *)controller toView: (ExportSproutViewController *)expController;
 

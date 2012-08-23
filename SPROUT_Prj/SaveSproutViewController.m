@@ -65,8 +65,8 @@
         statusLabel.hidden  = YES;
         self.delegate = [[self.navigationController viewControllers]objectAtIndex:0];
     }
-    
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
+    
     if(self.sproutScroll == nil)
     {
         //self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :self.imagesArray];
@@ -76,6 +76,7 @@
     self.sproutScroll.delegate = self;
     CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
     self.sproutScroll.center = center;
+    
     [self.sproutView addSubview:self.sproutScroll];
     self.sproutView.backgroundColor = [UIColor clearColor];
     
@@ -127,6 +128,7 @@
 #pragma IBAction
 -(IBAction)goToHome:(id)sender
 {
+    [self viewDidUnload];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -195,11 +197,8 @@
     saveOrDiscardViewController.image = image;
     saveOrDiscardViewController.fromLib = YES;
     
-    [self.delegate loadFromLibToContinue:saveOrDiscardViewController];
+    [self.delegate loadFromLibToContinue: self to: saveOrDiscardViewController];
 }
-
-
-
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -251,11 +250,8 @@
     {
         ViewPhotoInSproutViewController *photoViewController = [[ViewPhotoInSproutViewController alloc] initWithNibName:@"ViewPhotoInSproutViewController" bundle:nil];
         photoViewController.delegate = self;
-
 //        photoViewController.current = imageSelected.image;
-        
         photoViewController.listImages = listImages;
-
         //photoViewController.imagesMgr = imagesMng;
         photoViewController.currentObject = imageSelected;
     
@@ -306,8 +302,8 @@
             x.backgroundColor = [UIColor lightGrayColor];
         }
         x.layer.borderColor = [UIColor whiteColor].CGColor;
-        x.layer.borderWidth= 0.8f;
-        fullView.layer.borderWidth = 1.5f;
+        x.layer.borderWidth= 1.f;
+        fullView.layer.borderWidth = 2.f;
         fullView.layer.borderColor = [UIColor whiteColor].CGColor;
         
         [fullView addSubview:x];

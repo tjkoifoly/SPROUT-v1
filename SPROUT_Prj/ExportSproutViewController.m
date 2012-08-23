@@ -105,9 +105,9 @@
         // [(UIImageView *)ix loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
         [tempView addSubview:imvX];
         imvX = nil;
-            
         });
     }
+    self.sproutScroll = nil;
     
 }
 
@@ -116,10 +116,10 @@
     if(saved == NO)
     {
         imageToSave = [self imageCaptureSave:tempView];
-        tempView = nil;
         saved = YES;
         NSLog(@"SAVED.");
         [tView removeFromSuperview];
+        tView = nil;
     }
     
 }
@@ -142,8 +142,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-         [self loadData];
+        [self loadData];
     });
    
     NSLog(@"LOADING...");
@@ -219,7 +220,6 @@
     if ([MFMailComposeViewController canSendMail])
     {
         __block MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc]init];
-        //mailer.navigationItem.rightBarButtonItem.title = @"OK";
         mailer.mailComposeDelegate = self;
         
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -322,6 +322,8 @@
 -(IBAction)purcharseCanvas:(id)sender
 {
     PurcharseCanvasViewController *purchaseViewController = [[PurcharseCanvasViewController alloc] initWithNibName:@"PurcharseCanvasViewController" bundle:nil];
+    
+    purchaseViewController.imageToPrint = imageToSave;
     
     [self.navigationController pushViewController:purchaseViewController animated:YES];
 }
@@ -455,6 +457,7 @@
     //POST ON TWITTER
     if(shareButton.tag == 1)
     {
+        /*
         NSString *reqSysVer = @"5.0";
         NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
         if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
@@ -475,6 +478,19 @@
             [self postTwitteriOS4 : postImage];
             
         }
+         */
+        tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
+        tempViewPost.backgroundColor = [UIColor blackColor];
+        tempViewPost.alpha = 0.5f;
+        __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        indicator.center = tempViewPost.center;
+        //indicator.color = [UIColor blackColor];
+        indicator.hidesWhenStopped = YES;
+        [tempViewPost addSubview:indicator];
+        [indicator startAnimating];
+        [self.view addSubview:tempViewPost];
+        
+        [self postTwitteriOS4:imageToSave];
     }
     //POST ON FACEBOOK
     else if(shareButton.tag == 2)

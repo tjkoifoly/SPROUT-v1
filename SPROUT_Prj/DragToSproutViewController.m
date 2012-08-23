@@ -139,37 +139,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.sproutView.backgroundColor = [UIColor clearColor];
     temp = nil;
-    
-    if(imageInput == nil)
-        imageInput = [UIImage imageNamed:@"baby"];
-    
     self.imageForSprout.image = imageInput;
-    
-   // NSLog(@"SPROUT = %@", self.sprout);
-    
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
-    
-    //self.sproutScroll = [[SproutScrollView alloc] initWithrowSize:[[self.sprout valueForKey:@"rowSize"] intValue] andColSize:[[self.sprout valueForKey:@"colSize"] intValue]];
-    //self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
-    self.sproutScroll = [[SproutScrollView alloc] initWithName:[self.sprout valueForKey:@"name"] :[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
 
+    self.sproutScroll = [[SproutScrollView alloc] initWithName:[self.sprout valueForKey:@"name"] :[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
     self.sproutScroll.delegate = self;
-    
     CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
-    
+        
     self.sproutScroll.center = center;
     [self.sproutView addSubview:self.sproutScroll];
-    self.sproutView.backgroundColor = [UIColor clearColor];
     
-    
-    //NSLog(@"%f %f",self.sproutScroll.center.x,self.sproutScroll.center.y );    
 }
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
     self.imageForSprout     = nil;
     self.imageInput         = nil;
     self.sproutView         = nil;
@@ -187,6 +172,7 @@
 
 -(IBAction)goToHome:(id)sender
 {
+    [self viewDidUnload];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

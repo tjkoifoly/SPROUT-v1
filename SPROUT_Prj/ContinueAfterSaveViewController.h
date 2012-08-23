@@ -11,10 +11,14 @@
 #import "SA_OAuthTwitterController.h"
 #import "GSTwitPicEngine.h"
 #import "HTTPRequest.h"
+#import "MBProgressHUD.h"
 
 @class SA_OAuthTwitterEngine;
 
-@interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate, SA_OAuthTwitterControllerDelegate, HTTPRequestDelegate, GSTwitPicEngineDelegate>
+@interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate, SA_OAuthTwitterControllerDelegate, HTTPRequestDelegate, GSTwitPicEngineDelegate, MBProgressHUDDelegate>
+{
+    MBProgressHUD *HUD;
+}
 
 @property (strong, nonatomic) UIImage *imageInput;
 @property (strong, nonatomic) IBOutlet UIImageView *viewImage;

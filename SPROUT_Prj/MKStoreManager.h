@@ -55,6 +55,7 @@
 
 // These are the methods you will be using in your app
 + (MKStoreManager*)sharedManager;
++ (MKStoreManager *)sharedManagerWithProduct: (NSString *)productID;
 
 // this is a static method, since it doesn't require the store manager to be initialized prior to calling
 + (BOOL) isFeaturePurchased:(NSString*) featureId; 
@@ -66,6 +67,7 @@
 
 - (BOOL) canConsumeProduct:(NSString*) productIdentifier quantity:(int) quantity;
 - (BOOL) consumeProduct:(NSString*) productIdentifier quantity:(int) quantity;
+-(void) requestProductData: (NSString *)productID;
 
 
 //DELEGATES

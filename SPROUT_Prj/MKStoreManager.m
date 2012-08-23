@@ -36,7 +36,7 @@
 
 static NSString *ownServer = nil;
 
-static __weak id<MKStoreKitDelegate> _delegate;
+static __unsafe_unretained id<MKStoreKitDelegate> _delegate;
 static MKStoreManager* _sharedStoreManager;
 
 
@@ -75,6 +75,26 @@ static MKStoreManager* _sharedStoreManager;
             _sharedStoreManager = [[self alloc] init];					
 			_sharedStoreManager.purchasableObjects = [[NSMutableArray alloc] init];
 			[_sharedStoreManager requestProductData];						
+			_sharedStoreManager.storeObserver = [[MKStoreObserver alloc] init];
+			[[SKPaymentQueue defaultQueue] addTransactionObserver:_sharedStoreManager.storeObserver];			
+#endif
+        }
+    }
+    return _sharedStoreManager;
+}
+
++   (MKStoreManager *)sharedManagerWithProduct: (NSString *)productID
+{
+    @synchronized(self) {
+		
+        if (_sharedStoreManager == nil) {
+            
+#if TARGET_IPHONE_SIMULATOR
+			NSLog(@"You are running in Simulator MKStoreKit runs only on devices");
+#else
+            _sharedStoreManager = [[self alloc] init];					
+			_sharedStoreManager.purchasableObjects = [[NSMutableArray alloc] init];
+			[_sharedStoreManager requestProductData:productID];						
 			_sharedStoreManager.storeObserver = [[MKStoreObserver alloc] init];
 			[[SKPaymentQueue defaultQueue] addTransactionObserver:_sharedStoreManager.storeObserver];			
 #endif
@@ -138,6 +158,16 @@ static MKStoreManager* _sharedStoreManager;
 								  kFeatureAId,
 								  kConsumableFeatureBId,
 								  nil]];
+	request.delegate = self;
+	[request start];
+}
+
+-(void) requestProductData: (NSString *)productID
+{
+    SKProductsRequest *request= [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObjects: 
+                                                                                       productID,
+                                                                                       kConsumableFeatureBId,
+                                                                                       nil]];
 	request.delegate = self;
 	[request start];
 }

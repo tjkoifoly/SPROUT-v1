@@ -9,6 +9,7 @@
 #import "ReminderViewController.h"
 #import "ReminderManagerViewController.h"
 #import "Sprout.h"
+#import "TakePhotoViewController.h"
 
 @implementation ReminderViewController
 {
@@ -48,6 +49,13 @@
     self.alertTime = 0;
     unit = 0;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(takePhoto)
+                                                 name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
+    
+}
+
+-(void)takePhoto
+{
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -180,7 +188,7 @@
     
     //[localNotification setFireDate:[NSDate dateWithTimeIntervalSinceNow:[datePicker countDownDuration]]];
      NSString *location = @"";
-    if(![desc isEqualToString:@""])
+    if(![alertLocation.text isEqualToString:@""])
     {
        location = [NSString stringWithFormat:@" at location: %@", alertLocation.text];
     }
@@ -195,7 +203,7 @@
     [localNotification setHasAction:YES];
     localNotification.repeatInterval = unit;
     
-    [localNotification setApplicationIconBadgeNumber:[[UIApplication sharedApplication] applicationIconBadgeNumber] +1 ];
+    [localNotification setApplicationIconBadgeNumber:1];
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     

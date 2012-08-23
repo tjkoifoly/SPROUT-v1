@@ -113,7 +113,6 @@
     [super viewDidUnload];
     self.pickerImage    = nil;
     self.urlImage       = nil;
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

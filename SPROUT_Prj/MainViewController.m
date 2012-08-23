@@ -113,14 +113,18 @@
 
 -(void)exportSproutOK:(SaveSproutViewController *)controller toView:(ExportSproutViewController *)expController
 {
+    controller = nil;
     [self.navigationController popToRootViewControllerAnimated:NO];
     [self.navigationController pushViewController:expController animated:YES];
+    expController = nil;
 }
 
--(void)loadFromLibToContinue:(SaveorDiscardPhotoViewController *)controller
+-(void)loadFromLibToContinue:(SaveSproutViewController *)fromController to: (SaveorDiscardPhotoViewController *)controller
 {
+    fromController = nil;
     [self.navigationController popToRootViewControllerAnimated:NO];
     [self.navigationController pushViewController:controller animated:YES];
+    controller = nil;
 }
 
 #pragma Create delegate

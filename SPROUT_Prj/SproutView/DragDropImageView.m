@@ -40,8 +40,6 @@
 -(id) initWithLocationX: (NSInteger) x andY: (NSInteger) y fromURL: (NSString *)urlimage : (NSInteger)size
 {
     self = [self initWithLocationX:x andY:y :size];
-    
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self loadImageFromAssetURL:[NSURL URLWithString:urlimage]];
     });

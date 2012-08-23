@@ -10,6 +10,7 @@
 
 @class MainViewController;
 @class HiddenNavigationController;
+@class LoadingViewController;
 
 @interface CNCAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -20,6 +21,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) HiddenNavigationController *navigationController;
 @property (strong, nonatomic) MainViewController *mainViewController;
+@property (strong, nonatomic) LoadingViewController *startViewController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

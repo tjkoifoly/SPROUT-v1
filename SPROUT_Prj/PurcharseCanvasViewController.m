@@ -11,6 +11,8 @@
 
 @implementation PurcharseCanvasViewController
 
+@synthesize imageToPrint;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,6 +41,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    self.imageToPrint = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -57,6 +60,8 @@
 -(IBAction)chooseCanvas:(id)sender
 {
     ConfirmPurchaseViewController *confirmViewController = [[ConfirmPurchaseViewController alloc] initWithNibName:@"ConfirmPurchaseViewController" bundle:nil];
+    
+    confirmViewController.imageToPrint = self.imageToPrint;
     
     UIButton *buttonCanvas = (UIButton*)sender;
     NSInteger tagCanvas = [buttonCanvas tag];
