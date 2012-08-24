@@ -21,7 +21,7 @@
 @property (nonatomic) BOOL accept;
 
 @property (strong, nonatomic) IBOutlet UIImageView *acceptView;
-@property (strong, nonatomic) UIImage *imageToPrint;
+@property (retain, nonatomic) UIImage *imageToPrint;
 
 -(void) touchCheck;
 -(IBAction)goToHome:(id)sender;

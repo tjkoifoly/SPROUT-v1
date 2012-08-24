@@ -119,7 +119,7 @@
     UILongPressGestureRecognizer *changeImage = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(moveToBlank:)];
     
     changeImage.delegate = self;
-    changeImage.minimumPressDuration = 0.8f;
+    changeImage.minimumPressDuration = 0.6f;
     
     [self addGestureRecognizer:changeImage];
     
@@ -287,8 +287,8 @@
         
     }else if(recognizer.state == UIGestureRecognizerStateChanged)
     {
-        NSLog(@"Change Location");
-         NSLog(@"%i", fromTag);
+        //NSLog(@"Change Location");
+         //NSLog(@"%i", fromTag);
         if(okMen != nil)
         {
             CGPoint currentPoint = [recognizer locationInView:self];
