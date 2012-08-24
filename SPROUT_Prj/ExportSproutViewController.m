@@ -14,6 +14,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+loadImage.h"
+#import "MBProgressHUD.h"
 
 #define kSize 200
 #define kMaxSize 2000
@@ -21,6 +22,7 @@
 
 @implementation ExportSproutViewController
 {
+    __block MBProgressHUD *HUD;
     UIImage *imageToSave;
     __block UIView *tempView;
     __block UIView *tView;
@@ -58,7 +60,15 @@
 
 -(void)loadData
 {
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
     
+    //HUD.backgroundColor = [UIColor blackColor];
+    HUD.delegate = self;
+    HUD.labelText = @"Loading";
+    [HUD show:YES];
+    
+    /*
     tView  = [[UIView alloc] initWithFrame:self.view.frame];
     tView.backgroundColor = [UIColor blackColor];
     tView.alpha = 0.8f;
@@ -69,6 +79,8 @@
     [tView addSubview:indicator];
     [indicator startAnimating];
     [self.view addSubview:tView];
+    */
+    
     
     NSInteger standardSize = kSize;
     int row = sproutScroll.rowSize;
@@ -116,8 +128,12 @@
     imageToSave = [self imageCaptureSave:tempView];
     saved = YES;
     NSLog(@"SAVED.");
+    /*
     [tView removeFromSuperview];
     tView = nil;
+     */
+    tempView = nil;
+    [self hudWasHidden:HUD];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -139,6 +155,8 @@
         tempViewPost = nil;
         NSLog(@"QUIT FROM POST");
     }
+    
+    [self hudWasHidden:HUD];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -491,6 +509,7 @@
             
         }
          */
+        /*
         tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
         tempViewPost.backgroundColor = [UIColor blackColor];
         tempViewPost.alpha = 0.5f;
@@ -501,12 +520,22 @@
         [tempViewPost addSubview:indicator];
         [indicator startAnimating];
         [self.view addSubview:tempViewPost];
+         */
+        
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+        
+        //HUD.backgroundColor = [UIColor blackColor];
+        HUD.delegate = self;
+        HUD.labelText = @"Sharing...";
+        [HUD show:YES];
         
         [self postTwitteriOS4:imageToSave];
     }
     //POST ON FACEBOOK
     else if(shareButton.tag == 2)
     {
+        /*
         tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
         tempViewPost.backgroundColor = [UIColor blackColor];
         tempViewPost.alpha = 0.8f;
@@ -517,6 +546,15 @@
         [tempViewPost addSubview:indicator];
         [indicator startAnimating];
         [self.view addSubview:tempViewPost];
+         */
+        
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+        
+        //HUD.backgroundColor = [UIColor blackColor];
+        HUD.delegate = self;
+        HUD.labelText = @"Sharing...";
+        [HUD show:YES];
         
         [FBSession sessionOpenWithPermissions:nil 
                             completionHandler:^(FBSession *session, 
@@ -541,12 +579,14 @@
                                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Please check again network connection." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                                 [alert show];
                                             }
+                                            /*
                                             if(tempViewPost != nil)
                                             {
                                                 //[indicator stopAnimating];
                                                 [tempViewPost removeFromSuperview];
                                                 tempViewPost = nil;
-                                            }
+                                            }*/
+                                            [self hudWasHidden:HUD];
                                             
                                         }];
                                         
@@ -579,6 +619,8 @@
         [tempViewPost removeFromSuperview];
         tempViewPost = nil;
     }
+    
+    [self hudWasHidden:HUD];
 	NSLog(@"Authentication Failed!");
 }
 
@@ -588,6 +630,8 @@
         [tempViewPost removeFromSuperview];
         tempViewPost = nil;
     }
+    
+    [self hudWasHidden:HUD];
 	NSLog(@"Authentication Canceled.");
 }
 
@@ -623,6 +667,8 @@
         [tempViewPost removeFromSuperview];
         tempViewPost = nil;
     }
+    
+    [self hudWasHidden:HUD];
     NSLog(@"TwitPic finished uploading: %@", response);
     
     // [response objectForKey:@"parsedResponse"] gives an NSDictionary of the response one of the parsing libraries was available.
@@ -652,6 +698,8 @@
         [tempViewPost removeFromSuperview];
         tempViewPost = nil;
     }
+    
+    [self hudWasHidden:HUD];
     NSLog(@"TwitPic failed to upload: %@", error);
     
     if ([[error objectForKey:@"request"] responseStatusCode] == 401) {
@@ -659,7 +707,12 @@
     }    
 }
 
-
+#pragma mark
+#pragma HUD delegate
+-(void)hudWasHidden:(MBProgressHUD *)hud{
+    [hud removeFromSuperview];
+    hud = nil;
+}
 
 
 

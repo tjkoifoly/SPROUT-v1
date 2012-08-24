@@ -330,7 +330,14 @@
     [self setMinimumZoomForCurrentFrame];
     [imageScrollView setZoomScale:imageScrollView.minimumZoomScale animated:NO];
     
+    [UIView beginAnimations:@"View Flip" context:nil];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+                           forView:self.view
+                             cache:YES];
     [self.view addSubview:imageScrollView];
+    [UIView commitAnimations];
     
     backView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, 40)];
     backView.backgroundColor = [UIColor clearColor];
@@ -339,13 +346,22 @@
     backButton.frame = CGRectMake(0,5,60,30);
     [backButton addTarget:self action:@selector(backtoPreviousView) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:backButton];
+    
     [self.view addSubview:backView];
 }
 
 -(void)backtoPreviousView
 {
+    [UIView beginAnimations:@"View Flip" context:nil];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
+                           forView:self.view
+                             cache:YES];
+
     [backView removeFromSuperview];
     [imageScrollView removeFromSuperview];
+    [UIView commitAnimations];
 }
 
 #pragma UIScrollDelegate

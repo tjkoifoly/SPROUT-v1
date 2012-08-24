@@ -22,6 +22,7 @@
     BOOL logged;
     SA_OAuthTwitterEngine *_engine;
     GSTwitPicEngine *twitpicEngine;
+
     __block UIView *tempView;
 }
 
@@ -148,6 +149,8 @@
         [tempView removeFromSuperview];
         tempView = nil;
     }
+    
+    [self hudWasHidden:HUD];
 	NSLog(@"Authentication Failed!");
 }
 
@@ -308,7 +311,7 @@
         [self.navigationController.view addSubview:HUD];
         
         HUD.delegate = self;
-        HUD.labelText = @"Loading";
+        HUD.labelText = @"Sharing...";
         [HUD show:YES];
         
         //[HUD showWhileExecuting:@selector(postTwitteriOS4) onTarget:self withObject:nil animated:YES];
@@ -319,6 +322,7 @@
     //POST ON FACEBOOK
     else if(shareButton.tag == 2)
     {
+        /*
         tempView = [[UIView alloc] initWithFrame:self.view.frame];
         tempView.backgroundColor = [UIColor blackColor];
         tempView.alpha = 0.5f;
@@ -329,6 +333,13 @@
         [tempView addSubview:indicator];
         [indicator startAnimating];
         [self.view addSubview:tempView];
+         */
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+        
+        HUD.delegate = self;
+        HUD.labelText = @"Sharing...";
+        [HUD show:YES];
         
         [FBSession sessionOpenWithPermissions:nil 
                             completionHandler:^(FBSession *session, 
@@ -351,13 +362,15 @@
                                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Photo was posted on your facebok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                                 [alert show];
                                             }
-                                            
+                                            /*
                                             if(tempView != nil)
                                             {
-                                                [indicator stopAnimating];
+                                                //[indicator stopAnimating];
                                                 [tempView removeFromSuperview];
                                                 tempView = nil;
                                             }
+                                             */
+                                            [self hudWasHidden:HUD];
                                             
                                         }];
 

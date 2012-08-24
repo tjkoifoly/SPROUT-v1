@@ -13,8 +13,9 @@
 #import "SA_OAuthTwitterEngine.h"
 #import "SA_OAuthTwitterController.h"
 #import "GSTwitPicEngine.h"
+#import "MBProgressHUD.h"
 
-@interface ExportSproutViewController : UIViewController <SA_OAuthTwitterControllerDelegate,MFMailComposeViewControllerDelegate, UIScrollViewDelegate, GSTwitPicEngineDelegate>
+@interface ExportSproutViewController : UIViewController <SA_OAuthTwitterControllerDelegate,MFMailComposeViewControllerDelegate, UIScrollViewDelegate, GSTwitPicEngineDelegate, MBProgressHUDDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *sproutToImage;
 @property (strong, nonatomic) IBOutlet UIButton *emailButton;

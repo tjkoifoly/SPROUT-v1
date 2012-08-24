@@ -17,7 +17,7 @@
 
 @interface ContinueAfterSaveViewController : UIViewController<SaveForEditDelegate, SA_OAuthTwitterControllerDelegate, HTTPRequestDelegate, GSTwitPicEngineDelegate, MBProgressHUDDelegate>
 {
-    MBProgressHUD *HUD;
+    __block MBProgressHUD *HUD;
 }
 
 @property (strong, nonatomic) UIImage *imageInput;
