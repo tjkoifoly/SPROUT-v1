@@ -328,7 +328,7 @@
     //[imageScrollView setChildView:fullView];
     
     [self setMinimumZoomForCurrentFrame];
-    [imageScrollView setZoomScale:imageScrollView.minimumZoomScale animated:NO];
+    [imageScrollView setZoomScale:imageScrollView.minimumZoomScale animated:YES];
     
     [UIView beginAnimations:@"View Flip" context:nil];
     [UIView setAnimationDuration:1.0];
@@ -354,7 +354,7 @@
 {
     [UIView beginAnimations:@"View Flip" context:nil];
     [UIView setAnimationDuration:1.0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
                            forView:self.view
                              cache:YES];
@@ -417,11 +417,13 @@
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     backView.hidden = YES;
+    
 }
 
 -(void)backView
 {
     backView.hidden = NO;
+    
 }
 
 
