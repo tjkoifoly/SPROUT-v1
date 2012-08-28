@@ -642,7 +642,7 @@
 
     }else
     {
-        preoviousImage = [self getImageFromFile];
+        //preoviousImage = [self getImageFromFile];
     }
 }
 
