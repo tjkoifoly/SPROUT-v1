@@ -49,6 +49,8 @@
     
     if ([MFMailComposeViewController canSendMail])
     {
+        if(mailer == nil)
+        {
         queue = dispatch_get_global_queue(0, 0);
         
         dispatch_async(queue, ^{
@@ -80,6 +82,7 @@
         });
         
         dispatch_release(queue);
+        }
 
     }
     

@@ -16,6 +16,9 @@
 -(void)changeSystemColor: (StyleColorView *)view to: (NSInteger) indexColor;
 -(void)closeStyle: (StyleColorView *)view;
 
+-(void)changeHUeIOS4: (CGFloat)hue withSatuation: (CGFloat)satu;
+-(void)changeSatuationIOS4: (CGFloat) satu withHue: (CGFloat)hue;
+
 @end
 
 @interface StyleColorView : UIView

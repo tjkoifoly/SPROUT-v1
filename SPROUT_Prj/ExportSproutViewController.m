@@ -25,12 +25,13 @@
     __block MBProgressHUD *HUD;
     UIImage *imageToSave;
     __block UIView *tempView;
-    __block UIView *tView;
-    __block UIView *tempViewPost;
+   // __block UIView *tView;
+    //__block UIView *tempViewPost;
     BOOL saved;
     UIScrollView *scrollView;
     SA_OAuthTwitterEngine *_engine;
     GSTwitPicEngine *twitpicEngine;
+    __block MFMailComposeViewController *mailer;
 }
 
 @synthesize sproutToImage;
@@ -83,14 +84,17 @@
     
     
     NSInteger standardSize = kSize;
+   
     int row = sproutScroll.rowSize;
     int col = sproutScroll.colSize;
+     /*
     if( row > 10 || col > 10)
     {
         int greater = row;
         if(col > row) greater = col;
         standardSize = kMaxSize/greater;
     } 
+     */
     
     NSLog(@"%i", standardSize);
     
@@ -149,12 +153,12 @@
 
 -(void)applicationWillResignActive
 {
-    if(tempViewPost != nil)
-    {
-        [tempViewPost removeFromSuperview];
-        tempViewPost = nil;
-        NSLog(@"QUIT FROM POST");
-    }
+//    if(tempViewPost != nil)
+//    {
+//        [tempViewPost removeFromSuperview];
+//        tempViewPost = nil;
+//        NSLog(@"QUIT FROM POST");
+//    }
     
     [self hudWasHidden:HUD];
 }
@@ -173,6 +177,8 @@
     });
    
     NSLog(@"LOADING...");
+    
+    
     //Render sprout to image
     saved = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive)
@@ -217,6 +223,9 @@
     tempView                = nil;
     _engine                 = nil;
     twitpicEngine           = nil;
+    mailer                  = nil;
+    HUD                     = nil;
+    scrollView              = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -239,16 +248,18 @@
     sendEmailViewController.imageToSend = imageToSave;
     [self.navigationController pushViewController:sendEmailViewController animated:YES];
   */
-    
-    UIImage *mailImage = [self thumnailImageFromImageView:imageToSave];
-    
-    if ([MFMailComposeViewController canSendMail])
+
+    if([MFMailComposeViewController canSendMail])
     {
-        __block MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc]init];
+        if(mailer == nil)
+        {
+        dispatch_queue_t queuemail = dispatch_get_global_queue(0, 0);
+        UIImage *mailImage = [self thumnailImageFromImageView:imageToSave];
+        mailer = [[MFMailComposeViewController alloc]init];
         mailer.mailComposeDelegate = self;
         
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-
+        dispatch_async(queuemail, ^{
+            
             [mailer setSubject:@"Your sprout to send"];
             NSArray *toRecipients = [NSArray arrayWithObjects:nil];
             [mailer setToRecipients:toRecipients];
@@ -264,10 +275,15 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentModalViewController:mailer animated:YES];
             });
-        
         });
-    }
-    else
+        
+        dispatch_release(queuemail);
+        
+        }else
+        {
+            [self presentModalViewController:mailer animated:YES];
+        }
+    }else
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -614,22 +630,22 @@
 }
 
 - (void) OAuthTwitterControllerFailed: (SA_OAuthTwitterController *) controller {
-    if(tempViewPost != nil)
-    {
-        [tempViewPost removeFromSuperview];
-        tempViewPost = nil;
-    }
+//    if(tempViewPost != nil)
+//    {
+//        [tempViewPost removeFromSuperview];
+//        tempViewPost = nil;
+//    }
     
     [self hudWasHidden:HUD];
 	NSLog(@"Authentication Failed!");
 }
 
 - (void) OAuthTwitterControllerCanceled: (SA_OAuthTwitterController *) controller {
-    if(tempViewPost != nil)
-    {
-        [tempViewPost removeFromSuperview];
-        tempViewPost = nil;
-    }
+//    if(tempViewPost != nil)
+//    {
+//        [tempViewPost removeFromSuperview];
+//        tempViewPost = nil;
+//    }
     
     [self hudWasHidden:HUD];
 	NSLog(@"Authentication Canceled.");
@@ -662,11 +678,11 @@
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Photo was posted on your twitter." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
-    if(tempViewPost != nil)
-    {
-        [tempViewPost removeFromSuperview];
-        tempViewPost = nil;
-    }
+//    if(tempViewPost != nil)
+//    {
+//        [tempViewPost removeFromSuperview];
+//        tempViewPost = nil;
+//    }
     
     [self hudWasHidden:HUD];
     NSLog(@"TwitPic finished uploading: %@", response);
@@ -693,11 +709,11 @@
 
 - (void)twitpicDidFailUpload:(NSDictionary *)error {
     
-    if(tempViewPost != nil)
-    {
-        [tempViewPost removeFromSuperview];
-        tempViewPost = nil;
-    }
+//    if(tempViewPost != nil)
+//    {
+//        [tempViewPost removeFromSuperview];
+//        tempViewPost = nil;
+//    }
     
     [self hudWasHidden:HUD];
     NSLog(@"TwitPic failed to upload: %@", error);

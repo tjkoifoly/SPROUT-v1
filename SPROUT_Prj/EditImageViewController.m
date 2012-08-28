@@ -11,6 +11,8 @@
 #import "StyleColorView.h"
 #import "FiltersView.h"
 #import "UIImage+Gaussian.h"
+#import "UIImage+ImageColoring.h"
+#import "UIImage+Contrast.h"
 
 #define DEG2RAD (M_PI/180.0f)
 #define kFile @"FOLY.png"
@@ -82,6 +84,10 @@
     self.preoviousImage         = nil;
     self.urlOfImage             = nil;
     self.editingIndicator       = nil;
+    filter                  = nil;
+    context                 = nil;
+    beginImage              = nil;
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -244,7 +250,8 @@
 {
     [self.editingIndicator startAnimating];
     
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+    dispatch_async(queue, ^{
         CIImage *inputImage = [[CIImage alloc] initWithImage:
                                im];
         filter = [CIFilter filterWithName:@"CIVignette"];
@@ -261,16 +268,19 @@
             self.frameForEdit.image = newImg;
             [self.editingIndicator stopAnimating];
             CGImageRelease(cgimg);
+            filter = nil;
+            context = nil;
         });
     });
+    dispatch_release(queue);
 }
 
 -(void)sepia: (UIImage *)im:(CGFloat)value
 {
     __block UIImage *newImg;
-    
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
     [self.editingIndicator startAnimating];
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_async(queue, ^{
         CIImage *inputImage = [[CIImage alloc] initWithImage:
                                im];
         filter = [CIFilter filterWithName:@"CISepiaTone"];
@@ -288,16 +298,19 @@
             self.frameForEdit.image = newImg;
             [self.editingIndicator stopAnimating];
             CGImageRelease(cgimg);
+            filter = nil;
+            context = nil;
         });
     });
+    dispatch_release(queue);
 }
 
 -(void)whitePoint: (UIImage *)im:(CIColor*)color
 {
     __block UIImage *newImg;
-    
+    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
     [self.editingIndicator startAnimating];
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_async(queue, ^{
         CIImage *inputImage = [[CIImage alloc] initWithImage:
                                im];
         filter = [CIFilter filterWithName:@"CIWhitePointAdjust"];
@@ -314,8 +327,11 @@
             self.frameForEdit.image = newImg;
             [self.editingIndicator stopAnimating];
             CGImageRelease(cgimg);
+            filter = nil;
+            context = nil;
         });
     });
+    dispatch_release(queue);
     /*
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         dispatch_async(dispatch_get_main_queue(), ^{});
@@ -327,8 +343,8 @@
 {
     __block UIImage *newImg;
     [self.editingIndicator startAnimating];
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_queue_t quque = dispatch_get_global_queue(0, 0);
+    dispatch_async(quque, ^{
         CIImage *inputImage = [[CIImage alloc] initWithImage:
                                im];
         filter = [CIFilter filterWithName:@"CIColorControls"];
@@ -346,16 +362,18 @@
             self.frameForEdit.image = newImg;
             [self.editingIndicator stopAnimating];
             CGImageRelease(cgimg);
+            filter = nil;
+            context = nil;
         });
     });
-    
+    dispatch_release(quque);
 }
 
 -(void)antiqueEffect: (UIImage *)im 
 {
     [self.editingIndicator startAnimating];
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_queue_t quque = dispatch_get_global_queue(0, 0);
+    dispatch_async(quque, ^{
         CIImage *inputImage = [[CIImage alloc] initWithImage:im];
         filter = [CIFilter filterWithName:@"CIColorControls"];
         [filter setValue:inputImage forKey:@"inputImage"];
@@ -392,10 +410,13 @@
             self.frameForEdit.image = newImg;
             [self.editingIndicator stopAnimating];
             CGImageRelease(cgimg);
+            filter = nil;
+            context = nil;
         });
         
     
     });
+    dispatch_release(quque);
 }
 
 -(void)filterApply:(FiltersView *)view typeFilter:(NSInteger)type
@@ -411,11 +432,32 @@
             break;
         case 2:
         {
+            
+            NSString *reqSysVer = @"5.0";
+            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+            
+            if ([reqSysVer floatValue] > [currSysVer floatValue])
+            {
+                UIImage *sImage = [preoviousImage normalize];
+                self.frameForEdit.image = [sImage sepia];
+                return;
+            }
             [self sepia:preoviousImage:1.0];
         }
             break;
         case 3:
         {
+            NSString *reqSysVer = @"5.0";
+            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+            
+            if ([reqSysVer floatValue] > [currSysVer floatValue])
+            {
+                UIImage *sImage = [preoviousImage normalize];
+                sImage = [sImage imageWithContrast:90];
+                self.frameForEdit.image = [sImage darkVignette];
+                return;
+            }
+            
             [self antiqueEffect:preoviousImage];
         }
             break;
@@ -428,11 +470,31 @@
             break;
         case 5:
         {
+            NSString *reqSysVer = @"5.0";
+            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+            
+            if ([reqSysVer floatValue] > [currSysVer floatValue])
+            {
+                UIImage *sImage = [preoviousImage normalize];
+                self.frameForEdit.image = [sImage vignette];
+                return;
+            }
+            
             [self vignette: preoviousImage: 5.0];
         }
             break;
         case 6:
         {
+            NSString *reqSysVer = @"5.0";
+            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+            
+            if ([reqSysVer floatValue] > [currSysVer floatValue])
+            {
+                UIImage *sImage = [preoviousImage imageByAdjustingHue:0 saturation:-100 lightness:0];
+                self.frameForEdit.image = sImage;
+                return;
+            }
+            
             [self satiation:preoviousImage:0.0 :0.0 :1.0];
         }
             break;
@@ -535,41 +597,64 @@
 
 -(void)changeSystemColor:(StyleColorView *)view to:(NSInteger)indexColor
 {
-    UIImage *imFF = [self getImageFromFile];
     
-    switch (indexColor) {
-        case 0:
-        {
-            NSLog(@"HUE");
-            CIImage *inputImage = [[CIImage alloc] initWithImage:imFF];
-            
-            filter = [CIFilter filterWithName:@"CIHueAdjust"];
-            [filter setDefaults];
-            [filter setValue:inputImage forKey:@"inputImage"];
-            [filter setValue:[NSNumber numberWithFloat:0.0] forKey:@"inputAngle"];
-            
-            context = [CIContext contextWithOptions:nil];
+    NSString *reqSysVer = @"5.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+    {
+        UIImage *imFF = [self getImageFromFile];
+        
+        switch (indexColor) {
+            case 0:
+            {
+                NSLog(@"HUE");
+                CIImage *inputImage = [[CIImage alloc] initWithImage:imFF];
+                
+                filter = [CIFilter filterWithName:@"CIHueAdjust"];
+                [filter setDefaults];
+                [filter setValue:inputImage forKey:@"inputImage"];
+                [filter setValue:[NSNumber numberWithFloat:0.0] forKey:@"inputAngle"];
+                
+                context = [CIContext contextWithOptions:nil];
+            }
+                break;
+            case 1:
+            {
+                NSLog(@"SITUATION");
+                CIImage *inputImage = [[CIImage alloc] initWithImage:
+                                       imFF];
+                
+                filter = [CIFilter filterWithName:@"CIColorControls"];
+                [filter setValue:inputImage forKey:@"inputImage"];
+                [filter setValue: [NSNumber numberWithFloat:1.0] forKey:@"inputSaturation"];
+                [filter setValue: [NSNumber numberWithFloat:0.0] forKey:@"inputBrightness"];
+                [filter setValue: [NSNumber numberWithFloat:1.0] forKey:@"inputContrast"];
+                
+                context = [CIContext contextWithOptions:nil];
+                
+            }
+                break;
+                
+            default:
+                break;
         }
-            break;
-        case 1:
-        {
-            NSLog(@"SITUATION");
-             CIImage *inputImage = [[CIImage alloc] initWithImage:
-             imFF];
-             
-            filter = [CIFilter filterWithName:@"CIColorControls"];
-            [filter setValue:inputImage forKey:@"inputImage"];
-            [filter setValue: [NSNumber numberWithFloat:1.0] forKey:@"inputSaturation"];
-            [filter setValue: [NSNumber numberWithFloat:0.0] forKey:@"inputBrightness"];
-            [filter setValue: [NSNumber numberWithFloat:1.0] forKey:@"inputContrast"];
-             
-             context = [CIContext contextWithOptions:nil];
-             
-        }
-            break;
-            
-        default:
-            break;
+
+    }else
+    {
+        preoviousImage = [self getImageFromFile];
     }
 }
+
+-(void)changeHUeIOS4:(CGFloat)hue withSatuation:(CGFloat)satu
+{
+    self.frameForEdit.image = [preoviousImage imageByAdjustingHue:hue saturation:satu lightness:0.0];
+}
+
+-(void)changeSatuationIOS4:(CGFloat)satu withHue:(CGFloat)hue
+{
+    self.frameForEdit.image = [preoviousImage imageByAdjustingHue:hue saturation:satu lightness:0.0];
+}
+
+
 @end

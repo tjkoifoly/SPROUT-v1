@@ -1206,7 +1206,7 @@ static NSOperationQueue *sharedQueue = nil;
     //
 
     if([[[[self url] scheme] lowercaseString] isEqualToString:@"https"]) {       
-       
+      
         // Tell CFNetwork not to validate SSL certificates
         if (![self validatesSecureCertificate]) {
             // see: http://iphonedevelopment.blogspot.com/2010/05/nsstream-tcp-and-ssl.html
@@ -1223,6 +1223,39 @@ static NSOperationQueue *sharedQueue = nil;
                                     (CFTypeRef)sslProperties);
             [sslProperties release];
         } 
+       
+        
+        /*
+        if (![self validatesSecureCertificate]) {
+            // see: http://iphonedevelopment.blogspot.com/2010/05/nsstream-tcp-and-ssl.html
+            
+            NSDictionary *sslProperties = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                           [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredCertificates,
+                                           [NSNumber numberWithBool:YES], kCFStreamSSLAllowsAnyRoot,
+                                           [NSNumber numberWithBool:NO],  kCFStreamSSLValidatesCertificateChain,
+                                           kCFNull,kCFStreamSSLPeerName,
+                                           @"kCFStreamSocketSecurityLevelTLSv1_0SSLv3", kCFStreamSSLLevel,
+                                           nil];
+            
+            CFReadStreamSetProperty((CFReadStreamRef)[self readStream], 
+                                    kCFStreamPropertySSLSettings, 
+                                    (CFTypeRef)sslProperties);
+            [sslProperties release];
+        }else {
+            NSDictionary *sslProperties = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                           [NSNumber numberWithBool:NO], kCFStreamSSLAllowsExpiredCertificates,
+                                           [NSNumber numberWithBool:NO], kCFStreamSSLAllowsAnyRoot,
+                                           [NSNumber numberWithBool:YES],  kCFStreamSSLValidatesCertificateChain,
+                                           @"kCFStreamSocketSecurityLevelTLSv1_0SSLv3", kCFStreamSSLLevel,
+                                           nil];
+            
+            CFReadStreamSetProperty((CFReadStreamRef)[self readStream], 
+                                    kCFStreamPropertySSLSettings, 
+                                    (CFTypeRef)sslProperties);
+            [sslProperties release];
+        }
+        
+        */
         
         // Tell CFNetwork to use a client certificate
         if (clientCertificateIdentity) {
@@ -1384,10 +1417,34 @@ static NSOperationQueue *sharedQueue = nil;
 	
 	BOOL streamSuccessfullyOpened = NO;
 
-
+    
    // Start the HTTP connection
 	CFStreamClientContext ctxt = {0, self, NULL, NULL, NULL};
+    
     if (CFReadStreamSetClient((CFReadStreamRef)[self readStream], kNetworkEvents, ReadStreamClientCallBack, &ctxt)) {
+        /*
+        // Use the following code to configure CFStream (e.g., CFStreamCreatePairWithSocketToHost)
+        // or CFHTTPStream (e.g., CFReadStreamCreateForHTTPRequest) based read streams to connect
+        //  with specific TLS protocol versions.
+        // Insert before calling CFReadStreamOpen().
+        
+        const void* keys[] = { kCFStreamSSLLevel };
+        // New CFString values available only on iOS 5:
+        // (if these values are used on versions before iOS 5, then will
+        //    default to max TLS 1.0, min SSLv3)
+        // kCFStreamSocketSecurityLevelTLSv1_0SSLv3 configures max TLS 1.0, min SSLv3
+        // (same as default behavior on versions before iOS 5).
+        // kCFStreamSocketSecurityLevelTLSv1_0 configures to use only TLS 1.0.
+        // kCFStreamSocketSecurityLevelTLSv1_1 configures to use only TLS 1.1.
+        // kCFStreamSocketSecurityLevelTLSv1_2 configures to use only TLS 1.2.
+        const void* values[] = { CFSTR("kCFStreamSocketSecurityLevelTLSv1_0SSLv3") };
+        CFDictionaryRef sslSettingsDict = CFDictionaryCreate(kCFAllocatorDefault, keys, values, 1,
+                                                             &kCFTypeDictionaryKeyCallBacks,
+                                                             &kCFTypeDictionaryValueCallBacks);
+        CFReadStreamSetProperty((CFReadStreamRef)[self readStream], kCFStreamPropertySSLSettings, sslSettingsDict);
+        CFRelease(sslSettingsDict);
+        */
+        
 		if (CFReadStreamOpen((CFReadStreamRef)[self readStream])) {
 			streamSuccessfullyOpened = YES;
 		}

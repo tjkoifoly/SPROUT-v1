@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CFNetwork/CFNetwork.h>
+#import "SKPSMTPMessage.h"
 
-@interface ReminderViewController : UIViewController
+@class SMTPSenderViewController;
+@interface ReminderViewController : UIViewController<SKPSMTPMessageDelegate>
 
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (strong, nonatomic) IBOutlet UITextField *alertDescription;
@@ -24,6 +27,6 @@
 -(IBAction)addNotification:(id)sender;
 -(IBAction)dissmissKeyboard:(id)sender;
 -(IBAction)showListReminder:(id)sender;
-
+-(IBAction)tellAboutApp:(id)sender;
 
 @end

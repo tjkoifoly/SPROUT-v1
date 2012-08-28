@@ -10,10 +10,14 @@
 #import "ReminderManagerViewController.h"
 #import "Sprout.h"
 #import "TakePhotoViewController.h"
+#import "SKPSMTPMessage.h"
+#import "NSData+Base64Additions.h"
+#import "TellAboutController.h"
 
 @implementation ReminderViewController
 {
     NSCalendarUnit unit;
+    SKPSMTPMessage *testMsg;
 }
 
 @synthesize datePicker;
@@ -77,6 +81,7 @@
     self.alertDescription       = nil;
     self.alertSegmentControl    = nil;
     self.durationSegmentControl = nil;
+    testMsg                     = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -218,8 +223,58 @@
     [self resignFirstResponder];
 }
 
+-(IBAction)tellAboutApp:(id)sender
+{
+    NSLog(@"Tell");
+    /*
+    testMsg = [[SKPSMTPMessage alloc] init];
+    testMsg.fromEmail = @"foly.v1.8.01@gmail.com";
+    testMsg.toEmail = @"congnguyen@cnc.com.vn";
+    testMsg.relayHost = @"smtp.gmail.com";
+    
+    testMsg.requiresAuth = YES;
+    
+    if (testMsg.requiresAuth) {
+        testMsg.login = @"foly.v1.8.01@gmail.com";
+        testMsg.pass = @"98752368";
+    }
+    
+    testMsg.wantsSecure = YES;
+    
+    testMsg.subject = @"Tell about app";
+    testMsg.delegate = self;
+    
+    NSDictionary *plainPart = [NSDictionary dictionaryWithObjectsAndKeys:@"text/plain",kSKPSMTPPartContentTypeKey,
+                               @"This is a tést messåge.",kSKPSMTPPartMessageKey,@"8bit",kSKPSMTPPartContentTransferEncodingKey,nil];
+    
+    NSString *vcfPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"jpg"];
+    NSData *vcfData = [NSData dataWithContentsOfFile:vcfPath];
+    
+    NSDictionary *vcfPart = [NSDictionary dictionaryWithObjectsAndKeys:@"text/directory;\r\n\tx-unix-mode=0644;\r\n\tname=\"test.jpg\"",kSKPSMTPPartContentTypeKey,
+                             @"attachment;\r\n\tfilename=\"test.jpg\"",kSKPSMTPPartContentDispositionKey,[vcfData encodeBase64ForData],kSKPSMTPPartMessageKey,@"base64",kSKPSMTPPartContentTransferEncodingKey,nil];
+    
+    testMsg.parts = [NSArray arrayWithObjects:plainPart,vcfPart,nil];
+    
+    [testMsg send];
+ 
+    */
+    TellAboutController *tellAboutController = [[TellAboutController alloc] initWithNibName:@"TellAboutController" bundle:nil];
+    
+    [self.navigationController pushViewController:tellAboutController animated:YES];
+}
 
+#pragma mark
+#pragma SMTP Delegate
 
+- (void)messageSent:(SKPSMTPMessage *)message
+{
+    NSLog(@"Yay! Message was sent!");
+}
+
+- (void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error
+{
+    NSLog(@"%@",[NSString stringWithFormat:@"Darn! Error!\n%i: %@\n%@", [error code], [error localizedDescription], [error localizedRecoverySuggestion]]);
+}
 
 
 

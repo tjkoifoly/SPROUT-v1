@@ -52,6 +52,10 @@
 #pragma mark - View lifecycle
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSString *reqSysVer = @"5.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    
     [super viewWillAppear:NO];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
@@ -64,7 +68,7 @@
     if(isLibrary)
     {
         
-    }else
+    }else if (!([reqSysVer floatValue] < [currSysVer floatValue]))
     {
         self.pickerImage.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.pickerImage.mediaTypes = [NSArray arrayWithObjects:
@@ -113,6 +117,7 @@
     [super viewDidUnload];
     self.pickerImage    = nil;
     self.urlImage       = nil;
+    overlay         = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -180,6 +185,14 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) picker 
 {
+    NSString *reqSysVer = @"5.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    if ([reqSysVer floatValue] > [currSysVer floatValue])
+    {
+        [picker dismissModalViewControllerAnimated:YES];
+    }
+    
     if(self.isLibrary)
     {
         self.isLibrary = NO;
@@ -200,6 +213,23 @@
     //
     
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    NSString *reqSysVer = @"5.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    if ([reqSysVer floatValue] > [currSysVer floatValue])
+    {
+        SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
+        saveViewController.image = image;
+        saveViewController.fromLib = YES;
+        //
+        saveViewController.urlImage = self.urlImage;
+        
+        [self.navigationController pushViewController:saveViewController animated:YES];
+        [self dismissModalViewControllerAnimated:YES];
+        
+        return;
+    }
     
     if( [picker sourceType] == UIImagePickerControllerSourceTypeCamera )
     {
@@ -227,8 +257,6 @@
         
         [self.navigationController pushViewController:saveViewController animated:YES];
         [self dismissModalViewControllerAnimated:NO];
-
-         
     }
     
     
@@ -239,7 +267,21 @@
 -(IBAction)capture:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        [self.pickerImage takePicture];
+    {
+        NSString *reqSysVer = @"5.0";
+        NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+        
+        if ([reqSysVer floatValue] > [currSysVer floatValue])
+        {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.delegate = self;
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            picker.mediaTypes = [NSArray arrayWithObjects:
+                                      (NSString *) kUTTypeImage,
+                                      nil];
+            [self presentModalViewController:picker animated:YES];
+        }
+    }
 }
 
 -(IBAction)goToHome :(id)sender
@@ -249,6 +291,19 @@
 
 -(IBAction)loadImageFromLibrary:(id)sender
 {
+    NSString *reqSysVer = @"5.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    if ([reqSysVer floatValue] > [currSysVer floatValue])
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentModalViewController:picker animated:YES];
+        return;
+    }
+    
     self.isLibrary = YES;
     overlay.hidden = YES;
     

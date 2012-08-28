@@ -61,6 +61,7 @@
     [super viewDidUnload];
     self.table = nil;
     self.listSprout = nil;
+    pathDelete = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

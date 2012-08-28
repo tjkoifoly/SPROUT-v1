@@ -74,6 +74,8 @@
     self.imageView = nil;
     self.imageInput = nil;
     self.urlImage = nil;
+    
+    pathDelete = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

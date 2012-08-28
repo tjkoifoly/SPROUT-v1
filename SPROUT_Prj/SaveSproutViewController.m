@@ -328,7 +328,7 @@
     //[imageScrollView setChildView:fullView];
     
     [self setMinimumZoomForCurrentFrame];
-    [imageScrollView setZoomScale:imageScrollView.minimumZoomScale animated:YES];
+    [imageScrollView setZoomScale:imageScrollView.minimumZoomScale animated:NO];
     
     [UIView beginAnimations:@"View Flip" context:nil];
     [UIView setAnimationDuration:1.0];
@@ -339,12 +339,14 @@
     [self.view addSubview:imageScrollView];
     [UIView commitAnimations];
     
-    backView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320, 40)];
-    backView.backgroundColor = [UIColor clearColor];
+    backView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0, 320, 40)];
+    backView.backgroundColor = [UIColor blackColor];
+    backView.alpha = 0.5f;
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(0,5,60,30);
+    backButton.frame = CGRectMake(10,5,60,30);
     [backButton addTarget:self action:@selector(backtoPreviousView) forControlEvents:UIControlEventTouchUpInside];
+    backButton.alpha = 1.f;
     [backView addSubview:backButton];
     
     [self.view addSubview:backView];
@@ -411,18 +413,21 @@
 
 -(void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
 {
-    backView.hidden = YES;
+    //backView.hidden = YES;
+    [backView showHidewithAnimation:NO];
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    backView.hidden = YES;
+    //backView.hidden = YES;
+    [backView showHidewithAnimation:NO];
     
 }
 
 -(void)backView
 {
-    backView.hidden = NO;
+    //backView.hidden = NO;
+    [backView showHidewithAnimation:YES];
     
 }
 

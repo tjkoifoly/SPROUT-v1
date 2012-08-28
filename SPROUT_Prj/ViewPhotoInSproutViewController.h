@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DragDropImageView.h"
 #import "UIImageView+loadImage.h"
+#import "UIView+animation.h"
 
 @class ViewPhotoInSproutViewController;
 @protocol DeletePhotoDelegate <NSObject>

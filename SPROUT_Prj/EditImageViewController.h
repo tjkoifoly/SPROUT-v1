@@ -15,6 +15,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <QuartzCore/QuartzCore.h>
 #import "FiltersView.h"
+#import "ImageFilter.h"
 
 @class EditImageViewController;
 @protocol SaveForEditDelegate <NSObject>

@@ -113,6 +113,7 @@ const CGFloat kScrollObjWidth	= 300.f;
         
 		//[scrollView addSubview:imageView];
         [viewScroll addSubview:imageView];
+        //[viewScroll addSubview:imageView withAnimation:YES];
         
 	}
     currentPoint = [list indexOfObject:currentObj];

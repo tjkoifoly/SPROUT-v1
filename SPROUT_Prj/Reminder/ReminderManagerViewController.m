@@ -48,7 +48,7 @@
 -(void)backtoPreviousView
 {
     self.navigationController.navigationBarHidden = YES;
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
