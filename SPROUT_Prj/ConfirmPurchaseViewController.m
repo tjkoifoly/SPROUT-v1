@@ -13,13 +13,11 @@
 {
     MFMailComposeViewController *mailer;
     UIAlertView *conditionAlert;
-    dispatch_queue_t queue;
 }
 
 @synthesize accept;
 @synthesize acceptView;
 @synthesize product;
-@synthesize imageToPrint;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,10 +38,20 @@
 
 #pragma mark - View lifecycle
 
+-(NSString *)dataPathFile:(NSString *)fileName
+{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDirectory, YES);
+    NSString *documentDirectory = [path objectAtIndex:0];
+    
+    NSLog(@"%@", documentDirectory);
+    
+    return [documentDirectory stringByAppendingPathComponent:fileName];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.acceptView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.acceptView.layer.borderWidth = 1.f;
     
@@ -51,9 +59,9 @@
     {
         if(mailer == nil)
         {
-        queue = dispatch_get_global_queue(0, 0);
+        //queue = dispatch_get_global_queue(0, 0);
         
-        dispatch_async(queue, ^{
+        //dispatch_async(queue, ^{
             mailer = [[MFMailComposeViewController alloc]init];
             
             mailer.mailComposeDelegate = self;
@@ -64,24 +72,18 @@
             [mailer setToRecipients:toRecipients];
             
             //[toRecipients release];
-            NSData *imageData = UIImageJPEGRepresentation(self.imageToPrint, 0.0);
-            [mailer addAttachmentData:imageData mimeType:@"image/jpg" fileName:@"MyCoolSprout"];
+            NSData *imageData = [NSData dataWithContentsOfFile:[self dataPathFile:@"tjkoi.png"]];
+            [mailer addAttachmentData:imageData mimeType:@"image/png" fileName:@"mycoolsprout.png"];
             
-            //[imageData release];
             NSString *emailBody = [NSString stringWithFormat:@"Size of canvas : %@", self.product] ;
             [mailer setMessageBody:emailBody isHTML:NO];
             
-            //[imageData release];
+            [imageData release];
             NSLog(@"%i",[imageData retainCount]);
-            //imageData = nil;
             
-            [imageToPrint release];
-            NSLog(@"%i",[imageToPrint retainCount]);
-            //imageToPrint = nil;
-            
-        });
+       // });
         
-        dispatch_release(queue);
+        //dispatch_release(queue);
         }
 
     }
@@ -92,8 +94,7 @@
 
 -(void)dealloc
 {
-    
-    //[self hudWasHidden:HUD];
+    NSLog(@"HERE");
     [acceptView release];
     acceptView = nil;
      
@@ -102,10 +103,12 @@
     
     [conditionAlert release];
     conditionAlert = nil;
-    [mailer release];
-    mailer = nil;
-    //[imageToPrint release];
-    //self.imageToPrint = nil;
+    
+    if(!mailer)
+    {
+        [mailer release];
+        mailer = nil;
+    }
         
     [super dealloc];
     
@@ -116,7 +119,6 @@
     [super viewDidUnload];
     self.acceptView = nil;
     self.product    = nil;
-    self.imageToPrint = nil;
     HUD = nil;
     conditionAlert = nil;
 }
@@ -198,26 +200,28 @@
 -(void)alertCancel
 {
     //[self hudWasHidden:HUD];
-    conditionAlert = [[UIAlertView alloc] initWithTitle:@"Notice!" message:@"You must sent email to finish buying a canvas." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    conditionAlert.delegate = self;
+    if(conditionAlert == nil)
+    {
+        conditionAlert = [[UIAlertView alloc] initWithTitle:@"Notice!" message:@"You must sent email to finish buying a canvas." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        conditionAlert.delegate = self;
+    }
     [conditionAlert show];
     NSLog(@"Cancel");
 }
 -(void)alertSaved
 {
     //[self hudWasHidden:HUD];
-    conditionAlert = [[UIAlertView alloc] initWithTitle:@"Notice!" message:@"You must sent email to finish buying a canvas." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    conditionAlert.delegate = self;
+     if(conditionAlert == nil)
+     {
+         conditionAlert = [[UIAlertView alloc] initWithTitle:@"Notice!" message:@"You must sent email to finish buying a canvas." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+         conditionAlert.delegate = self;
+     }
     [conditionAlert show];
     NSLog(@"Saved");
 }
 -(void)alertSent
 {
     [self hudWasHidden:HUD];
-    [mailer release];
-    mailer           = nil;
-    [conditionAlert release];
-    conditionAlert   = nil;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"You have bought a canvas successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     alert.delegate = self;
     [alert show];

@@ -285,7 +285,7 @@
         }
     }else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Set up a mail account in Settings." delegate:nil cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
         alert = nil;
@@ -358,13 +358,14 @@
     // Remove the mail view
     controller.delegate = nil;
     [self dismissModalViewControllerAnimated:YES];
+    mailer = nil;
 }
 
 -(IBAction)purcharseCanvas:(id)sender
 {
     PurcharseCanvasViewController *purchaseViewController = [[PurcharseCanvasViewController alloc] initWithNibName:@"PurcharseCanvasViewController" bundle:nil];
     
-    purchaseViewController.imageToPrint = imageToSave;
+    [self saveImageToFile:@"tjkoi.png" input:imageToSave];
     
     [self.navigationController pushViewController:purchaseViewController animated:YES];
 }
@@ -571,7 +572,7 @@
         HUD.delegate = self;
         HUD.labelText = @"Sharing...";
         [HUD show:YES];
-        
+        [[FBSession sessionOpen] closeAndClearTokenInformation];
         [FBSession sessionOpenWithPermissions:nil 
                             completionHandler:^(FBSession *session, 
                                                 FBSessionState status, 
@@ -588,7 +589,7 @@
                                         [photoUploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                                             if(error == nil)
                                             {
-                                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Sprout was posted on your facebok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful shared" message:@"Sprout was posted on your facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                                 [alert show];
                                             }else
                                             {
@@ -676,7 +677,7 @@
 #pragma mark - GSTwitPicEngineDelegate
 - (void)twitpicDidFinishUpload:(NSDictionary *)response {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Photo was posted on your twitter." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful shared" message:@"Photo was posted on your twitter." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
 //    if(tempViewPost != nil)
 //    {
@@ -730,6 +731,32 @@
     hud = nil;
 }
 
+#pragma mark
+#pragma save image to file
+
+-(NSString *)dataPathFile:(NSString *)fileName
+{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDirectory, YES);
+    NSString *documentDirectory = [path objectAtIndex:0];
+    
+    NSLog(@"%@", documentDirectory);
+    
+    return [documentDirectory stringByAppendingPathComponent:fileName];
+}
+
+-(UIImage *)loadImageFromFile: (NSString *)fileName
+{
+    UIImage *iFF = [UIImage imageWithContentsOfFile:[self dataPathFile:fileName]];
+    //NSLog(@"%@", [self dataPathFile:fileName]);
+    return iFF;
+}
+-(void)saveImageToFile : (NSString *)fileName input: (UIImage *)inputImage
+{
+    NSString *path = [self dataPathFile:fileName];    
+    [UIImagePNGRepresentation(inputImage) writeToFile:path atomically:YES];
+    NSLog(@"Saved");
+    //return [UIImage imageWithContentsOfFile:path];
+}
 
 
 

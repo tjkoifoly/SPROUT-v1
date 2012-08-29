@@ -191,7 +191,7 @@
     
     [self hudWasHidden:HUD];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Photo was posted on your twitter." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful shared" message:@"Photo was posted on your twitter." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
     if(tempView != nil)
     {
@@ -340,7 +340,7 @@
         HUD.delegate = self;
         HUD.labelText = @"Sharing...";
         [HUD show:YES];
-        
+        [[FBSession sessionOpen] closeAndClearTokenInformation];
         [FBSession sessionOpenWithPermissions:nil 
                             completionHandler:^(FBSession *session, 
                                                 FBSessionState status, 
@@ -359,7 +359,7 @@
                                         [photoUploadRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {        
                                             if(error == nil)
                                             {
-                                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Photo was posted on your facebok." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful shared" message:@"Photo was posted on your facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                                 [alert show];
                                             }
                                             /*

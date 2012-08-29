@@ -231,4 +231,8 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+#pragma mark
+#pragma FB Delegate
+
+
 @end

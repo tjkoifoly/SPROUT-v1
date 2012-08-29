@@ -11,7 +11,6 @@
 
 @implementation PurcharseCanvasViewController
 
-@synthesize imageToPrint;
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,7 +41,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.imageToPrint = nil;
     self.delegate = nil;
 }
 
@@ -63,7 +61,7 @@
 {
     ConfirmPurchaseViewController *confirmViewController = [[ConfirmPurchaseViewController alloc] initWithNibName:@"ConfirmPurchaseViewController" bundle:nil];
     
-    confirmViewController.imageToPrint = self.imageToPrint;
+    
     
     UIButton *buttonCanvas = (UIButton*)sender;
     NSInteger tagCanvas = [buttonCanvas tag];

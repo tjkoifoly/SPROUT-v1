@@ -55,7 +55,6 @@
     NSString *reqSysVer = @"5.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     
-    
     [super viewWillAppear:NO];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
@@ -68,7 +67,7 @@
     if(isLibrary)
     {
         
-    }else if (!([reqSysVer floatValue] < [currSysVer floatValue]))
+    }else if (!([reqSysVer floatValue] > [currSysVer floatValue]))
     {
         self.pickerImage.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.pickerImage.mediaTypes = [NSArray arrayWithObjects:
@@ -76,7 +75,7 @@
                                        nil];
         self.pickerImage.allowsEditing          = NO;
         self.pickerImage.showsCameraControls    = NO;
-        //self.pickerImage.navigationBarHidden    = YES;
+        self.pickerImage.navigationBarHidden    = YES;
         if(overlay == nil)
         {
             NSArray *nibObjects;
@@ -92,6 +91,9 @@
             
             //[self.pickerImage.view setFrame:CGRectMake(0, 20, 320, 460)];
             [self.pickerImage.view addSubview:overlay];
+//            UIView * x = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+//            x.backgroundColor = [UIColor whiteColor];
+//            pickerImage.cameraOverlayView = x;
         }else
         {
             overlay.hidden = NO;

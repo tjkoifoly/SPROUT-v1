@@ -15,7 +15,7 @@
 #import "SA_OAuthTwitterController.h"
 #import "MBProgressHUD.h"
 
-@interface TellAboutController : UIViewController<MFMailComposeViewControllerDelegate, SA_OAuthTwitterEngineDelegate, SA_OAuthTwitterControllerDelegate, MBProgressHUDDelegate, UIAlertViewDelegate>
+@interface TellAboutController : UIViewController<MFMailComposeViewControllerDelegate, SA_OAuthTwitterEngineDelegate, SA_OAuthTwitterControllerDelegate, MBProgressHUDDelegate, UIAlertViewDelegate, FBViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *titleApp;
 @property (strong, nonatomic) IBOutlet UITextView *comment;

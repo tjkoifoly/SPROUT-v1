@@ -33,6 +33,7 @@
 -(UIImage *)thumnailImageFromImageView: (UIImage *)inputImage;
 -(void)viewPhoto;
 -(void) postTwitter: (UIImage *)imageToPost;
+-(void)saveImageToFile : (NSString *)fileName input: (UIImage *)inputImage;
 
 
 @end

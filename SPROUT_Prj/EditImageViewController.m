@@ -17,6 +17,13 @@
 #define DEG2RAD (M_PI/180.0f)
 #define kFile @"FOLY.png"
 
+@interface EditImageViewController() {
+    GPUImageVignetteFilter <GPUImageInput> *vignetteFilter;
+    GPUImageSepiaFilter <GPUImageInput> *sepiaFilter;
+    GPUImagePicture *stillImageSource;
+}
+@end
+
 @implementation EditImageViewController
 {
     BOOL change;
@@ -59,6 +66,29 @@
 
 #pragma mark - View lifecycle
 
+- (void)changeProcessImage: (int)type {
+    UIImage *inputImage = preoviousImage;
+    if (stillImageSource) {
+        stillImageSource = nil;
+    }
+    stillImageSource = [[GPUImagePicture alloc] initWithImage:inputImage];
+    switch (type) {
+        case 1:
+            vignetteFilter = [[GPUImageVignetteFilter alloc] init];
+            
+            [stillImageSource addTarget:vignetteFilter];
+
+            break;
+        case 2:
+            sepiaFilter = [[GPUImageSepiaFilter alloc] init];
+            [stillImageSource addTarget:sepiaFilter];
+            
+        default:
+            break;
+    }
+    }
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -71,6 +101,8 @@
     filterChange    = NO;
     rotate          = 0; 
     self.editingIndicator.hidden = YES;
+    
+    preoviousImage = imageToEdit;
 
 }
 
@@ -430,7 +462,7 @@
             
             self.frameForEdit.image = preoviousImage;
             break;
-        case 2:
+        case 2: //sepia
         {
             
             NSString *reqSysVer = @"5.0";
@@ -438,22 +470,26 @@
             
             if ([reqSysVer floatValue] > [currSysVer floatValue])
             {
-                UIImage *sImage = [preoviousImage normalize];
-                self.frameForEdit.image = [sImage sepia];
-                return;
+//                UIImage *sImage = preoviousImage;
+//                self.frameForEdit.image = [sImage sepia];
+//                return;
+                [self changeProcessImage:2];
+                [stillImageSource processImage];
+                self.frameForEdit.image = [sepiaFilter imageFromCurrentlyProcessedOutput];
+                
             }
             [self sepia:preoviousImage:1.0];
         }
             break;
-        case 3:
+        case 3: //antique
         {
             NSString *reqSysVer = @"5.0";
             NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
             
             if ([reqSysVer floatValue] > [currSysVer floatValue])
             {
-                UIImage *sImage = [preoviousImage normalize];
-                sImage = [sImage imageWithContrast:90];
+                UIImage *sImage = preoviousImage;
+                sImage = [sImage imageWithContrast:95];
                 self.frameForEdit.image = [sImage darkVignette];
                 return;
             }
@@ -468,15 +504,24 @@
              
         }
             break;
-        case 5:
+        case 5:  //
         {
             NSString *reqSysVer = @"5.0";
             NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
             
             if ([reqSysVer floatValue] > [currSysVer floatValue])
             {
-                UIImage *sImage = [preoviousImage normalize];
-                self.frameForEdit.image = [sImage vignette];
+                [self changeProcessImage: 1];
+                [(GPUImageVignetteFilter *)vignetteFilter setVignetteStart:0.4];
+                [(GPUImageVignetteFilter *)vignetteFilter setVignetteEnd:0.7];
+                
+                [stillImageSource processImage];
+                
+                self.frameForEdit.image = [vignetteFilter imageFromCurrentlyProcessedOutput];
+                
+//                UIImage *sImage = preoviousImage;
+//                sImage = [sImage imageWithContrast:98 brightness:98];
+//                self.frameForEdit.image = [sImage vignette];
                 return;
             }
             

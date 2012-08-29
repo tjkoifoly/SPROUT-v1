@@ -16,6 +16,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FiltersView.h"
 #import "ImageFilter.h"
+#import "GPUImage.h"
 
 @class EditImageViewController;
 @protocol SaveForEditDelegate <NSObject>

@@ -118,12 +118,12 @@
         
     }else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Set up a mail account in Settings." delegate:nil cancelButtonTitle:@"OK"
+            otherButtonTitles:nil];
         alert.delegate = self;
+        [alert show];
+        
     }
-
 }
 
 -(IBAction)shareFB:(id)sender
@@ -134,10 +134,13 @@
     //HUD.backgroundColor = [UIColor blackColor];
     HUD.delegate = self;
     HUD.labelText = @"Sharing...";
-    [HUD show:YES];
+    //[HUD show:YES];
+    
+    //[FBSession sessionOpen];
     
     NSArray *permissions =  [NSArray arrayWithObjects:
                               @"read_stream", @"publish_stream", @"offline_access",nil] ;
+    [[FBSession sessionOpen] closeAndClearTokenInformation];
     [FBSession sessionOpenWithPermissions:permissions 
                         completionHandler:^(FBSession *session, 
                                             FBSessionState status, 
@@ -161,7 +164,7 @@
                                     [statusRequest startWithCompletionHandler:^(FBRequestConnection *connection1, id result, NSError *error) {
                                         if(error == nil)
                                         {
-                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shared succeed." message:@"Tell with more friends about app ." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful shared." message:@"Tell with more friends about app ." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                             [alert show];
                                         }else
                                         {
@@ -172,9 +175,6 @@
                                         [self hudWasHidden:HUD];
                                         
                                     }];
-                                     
-                                    
-
                                     
                                 }];
                             }
@@ -329,6 +329,8 @@
 - (void) requestSucceeded: (NSString *) requestIdentifier {  
     [self hudWasHidden:HUD];
     [self backtoPreviousView];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful shared" message:@"Tell with more friends about app ." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
     NSLog(@"Request %@ succeeded", requestIdentifier);  
 }  
 
@@ -342,7 +344,9 @@
 #pragma UIAlertDelegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=Mails, Contacts, Calendars"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=General"]];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"DCm." message:@"Tell with more friends about app ." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 

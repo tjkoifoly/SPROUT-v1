@@ -19,7 +19,6 @@
 @interface PurcharseCanvasViewController : UIViewController
 
 @property (unsafe_unretained, nonatomic) id <PurcharseDelegate> delegate;
-@property (strong, nonatomic) UIImage *imageToPrint;
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)chooseCanvas:(id)sender;

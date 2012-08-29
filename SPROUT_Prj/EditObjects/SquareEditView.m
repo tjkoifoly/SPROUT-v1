@@ -39,7 +39,7 @@
     
     self.areaToCrop.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2) ;
     
-    self.areaToCrop.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.areaToCrop.layer.borderColor = [UIColor magentaColor].CGColor;
     self.areaToCrop.layer.borderWidth = 3.f;
 
     [self addSubview:self.areaToCrop];
