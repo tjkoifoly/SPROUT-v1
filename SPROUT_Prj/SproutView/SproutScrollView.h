@@ -35,6 +35,7 @@
 -(void) updateImageToSprout: (NSString *) imageURL  inTag:(NSInteger)cellTag;
 -(void) reloadImageOfSprout: (NSString *)sName;
 -(NSInteger)cellInPoint: (CGPoint) curPoint;
+-(BOOL)photoIntoSprout: (UIImage *)inputImage url: (NSString *)urlOfImage atPoint: (CGPoint) intoPoint;
 
 
 @end

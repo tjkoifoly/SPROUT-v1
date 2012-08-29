@@ -225,6 +225,10 @@
         saveViewController.image = image;
         saveViewController.fromLib = YES;
         //
+        if(picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary)
+        {
+             self.urlImage = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
+        }
         saveViewController.urlImage = self.urlImage;
         
         [self.navigationController pushViewController:saveViewController animated:YES];

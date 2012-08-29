@@ -76,6 +76,7 @@
     temView = nil;
     
     CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
+    
     CGRect frameView = [self.sproutView frame];
     CGRect frameImage = [self.sproutScroll frame];
     
@@ -92,9 +93,8 @@
         
         if(temp != nil)
         {
-            SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
-            saveViewController.fromDrag = YES;
-            
+            /*
+            //UPDATE SPROUT
             for(id x in self.sproutScroll.subviews)
             {
                 if([[(DragDropImageView *)x url] isEqual:@"URL"])
@@ -106,6 +106,7 @@
                     [self getImageFromFile:fileName input:imageOfCell];
                     
                     [(DragDropImageView *)x setUrlImage: self.urlImage];
+                    NSLog(@"from url = %@", self.urlImage);
                     [(DragDropImageView *)x setImage:imageOfCell];
                     [self.sproutScroll scrollRectToVisible:[x frame] animated:YES];
                     
@@ -113,6 +114,25 @@
                     break;
                 }
             }
+            */
+            
+            //UPDATE SPROUT follow 2
+            CGPoint offSetSprout = self.sproutScroll.contentOffset;
+            float originx = touchPoint.x - self.sproutView.frame.origin.x + offSetSprout.x;
+            float originy = touchPoint.y - self.sproutView.frame.origin.y + offSetSprout.y;
+            CGPoint activePoint = CGPointMake(originx, originy);
+             NSLog(@"Touch Point = %f X %f", activePoint.x, activePoint.y);
+            UIImage *imageOfCell =[self thumnailImageFromImageView:self.imageInput];
+            
+            NSLog(@"from url = %@", self.urlImage);
+            if(![self.sproutScroll photoIntoSprout:imageOfCell url:self.urlImage atPoint:activePoint])
+            {
+                return;
+            }
+            
+            
+            SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
+            saveViewController.fromDrag = YES;
             
             saveViewController.sprout = self.sprout;
             //saveViewController.imagesArray = imagesArray;

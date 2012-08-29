@@ -317,8 +317,8 @@
                 [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] image]];
                 [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setImage:nil];
                 
-                [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setUrl:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] url]];
-                [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setUrl:@"URL"];
+                [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setUrlImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] url]];
+                [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setUrlImage:@"URL"];
                 
                 NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", self.name, toTag];
                 [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] getImageFromFile:fileName input:[(DragDropImageView *)[[self subviews]objectAtIndex:toTag] image]];
@@ -383,6 +383,29 @@
 {
     //NSLog(@"Move image from %@ to %@", fromImage.url, toImage.url);
     //[self.delegate moveImageInSprout:self from:fromImage to:toImage];
+}
+
+#pragma mark
+#pragma drag Photo into sprout
+
+-(BOOL)photoIntoSprout: (UIImage *)inputImage url: (NSString *)urlOfImage atPoint: (CGPoint) intoPoint
+{
+    int activeTag = [self cellInPoint:intoPoint];
+    NSLog(@"URL into = %@", urlOfImage);
+    if([(DragDropImageView *)[[self subviews]objectAtIndex:activeTag] image] != nil)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:@"Please select another cell to drag photo." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+    }
+    
+    [(DragDropImageView *)[[self subviews]objectAtIndex:activeTag] setUrlImage:urlOfImage];
+    [(DragDropImageView *)[[self subviews]objectAtIndex:activeTag] setImage:inputImage];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", self.name, activeTag];
+    [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] getImageFromFile:fileName input:inputImage];
+    [self scrollRectToVisible:[(DragDropImageView *)[[self subviews]objectAtIndex:activeTag] frame] animated:YES];
+    return YES;
 }
 
 @end
