@@ -100,8 +100,8 @@
      
     [product release];
     product = nil;
-    
-    [conditionAlert release];
+    if(!conditionAlert)
+        [conditionAlert release];
     conditionAlert = nil;
     
     if(!mailer)
@@ -189,7 +189,7 @@
     {
         //[self hudWasHidden:HUD];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Your device doesn't support the composer sheet" delegate:nil cancelButtonTitle:@"OK"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Set up a mail account." delegate:nil cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
         alert = nil;

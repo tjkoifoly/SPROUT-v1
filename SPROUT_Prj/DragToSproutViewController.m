@@ -118,8 +118,8 @@
             
             //UPDATE SPROUT follow 2
             CGPoint offSetSprout = self.sproutScroll.contentOffset;
-            float originx = touchPoint.x - self.sproutView.frame.origin.x + offSetSprout.x;
-            float originy = touchPoint.y - self.sproutView.frame.origin.y + offSetSprout.y;
+            float originx = touchPoint.x - self.sproutView.frame.origin.x - self.sproutScroll.frame.origin.x+ offSetSprout.x;
+            float originy = touchPoint.y - self.sproutView.frame.origin.y - self.sproutScroll.frame.origin.y + offSetSprout.y;
             CGPoint activePoint = CGPointMake(originx, originy);
              NSLog(@"Touch Point = %f X %f", activePoint.x, activePoint.y);
             UIImage *imageOfCell =[self thumnailImageFromImageView:self.imageInput];

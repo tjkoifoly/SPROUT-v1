@@ -648,6 +648,7 @@
     
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
     {
+        NSLog(@"IOS 5");
         UIImage *imFF = [self getImageFromFile];
         
         switch (indexColor) {

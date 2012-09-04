@@ -51,6 +51,7 @@
         [sSlider setValue:0.0];
         return;
     }
+    NSLog(@"IOS 5");
 }
 
 -(IBAction)sliderChange:(id)sender
@@ -61,10 +62,12 @@
     if ([reqSysVer floatValue] > [currSysVer floatValue])
     {
         [self.delegate changeHUeIOS4:slider.value withSatuation:sSlider.value];
-        //NSLog(@"slide value: %f x %f", slider.value, sSlider.value);
+        //
         return;
         
     }
+    
+    NSLog(@"slide value: %f x %f", slider.value, sSlider.value);
     
     [self.delegate changeHue:self withValue:((UISlider *)sender).value];
     
