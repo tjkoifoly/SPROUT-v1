@@ -54,6 +54,7 @@
     
     self.acceptView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.acceptView.layer.borderWidth = 1.f;
+    self.acceptView.layer.cornerRadius = 8.f;
     
     if ([MFMailComposeViewController canSendMail])
     {

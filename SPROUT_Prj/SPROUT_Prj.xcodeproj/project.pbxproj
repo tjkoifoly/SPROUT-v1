@@ -294,6 +294,11 @@
 		E4DCF31915F6145100987A8E /* bg-s2.png in Resources */ = {isa = PBXBuildFile; fileRef = E4DCF31815F6145100987A8E /* bg-s2.png */; };
 		E4E0679315EC73C40024ED86 /* UIImage+ImageColoring.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E0679215EC73C30024ED86 /* UIImage+ImageColoring.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E4E0679815EC73F80024ED86 /* CoreGraphicsAdditions.c in Sources */ = {isa = PBXBuildFile; fileRef = E4E0679615EC73F70024ED86 /* CoreGraphicsAdditions.c */; };
+		E4E3173615F9D86100013977 /* font-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E3173515F9D86100013977 /* font-frame.png */; };
+		E4E3173B15F9DB0A00013977 /* print-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E3173A15F9DB0A00013977 /* print-banner.png */; };
+		E4E3173D15F9DE5800013977 /* btn-confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E3173C15F9DE5800013977 /* btn-confirm.png */; };
+		E4E3173F15F9E85900013977 /* spator.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E3173E15F9E85900013977 /* spator.png */; };
+		E4E3174115F9ED3F00013977 /* bg-cell.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E3174015F9ED3F00013977 /* bg-cell.png */; };
 		E4E5809415D3AEAC00EA9D54 /* StyleColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E5809315D3AEAC00EA9D54 /* StyleColorView.m */; };
 		E4E5809615D3AEBE00EA9D54 /* StyleColorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E5809515D3AEBD00EA9D54 /* StyleColorView.xib */; };
 		E4E5809C15D3B27200EA9D54 /* slider1.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E5809715D3B27200EA9D54 /* slider1.png */; };
@@ -811,6 +816,11 @@
 		E4E0679515EC73F60024ED86 /* CKImageAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKImageAdditions.h; sourceTree = "<group>"; };
 		E4E0679615EC73F70024ED86 /* CoreGraphicsAdditions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CoreGraphicsAdditions.c; sourceTree = "<group>"; };
 		E4E0679715EC73F70024ED86 /* CoreGraphicsAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreGraphicsAdditions.h; sourceTree = "<group>"; };
+		E4E3173515F9D86100013977 /* font-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "font-frame.png"; sourceTree = "<group>"; };
+		E4E3173A15F9DB0A00013977 /* print-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "print-banner.png"; sourceTree = "<group>"; };
+		E4E3173C15F9DE5800013977 /* btn-confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-confirm.png"; sourceTree = "<group>"; };
+		E4E3173E15F9E85900013977 /* spator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spator.png; sourceTree = "<group>"; };
+		E4E3174015F9ED3F00013977 /* bg-cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-cell.png"; sourceTree = "<group>"; };
 		E4E5809215D3AEAC00EA9D54 /* StyleColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleColorView.h; path = EditObjects/StyleColorView.h; sourceTree = "<group>"; };
 		E4E5809315D3AEAC00EA9D54 /* StyleColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleColorView.m; path = EditObjects/StyleColorView.m; sourceTree = "<group>"; };
 		E4E5809515D3AEBD00EA9D54 /* StyleColorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StyleColorView.xib; sourceTree = "<group>"; };
@@ -1678,6 +1688,10 @@
 		E4DCF2F815F5F62800987A8E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E4E3174015F9ED3F00013977 /* bg-cell.png */,
+				E4E3173C15F9DE5800013977 /* btn-confirm.png */,
+				E4E3173A15F9DB0A00013977 /* print-banner.png */,
+				E4E3173515F9D86100013977 /* font-frame.png */,
 				E404956A15F8B16D0028B528 /* bg-bg.png */,
 				E404956815F8B0260028B528 /* bg-back.png */,
 				E404956615F8AB1A0028B528 /* shadow.png */,
@@ -1712,6 +1726,7 @@
 				E404952815F88E280028B528 /* bar-bottom.png */,
 				E404952615F88D7E0028B528 /* front-frame.png */,
 				E404952415F889B60028B528 /* swith-cmr.png */,
+				E4E3173E15F9E85900013977 /* spator.png */,
 				E404952115F889AB0028B528 /* flash-btn.png */,
 				E4DCF31815F6145100987A8E /* bg-s2.png */,
 				E4DCF31615F6139D00987A8E /* bg-s1.png */,
@@ -2141,6 +2156,11 @@
 				E404956915F8B0270028B528 /* bg-back.png in Resources */,
 				E404956B15F8B16D0028B528 /* bg-bg.png in Resources */,
 				E48FB03315F8B41E00584279 /* logoapp.png in Resources */,
+				E4E3173615F9D86100013977 /* font-frame.png in Resources */,
+				E4E3173B15F9DB0A00013977 /* print-banner.png in Resources */,
+				E4E3173D15F9DE5800013977 /* btn-confirm.png in Resources */,
+				E4E3173F15F9E85900013977 /* spator.png in Resources */,
+				E4E3174115F9ED3F00013977 /* bg-cell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2510,8 +2530,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Thao Nguyen Minh (MPL3WCSWL5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thao Nguyen Minh (MPL3WCSWL5)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Thao Nguyen Minh";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Thao Nguyen Minh";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2527,8 +2547,8 @@
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8AA20944-0378-4EFD-ABBE-D7152AC09257";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8AA20944-0378-4EFD-ABBE-D7152AC09257";
+				PROVISIONING_PROFILE = "9DCAAB76-2F04-433A-A8D8-28B734C87CD3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DCAAB76-2F04-433A-A8D8-28B734C87CD3";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_LDFLAGS = "-lsqlite3.0";
 				WRAPPER_EXTENSION = app;

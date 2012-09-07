@@ -40,7 +40,7 @@
 					<object class="IBUIImageView" id="1036433522">
 						<reference key="NSNextResponder" ref="1052835258"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 480}</string>
+						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="1052835258"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="181373828"/>
@@ -49,13 +49,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bg-01.png</string>
+							<string key="NSResourceName">bg-s1 copy.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="181373828">
 						<reference key="NSNextResponder" ref="1052835258"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 25}, {31, 31}}</string>
+						<string key="NSFrame">{{13, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="1052835258"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="164540942"/>
@@ -94,7 +94,7 @@
 					<object class="IBUIButton" id="655065616">
 						<reference key="NSNextResponder" ref="1052835258"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{143, 426}, {37, 31}}</string>
+						<string key="NSFrame">{{143, 406}, {37, 31}}</string>
 						<reference key="NSSuperview" ref="1052835258"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -120,7 +120,7 @@
 					<object class="IBUIButton" id="164540942">
 						<reference key="NSNextResponder" ref="1052835258"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{280, 26}, {26, 30}}</string>
+						<string key="NSFrame">{{280, 6}, {26, 30}}</string>
 						<reference key="NSSuperview" ref="1052835258"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="453783021"/>
@@ -142,7 +142,7 @@
 					<object class="IBUIButton" id="62102504">
 						<reference key="NSNextResponder" ref="1052835258"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{267, 70}, {40, 28}}</string>
+						<string key="NSFrame">{{267, 57}, {40, 28}}</string>
 						<reference key="NSSuperview" ref="1052835258"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="655065616"/>
@@ -181,7 +181,7 @@
 					<object class="IBUIButton" id="406566245">
 						<reference key="NSNextResponder" ref="1052835258"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 70}, {40, 28}}</string>
+						<string key="NSFrame">{{13, 57}, {40, 28}}</string>
 						<reference key="NSSuperview" ref="1052835258"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="62102504"/>
@@ -204,7 +204,7 @@
 						<reference key="IBUIFont" ref="267420117"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 479}</string>
+				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1036433522"/>
@@ -462,7 +462,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bg-01.png">{640, 960}</string>
+			<string key="bg-s1 copy.png">{319, 460}</string>
 			<string key="capture.png">{67, 52}</string>
 			<string key="flash-btn.png">{82, 52}</string>
 			<string key="home.png">{66, 66}</string>

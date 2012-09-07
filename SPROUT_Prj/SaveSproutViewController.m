@@ -57,6 +57,7 @@
 {
     [super viewDidLoad];
     
+    //
     //Display button after drag
     if(fromDrag)
     {
@@ -80,11 +81,30 @@
     [self.sproutView addSubview:self.sproutScroll];
     self.sproutView.backgroundColor = [UIColor clearColor];
     
+    statusLabel.text = sproutScroll.name;
     [self enableExport];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(slideSproutToCenter) userInfo:nil repeats:YES];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
 {
+}
+
+-(void)slideSproutToCenter
+{
+    CGPoint mainCenter = self.view.center;
+    CGFloat centerY = mainCenter.y;
+    CGFloat centerX = mainCenter.x;
+    
+    CGPoint sCenter = self.sproutView.center;
+    CGFloat sCenterY = sCenter.y;
+    
+    if(sCenterY != centerY)
+    {
+        sCenterY --;
+    }
+    self.sproutView.center = CGPointMake(centerX, sCenterY);
 }
 
 -(void)enableExport

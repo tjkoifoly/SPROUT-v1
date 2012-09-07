@@ -180,7 +180,7 @@
     int size = [[sproutObject valueForKey:@"rowSize"] intValue]*[[sproutObject valueForKey:@"colSize"] intValue];
     int i;
     NSString *fileName = nil;
-    NSString *sName = [sproutObject valueForKey:@"name"];
+    NSString *sName = [[sproutObject valueForKey:@"name"] stringByReplacingOccurrencesOfString:@"/" withString:@""];
     NSFileManager *filemgr;
     
     filemgr = [NSFileManager defaultManager];
