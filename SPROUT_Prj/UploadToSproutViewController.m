@@ -50,7 +50,8 @@
     //UPDATE View
     [table setBackgroundColor:[UIColor clearColor]];
     table.separatorColor=[UIColor clearColor];
-    table.separatorStyle = UITableViewCellSeparatorStyleNone;
+    table.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+    table.backgroundColor = [UIColor clearColor];
     
     self.imageView.image = imageInput;
     
@@ -111,6 +112,7 @@
             cell = (CellSproutCustomView *)currentObject;
         }
     }
+    
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor=[UIColor clearColor];

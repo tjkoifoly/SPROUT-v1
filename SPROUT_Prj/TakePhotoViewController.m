@@ -86,7 +86,8 @@
                 overlay = (OverlayView *)currentObject;
             }
             overlay.frame = CGRectMake(0.0f, 0.0f, 320.f, 480.f);
-            overlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Untitled-1bg001.png"]];
+            //overlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-01.png"]];
+            overlay.backgroundColor = [UIColor clearColor];
             overlay.delegate = self;
             
             //[self.pickerImage.view setFrame:CGRectMake(0, 20, 320, 460)];

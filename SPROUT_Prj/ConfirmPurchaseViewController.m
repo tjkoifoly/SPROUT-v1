@@ -78,7 +78,7 @@
             NSString *emailBody = [NSString stringWithFormat:@"Size of canvas : %@", self.product] ;
             [mailer setMessageBody:emailBody isHTML:NO];
             
-            [imageData release];
+            //[imageData release];
             NSLog(@"%i",[imageData retainCount]);
             
        // });
@@ -101,8 +101,10 @@
     [product release];
     product = nil;
     if(!conditionAlert)
+    {
         [conditionAlert release];
-    conditionAlert = nil;
+        conditionAlert = nil;
+    }
     
     if(!mailer)
     {

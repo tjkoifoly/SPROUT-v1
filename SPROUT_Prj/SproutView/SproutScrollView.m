@@ -124,6 +124,7 @@
     [self addGestureRecognizer:changeImage];
     
     name = sName;
+    NSString *xName = [self.name stringByReplacingOccurrencesOfString:@"/" withString:@""];
     enable = NO;
     self.rowSize = rs;
     self.colSize = cs;
@@ -181,8 +182,8 @@
             //NSLog(@"TAG %i - URL %@", t, u);
             
             //DragDropImageView *imv = [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u : cellWidth];
-            DragDropImageView *imv =  [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u :cellWidth andPath:[NSString stringWithFormat:@"%@-atTag-%i", sName, t]];
-                //NSLog(@"%@", [NSString stringWithFormat:@"%@-atTag-%i", sName, t]);
+            DragDropImageView *imv =  [[DragDropImageView alloc] initWithLocationX:i andY:j fromURL:u :cellWidth andPath:[NSString stringWithFormat:@"%@-atTag-%i", xName, t]];
+            //NSLog(@"%@", [NSString stringWithFormat:@"%@-atTag-%i", sName, t]);
                 
                 //imv.image = [UIImage imageNamed:@"baby"];
             imv.tag = t;
@@ -320,7 +321,9 @@
                 [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setUrlImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] url]];
                 [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setUrlImage:@"URL"];
                 
-                NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", self.name, toTag];
+                NSString *sName = [self.name stringByReplacingOccurrencesOfString:@"/" withString:@""];
+                
+                NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", sName, toTag];
                 [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] getImageFromFile:fileName input:[(DragDropImageView *)[[self subviews]objectAtIndex:toTag] image]];
                 
             }
@@ -402,7 +405,9 @@
     [(DragDropImageView *)[[self subviews]objectAtIndex:activeTag] setUrlImage:urlOfImage];
     [(DragDropImageView *)[[self subviews]objectAtIndex:activeTag] setImage:inputImage];
     
-    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", self.name, activeTag];
+    NSString *sName = [self.name stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", sName, activeTag];
+    
     [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] getImageFromFile:fileName input:inputImage];
     [self scrollRectToVisible:[(DragDropImageView *)[[self subviews]objectAtIndex:activeTag] frame] animated:YES];
     return YES;

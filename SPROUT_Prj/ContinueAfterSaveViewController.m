@@ -53,6 +53,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-s2.png"]];
     viewImage.image = imageInput;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive)

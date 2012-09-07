@@ -142,9 +142,13 @@
 
 -(void)getImageFromFile : (NSString *)fileName input: (UIImage *)inputImage
 {
-    NSString *path = [self dataPathFile:fileName];    
-    [UIImagePNGRepresentation(inputImage) writeToFile:path atomically:YES];
-    NSLog(@"Saved");
+    NSString *path = [self dataPathFile:fileName]; 
+    
+    NSLog(@"PATH = %@", path);
+    if([UIImagePNGRepresentation(inputImage) writeToFile:path atomically:YES])
+        NSLog(@"Saved");
+    else
+        NSLog(@"***** Save failed *****");
 }
 
 -(void)twoTaps

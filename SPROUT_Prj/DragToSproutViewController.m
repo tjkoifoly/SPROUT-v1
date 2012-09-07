@@ -93,14 +93,16 @@
         
         if(temp != nil)
         {
-            /*
+            
             //UPDATE SPROUT
             for(id x in self.sproutScroll.subviews)
             {
                 if([[(DragDropImageView *)x url] isEqual:@"URL"])
                 {
                     //[x setValue:self.urlImage forKey:@"url"];
-                    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", [self.sprout valueForKey:@"name"], [x tag]];
+                    
+                    NSString *sName = [[self.sprout valueForKey:@"name"] stringByReplacingOccurrencesOfString:@"/" withString:@""];
+                    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", sName, [x tag]];
                     
                     UIImage *imageOfCell =[self thumnailImageFromImageView:self.imageInput];
                     [self getImageFromFile:fileName input:imageOfCell];
@@ -114,8 +116,8 @@
                     break;
                 }
             }
-            */
             
+            /*
             //UPDATE SPROUT follow 2
             CGPoint offSetSprout = self.sproutScroll.contentOffset;
             float originx = touchPoint.x - self.sproutView.frame.origin.x - self.sproutScroll.frame.origin.x+ offSetSprout.x;
@@ -129,7 +131,7 @@
             {
                 return;
             }
-            
+            */
             
             SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
             saveViewController.fromDrag = YES;
@@ -164,6 +166,8 @@
     self.imageForSprout.image = imageInput;
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
 
+    NSLog(@"NAME: %@", [sprout valueForKey:@"name"]);
+    
     self.sproutScroll = [[SproutScrollView alloc] initWithName:[self.sprout valueForKey:@"name"] :[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
     self.sproutScroll.delegate = self;
     CGPoint center = CGPointMake(self.sproutView.frame.size.width / 2., self.sproutView.frame.size.height / 2.);
@@ -271,9 +275,16 @@
 
 -(void)getImageFromFile : (NSString *)fileName input: (UIImage *)inputImage
 {
-    NSString *path = [self dataPathFile:fileName];    
-    [UIImagePNGRepresentation(inputImage) writeToFile:path atomically:YES];
-    NSLog(@"Saved");
+    NSString *path = [self dataPathFile:fileName];
+    NSLog(@"PATH= %@", path);
+    
+    if([UIImagePNGRepresentation(inputImage) writeToFile:path atomically:YES])
+    {
+        NSLog(@"Saved");
+    }else
+    {
+        NSLog(@"***** Save failed. *****");
+    }
     //return [UIImage imageWithContentsOfFile:path];
 }
 

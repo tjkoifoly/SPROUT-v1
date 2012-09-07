@@ -50,6 +50,8 @@
 {
     [super viewDidLoad];
     
+    //[[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     self.alertTime = 0;
     unit = 0;
     

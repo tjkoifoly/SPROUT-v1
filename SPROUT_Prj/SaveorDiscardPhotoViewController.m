@@ -93,12 +93,12 @@
         
         if(w<h)
         {
-            h = (h/w)*220.f;
-            w = 220.f;
+            h = (h/w)*kImageSize;
+            w = kImageSize;
         }else
         {
-            w = (w/h)*220.f;
-            h = 220.f;
+            w = (w/h)*kImageSize;
+            h = kImageSize;
         }
         
         imgView = [[UIImageView alloc] initWithImage:self.image];

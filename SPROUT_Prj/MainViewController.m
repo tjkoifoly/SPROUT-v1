@@ -42,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-main.png"]];
 }
 
 - (void)viewDidUnload
