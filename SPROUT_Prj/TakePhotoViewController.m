@@ -76,6 +76,9 @@
         self.pickerImage.allowsEditing          = NO;
         self.pickerImage.showsCameraControls    = NO;
         self.pickerImage.navigationBarHidden    = YES;
+        pickerImage.wantsFullScreenLayout = YES;
+        pickerImage.cameraViewTransform = CGAffineTransformScale(pickerImage.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
+        
         if(overlay == nil)
         {
             NSArray *nibObjects;
@@ -100,6 +103,7 @@
             overlay.hidden = NO;
             [overlay loadView];
         }
+        
         [self.view addSubview:self.pickerImage.view];
     }
     
