@@ -212,7 +212,7 @@
     }
     
     //styleView.backgroundColor = [UIColor clearColor];
-    styleView.frame = CGRectMake(0.0f, 360.f, 320.f, 100.f);
+    styleView.frame = CGRectMake(0.0f, 375.f, 320.f, 85.f);
     styleView.delegate = self;
     [styleView loadViewController];
     [self.view addSubview:styleView];
@@ -240,7 +240,7 @@
         styleView = (StyleCropView *)currentObject;
     }
     
-    styleView.frame = CGRectMake(0.0f, 380.f, 320.f, 80.f);
+    styleView.frame = CGRectMake(0.0f, 375.f, 320.f, 85.f);
     styleView.delegate = self;
     [self.view addSubview:styleView];
 
@@ -265,7 +265,7 @@
     nibObjects = [[NSBundle mainBundle] loadNibNamed:@"FiltersView" owner:self options:nil];
     filterView = (FiltersView *)[nibObjects objectAtIndex:0];
     
-    filterView.frame = CGRectMake(0.0f, 380.f, 320.f, 80.f);
+    filterView.frame = CGRectMake(0.0f, 375.f, 320.f, 85.f);
     filterView.delegate = self;
     [self.view addSubview:filterView];
 }

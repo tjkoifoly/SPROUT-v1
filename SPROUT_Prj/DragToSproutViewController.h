@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
 //Image to drag in sprout
 @property (strong, nonatomic) IBOutlet UIImageView *imageForSprout;
+@property (strong, nonatomic) IBOutlet UIImageView *fontFrame;
 //Image
 @property (strong, nonatomic) UIImage *imageInput;
 

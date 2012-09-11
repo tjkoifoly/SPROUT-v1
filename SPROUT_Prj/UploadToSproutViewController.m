@@ -54,6 +54,8 @@
     table.backgroundColor = [UIColor clearColor];
     
     self.imageView.image = imageInput;
+    imageView.layer.borderWidth = 1.f;
+    imageView.layer.borderColor = [UIColor whiteColor].CGColor;
     
 }
 

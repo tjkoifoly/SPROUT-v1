@@ -39,6 +39,12 @@
 @synthesize purchaseButton;
 @synthesize saveButton;
 @synthesize sproutScroll;
+@synthesize btnFB;
+@synthesize btnTW;
+@synthesize btnFB_before;
+@synthesize btnTW_before;
+@synthesize font1;
+@synthesize font2;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -226,6 +232,12 @@
     mailer                  = nil;
     HUD                     = nil;
     scrollView              = nil;
+    btnTW                   = nil;
+    btnFB                   = nil;
+    btnTW_before            = nil;
+    btnFB_before            = nil;
+    font1                   = nil;
+    font2                   = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -414,6 +426,12 @@
     self.emailButton.hidden = YES;
     self.purchaseButton.hidden = YES;
     self.saveButton.hidden = YES;
+    self.btnFB.hidden = NO;
+    self.btnTW.hidden = NO;
+    self.btnFB_before.hidden = YES;
+    self.btnTW_before.hidden = YES;
+    font1.hidden =YES;
+    font2.hidden = NO;
     
     self.sproutToImage.image = imageToSave;
 

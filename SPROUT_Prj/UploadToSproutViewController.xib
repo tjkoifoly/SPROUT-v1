@@ -94,7 +94,7 @@
 					<object class="IBUIButton" id="235789650">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 79}, {208, 39}}</string>
+						<string key="NSFrame">{{20, 79}, {208, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="876584685"/>
@@ -103,7 +103,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<int key="IBUILineBreakMode">0</int>
 						<reference key="IBUIHighlightedTitleColor" ref="47714491"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -113,7 +112,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="113901370"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-new-sp.png</string>
+							<string key="NSResourceName">btn-new-sprout1.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="803941488"/>
 						<reference key="IBUIFont" ref="160368906"/>
@@ -124,7 +123,6 @@
 						<string key="NSFrame">{{17, 209}, {283, 243}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:418</string>
 						<reference key="IBUIBackgroundColor" ref="47714491"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -143,14 +141,14 @@
 						<string key="NSFrame">{{80, 166}, {160, 35}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="375536616"/>
+						<reference key="NSNextKeyView" ref="200781822"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">SELECT A SPROUT</string>
+						<string key="IBUIText">SELECT SPROUT</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40IDAuNiAwAA</bytes>
@@ -176,7 +174,7 @@
 					<object class="IBUIImageView" id="876584685">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{236, 69}, {60, 60}}</string>
+						<string key="NSFrame">{{236, 67}, {60, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="320709347"/>
@@ -191,10 +189,10 @@
 					<object class="IBUIImageView" id="320709347">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 143}, {300, 17}}</string>
+						<string key="NSFrame">{{10, 146}, {300, 17}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="685947229"/>
+						<reference key="NSNextKeyView" ref="375536616"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -209,7 +207,7 @@
 						<string key="NSFrame">{{10, 199}, {300, 9}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="200781822"/>
+						<reference key="NSNextKeyView" ref="685947229"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -439,7 +437,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="baby.png">{270, 293}</string>
 			<string key="bg-s2.png">{320, 460}</string>
-			<string key="btn-new-sp.png">{415, 80}</string>
+			<string key="btn-new-sprout1.png">{415, 80}</string>
 			<string key="home.png">{66, 66}</string>
 			<string key="shadow.png">{602, 21}</string>
 			<string key="spator.png">{602, 30}</string>

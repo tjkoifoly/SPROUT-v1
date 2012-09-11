@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="696518229">
 						<reference key="NSNextResponder" ref="985887832"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, -20}, {320, 480}}</string>
+						<string key="NSFrame">{{0, -20}, {320, 500}}</string>
 						<reference key="NSSuperview" ref="985887832"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="404043355"/>
@@ -75,10 +75,6 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home.png</string>
-						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="892701562">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
@@ -92,7 +88,7 @@
 					<object class="IBUIButton" id="180159782">
 						<reference key="NSNextResponder" ref="985887832"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{143, 403}, {37, 35}}</string>
+						<string key="NSFrame">{{142, 423}, {37, 35}}</string>
 						<reference key="NSSuperview" ref="985887832"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -117,7 +113,7 @@
 					<object class="IBUIButton" id="976536330">
 						<reference key="NSNextResponder" ref="985887832"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{283, 9}, {20, 27}}</string>
+						<string key="NSFrame">{{276, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="985887832"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="180159782"/>
@@ -136,7 +132,7 @@
 						<reference key="IBUIFont" ref="842594281"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 460}</string>
+				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="696518229"/>
@@ -147,6 +143,22 @@
 					<object class="NSColorSpace" key="NSCustomColorSpace">
 						<int key="NSID">2</int>
 					</object>
+				</object>
+				<object class="IBUIScreenMetrics" key="IBUISimulatedDestinationMetrics">
+					<string key="IBUISimulatedSizeMetricsClass">IBUIScreenMetrics</string>
+					<object class="NSMutableDictionary" key="IBUINormalizedOrientationToSizeMap">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<array key="dict.sortedKeys">
+							<integer value="1"/>
+							<integer value="3"/>
+						</array>
+						<array class="NSMutableArray" key="dict.values">
+							<string>{320, 480}</string>
+							<string>{480, 320}</string>
+						</array>
+					</object>
+					<string key="IBUITargetRuntime">IBCocoaTouchFramework</string>
+					<string key="IBUIDisplayName">iPhone/iPod touch Full Screen</string>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -213,9 +225,9 @@
 						<reference key="object" ref="985887832"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="976536330"/>
-							<reference ref="180159782"/>
 							<reference ref="404043355"/>
 							<reference ref="696518229"/>
+							<reference ref="180159782"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -296,7 +308,6 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bg-01.png">{640, 960}</string>
 			<string key="capture.png">{67, 52}</string>
-			<string key="home.png">{66, 66}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

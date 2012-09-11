@@ -73,8 +73,9 @@
     
     if(listNotifications.count == 0)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"NOTICE" message:@"All reminder are really finished." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"NOTICE" message:@"All reminder are really finished." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        //[alert show];
+        NSLog(@"No notification");
     }
 }
 

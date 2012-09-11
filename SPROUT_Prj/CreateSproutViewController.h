@@ -23,6 +23,7 @@
 @property (unsafe_unretained, nonatomic) id<CreateSproutDelegate>delegate;
 @property (strong, nonatomic) UIImagePickerController *pickerImage;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIImageView *fontFrame;
 
 @property (strong, nonatomic) SproutScrollView *sprout;
 @property (strong, nonatomic) IBOutlet UIView *sproutView;

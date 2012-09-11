@@ -322,7 +322,7 @@
 					<object class="IBUIImageView" id="955947537">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 135}, {294, 157}}</string>
+						<string key="NSFrame">{{56, 135}, {209, 145}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="982796095"/>
@@ -331,7 +331,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">print-banner.png</string>
+							<string key="NSResourceName">print-logo.png</string>
 						</object>
 					</object>
 				</array>
@@ -569,7 +569,7 @@
 			<string key="btn4040.png">{270, 80}</string>
 			<string key="font-frame.png">{601, 723}</string>
 			<string key="home.png">{66, 66}</string>
-			<string key="print-banner.png">{533, 332}</string>
+			<string key="print-logo.png">{420, 291}</string>
 			<string key="shadow.png">{602, 21}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>

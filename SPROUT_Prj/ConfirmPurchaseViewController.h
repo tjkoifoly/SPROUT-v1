@@ -21,6 +21,7 @@
 @property (nonatomic) BOOL accept;
 
 @property (strong, nonatomic) IBOutlet UIImageView *acceptView;
+@property (strong, nonatomic) IBOutlet UILabel *labelProduct;
 
 -(void) touchCheck;
 -(IBAction)goToHome:(id)sender;

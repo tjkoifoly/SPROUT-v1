@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SproutScrollView.h"
+#import "IXPickerOverlayView.h"
 
 @interface SelectGridSizeViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 

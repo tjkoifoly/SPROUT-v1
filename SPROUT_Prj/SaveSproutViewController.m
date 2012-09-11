@@ -15,12 +15,15 @@
 #import "ContinueAfterSaveViewController.h"
 #import "NYOBetterZoomUIScrollView.h"
 
+#define margin 5
+
 @implementation SaveSproutViewController
 {
     NYOBetterZoomUIScrollView *imageScrollView;
     UIView *backView;
     UIView *fullView;
     CGPoint staticCenterDefault;
+    NSTimer *timer;
 }
 
 @synthesize sproutScroll;
@@ -33,6 +36,7 @@
 @synthesize statusLabel;
 @synthesize fromDrag;
 @synthesize delegate;
+@synthesize fontFrame;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -72,6 +76,8 @@
     {
         //self.sproutScroll =  [[SproutScrollView alloc] initWithArrayImage:[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :self.imagesArray];
         self.sproutScroll = [[SproutScrollView alloc] initWithName:[self.sprout valueForKey:@"name"] :[[self.sprout valueForKey:@"rowSize"] intValue] :[[self.sprout valueForKey:@"colSize"] intValue] :imagesArray];
+        //set Space for cell in sprout
+        [self performSelector:@selector(autoResize)];
     }
     
     self.sproutScroll.delegate = self;
@@ -84,8 +90,28 @@
     statusLabel.text = sproutScroll.name;
     [self enableExport];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(slideSproutToCenter) userInfo:nil repeats:YES];
+    //Set Font Frame Sprout
+    CGRect frame1 = self.sproutView.frame;
+    CGRect frame2 = self.sproutScroll.frame;
+    
+    CGRect newFrame = CGRectMake(frame1.origin.x+frame2.origin.x - margin, frame1.origin.y+frame2.origin.y - margin, frame2.size.width+ 2*margin, frame2.size.height + 2*margin);
+    [self.fontFrame setFrame:newFrame];
+    
+    //Set location for Sprout
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(slideSproutToCenter) userInfo:nil repeats:YES];
+    
 }
+
+-(void)autoResize
+{
+    for(id aobj in self.sproutScroll.subviews)
+    {
+        CGRect frame = [aobj frame];
+        CGRect newFrame = CGRectMake(frame.origin.x + 2, frame.origin.y +2, frame.size.width - 4, frame.size.height - 4);
+        [aobj setFrame:newFrame];
+    }
+}
+
 
 -(void)viewDidDisappear:(BOOL)animated
 {
@@ -100,11 +126,17 @@
     CGPoint sCenter = self.sproutView.center;
     CGFloat sCenterY = sCenter.y;
     
-    if(sCenterY != centerY)
+    if(sCenterY > centerY)
     {
         sCenterY --;
+        self.sproutView.center = CGPointMake(centerX, sCenterY);
+        self.fontFrame.center = CGPointMake(centerX, sCenterY);
+    }else
+    {
+        [timer invalidate];
+        timer = nil;
     }
-    self.sproutView.center = CGPointMake(centerX, sCenterY);
+    
 }
 
 -(void)enableExport
@@ -131,6 +163,7 @@
     self.libButton          = nil;
     self.delegate           = nil;
     fullView                = nil;
+    self.fontFrame          = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -312,6 +345,15 @@
     float y = 0.0f;
     
     fullView = [[UIView alloc] initWithFrame:CGRectMake(x, y,w ,h )] ;
+    UIImageView *bgImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"font-frame.png"]];
+    [bgImg setFrame:fullView.frame];
+    [fullView addSubview:bgImg];
+    
+    int size = 60;
+    if(sproutScroll.rowSize > 4 || sproutScroll.colSize > 4)
+    {
+        size = 40;
+    }
     
     for(id ix in self.sproutScroll.subviews)
     {
@@ -319,12 +361,12 @@
         x.image = [ix image];
         if([ix image] == nil)
         {
-            x.backgroundColor = [UIColor lightGrayColor];
+            x.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"bg-cell%i.png", size]]];
         }
         x.layer.borderColor = [UIColor whiteColor].CGColor;
         x.layer.borderWidth= 1.f;
-        fullView.layer.borderWidth = 2.f;
-        fullView.layer.borderColor = [UIColor whiteColor].CGColor;
+        //fullView.layer.borderWidth = 2.f;
+        //fullView.layer.borderColor = [UIColor whiteColor].CGColor;
         
         [fullView addSubview:x];
     }

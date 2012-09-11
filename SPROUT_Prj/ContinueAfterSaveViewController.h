@@ -12,6 +12,7 @@
 #import "GSTwitPicEngine.h"
 #import "HTTPRequest.h"
 #import "MBProgressHUD.h"
+#import <QuartzCore/QuartzCore.h>
 
 @class SA_OAuthTwitterEngine;
 

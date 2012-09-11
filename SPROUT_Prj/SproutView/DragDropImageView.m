@@ -30,7 +30,8 @@
     
     self = [super initWithFrame:CGRectMake(locationy*size, locationx*size, size, size)];
     
-    self.backgroundColor = [UIColor lightGrayColor];
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"bg-cell%i.png", size]]];
+    //self.backgroundColor = [UIColor lightGrayColor];
     self.layer.borderColor = [UIColor whiteColor].CGColor;
     self.layer.borderWidth = 1.f;
     

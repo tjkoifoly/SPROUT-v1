@@ -77,10 +77,6 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home.png</string>
-						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="502281185">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
@@ -97,7 +93,6 @@
 						<string key="NSFrame">{{143, 406}, {37, 31}}</string>
 						<reference key="NSSuperview" ref="1052835258"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">3</int>
@@ -465,7 +460,6 @@
 			<string key="bg-s1 copy.png">{319, 460}</string>
 			<string key="capture.png">{67, 52}</string>
 			<string key="flash-btn.png">{82, 52}</string>
-			<string key="home.png">{66, 66}</string>
 			<string key="swith-cmr.png">{82, 52}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>

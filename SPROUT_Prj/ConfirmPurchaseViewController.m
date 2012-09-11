@@ -18,6 +18,7 @@
 @synthesize accept;
 @synthesize acceptView;
 @synthesize product;
+@synthesize labelProduct;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,8 +54,9 @@
     [super viewDidLoad];
     
     self.acceptView.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    self.acceptView.layer.borderWidth = 1.f;
-    self.acceptView.layer.cornerRadius = 8.f;
+    //self.acceptView.layer.borderWidth = 1.f;
+    //self.acceptView.layer.cornerRadius = 8.f;
+    self.acceptView.backgroundColor = [UIColor clearColor];
     
     if ([MFMailComposeViewController canSendMail])
     {
@@ -89,7 +91,21 @@
 
     }
     
-    accept = NO;
+    if([product isEqualToString:@"Item_0"])
+    {
+        labelProduct.text = @"12x24\" ($100.00)";
+    }else if([product isEqualToString:@"Item_1"])
+    {
+        labelProduct.text = @"24x60\" ($200.00)";
+    }else if([product isEqualToString:@"Item_2"])
+    {
+        labelProduct.text = @"12x12\" ($80.00)";
+    }else
+    {
+        labelProduct.text = @"40x40\" ($180.00)";
+    }
+    
+    accept = YES;
     [self touchCheck];
 }
 
@@ -124,6 +140,7 @@
     self.product    = nil;
     HUD = nil;
     conditionAlert = nil;
+    labelProduct = nil;
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -156,7 +173,7 @@
         NSLog(@"Product: %@", self.product);
     }else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR!" message:@"You must acept for term." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR!" message:@"You must accept for term." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
     }

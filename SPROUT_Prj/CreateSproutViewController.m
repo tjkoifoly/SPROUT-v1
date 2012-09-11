@@ -35,6 +35,7 @@
 @synthesize sprout;
 @synthesize sproutView;
 @synthesize delegate;
+@synthesize fontFrame;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,10 +67,21 @@
     self.sprout.center = center;
     [self.sproutView addSubview:self.sprout];
     
+    //Set Font Frame Sprout
+    CGRect frame1 = self.sproutView.frame;
+    CGRect frame2 = self.sprout.frame;
+    
+    CGRect newFrame = CGRectMake(frame1.origin.x+frame2.origin.x - 5 , frame1.origin.y+frame2.origin.y - 5, frame2.size.width+ 10, frame2.size.height + 10);
+    [self.fontFrame setFrame:newFrame];
+
     self.sproutView.backgroundColor = [UIColor clearColor];
     
     NSLog(@"%@ - %i - %i", self.sprout.name, self.sprout.rowSize, self.sprout.colSize);
-}
+    
+    [self performSelector:@selector(autoResize)];
+    
+    
+    }
 
 - (void)viewDidUnload
 {
@@ -78,6 +90,17 @@
     self.sprout = nil;
     self.sproutView = nil;
     self.delegate = nil;
+    self.fontFrame  = nil;
+}
+
+-(void)autoResize
+{
+    for(id aobj in self.sprout.subviews)
+    {
+        CGRect frame = [aobj frame];
+        CGRect newFrame = CGRectMake(frame.origin.x + 2, frame.origin.y +2, frame.size.width - 4, frame.size.height - 4);
+        [aobj setFrame:newFrame];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

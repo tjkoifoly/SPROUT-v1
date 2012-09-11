@@ -56,6 +56,8 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-s2.png"]];
     viewImage.image = imageInput;
+    viewImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    viewImage.layer.borderWidth = 1.f;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive)
                                                  name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];

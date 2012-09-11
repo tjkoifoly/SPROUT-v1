@@ -13,6 +13,8 @@
 #import "ViewPhotoInSproutViewController.h"
 #import "Sprout.h"
 
+#define kMargin 5
+
 @implementation DragToSproutViewController
 {
     UIImage *temp;
@@ -26,6 +28,7 @@
 @synthesize sprout;
 @synthesize urlImage;
 @synthesize imagesArray;
+@synthesize fontFrame;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -95,29 +98,30 @@
         {
             
             //UPDATE SPROUT
-            for(id x in self.sproutScroll.subviews)
-            {
-                if([[(DragDropImageView *)x url] isEqual:@"URL"])
-                {
-                    //[x setValue:self.urlImage forKey:@"url"];
-                    
-                    NSString *sName = [[self.sprout valueForKey:@"name"] stringByReplacingOccurrencesOfString:@"/" withString:@""];
-                    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", sName, [x tag]];
-                    
-                    UIImage *imageOfCell =[self thumnailImageFromImageView:self.imageInput];
-                    [self getImageFromFile:fileName input:imageOfCell];
-                    
-                    [(DragDropImageView *)x setUrlImage: self.urlImage];
-                    NSLog(@"from url = %@", self.urlImage);
-                    [(DragDropImageView *)x setImage:imageOfCell];
-                    [self.sproutScroll scrollRectToVisible:[x frame] animated:YES];
-                    
-                    //saveViewController.lastBlank = x;
-                    break;
-                }
-            }
+//            for(id x in self.sproutScroll.subviews)
+//            {
+//                if([[(DragDropImageView *)x url] isEqual:@"URL"])
+//                {
+//                    //[x setValue:self.urlImage forKey:@"url"];
+//                    
+//                    NSString *sName = [[self.sprout valueForKey:@"name"] stringByReplacingOccurrencesOfString:@"/" withString:@""];
+//                    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", sName, [x tag]];
+//                    
+//                    UIImage *imageOfCell =[self thumnailImageFromImageView:self.imageInput];
+//                    [self getImageFromFile:fileName input:imageOfCell];
+//                    
+//                    [(DragDropImageView *)x setUrlImage: self.urlImage];
+//                    NSLog(@"from url = %@", self.urlImage);
+//                    [(DragDropImageView *)x setImage:imageOfCell];
+//                    [self.sproutScroll scrollRectToVisible:[x frame] animated:YES];
+//                    
+//                    //saveViewController.lastBlank = x;
+//                    break;
+//                }
+//            }
+             
             
-            /*
+            
             //UPDATE SPROUT follow 2
             CGPoint offSetSprout = self.sproutScroll.contentOffset;
             float originx = touchPoint.x - self.sproutView.frame.origin.x - self.sproutScroll.frame.origin.x+ offSetSprout.x;
@@ -131,7 +135,7 @@
             {
                 return;
             }
-            */
+            
             
             SaveSproutViewController *saveViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
             saveViewController.fromDrag = YES;
@@ -164,6 +168,8 @@
     self.sproutView.backgroundColor = [UIColor clearColor];
     temp = nil;
     self.imageForSprout.image = imageInput;
+    imageForSprout.layer.borderColor = [UIColor whiteColor].CGColor;
+    imageForSprout.layer.borderWidth = 1.f;
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
 
     NSLog(@"NAME: %@", [sprout valueForKey:@"name"]);
@@ -175,6 +181,22 @@
     self.sproutScroll.center = center;
     [self.sproutView addSubview:self.sproutScroll];
     
+    CGRect frame1 = self.sproutView.frame;
+    CGRect frame2 = self.sproutScroll.frame;
+    
+    CGRect newFrame = CGRectMake(frame1.origin.x+frame2.origin.x - kMargin , frame1.origin.y+frame2.origin.y - kMargin, frame2.size.width+ 2*kMargin, frame2.size.height + 2*kMargin);
+    [self.fontFrame setFrame:newFrame];
+    [self performSelector:@selector(autoResize)];
+}
+
+-(void)autoResize
+{
+    for(id aobj in self.sproutScroll.subviews)
+    {
+        CGRect frame = [aobj frame];
+        CGRect newFrame = CGRectMake(frame.origin.x + 2, frame.origin.y +2, frame.size.width - 4, frame.size.height - 4);
+        [aobj setFrame:newFrame];
+    }
 }
 
 - (void)viewDidUnload
@@ -186,6 +208,7 @@
     self.sprout             = nil;
     self.urlImage           = nil;
     self.imagesArray        = nil;
+    self.fontFrame          = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

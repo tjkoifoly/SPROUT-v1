@@ -40,6 +40,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) IBOutlet UIButton *capButton;
 @property (strong, nonatomic) IBOutlet UIButton *libButton;
+@property (strong, nonatomic) IBOutlet UIImageView *fontFrame;
 
 @property (nonatomic) BOOL fromDrag;
 @property (strong, nonatomic) NSManagedObject *sprout;

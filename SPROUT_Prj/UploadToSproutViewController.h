@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Sprout.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface UploadToSproutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 

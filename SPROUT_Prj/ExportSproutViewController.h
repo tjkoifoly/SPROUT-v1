@@ -21,6 +21,12 @@
 @property (strong, nonatomic) IBOutlet UIButton *emailButton;
 @property (strong, nonatomic) IBOutlet UIButton *purchaseButton;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
+@property (strong, nonatomic) IBOutlet UIButton *btnFB;
+@property (strong, nonatomic) IBOutlet UIButton *btnTW;
+@property (strong, nonatomic) IBOutlet UIButton *btnFB_before;
+@property (strong, nonatomic) IBOutlet UIButton *btnTW_before;
+@property (strong, nonatomic) IBOutlet UIImageView *font1;
+@property (strong, nonatomic) IBOutlet UIImageView *font2;
 
 @property (strong, nonatomic) SproutScrollView *sproutScroll;
 

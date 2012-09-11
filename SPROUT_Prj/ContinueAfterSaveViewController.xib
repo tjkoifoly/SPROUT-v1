@@ -48,7 +48,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bg-s2.png</string>
+							<string key="NSResourceName">bg-bg.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="1037525514">
@@ -92,7 +92,7 @@
 					<object class="IBUIButton" id="981968451">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{32, 160}, {257, 42}}</string>
+						<string key="NSFrame">{{20, 161}, {280, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="598170123"/>
@@ -109,7 +109,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="502324001"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">upload-sp.png</string>
+							<string key="NSResourceName">btn-upload.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="565507896"/>
 						<reference key="IBUIFont" ref="765601268"/>
@@ -117,7 +117,7 @@
 					<object class="IBUIButton" id="598170123">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{32, 224}, {257, 42}}</string>
+						<string key="NSFrame">{{20, 224}, {280, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="229226127"/>
@@ -134,7 +134,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="502324001"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">edit-button.png</string>
+							<string key="NSResourceName">btn-editpt.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="565507896"/>
 						<reference key="IBUIFont" ref="765601268"/>
@@ -142,7 +142,7 @@
 					<object class="IBUIButton" id="229226127">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{32, 287}, {257, 42}}</string>
+						<string key="NSFrame">{{20, 287}, {280, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="622472436"/>
@@ -160,7 +160,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="502324001"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">post-tw.png</string>
+							<string key="NSResourceName">btn-posttw.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="565507896"/>
 						<reference key="IBUIFont" ref="765601268"/>
@@ -168,16 +168,16 @@
 					<object class="IBUIButton" id="622472436">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{32, 350}, {257, 42}}</string>
+						<string key="NSFrame">{{20, 350}, {280, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<reference key="IBUIHighlightedTitleColor" ref="405507424"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -186,7 +186,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="502324001"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">post-fb.png</string>
+							<string key="NSResourceName">btn-postfb.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="565507896"/>
 						<reference key="IBUIFont" ref="765601268"/>
@@ -194,7 +194,7 @@
 					<object class="IBUIImageView" id="622948652">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{224, 66}, {65, 78}}</string>
+						<string key="NSFrame">{{224, 79}, {60, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="981968451"/>
@@ -378,7 +378,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -433,12 +433,12 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="baby.png">{270, 293}</string>
-			<string key="bg-s2.png">{320, 460}</string>
-			<string key="edit-button.png">{560, 80}</string>
+			<string key="bg-bg.png">{320, 460}</string>
+			<string key="btn-editpt.png">{560, 80}</string>
+			<string key="btn-postfb.png">{560, 80}</string>
+			<string key="btn-posttw.png">{560, 80}</string>
+			<string key="btn-upload.png">{560, 80}</string>
 			<string key="home.png">{66, 66}</string>
-			<string key="post-fb.png">{560, 80}</string>
-			<string key="post-tw.png">{560, 80}</string>
-			<string key="upload-sp.png">{560, 80}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

@@ -53,6 +53,28 @@
      
     NSArray *a2 = [[NSArray alloc] initWithObjects:@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", @"11",@"12", @"13",@"14",@"15", nil];
     self.colPickerData = a2;
+    
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    if(pickerView == rowPicker)
+    {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 95, 37)];
+        label.text = [rowPickerData objectAtIndex:row];
+        label.textAlignment = UITextAlignmentCenter;
+        [label setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:20]];
+        label.backgroundColor = [UIColor clearColor];
+        return label;
+    }else
+    {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 95, 37)];
+        label.text = [colPickerData objectAtIndex:row];
+        label.textAlignment = UITextAlignmentCenter;
+        [label setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:20]];
+        label.backgroundColor = [UIColor clearColor];
+        return label;
+    }
 }
 
 - (void)viewDidUnload

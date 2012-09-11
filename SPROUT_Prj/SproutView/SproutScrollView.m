@@ -107,8 +107,8 @@
             //NSLog(@"%i %i %i", i , j, imv.tag);
         }
     }
-    self.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.layer.borderWidth = 2.f;
+    //self.layer.borderColor = [UIColor whiteColor].CGColor;
+    //self.layer.borderWidth = 2.f;
     
     return self;
 
@@ -195,8 +195,8 @@
             //NSLog(@"%i %i %i", i , j, imv.tag);
         }
     }
-    self.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.layer.borderWidth = 2.f;
+    //self.layer.borderColor = [UIColor whiteColor].CGColor;
+    //self.layer.borderWidth = 2.f;
     
     return self;
 }
@@ -254,8 +254,8 @@
                 //NSLog(@"%i %i %i", i , j, imv.tag);
             }
         }
-    self.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.layer.borderWidth = 2.f;
+    //self.layer.borderColor = [UIColor whiteColor].CGColor;
+    //self.layer.borderWidth = 2.f;
 
     return self;
 }
@@ -314,9 +314,15 @@
         {
             if([(DragDropImageView *)[[self subviews]objectAtIndex:toTag] image] == nil)
             {
+                int w = [[[self subviews]objectAtIndex:fromTag] frame].size.width;
+                
+                NSLog(@"WITH = %@", [NSString stringWithFormat:@"bg-cell%i.png", w+4]);
+                
                 //SWAP
                 [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] image]];
                 [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setImage:nil];
+                [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setBackgroundColor:[UIColor lightGrayColor]];
+                [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"bg-cell%i.png", w+4]]]];
                 
                 [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setUrlImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] url]];
                 [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setUrlImage:@"URL"];
@@ -335,11 +341,17 @@
 
 -(NSInteger)cellInPoint: (CGPoint) curPoint
 {
-    float cellWidth = [[[self subviews]objectAtIndex:0] frame].size.width;
-    float cellHeight = [[[self subviews]objectAtIndex:0] frame].size.height;
+//    float cellWidth = [[[self subviews]objectAtIndex:0] frame].size.width;
+//    float cellHeight = [[[self subviews]objectAtIndex:0] frame].size.height;
     
-    int localY = (int)curPoint.x / cellWidth;
-    int localX = (int) curPoint.y / cellHeight;
+    int size = 60;
+    if(self.colSize > 4 || self.rowSize > 4)
+    {
+        size = 40;
+    }
+    
+    int localY = (int)curPoint.x / size;
+    int localX = (int) curPoint.y / size;
     
     int inTag = localX * self.colSize + localY;
     
