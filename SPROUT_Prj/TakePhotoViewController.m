@@ -19,7 +19,7 @@
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGTH 480
 // Transform values for full screen support:
-#define CAMERA_TRANSFORM_X 1
+#define CAMERA_TRANSFORM_X 1.24299
 //#define CAMERA_TRANSFORM_Y 1.12412 //use this is for iOS 3.x
 #define CAMERA_TRANSFORM_Y 1.24299 // use this is for iOS 4.x
 
@@ -77,7 +77,7 @@
         self.pickerImage.showsCameraControls    = NO;
         self.pickerImage.navigationBarHidden    = YES;
         pickerImage.wantsFullScreenLayout = YES;
-        pickerImage.cameraViewTransform = CGAffineTransformScale(pickerImage.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
+        //pickerImage.cameraViewTransform = CGAffineTransformScale(pickerImage.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
         
         if(overlay == nil)
         {
