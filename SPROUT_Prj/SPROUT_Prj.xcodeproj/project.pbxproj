@@ -399,6 +399,7 @@
 		E4F65F2915DE028700D236F7 /* ReminderManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F65F2715DE028700D236F7 /* ReminderManagerViewController.m */; };
 		E4F65F2A15DE028700D236F7 /* ReminderManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F65F2815DE028700D236F7 /* ReminderManagerViewController.xib */; };
 		E4F689D315D0F57600837FBD /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F689D215D0F57600837FBD /* icon.png */; };
+		E4F6E94C15FFADF90090BB56 /* 456.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F6E94B15FFADF90090BB56 /* 456.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1022,6 +1023,7 @@
 		E4F65F2715DE028700D236F7 /* ReminderManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReminderManagerViewController.m; path = Reminder/ReminderManagerViewController.m; sourceTree = "<group>"; };
 		E4F65F2815DE028700D236F7 /* ReminderManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ReminderManagerViewController.xib; path = Reminder/ReminderManagerViewController.xib; sourceTree = "<group>"; };
 		E4F689D215D0F57600837FBD /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		E4F6E94B15FFADF90090BB56 /* 456.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 456.png; path = ../IXPickerOverlayView/456.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1796,6 +1798,7 @@
 		E4DCF2F815F5F62800987A8E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E4F6E94B15FFADF90090BB56 /* 456.png */,
 				E4B50F4A15FF320700AAA41E /* btn-ok2.png */,
 				E4B50F4C15FF34BE00AAA41E /* btn-antique.png */,
 				E4B50F4D15FF34BE00AAA41E /* btn-blur.png */,
@@ -2342,6 +2345,7 @@
 				E4B50F5515FF34BF00AAA41E /* btn-normal.png in Resources */,
 				E4B50F5615FF34BF00AAA41E /* btn-sepia.png in Resources */,
 				E4B50F5715FF34BF00AAA41E /* btn-vignette.png in Resources */,
+				E4F6E94C15FFADF90090BB56 /* 456.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

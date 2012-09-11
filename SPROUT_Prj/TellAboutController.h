@@ -24,5 +24,6 @@
 -(IBAction)sendEmail:(id)sender;
 -(IBAction)shareFB:(id)sender;
 -(IBAction)shareTW:(id)sender;
+-(IBAction)gotoHome:(id)sender;
 
 @end

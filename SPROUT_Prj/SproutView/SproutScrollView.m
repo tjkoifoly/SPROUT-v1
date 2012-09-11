@@ -314,14 +314,16 @@
         {
             if([(DragDropImageView *)[[self subviews]objectAtIndex:toTag] image] == nil)
             {
-                int w = [[[self subviews]objectAtIndex:fromTag] frame].size.width;
-                
-                NSLog(@"WITH = %@", [NSString stringWithFormat:@"bg-cell%i.png", w+4]);
+               
                 
                 //SWAP
                 [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] image]];
                 [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setImage:nil];
                 [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setBackgroundColor:[UIColor lightGrayColor]];
+                //Set background again
+                int w = [[[self subviews]objectAtIndex:fromTag] frame].size.width;
+                
+                NSLog(@"WITH = %@", [NSString stringWithFormat:@"bg-cell%i.png", w+4]);
                 [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"bg-cell%i.png", w+4]]]];
                 
                 [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setUrlImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] url]];

@@ -39,14 +39,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    comment.layer.cornerRadius = 20.f;
-    comment.layer.borderColor = [UIColor blackColor].CGColor;
-    comment.layer.borderWidth = 2.f;
-    titleApp.layer.cornerRadius = 10.f;
-    titleApp.layer.borderColor = [UIColor blackColor].CGColor;
-    titleApp.layer.borderWidth = 1.f;
+    //comment.layer.cornerRadius = 20.f;
+    //comment.layer.borderColor = [UIColor blackColor].CGColor;
+    //comment.layer.borderWidth = 2.f;
+    //titleApp.layer.cornerRadius = 10.f;
+    //titleApp.layer.borderColor = [UIColor blackColor].CGColor;
+    //titleApp.layer.borderWidth = 1.f;
     
-    self.navigationItem.title = @"About";
+    //self.navigationItem.title = @"About";
     
     //self.navigationController.navigationBarHidden = NO;
     //Back Button
@@ -349,5 +349,10 @@
     [alert show];
 }
 
+
+-(IBAction)gotoHome:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 @end

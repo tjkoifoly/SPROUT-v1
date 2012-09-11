@@ -334,6 +334,12 @@
     [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setImage:nil];
     [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setUrlImage:@"URL"];
     //[[self.imagesArray objectAtIndex:tag] setValue:@"URL" forKey:@"url"];
+    //Set background again
+    int w = [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag]frame].size.width;
+    
+    NSLog(@"WITH = %@", [NSString stringWithFormat:@"bg-cell%i.png", w+4]);
+    [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setBackgroundColor:[UIColor lightGrayColor]];
+    [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"bg-cell%i.png", w+4]]]];
      
 }
 
