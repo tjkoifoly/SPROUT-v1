@@ -136,7 +136,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="925535819"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-export.png</string>
+							<string key="NSResourceName">btn-export2.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="289355358"/>
 						<reference key="IBUIFont" ref="53955145"/>
@@ -176,7 +176,7 @@
 						<string key="NSFrame">{{0, 414}, {320, 46}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="15597882"/>
+						<reference key="NSNextKeyView" ref="182677796"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -191,7 +191,7 @@
 						<string key="NSFrame">{{19, 417}, {282, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="182677796"/>
+						<reference key="NSNextKeyView" ref="522523963"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -225,7 +225,7 @@
 						<string key="NSFrame">{{14, 417}, {40, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="522523963"/>
+						<reference key="NSNextKeyView" ref="15597882"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -439,13 +439,13 @@
 							<reference ref="873436020"/>
 							<reference ref="270891424"/>
 							<reference ref="240394899"/>
-							<reference ref="688715418"/>
 							<reference ref="1057133456"/>
 							<reference ref="943136732"/>
 							<reference ref="522523963"/>
 							<reference ref="182677796"/>
 							<reference ref="15597882"/>
 							<reference ref="431802315"/>
+							<reference ref="688715418"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -629,7 +629,7 @@
 			<string key="bar-bottom.png">{641, 96}</string>
 			<string key="bg-bg.png">{320, 460}</string>
 			<string key="btn-capture.png">{86, 86}</string>
-			<string key="btn-export.png">{66, 70}</string>
+			<string key="btn-export2.png">{66, 66}</string>
 			<string key="btn-load.png">{86, 86}</string>
 			<string key="btn-viewfull.png">{66, 66}</string>
 			<string key="font-frame.png">{601, 723}</string>

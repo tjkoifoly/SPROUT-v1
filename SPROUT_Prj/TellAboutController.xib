@@ -87,7 +87,7 @@
 					<object class="IBUITextView" id="896611140">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{47, 230}, {226, 63}}</string>
+						<string key="NSFrame">{{32, 221}, {255, 78}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="968772779"/>
@@ -105,7 +105,8 @@
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-							<int key="IBUIAutocapitalizationType">2</int>
+							<int key="IBUIAutocapitalizationType">3</int>
+							<int key="IBUIKeyboardType">1</int>
 							<int key="IBUIReturnKeyType">9</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
@@ -113,11 +114,11 @@
 							<string key="name">Helvetica</string>
 							<string key="family">Helvetica</string>
 							<int key="traits">0</int>
-							<double key="pointSize">22</double>
+							<double key="pointSize">15</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
-							<double key="NSSize">22</double>
+							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -134,7 +135,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Subject:</string>
+						<string key="IBUIText">Subject</string>
 						<reference key="IBUITextColor" ref="891218573"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -169,7 +170,7 @@
 					<object class="IBUITextField" id="8598724">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{35, 139}, {241, 45}}</string>
+						<string key="NSFrame">{{39, 139}, {248, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="534116275"/>
@@ -179,7 +180,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUIText"/>
-						<string key="IBUIPlaceholder">Tell friends</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
@@ -306,7 +306,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Commnet</string>
+						<string key="IBUIText">Comment</string>
 						<reference key="IBUITextColor" ref="891218573"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -440,15 +440,15 @@
 							<reference ref="721380235"/>
 							<reference ref="534116275"/>
 							<reference ref="89507226"/>
-							<reference ref="8598724"/>
 							<reference ref="674085834"/>
 							<reference ref="751565884"/>
 							<reference ref="1068818434"/>
-							<reference ref="896611140"/>
 							<reference ref="932742843"/>
 							<reference ref="327598866"/>
 							<reference ref="968772779"/>
 							<reference ref="878641569"/>
+							<reference ref="8598724"/>
+							<reference ref="896611140"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

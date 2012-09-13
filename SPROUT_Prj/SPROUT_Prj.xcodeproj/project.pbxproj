@@ -141,6 +141,12 @@
 		E40A8BA215D3FC840004E841 /* ImageToDag.m in Sources */ = {isa = PBXBuildFile; fileRef = E40A8BA115D3FC840004E841 /* ImageToDag.m */; };
 		E40A8BA515D3FEF30004E841 /* StyleCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40A8BA415D3FEF30004E841 /* StyleCropView.m */; };
 		E40A8BA715D3FF0B0004E841 /* StyleCropView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E40A8BA615D3FF0B0004E841 /* StyleCropView.xib */; };
+		E40EF53316007FEA002FE621 /* bar-top.png in Resources */ = {isa = PBXBuildFile; fileRef = E40EF53216007FEA002FE621 /* bar-top.png */; };
+		E40EF535160081D5002FE621 /* btn-ok3.png in Resources */ = {isa = PBXBuildFile; fileRef = E40EF534160081D5002FE621 /* btn-ok3.png */; };
+		E40EF53816009CC6002FE621 /* Screen8_03.png in Resources */ = {isa = PBXBuildFile; fileRef = E40EF53616009CC6002FE621 /* Screen8_03.png */; };
+		E40EF53916009CC6002FE621 /* Screen17_03.png in Resources */ = {isa = PBXBuildFile; fileRef = E40EF53716009CC6002FE621 /* Screen17_03.png */; };
+		E40EF53B1600A231002FE621 /* datepicker-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = E40EF53A1600A231002FE621 /* datepicker-shadow.png */; };
+		E40EF53D1600A32B002FE621 /* ixPickerOverlayGlass2.png in Resources */ = {isa = PBXBuildFile; fileRef = E40EF53C1600A32B002FE621 /* ixPickerOverlayGlass2.png */; };
 		E40F7FC715CCCDEE00D354A7 /* DragDropImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */; };
 		E413F7E615ECA74C00BC8397 /* UIView+animation.m in Sources */ = {isa = PBXBuildFile; fileRef = E413F7E515ECA74C00BC8397 /* UIView+animation.m */; };
 		E424F30015CCFC0B006B588F /* SproutScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E424F2FF15CCFC0B006B588F /* SproutScrollView.m */; };
@@ -164,6 +170,13 @@
 		E43FAEB015CA0C6D00CF628C /* TakePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEAE15CA0C6D00CF628C /* TakePhotoViewController.xib */; };
 		E43FAEB415CA0F1900CF628C /* Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB315CA0F1900CF628C /* Splash.png */; };
 		E440676D15D35F7F00F7729D /* noPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = E440676C15D35F7F00F7729D /* noPhoto.png */; };
+		E442955E1601BFA600798AC4 /* 114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = E442955D1601BFA600798AC4 /* 114x114.png */; };
+		E44295611601C5B900798AC4 /* ixPickerOverlaySectionsSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = E44295601601C5B900798AC4 /* ixPickerOverlaySectionsSeparator.png */; };
+		E44295641601C86300798AC4 /* ixPickerOverlayLeftPane.png in Resources */ = {isa = PBXBuildFile; fileRef = E44295621601C86300798AC4 /* ixPickerOverlayLeftPane.png */; };
+		E44295651601C86300798AC4 /* ixPickerOverlayRightPane.png in Resources */ = {isa = PBXBuildFile; fileRef = E44295631601C86300798AC4 /* ixPickerOverlayRightPane.png */; };
+		E44295671601CA6B00798AC4 /* picker-shadow-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = E44295661601CA6B00798AC4 /* picker-shadow-overlay.png */; };
+		E442956F1601CD5C00798AC4 /* picker-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = E442956E1601CD5C00798AC4 /* picker-overlay.png */; };
+		E442957C1601EF9B00798AC4 /* btn-export2.png in Resources */ = {isa = PBXBuildFile; fileRef = E442957B1601EF9B00798AC4 /* btn-export2.png */; };
 		E459323715CF71D1009A5D1C /* Sprout.m in Sources */ = {isa = PBXBuildFile; fileRef = E459323615CF71D1009A5D1C /* Sprout.m */; };
 		E45B5D3615D9FDEC0065D932 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45B5D3515D9FDEB0065D932 /* MessageUI.framework */; };
 		E462064915D3C6BF00CDCA0F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E462064815D3C6BF00CDCA0F /* OpenGLES.framework */; };
@@ -177,7 +190,7 @@
 		E47AA0B915CB881F00544164 /* ViewPhotoInSproutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0B715CB881F00544164 /* ViewPhotoInSproutViewController.xib */; };
 		E47AA0BE15CB915A00544164 /* EditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0BC15CB915A00544164 /* EditImageViewController.m */; };
 		E47AA0BF15CB915A00544164 /* EditImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0BD15CB915A00544164 /* EditImageViewController.xib */; };
-		E47AA0C915CBACC000544164 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0C715CBACC000544164 /* ReminderViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E47AA0C915CBACC000544164 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47AA0C715CBACC000544164 /* ReminderViewController.m */; };
 		E47AA0CA15CBACC000544164 /* ReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47AA0C815CBACC000544164 /* ReminderViewController.xib */; };
 		E47ABE6E15CD301100CCDCF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47ABE6D15CD301100CCDCF0 /* QuartzCore.framework */; };
 		E480D6BB15DB3FFB00D801D3 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E480D6BA15DB3FFB00D801D3 /* FacebookSDKResources.bundle */; };
@@ -266,11 +279,11 @@
 		E4CD93D015E1C8C000EE9E9E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E43FAEB515CA0F5000CF628C /* Default.png */; };
 		E4D0D78015FDEF7F00531EAC /* ixPickerOverlayGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77215FDEF7E00531EAC /* ixPickerOverlayGlass.png */; };
 		E4D0D78115FDEF7F00531EAC /* ixPickerOverlayGlass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77315FDEF7E00531EAC /* ixPickerOverlayGlass@2x.png */; };
-		E4D0D78215FDEF7F00531EAC /* ixPickerOverlayLeftPane.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77415FDEF7E00531EAC /* ixPickerOverlayLeftPane.png */; };
+		E4D0D78215FDEF7F00531EAC /* ixPickerOverlayLeftPane1.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77415FDEF7E00531EAC /* ixPickerOverlayLeftPane1.png */; };
 		E4D0D78315FDEF7F00531EAC /* ixPickerOverlayLeftPane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77515FDEF7E00531EAC /* ixPickerOverlayLeftPane@2x.png */; };
-		E4D0D78415FDEF7F00531EAC /* ixPickerOverlayRightPane.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77615FDEF7E00531EAC /* ixPickerOverlayRightPane.png */; };
+		E4D0D78415FDEF7F00531EAC /* ixPickerOverlayRightPane1.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77615FDEF7E00531EAC /* ixPickerOverlayRightPane1.png */; };
 		E4D0D78515FDEF7F00531EAC /* ixPickerOverlayRightPane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77715FDEF7E00531EAC /* ixPickerOverlayRightPane@2x.png */; };
-		E4D0D78615FDEF7F00531EAC /* ixPickerOverlaySectionsSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77815FDEF7E00531EAC /* ixPickerOverlaySectionsSeparator.png */; };
+		E4D0D78615FDEF7F00531EAC /* ixPickerOverlaySectionsSeparator1.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77815FDEF7E00531EAC /* ixPickerOverlaySectionsSeparator1.png */; };
 		E4D0D78715FDEF7F00531EAC /* ixPickerOverlaySectionsSeparator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77915FDEF7E00531EAC /* ixPickerOverlaySectionsSeparator@2x.png */; };
 		E4D0D78815FDEF7F00531EAC /* ixPickerOverlaySectionWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77A15FDEF7E00531EAC /* ixPickerOverlaySectionWheel.png */; };
 		E4D0D78915FDEF7F00531EAC /* ixPickerOverlaySectionWheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D0D77B15FDEF7E00531EAC /* ixPickerOverlaySectionWheel@2x.png */; };
@@ -386,6 +399,8 @@
 		E4EA99E315E5D02200F00027 /* SA_OAuthTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EA99CF15E5D02200F00027 /* SA_OAuthTwitterEngine.m */; };
 		E4EA99E415E5D02200F00027 /* twitter_load.png in Resources */ = {isa = PBXBuildFile; fileRef = E4EA99D015E5D02200F00027 /* twitter_load.png */; };
 		E4EAFDCB15D577D200D91BE9 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EAFDCA15D577D200D91BE9 /* CoreImage.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E4EF0D7F1601BE9D00120D21 /* btn-backview.png in Resources */ = {isa = PBXBuildFile; fileRef = E4EF0D7E1601BE9D00120D21 /* btn-backview.png */; };
+		E4EF0D821601BF5600120D21 /* 57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = E4EF0D811601BF5600120D21 /* 57x57.png */; };
 		E4F1B55E15D0AD3C00558FFC /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1B55D15D0AD3C00558FFC /* OverlayView.m */; };
 		E4F1B56015D0AE7900558FFC /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = E4F1B55F15D0AE7900558FFC /* overlaygraphic.png */; };
 		E4F6441315CA59C300E068AD /* CreateSproutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6441115CA59C300E068AD /* CreateSproutViewController.m */; };
@@ -642,6 +657,12 @@
 		E40A8BA315D3FEF30004E841 /* StyleCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleCropView.h; path = EditObjects/StyleCropView.h; sourceTree = "<group>"; };
 		E40A8BA415D3FEF30004E841 /* StyleCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleCropView.m; path = EditObjects/StyleCropView.m; sourceTree = "<group>"; };
 		E40A8BA615D3FF0B0004E841 /* StyleCropView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StyleCropView.xib; sourceTree = "<group>"; };
+		E40EF53216007FEA002FE621 /* bar-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-top.png"; sourceTree = "<group>"; };
+		E40EF534160081D5002FE621 /* btn-ok3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-ok3.png"; sourceTree = "<group>"; };
+		E40EF53616009CC6002FE621 /* Screen8_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screen8_03.png; sourceTree = "<group>"; };
+		E40EF53716009CC6002FE621 /* Screen17_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screen17_03.png; sourceTree = "<group>"; };
+		E40EF53A1600A231002FE621 /* datepicker-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "datepicker-shadow.png"; sourceTree = "<group>"; };
+		E40EF53C1600A32B002FE621 /* ixPickerOverlayGlass2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlayGlass2.png; sourceTree = "<group>"; };
 		E40F7FC515CCCDEE00D354A7 /* DragDropImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DragDropImageView.h; path = SproutView/DragDropImageView.h; sourceTree = "<group>"; };
 		E40F7FC615CCCDEE00D354A7 /* DragDropImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DragDropImageView.m; path = SproutView/DragDropImageView.m; sourceTree = "<group>"; };
 		E413F7E415ECA74C00BC8397 /* UIView+animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+animation.h"; path = "Views/UIView+animation.h"; sourceTree = "<group>"; };
@@ -676,6 +697,13 @@
 		E43FAEB315CA0F1900CF628C /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
 		E43FAEB515CA0F5000CF628C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E440676C15D35F7F00F7729D /* noPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noPhoto.png; sourceTree = "<group>"; };
+		E442955D1601BFA600798AC4 /* 114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114x114.png; sourceTree = "<group>"; };
+		E44295601601C5B900798AC4 /* ixPickerOverlaySectionsSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlaySectionsSeparator.png; sourceTree = "<group>"; };
+		E44295621601C86300798AC4 /* ixPickerOverlayLeftPane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlayLeftPane.png; sourceTree = "<group>"; };
+		E44295631601C86300798AC4 /* ixPickerOverlayRightPane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlayRightPane.png; sourceTree = "<group>"; };
+		E44295661601CA6B00798AC4 /* picker-shadow-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker-shadow-overlay.png"; sourceTree = "<group>"; };
+		E442956E1601CD5C00798AC4 /* picker-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "picker-overlay.png"; sourceTree = "<group>"; };
+		E442957B1601EF9B00798AC4 /* btn-export2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-export2.png"; sourceTree = "<group>"; };
 		E459323515CF71D1009A5D1C /* Sprout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprout.h; path = SproutView/Sprout.h; sourceTree = "<group>"; };
 		E459323615CF71D1009A5D1C /* Sprout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sprout.m; path = SproutView/Sprout.m; sourceTree = "<group>"; };
 		E45B5D3515D9FDEB0065D932 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -827,11 +855,11 @@
 		E4CD771F15E88B8000324481 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		E4D0D77215FDEF7E00531EAC /* ixPickerOverlayGlass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlayGlass.png; sourceTree = "<group>"; };
 		E4D0D77315FDEF7E00531EAC /* ixPickerOverlayGlass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ixPickerOverlayGlass@2x.png"; sourceTree = "<group>"; };
-		E4D0D77415FDEF7E00531EAC /* ixPickerOverlayLeftPane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlayLeftPane.png; sourceTree = "<group>"; };
+		E4D0D77415FDEF7E00531EAC /* ixPickerOverlayLeftPane1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlayLeftPane1.png; sourceTree = "<group>"; };
 		E4D0D77515FDEF7E00531EAC /* ixPickerOverlayLeftPane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ixPickerOverlayLeftPane@2x.png"; sourceTree = "<group>"; };
-		E4D0D77615FDEF7E00531EAC /* ixPickerOverlayRightPane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlayRightPane.png; sourceTree = "<group>"; };
+		E4D0D77615FDEF7E00531EAC /* ixPickerOverlayRightPane1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlayRightPane1.png; sourceTree = "<group>"; };
 		E4D0D77715FDEF7E00531EAC /* ixPickerOverlayRightPane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ixPickerOverlayRightPane@2x.png"; sourceTree = "<group>"; };
-		E4D0D77815FDEF7E00531EAC /* ixPickerOverlaySectionsSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlaySectionsSeparator.png; sourceTree = "<group>"; };
+		E4D0D77815FDEF7E00531EAC /* ixPickerOverlaySectionsSeparator1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlaySectionsSeparator1.png; sourceTree = "<group>"; };
 		E4D0D77915FDEF7E00531EAC /* ixPickerOverlaySectionsSeparator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ixPickerOverlaySectionsSeparator@2x.png"; sourceTree = "<group>"; };
 		E4D0D77A15FDEF7E00531EAC /* ixPickerOverlaySectionWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ixPickerOverlaySectionWheel.png; sourceTree = "<group>"; };
 		E4D0D77B15FDEF7E00531EAC /* ixPickerOverlaySectionWheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ixPickerOverlaySectionWheel@2x.png"; sourceTree = "<group>"; };
@@ -1004,6 +1032,8 @@
 		E4EA99CF15E5D02200F00027 /* SA_OAuthTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SA_OAuthTwitterEngine.m; sourceTree = "<group>"; };
 		E4EA99D015E5D02200F00027 /* twitter_load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_load.png; sourceTree = "<group>"; };
 		E4EAFDCA15D577D200D91BE9 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		E4EF0D7E1601BE9D00120D21 /* btn-backview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-backview.png"; sourceTree = "<group>"; };
+		E4EF0D811601BF5600120D21 /* 57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57x57.png; sourceTree = "<group>"; };
 		E4F1B55C15D0AD3C00558FFC /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverlayView.h; path = Objects/OverlayView.h; sourceTree = "<group>"; };
 		E4F1B55D15D0AD3C00558FFC /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverlayView.m; path = Objects/OverlayView.m; sourceTree = "<group>"; };
 		E4F1B55F15D0AE7900558FFC /* overlaygraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlaygraphic.png; sourceTree = "<group>"; };
@@ -1336,6 +1366,8 @@
 		E43FAE6715CA0C4200CF628C = {
 			isa = PBXGroup;
 			children = (
+				E442955D1601BFA600798AC4 /* 114x114.png */,
+				E4EF0D811601BF5600120D21 /* 57x57.png */,
 				E4D0D77115FDEF7E00531EAC /* IXPickerOverlayView */,
 				E4201ADE15DC8DA100064F6F /* Request */,
 				E40F7FC215CCCD7300D354A7 /* Objects */,
@@ -1777,13 +1809,18 @@
 		E4D0D77115FDEF7E00531EAC /* IXPickerOverlayView */ = {
 			isa = PBXGroup;
 			children = (
+				E44295661601CA6B00798AC4 /* picker-shadow-overlay.png */,
+				E44295601601C5B900798AC4 /* ixPickerOverlaySectionsSeparator.png */,
+				E44295621601C86300798AC4 /* ixPickerOverlayLeftPane.png */,
+				E44295631601C86300798AC4 /* ixPickerOverlayRightPane.png */,
+				E40EF53C1600A32B002FE621 /* ixPickerOverlayGlass2.png */,
 				E4D0D77215FDEF7E00531EAC /* ixPickerOverlayGlass.png */,
 				E4D0D77315FDEF7E00531EAC /* ixPickerOverlayGlass@2x.png */,
-				E4D0D77415FDEF7E00531EAC /* ixPickerOverlayLeftPane.png */,
+				E4D0D77415FDEF7E00531EAC /* ixPickerOverlayLeftPane1.png */,
 				E4D0D77515FDEF7E00531EAC /* ixPickerOverlayLeftPane@2x.png */,
-				E4D0D77615FDEF7E00531EAC /* ixPickerOverlayRightPane.png */,
+				E4D0D77615FDEF7E00531EAC /* ixPickerOverlayRightPane1.png */,
 				E4D0D77715FDEF7E00531EAC /* ixPickerOverlayRightPane@2x.png */,
-				E4D0D77815FDEF7E00531EAC /* ixPickerOverlaySectionsSeparator.png */,
+				E4D0D77815FDEF7E00531EAC /* ixPickerOverlaySectionsSeparator1.png */,
 				E4D0D77915FDEF7E00531EAC /* ixPickerOverlaySectionsSeparator@2x.png */,
 				E4D0D77A15FDEF7E00531EAC /* ixPickerOverlaySectionWheel.png */,
 				E4D0D77B15FDEF7E00531EAC /* ixPickerOverlaySectionWheel@2x.png */,
@@ -1798,6 +1835,14 @@
 		E4DCF2F815F5F62800987A8E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E442957B1601EF9B00798AC4 /* btn-export2.png */,
+				E442956E1601CD5C00798AC4 /* picker-overlay.png */,
+				E40EF53A1600A231002FE621 /* datepicker-shadow.png */,
+				E4EF0D7E1601BE9D00120D21 /* btn-backview.png */,
+				E40EF534160081D5002FE621 /* btn-ok3.png */,
+				E40EF53616009CC6002FE621 /* Screen8_03.png */,
+				E40EF53716009CC6002FE621 /* Screen17_03.png */,
+				E40EF53216007FEA002FE621 /* bar-top.png */,
 				E4F6E94B15FFADF90090BB56 /* 456.png */,
 				E4B50F4A15FF320700AAA41E /* btn-ok2.png */,
 				E4B50F4C15FF34BE00AAA41E /* btn-antique.png */,
@@ -2318,11 +2363,11 @@
 				E4D8A2B615FDE9AD009DB8ED /* btn-new-sprout1.png in Resources */,
 				E4D0D78015FDEF7F00531EAC /* ixPickerOverlayGlass.png in Resources */,
 				E4D0D78115FDEF7F00531EAC /* ixPickerOverlayGlass@2x.png in Resources */,
-				E4D0D78215FDEF7F00531EAC /* ixPickerOverlayLeftPane.png in Resources */,
+				E4D0D78215FDEF7F00531EAC /* ixPickerOverlayLeftPane1.png in Resources */,
 				E4D0D78315FDEF7F00531EAC /* ixPickerOverlayLeftPane@2x.png in Resources */,
-				E4D0D78415FDEF7F00531EAC /* ixPickerOverlayRightPane.png in Resources */,
+				E4D0D78415FDEF7F00531EAC /* ixPickerOverlayRightPane1.png in Resources */,
 				E4D0D78515FDEF7F00531EAC /* ixPickerOverlayRightPane@2x.png in Resources */,
-				E4D0D78615FDEF7F00531EAC /* ixPickerOverlaySectionsSeparator.png in Resources */,
+				E4D0D78615FDEF7F00531EAC /* ixPickerOverlaySectionsSeparator1.png in Resources */,
 				E4D0D78715FDEF7F00531EAC /* ixPickerOverlaySectionsSeparator@2x.png in Resources */,
 				E4D0D78815FDEF7F00531EAC /* ixPickerOverlaySectionWheel.png in Resources */,
 				E4D0D78915FDEF7F00531EAC /* ixPickerOverlaySectionWheel@2x.png in Resources */,
@@ -2346,6 +2391,21 @@
 				E4B50F5615FF34BF00AAA41E /* btn-sepia.png in Resources */,
 				E4B50F5715FF34BF00AAA41E /* btn-vignette.png in Resources */,
 				E4F6E94C15FFADF90090BB56 /* 456.png in Resources */,
+				E40EF53316007FEA002FE621 /* bar-top.png in Resources */,
+				E40EF535160081D5002FE621 /* btn-ok3.png in Resources */,
+				E40EF53816009CC6002FE621 /* Screen8_03.png in Resources */,
+				E40EF53916009CC6002FE621 /* Screen17_03.png in Resources */,
+				E40EF53B1600A231002FE621 /* datepicker-shadow.png in Resources */,
+				E40EF53D1600A32B002FE621 /* ixPickerOverlayGlass2.png in Resources */,
+				E4EF0D7F1601BE9D00120D21 /* btn-backview.png in Resources */,
+				E4EF0D821601BF5600120D21 /* 57x57.png in Resources */,
+				E442955E1601BFA600798AC4 /* 114x114.png in Resources */,
+				E44295611601C5B900798AC4 /* ixPickerOverlaySectionsSeparator.png in Resources */,
+				E44295641601C86300798AC4 /* ixPickerOverlayLeftPane.png in Resources */,
+				E44295651601C86300798AC4 /* ixPickerOverlayRightPane.png in Resources */,
+				E44295671601CA6B00798AC4 /* picker-shadow-overlay.png in Resources */,
+				E442956F1601CD5C00798AC4 /* picker-overlay.png in Resources */,
+				E442957C1601EF9B00798AC4 /* btn-export2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

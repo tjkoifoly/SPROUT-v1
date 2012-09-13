@@ -26,6 +26,7 @@
 @implementation TakePhotoViewController
 {
     OverlayView *overlay;
+    BOOL first;
 }
 @synthesize pickerImage;
 @synthesize save;
@@ -52,6 +53,13 @@
 #pragma mark - View lifecycle
 -(void)viewWillAppear:(BOOL)animated
 {
+    if(pickerImage == nil)
+    {
+        self.pickerImage = [[UIImagePickerController alloc] init];
+        self.pickerImage.delegate = self;
+        isLibrary = NO;
+    }
+    
     NSString *reqSysVer = @"5.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     
@@ -77,7 +85,13 @@
         self.pickerImage.showsCameraControls    = NO;
         self.pickerImage.navigationBarHidden    = YES;
         pickerImage.wantsFullScreenLayout = YES;
-        //pickerImage.cameraViewTransform = CGAffineTransformScale(pickerImage.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
+        
+        if(first)
+        {
+           pickerImage.cameraViewTransform = CGAffineTransformScale(pickerImage.cameraViewTransform, CAMERA_TRANSFORM_X, CAMERA_TRANSFORM_Y);
+            first = NO;
+        }
+        
         
         if(overlay == nil)
         {
@@ -88,16 +102,12 @@
             {
                 overlay = (OverlayView *)currentObject;
             }
-//            overlay.frame = CGRectMake(0.0f, 0.0f, 320.f, 480.f);
-            //overlay.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-01.png"]];
-            overlay.backgroundColor = [UIColor clearColor];
+
+            //overlay.backgroundColor = [UIColor clearColor];
             overlay.delegate = self;
             
-            //[self.pickerImage.view setFrame:CGRectMake(0, 20, 320, 460)];
             [self.pickerImage.view addSubview:overlay];
-//            UIView * x = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-//            x.backgroundColor = [UIColor whiteColor];
-//            pickerImage.cameraOverlayView = x;
+          
         }else
         {
             overlay.hidden = NO;
@@ -105,18 +115,21 @@
         }
         
         [self.view addSubview:self.pickerImage.view];
+        //[self presentModalViewController:pickerImage animated:NO];
+        //[self performSelector:@selector(removeOverlay) withObject:nil afterDelay:2];
     }
     
+}
+
+-(void) removeOverlay
+{
+    overlay.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.pickerImage = [[UIImagePickerController alloc] init];
-    self.pickerImage.delegate = self;
-    isLibrary = NO;
-    
+    first = YES;
 }
 
 - (void)viewDidUnload
@@ -217,10 +230,9 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
-    //
-    
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
+    //FOR IOS 4
     NSString *reqSysVer = @"5.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     
@@ -240,14 +252,15 @@
         [self dismissModalViewControllerAnimated:YES];
         
         return;
-    }
+    }//END IOS 4
     
     if( [picker sourceType] == UIImagePickerControllerSourceTypeCamera )
     {
         SaveorDiscardPhotoViewController *saveViewController = [[SaveorDiscardPhotoViewController alloc] initWithNibName:@"SaveorDiscardPhotoViewController" bundle:nil];
         saveViewController.image = image;
+        NSLog(@"%f X %f", image.size.width, image.size.height);
         
-        [self.navigationController pushViewController:saveViewController animated:YES];
+        [self.navigationController pushViewController:saveViewController animated:NO];
     }else
     {
         //NSLog(@"Image = %@", i);
@@ -297,11 +310,14 @@
 
 -(IBAction)goToHome :(id)sender
 {
+    //[overlay removeFromSuperview];
+    //[self dismissModalViewControllerAnimated:NO];
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 -(IBAction)loadImageFromLibrary:(id)sender
 {
+    //FOR IOS 4
     NSString *reqSysVer = @"5.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     
@@ -313,11 +329,10 @@
         
         [self presentModalViewController:picker animated:YES];
         return;
-    }
-    
+    }//END IOS 4
+     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     self.isLibrary = YES;
     overlay.hidden = YES;
-    
     self.pickerImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])

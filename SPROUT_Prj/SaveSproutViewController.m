@@ -200,12 +200,18 @@
     
     if([context save:&error])
     {
+        if(sender != nil)
+        {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"Sprout saved!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [self enableExport];
+        }
+    }else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed!" message:@"Save sprout failed!" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil, nil];
+        [alert show];
     }
-    
-     
+
 }
 
 -(IBAction)exportSport:(id)sender
@@ -221,12 +227,14 @@
 -(IBAction)capturePressed:(id)sender;
 {
 
+    [self save:nil];
     NSLog(@"%@", [[self.navigationController viewControllers]objectAtIndex:0]);
     [self.delegate captureContinue:self];
 }
 
 -(IBAction)loadLibPressed:(id)sender
 {
+    [self save:nil];
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -407,12 +415,12 @@
     [self.view addSubview:imageScrollView];
     [UIView commitAnimations];
     
-    backView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0, 320, 40)];
-    backView.backgroundColor = [UIColor blackColor];
-    backView.alpha = 0.5f;
+    backView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0, 320, 43)];
+    backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bar-top.png"]];
+    backView.alpha = 0.9f;
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    backButton.frame = CGRectMake(10,5,60,30);
+    [backButton setBackgroundImage:[UIImage imageNamed:@"btn-backview.png"] forState:UIControlStateNormal];
+    backButton.frame = CGRectMake(13,5,31,31);
     [backButton addTarget:self action:@selector(backtoPreviousView) forControlEvents:UIControlEventTouchUpInside];
     backButton.alpha = 1.f;
     [backView addSubview:backButton];

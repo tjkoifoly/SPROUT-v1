@@ -72,6 +72,7 @@ const CGFloat kScrollObjWidth	= 300.f;
     self.scrollImages = [self loadScrollView:self.listImages :self.currentObject];
     [self.view addSubview:self.scrollImages];
     self.scrollImages.delegate = self;
+   
     
 }
 
@@ -85,6 +86,8 @@ const CGFloat kScrollObjWidth	= 300.f;
     
     [scrollView setScrollEnabled:YES];
     scrollView.pagingEnabled = YES;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     scrollView.backgroundColor = [UIColor clearColor];
     

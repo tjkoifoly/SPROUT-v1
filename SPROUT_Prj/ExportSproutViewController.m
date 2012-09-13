@@ -104,9 +104,17 @@
     
     NSLog(@"%i", standardSize);
     
-    tempView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0, col * standardSize, row *standardSize)];
-    tempView.layer.borderColor = [UIColor whiteColor].CGColor;
-    tempView.layer.borderWidth = 2.0f;
+    tempView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0, col * standardSize+20, row *standardSize+20)];
+    //tempView.layer.borderColor = [UIColor whiteColor].CGColor;
+    //tempView.layer.borderWidth = 2.0f;
+    UIView *tempView2 = [[UIView alloc] initWithFrame:CGRectMake(10 , 10, col * standardSize, row *standardSize)];
+    tempView2.backgroundColor = [UIColor clearColor];
+    
+    UIImageView *fontframe = [[UIImageView alloc] initWithFrame:tempView.frame];
+    [fontframe setImage:[UIImage imageNamed:@"font-frame.png"]];
+    [tempView addSubview:fontframe];
+    
+    [tempView addSubview:tempView2];
     
     __block int x;
     __block int y;
@@ -119,12 +127,12 @@
         imvX = [[UIImageView alloc] init];
         y = [ix tag]%(self.sproutScroll.colSize);
         x = [ix tag]/(self.sproutScroll.colSize);
-        [imvX setFrame:CGRectMake(y*standardSize, x*standardSize, standardSize, standardSize)];
+        [imvX setFrame:CGRectMake(y*standardSize + 5, x*standardSize + 5, standardSize - 10, standardSize - 10)];
         imvX.layer.borderColor = [UIColor whiteColor].CGColor;
-        imvX.layer.borderWidth = 1.f;
+        imvX.layer.borderWidth = 3.f;
         [imvX loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
         // [(UIImageView *)ix loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
-        [tempView addSubview:imvX];
+        [tempView2 addSubview:imvX];
         imvX = nil;
         });
     }

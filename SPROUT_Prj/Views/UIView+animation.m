@@ -44,7 +44,7 @@
     [UIView setAnimationDuration:1.0f];
     //Change frame parameters, you have to adjust
     if(show)
-        self.alpha = 0.5f;
+        self.alpha = 0.9f;
     else
         self.alpha = 0.0f;
     [UIView commitAnimations];

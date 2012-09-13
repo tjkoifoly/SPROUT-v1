@@ -9,6 +9,7 @@
 #import "SaveorDiscardPhotoViewController.h"
 #import "ContinueAfterSaveViewController.h"
 
+#define CAMERA_TRANSFORM_X 1.24299
 #define kImageSize 220.f
 
 @implementation SaveorDiscardPhotoViewController
@@ -60,26 +61,35 @@
     
     if(fromLib == NO)
     {
+        
         self.imageViewBack.image = self.image;
-    
-        CGSize viewSize = self.imageViewBack.bounds.size;
+        
+        CGPoint oldCenter = imageViewBack.center;
+        [imageViewBack setFrame:CGRectMake(0, 0, 320 * CAMERA_TRANSFORM_X, 456*CAMERA_TRANSFORM_X)];
+        imageViewBack.center = oldCenter;
+        
+        CGSize viewSize = self.view.bounds.size;
         UIGraphicsBeginImageContextWithOptions(viewSize, NO, 1.0);
         CGContextRef context = UIGraphicsGetCurrentContext();
-        [self.imageViewBack.layer renderInContext:context];
+        [self.view.layer renderInContext:context];
         UIImage *imageX = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-    
-        CGFloat x = self.imageView.frame.origin.x;
-        CGFloat y = self.imageView.frame.origin.y;
+        
+//        CGFloat x = self.imageView.frame.origin.x;       
+//        CGFloat y = self.imageView.frame.origin.y;
         CGFloat width = self.imageView.frame.size.width;
         CGFloat height = self.imageView.frame.size.height;
+        UIImageView *tmp = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width / CAMERA_TRANSFORM_X, height / CAMERA_TRANSFORM_X)];
+        tmp.center = imageView.center;
     
-        CGImageRef cropOfImage = CGImageCreateWithImageInRect(imageX.CGImage, CGRectMake(x, y, width, height));
+        CGImageRef cropOfImage = CGImageCreateWithImageInRect(imageX.CGImage, CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y, imageView.frame.size.width, imageView.frame.size.height));
     
         UIImage *croppedImage = [UIImage imageWithCGImage:cropOfImage];
         //imageView.image = croppedImage;
         self.image = croppedImage;
-        //self.imageView.image = self.image;
+        self.imageView.image = self.image;
+        
+        
     }else
     {
         scrollImage = [[UIScrollView alloc] initWithFrame:self.imageView.frame];
@@ -204,7 +214,7 @@
 
 -(IBAction)discard:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 -(IBAction)goToHome:(id)sender

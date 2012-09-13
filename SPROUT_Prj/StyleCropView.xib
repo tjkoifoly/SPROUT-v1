@@ -112,7 +112,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="608770347"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-ok.png</string>
+							<string key="NSResourceName">btn-ok3.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="205495605"/>
 						<reference key="IBUIFont" ref="957100010"/>
@@ -333,7 +333,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bar-bottom.png">{641, 96}</string>
 			<string key="btn-crop1.png">{169, 80}</string>
-			<string key="btn-ok.png">{139, 80}</string>
+			<string key="btn-ok3.png">{169, 80}</string>
 			<string key="btn-undo1.png">{169, 80}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
