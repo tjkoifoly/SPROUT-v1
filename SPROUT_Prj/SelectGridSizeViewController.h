@@ -24,6 +24,7 @@
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)create:(id)sender;
+
 -(void)setViewMoveUp: (BOOL) moveUp;
 -(IBAction)resignKeyboard:(id)sender;
 

@@ -50,7 +50,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bg-s2.png</string>
+							<string key="NSResourceName">bg-main.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="605626685">
@@ -112,7 +112,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="113901370"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-new-sprout1.png</string>
+							<string key="NSResourceName">btn-new-sprout2.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="803941488"/>
 						<reference key="IBUIFont" ref="160368906"/>
@@ -123,6 +123,7 @@
 						<string key="NSFrame">{{17, 209}, {283, 243}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:418</string>
 						<reference key="IBUIBackgroundColor" ref="47714491"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -189,7 +190,7 @@
 					<object class="IBUIImageView" id="320709347">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 146}, {300, 17}}</string>
+						<string key="NSFrame">{{10, 146}, {299, 17}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="375536616"/>
@@ -436,8 +437,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="baby.png">{270, 293}</string>
-			<string key="bg-s2.png">{320, 460}</string>
-			<string key="btn-new-sprout1.png">{415, 80}</string>
+			<string key="bg-main.png">{640, 920}</string>
+			<string key="btn-new-sprout2.png">{415, 82}</string>
 			<string key="home.png">{66, 66}</string>
 			<string key="shadow.png">{602, 21}</string>
 			<string key="spator.png">{602, 30}</string>

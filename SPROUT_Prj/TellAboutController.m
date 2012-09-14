@@ -12,10 +12,12 @@
 {
     __block MBProgressHUD *HUD;
     SA_OAuthTwitterEngine *_engine;
+    double moveOrigin;
 }
 
 @synthesize titleApp;
 @synthesize comment;
+@synthesize stayup;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +61,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive)
                                                  name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
+    stayup = NO;
 }
 
 -(void)applicationWillResignActive
@@ -354,5 +357,55 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+-(IBAction)nextComment:(id)sender
+{
+    [comment becomeFirstResponder];
+}
+
+-(void)setViewMoveUp: (BOOL) moveUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    CGRect rect = self.view.frame;
+    if(moveUp)
+    {
+        if(stayup)
+        {
+            rect.origin.y -= moveOrigin;
+        }
+    }else
+    {
+        if(stayup == NO)
+        {
+            rect.origin.y += moveOrigin;
+        }
+    }
+    
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
+
+#pragma mark - textViewDelegate
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    //set move origin
+    stayup = YES;
+    moveOrigin = textView.frame.origin.y - textView.frame.size.height;
+    
+    [self setViewMoveUp:YES];
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    stayup = NO;
+    [self setViewMoveUp:NO];
+    [textView resignFirstResponder];
+}
+
 
 @end

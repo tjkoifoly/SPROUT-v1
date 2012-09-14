@@ -146,7 +146,7 @@
 						<string key="NSFrame">{{45, 265}, {77, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="654168956"/>
+						<reference key="NSNextKeyView" ref="955947537"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -214,7 +214,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="274143907"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn1224.png</string>
+							<string key="NSResourceName">btn-pur1.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="608037676"/>
 						<reference key="IBUIFont" ref="766238888"/>
@@ -241,7 +241,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="274143907"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn2460.png</string>
+							<string key="NSResourceName">btn-pur2.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="608037676"/>
 						<reference key="IBUIFont" ref="766238888"/>
@@ -268,7 +268,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="274143907"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn1212.png</string>
+							<string key="NSResourceName">btn-pur03.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="608037676"/>
 						<reference key="IBUIFont" ref="766238888"/>
@@ -279,6 +279,7 @@
 						<string key="NSFrame">{{164, 360}, {136, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">4</int>
@@ -294,7 +295,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="274143907"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn4040.png</string>
+							<string key="NSResourceName">btn-pur04.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="608037676"/>
 						<reference key="IBUIFont" ref="766238888"/>
@@ -305,7 +306,7 @@
 						<string key="NSFrame">{{13, 116}, {294, 11}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="955947537"/>
+						<reference key="NSNextKeyView" ref="982796095"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -320,7 +321,7 @@
 						<string key="NSFrame">{{56, 135}, {209, 145}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="982796095"/>
+						<reference key="NSNextKeyView" ref="654168956"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -558,10 +559,10 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bg-bg.png">{320, 460}</string>
-			<string key="btn1212.png">{270, 80}</string>
-			<string key="btn1224.png">{271, 80}</string>
-			<string key="btn2460.png">{271, 80}</string>
-			<string key="btn4040.png">{270, 80}</string>
+			<string key="btn-pur03.png">{270, 82}</string>
+			<string key="btn-pur04.png">{270, 82}</string>
+			<string key="btn-pur1.png">{270, 82}</string>
+			<string key="btn-pur2.png">{270, 82}</string>
 			<string key="font-frame.png">{601, 723}</string>
 			<string key="home.png">{66, 66}</string>
 			<string key="print-logo.png">{420, 291}</string>

@@ -79,7 +79,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-capture-moment.png</string>
+							<string key="NSResourceName">btn-csm.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="955788993">
 							<int key="type">2</int>
@@ -111,7 +111,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="368471850"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-new-sprout.png</string>
+							<string key="NSResourceName">btn-ns.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="955788993"/>
 						<reference key="IBUIFont" ref="500690930"/>
@@ -136,7 +136,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="368471850"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-view-sprout.png</string>
+							<string key="NSResourceName">btn-vs.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="955788993"/>
 						<reference key="IBUIFont" ref="500690930"/>
@@ -147,6 +147,7 @@
 						<string key="NSFrame">{{20, 384}, {280, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -164,7 +165,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-remind.png</string>
+							<string key="NSResourceName">btn-sr.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="955788993"/>
 						<reference key="IBUIFont" ref="500690930"/>
@@ -394,10 +395,10 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bg-bg.png">{320, 460}</string>
-			<string key="btn-capture-moment.png">{560, 80}</string>
-			<string key="btn-new-sprout.png">{560, 80}</string>
-			<string key="btn-remind.png">{560, 80}</string>
-			<string key="btn-view-sprout.png">{560, 80}</string>
+			<string key="btn-csm.png">{560, 80}</string>
+			<string key="btn-ns.png">{560, 80}</string>
+			<string key="btn-sr.png">{560, 80}</string>
+			<string key="btn-vs.png">{560, 80}</string>
 			<string key="home.png">{66, 66}</string>
 			<string key="logo.png">{227, 193}</string>
 		</dictionary>
