@@ -300,13 +300,19 @@
     {
         NSLog(@"End OK");
         CGPoint currentPoint = [recognizer locationInView:self];
-        toTag = [self cellInPoint:currentPoint];
+        
         if(okMen != nil)
         {
             [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setAlpha:1.f];
             [okMen removeFromSuperview];
             okMen = nil;
         }
+        
+        if(![self checkInSprout:currentPoint])
+        {
+            return;
+        }
+        toTag = [self cellInPoint:currentPoint];
         
         NSLog(@"%i to % i", fromTag, toTag);
         
@@ -339,6 +345,15 @@
          
          
     }
+}
+
+-(BOOL)checkInSprout: (CGPoint )point
+{
+    if(point.x < 0 || point.x > self.contentSize.width)
+        return NO;
+    else if(point.y < 0 || point.y > self.contentSize.height)
+        return NO;
+    else return YES;
 }
 
 -(NSInteger)cellInPoint: (CGPoint) curPoint

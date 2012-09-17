@@ -168,20 +168,6 @@
 						<reference key="IBUIFontDescription" ref="502281185"/>
 						<reference key="IBUIFont" ref="267420117"/>
 					</object>
-					<object class="IBUISwitch" id="453783021">
-						<reference key="NSNextResponder" ref="1052835258"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{-15, 70}, {94, 27}}</string>
-						<reference key="NSSuperview" ref="1052835258"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="406566245"/>
-						<string key="NSReuseIdentifierKey">_NS:606</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<float key="IBUIAlpha">0.0</float>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-					</object>
 					<object class="IBUIButton" id="406566245">
 						<reference key="NSNextResponder" ref="1052835258"/>
 						<int key="NSvFlags">292</int>
@@ -206,6 +192,21 @@
 						</object>
 						<reference key="IBUIFontDescription" ref="502281185"/>
 						<reference key="IBUIFont" ref="267420117"/>
+					</object>
+					<object class="IBUISwitch" id="453783021">
+						<reference key="NSNextResponder" ref="1052835258"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{-15, 58}, {94, 27}}</string>
+						<reference key="NSSuperview" ref="1052835258"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="406566245"/>
+						<string key="NSReuseIdentifierKey">_NS:606</string>
+						<reference key="IBUIBackgroundColor" ref="91618273"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<float key="IBUIAlpha">0.0</float>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -305,6 +306,15 @@
 					</object>
 					<int key="connectionID">28</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">turnOnFlash:</string>
+						<reference key="source" ref="406566245"/>
+						<reference key="destination" ref="1052835258"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">34</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -333,8 +343,8 @@
 							<reference ref="181373828"/>
 							<reference ref="1036433522"/>
 							<reference ref="62102504"/>
-							<reference ref="406566245"/>
 							<reference ref="453783021"/>
+							<reference ref="406566245"/>
 							<reference ref="655065616"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -389,12 +399,13 @@
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="30.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">33</int>
+			<int key="maxID">34</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -405,6 +416,7 @@
 						<string key="buttonPressed:">id</string>
 						<string key="switchCameraType:">id</string>
 						<string key="turnFlashAction:">id</string>
+						<string key="turnOnFlash:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="buttonPressed:">
@@ -417,6 +429,10 @@
 						</object>
 						<object class="IBActionInfo" key="turnFlashAction:">
 							<string key="name">turnFlashAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="turnOnFlash:">
+							<string key="name">turnOnFlash:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

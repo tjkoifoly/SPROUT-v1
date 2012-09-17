@@ -54,6 +54,7 @@
     
     self.alertTime = 0;
     unit = 0;
+    //[self performSelector:@selector(customizeSegmentControl)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(takePhoto)
                                                  name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
@@ -276,6 +277,43 @@
 - (void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error
 {
     NSLog(@"%@",[NSString stringWithFormat:@"Darn! Error!\n%i: %@\n%@", [error code], [error localizedDescription], [error localizedRecoverySuggestion]]);
+}
+
+#pragma mark - custom UI
+
+-(void)customizeSegmentControl
+{
+    UIImage *segmentSelected = 
+    [[UIImage imageNamed:@"segment-sel.png"] 
+     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    UIImage *segmentUnselected = 
+    [[UIImage imageNamed:@"segment-uns.png"] 
+     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    UIImage *segmentSelectedUnselected = 
+    [UIImage imageNamed:@"seg-sel-uns.png"];
+    UIImage *segUnselectedSelected = 
+    [UIImage imageNamed:@"seg-uns-sel.png"];
+    UIImage *segmentUnselectedUnselected = 
+    [UIImage imageNamed:@"seg-uns-uns.png"];
+    
+    [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected 
+                                               forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setBackgroundImage:segmentSelected 
+                                               forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    
+    [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected 
+                                 forLeftSegmentState:UIControlStateNormal 
+                                   rightSegmentState:UIControlStateNormal 
+                                          barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setDividerImage:segmentSelectedUnselected 
+                                 forLeftSegmentState:UIControlStateSelected 
+                                   rightSegmentState:UIControlStateNormal 
+                                          barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] 
+     setDividerImage:segUnselectedSelected 
+     forLeftSegmentState:UIControlStateNormal 
+     rightSegmentState:UIControlStateSelected 
+     barMetrics:UIBarMetricsDefault];
 }
 
 

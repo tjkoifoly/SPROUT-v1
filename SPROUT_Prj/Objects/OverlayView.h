@@ -29,6 +29,7 @@
 -(IBAction)buttonPressed:(id)sender;
 -(IBAction)turnFlashAction:(id)sender;
 -(IBAction)switchCameraType:(id)sender;
+-(IBAction)turnOnFlash:(id)sender;
 -(void)loadView;
 
 @end

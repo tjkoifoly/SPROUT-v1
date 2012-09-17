@@ -9,6 +9,10 @@
 #import "OverlayView.h"
 
 @implementation OverlayView
+{
+    BOOL onFlash;
+}
+
 
 @synthesize buttonCap;
 @synthesize buttonLib;
@@ -64,7 +68,7 @@
 
 -(void)loadView
 {
-    BOOL onFlash = [turnFlash isOn];
+    onFlash = [turnFlash isOn];
     [self.delegate turnFlash:self withState:onFlash];
 }
 
@@ -79,16 +83,29 @@
 {
     UISwitch *btnSwt = (UISwitch *)sender;
     if([btnSwt isOn])
+    {
         [self.delegate turnFlash:self withState:YES];
+        NSLog(@"ON");
+    }
     else
     {
         [self.delegate turnFlash:self withState:NO];
+        NSLog(@"ON");
     }
 }
 
 -(IBAction)switchCameraType:(id)sender
 {
     [self.delegate switchCamera:self];
+}
+
+-(IBAction)turnOnFlash:(id)sender
+{
+    onFlash = !onFlash;
+    [turnFlash setOn:onFlash];
+     [self.delegate turnFlash:self withState:onFlash];
+    //if(onFlash)
+    NSLog(@"FLASH = %i", onFlash);
 }
 
 @end

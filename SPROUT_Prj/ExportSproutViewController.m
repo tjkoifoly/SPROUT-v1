@@ -107,6 +107,7 @@
     tempView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0, col * standardSize+20, row *standardSize+20)];
     //tempView.layer.borderColor = [UIColor whiteColor].CGColor;
     //tempView.layer.borderWidth = 2.0f;
+    tempView.backgroundColor = [UIColor clearColor];
     UIView *tempView2 = [[UIView alloc] initWithFrame:CGRectMake(10 , 10, col * standardSize, row *standardSize)];
     tempView2.backgroundColor = [UIColor clearColor];
     
