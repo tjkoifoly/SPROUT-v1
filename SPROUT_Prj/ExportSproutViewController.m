@@ -28,6 +28,7 @@
    // __block UIView *tView;
     //__block UIView *tempViewPost;
     BOOL saved;
+    //BOOL finished;
     UIScrollView *scrollView;
     SA_OAuthTwitterEngine *_engine;
     GSTwitPicEngine *twitpicEngine;
@@ -159,11 +160,30 @@
 {
     if(saved == NO)
     {
+        //WHILE LOOP CHECK FINISH LOAD PHOTO
+        while (![self performSelector:@selector(checkFinished)]) {
+            [NSThread sleepForTimeInterval:10];
+            NSLog(@"NOT FINISH . SLEEPING ...");
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self performSelector:@selector(getImage) withObject:nil afterDelay:0.5f];
         });
     }
     
+}
+
+-(BOOL)checkFinished
+{
+    for(id icheck in [[[tempView subviews] objectAtIndex:1] subviews])
+    {
+        if([icheck tag] != 1)
+        {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 -(void)applicationWillResignActive

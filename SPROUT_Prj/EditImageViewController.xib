@@ -135,7 +135,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="938273755"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-save-lib.png</string>
+							<string key="NSResourceName">save-btn.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="711195654"/>
 						<reference key="IBUIFont" ref="347877400"/>
@@ -640,8 +640,8 @@
 			<string key="btn-eff.png">{129, 116}</string>
 			<string key="btn-export2.png">{66, 66}</string>
 			<string key="btn-rot.png">{129, 116}</string>
-			<string key="btn-save-lib.png">{66, 66}</string>
 			<string key="home.png">{66, 66}</string>
+			<string key="save-btn.png">{86, 86}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
