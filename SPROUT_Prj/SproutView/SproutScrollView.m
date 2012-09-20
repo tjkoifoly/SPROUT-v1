@@ -310,8 +310,10 @@
         
         if(![self checkInSprout:currentPoint])
         {
+            NSLog(@"OUT");
             return;
         }
+        
         toTag = [self cellInPoint:currentPoint];
         
         NSLog(@"%i to % i", fromTag, toTag);
