@@ -53,7 +53,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bg-capture-screen.png</string>
+							<string key="NSResourceName">bg-capture3.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="181373828">
@@ -477,7 +477,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bg-capture-screen.png">{640, 920}</string>
+			<string key="bg-capture3.png">{641, 924}</string>
 			<string key="btn-fromlib.png">{66, 66}</string>
 			<string key="flash-btn.png">{82, 52}</string>
 			<string key="home.png">{66, 66}</string>

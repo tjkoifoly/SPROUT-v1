@@ -138,6 +138,11 @@
         imvX = nil;
         });
     }
+    
+    UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(tempView.bounds.size.width - 80, tempView.bounds.size.height - 70, 60, 50)];
+    logo.image = [UIImage imageNamed:@"logo.png"];
+    [tempView addSubview:logo];
+    
     dispatch_release(queue);
     self.sproutScroll = nil;
     
@@ -154,6 +159,7 @@
      */
     tempView = nil;
     [self hudWasHidden:HUD];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated

@@ -48,7 +48,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bg-01.png</string>
+							<string key="NSResourceName">bg-capture2.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="404043355">
@@ -74,6 +74,10 @@
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="869256544">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">home.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="892701562">
 							<int key="type">2</int>
@@ -128,6 +132,10 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="869256544"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">btn-load.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="892701562"/>
 						<reference key="IBUIFont" ref="842594281"/>
 					</object>
@@ -291,8 +299,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bg-01.png">{640, 960}</string>
+			<string key="bg-capture2.png">{640, 960}</string>
+			<string key="btn-load.png">{86, 86}</string>
 			<string key="capture.png">{67, 52}</string>
+			<string key="home.png">{66, 66}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

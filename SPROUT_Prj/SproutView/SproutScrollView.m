@@ -19,6 +19,8 @@
 #define kWidthLarge 60
 #define kHeightLarge 60
 
+#define kSizeHuge 120
+
 #define kMAXWidth 280
 #define kMAXHeight 280
 
@@ -53,6 +55,11 @@
             cellWidth = kWidthLarge;
             cellHeight = kHeightLarge;
         }
+    if(rs < 3 && cs < 3)
+    {
+        cellWidth = kSizeHuge;
+        cellHeight = kSizeHuge;
+    }
     
     int maxWidth = self.colSize * cellWidth;
     int maxHeight = self.rowSize * cellHeight;
@@ -138,6 +145,11 @@
         cellWidth = kWidthLarge;
         cellHeight = kHeightLarge;
     }
+    if(rs < 3 && cs < 3)
+    {
+        cellWidth = kSizeHuge;
+        cellHeight = kSizeHuge;
+    }
     
     int maxWidth = self.colSize * cellWidth;
     int maxHeight = self.rowSize * cellHeight;
@@ -216,6 +228,11 @@
         cellHeight = kHeightLarge;
     }
 
+    if(rs < 3 && cs < 3)
+    {
+        cellWidth = kSizeHuge;
+        cellHeight = kSizeHuge;
+    }
     
     int maxWidth = self.colSize * cellWidth;
     int maxHeight = self.rowSize * cellHeight;
@@ -367,7 +384,11 @@
     if(self.colSize > 4 || self.rowSize > 4)
     {
         size = 40;
+    }else if(self.colSize < 3 && self.rowSize < 3)
+    {
+        size = 120;
     }
+    
     
     int localY = (int)curPoint.x / size;
     int localX = (int) curPoint.y / size;

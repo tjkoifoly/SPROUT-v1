@@ -47,11 +47,14 @@
 {
     [super viewDidLoad];
     
-    NSArray *a1 = [[NSArray alloc] initWithObjects:@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", @"11",@"12", @"13",@"14",@"15",nil];
+    NSArray *a1 = [[NSArray alloc] initWithObjects:@"1", @"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", @"11",@"12", @"13",@"14",@"15",nil];
     self.rowPickerData = a1;
     
-    NSArray *a2 = [[NSArray alloc] initWithObjects:@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", @"11",@"12", @"13",@"14",@"15", nil];
+    NSArray *a2 = [[NSArray alloc] initWithObjects:@"1", @"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", @"11",@"12", @"13",@"14",@"15", nil];
     self.colPickerData = a2;
+    
+    [rowPicker selectRow:2 inComponent:0 animated:NO];
+    [colPicker selectRow:2 inComponent:0 animated:NO];
     
 }
 
@@ -225,6 +228,7 @@
     [textField resignFirstResponder];
 }
 
+#pragma mark - Picker Delegate
 
 
 

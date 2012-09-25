@@ -37,6 +37,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
 @property (strong, nonatomic) IBOutlet UIButton *exportButton;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) IBOutlet UIButton *capButton;
 @property (strong, nonatomic) IBOutlet UIButton *libButton;

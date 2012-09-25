@@ -10,7 +10,7 @@
 #import "ContinueAfterSaveViewController.h"
 
 #define CAMERA_TRANSFORM_X 1.24299
-#define kImageSize 220.f
+#define kImageSize 279.f
 
 @implementation SaveorDiscardPhotoViewController
 {

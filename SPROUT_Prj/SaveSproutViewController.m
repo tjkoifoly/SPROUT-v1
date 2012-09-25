@@ -37,6 +37,7 @@
 @synthesize fromDrag;
 @synthesize delegate;
 @synthesize fontFrame;
+@synthesize saveButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,13 +64,15 @@
     
     //
     //Display button after drag
-    if(fromDrag)
-    {
-        capButton.hidden    = NO;
-        libButton.hidden    = NO;
-        statusLabel.hidden  = YES;
-        self.delegate = [[self.navigationController viewControllers]objectAtIndex:0];
-    }
+//    if(fromDrag)
+//    {
+//        //capButton.hidden    = NO;
+//        //libButton.hidden    = NO;
+//        //statusLabel.hidden  = YES;
+//        self.delegate = [[self.navigationController viewControllers]objectAtIndex:0];
+//    }
+    
+    self.delegate = [[self.navigationController viewControllers]objectAtIndex:0];
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
     
     if(self.sproutScroll == nil)
@@ -143,10 +146,13 @@
 {
     if([Sprout sproutFinished:self.sprout])
     {
-        self.exportButton.enabled = YES;
+        self.exportButton.hidden = NO;
+        self.saveButton.hidden = YES;
+        
     }else
     {
-        self.exportButton.enabled = NO;
+        self.exportButton.hidden = YES;
+        self.saveButton.hidden = NO;
     }
 }
 
@@ -164,6 +170,7 @@
     self.delegate           = nil;
     fullView                = nil;
     self.fontFrame          = nil;
+    self.saveButton         = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -330,12 +337,14 @@
     [to setValue:fromItem.url forKey:@"url"];
     */
     //NSLog(@"%@", self.imagesArray);
-    self.exportButton.enabled = NO;
+    //self.exportButton.hidden = YES;
+    NSLog(@"Done");
 }
 
 -(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(DragDropImageView *)object
 {
-    self.exportButton.enabled = NO;
+    self.exportButton.hidden = YES;
+    self.saveButton.hidden = NO;
     NSLog(@"Delete OK");
     NSInteger tag = object.tag ;
     

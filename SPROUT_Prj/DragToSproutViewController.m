@@ -326,12 +326,18 @@
 {
     UIImageView *imvToRender = [[UIImageView alloc] initWithImage:inputImage];
 
-    if(self.sproutScroll.colSize < 5 && self.sproutScroll.rowSize < 5)
+    if(self.sproutScroll.colSize < 3 && self.sproutScroll.rowSize < 3)
+    {
+        [imvToRender setFrame:CGRectMake(0.0, 0.0, 140, 140)];
+    }
+    else if(self.sproutScroll.colSize < 5 && self.sproutScroll.rowSize < 5)
         [imvToRender setFrame:CGRectMake(0.0, 0.0, 100, 100)];
     else
     {
         [imvToRender setFrame:CGRectMake(0.0, 0.0, 60, 60)];
     }
+    
+    
     [imvToRender setContentMode:UIViewContentModeScaleToFill];
     
     return [self imageCaptureSave:imvToRender];

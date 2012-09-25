@@ -128,7 +128,18 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma IBAction
+#pragma mark IBAction
+
+-(IBAction)revertNormal:(id)sender
+{
+    self.frameForEdit.image = self.imageToEdit;
+    cropChange = NO;
+    rotChange = NO;
+    colorChange = NO;
+    filterChange = NO;
+    change = NO;
+    
+}
 
 -(IBAction)goToHome:(id)sender
 {

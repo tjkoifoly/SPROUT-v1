@@ -43,6 +43,8 @@
 -(IBAction)cropImage:(id)sender;
 -(IBAction)changeEffect:(id)sender;
 -(IBAction)rotateImage:(id)sender;
+-(IBAction)revertNormal:(id)sender;
+
 -(NSString *)dataPathFile;
 
 -(UIImage *)hueChangetoValue: (CGFloat)value withFilter: (CIFilter *)filterx andContext: (CIContext *)contextx;

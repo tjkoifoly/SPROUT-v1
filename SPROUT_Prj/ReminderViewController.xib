@@ -262,7 +262,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Duration:</string>
+						<string key="IBUIText">Repeat:</string>
 						<reference key="IBUITextColor" ref="1024693683"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -338,9 +338,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<int key="IBSelectedSegmentIndex">0</int>
 						<array key="IBSegmentTitles">
 							<string>None</string>
-							<string>All hours</string>
-							<string>All Day</string>
-							<string>All Week</string>
+							<string>Daily</string>
+							<string>Weekly</string>
+							<string>Monthly</string>
 						</array>
 						<array class="NSMutableArray" key="IBSegmentWidths">
 							<real value="0.0"/>
