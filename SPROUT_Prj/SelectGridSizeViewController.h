@@ -12,6 +12,8 @@
 
 @interface SelectGridSizeViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
+@property (strong, nonatomic) UIImage *imageForNewSprout;
+@property (strong, nonatomic) NSString *urlImage;
 @property (strong, nonatomic) IBOutlet UIPickerView *rowPicker;
 @property (strong, nonatomic) IBOutlet UIPickerView *colPicker;
 

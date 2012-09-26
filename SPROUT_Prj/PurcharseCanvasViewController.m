@@ -54,7 +54,7 @@
 
 -(IBAction)goToHome:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)chooseCanvas:(id)sender

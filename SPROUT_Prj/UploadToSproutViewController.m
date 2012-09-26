@@ -149,12 +149,14 @@
 
 -(IBAction)goToHome:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)createNewSprout:(id)sender
 {
     SelectGridSizeViewController *newSrpoutController = [[SelectGridSizeViewController alloc] initWithNibName:@"SelectGridSizeViewController" bundle:nil];
+    newSrpoutController.imageForNewSprout = self.imageInput;
+    newSrpoutController.urlImage = self.urlImage;
     [self.navigationController pushViewController:newSrpoutController animated:YES];
 }
 

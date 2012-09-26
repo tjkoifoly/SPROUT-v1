@@ -38,6 +38,7 @@
 @synthesize delegate;
 @synthesize fontFrame;
 @synthesize saveButton;
+@synthesize backPrevious;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -71,6 +72,10 @@
 //        //statusLabel.hidden  = YES;
 //        self.delegate = [[self.navigationController viewControllers]objectAtIndex:0];
 //    }
+    if(fromDrag)
+    {
+        backPrevious.hidden = YES;
+    }
     
     self.delegate = [[self.navigationController viewControllers]objectAtIndex:0];
     self.imagesArray = [[NSMutableArray alloc] initWithArray:[Sprout imagesOfSrpout:self.sprout]];
@@ -171,6 +176,7 @@
     fullView                = nil;
     self.fontFrame          = nil;
     self.saveButton         = nil;
+    self.backPrevious       = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -188,8 +194,14 @@
 #pragma IBAction
 -(IBAction)goToHome:(id)sender
 {
-    [self viewDidUnload];
+    //[self viewDidUnload];
     [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(IBAction)backPrevious:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)save:(id)sender

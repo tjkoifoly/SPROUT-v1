@@ -46,6 +46,7 @@
 @synthesize preoviousImage;
 @synthesize urlOfImage;
 @synthesize editingIndicator;
+@synthesize revertImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -119,6 +120,7 @@
     filter                  = nil;
     context                 = nil;
     beginImage              = nil;
+    self.revertImage        = nil;
     
 }
 
@@ -143,7 +145,7 @@
 
 -(IBAction)goToHome:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(IBAction)save:(id)sender
@@ -206,6 +208,7 @@
 
 -(IBAction)changeColor:(id)sender
 {
+    revertImage.hidden = YES;
     //Save image to file get path
     NSString *path = [self dataPathFile];
     NSLog(@"Saved");
@@ -240,6 +243,7 @@
 
 -(IBAction)cropImage:(id)sender
 {
+    revertImage.hidden = YES;
     preoviousImage = [self.areForEdit saveImage];
     [self.areForEdit createAreaToCrop];
     StyleCropView *styleView;
@@ -269,6 +273,7 @@
 
 -(IBAction)changeEffect:(id)sender
 {
+    revertImage.hidden = YES;
     preoviousImage = [self getImageFromFile];
     
     FiltersView *filterView;
@@ -287,6 +292,7 @@
     [view removeFromSuperview];
     filter = nil;
     context = nil;
+    self.revertImage.hidden = NO;
 }
 
 -(void)vignette: (UIImage*) im: (CGFloat)value
@@ -580,6 +586,7 @@
 {
     [view removeFromSuperview];
     [self.areForEdit removeAreaToCropFromView];
+    self.revertImage.hidden = NO;
 }
 
 -(void)cropImageInFrame:(StyleCropView *)view
@@ -649,6 +656,7 @@
     [view removeFromSuperview];
     filter = nil;
     context = nil;
+    self.revertImage.hidden = NO;
 }
 
 -(void)changeSystemColor:(StyleColorView *)view to:(NSInteger)indexColor

@@ -78,7 +78,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home.png</string>
+							<string key="NSResourceName">btn-backPrevious.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="711195654">
 							<int key="type">2</int>
@@ -92,11 +92,11 @@
 					</object>
 					<object class="IBUIButton" id="205019">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{276, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="993159982"/>
+						<reference key="NSNextKeyView" ref="1008022327"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -118,10 +118,10 @@
 					<object class="IBUIButton" id="1008022327">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{237, 5}, {31, 31}}</string>
+						<string key="NSFrame">{{276, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="205019"/>
+						<reference key="NSNextKeyView" ref="993159982"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -243,7 +243,7 @@
 					<object class="IBUIImageView" id="993159982">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{48, 108}, {224, 224}}</string>
+						<string key="NSFrame">{{18, 68}, {284, 284}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="421154073"/>
@@ -262,7 +262,7 @@
 							<object class="IBUIImageView" id="832537589">
 								<reference key="NSNextResponder" ref="421154073"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{220, 220}</string>
+								<string key="NSFrameSize">{279, 279}</string>
 								<reference key="NSSuperview" ref="421154073"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="407892039"/>
@@ -277,26 +277,17 @@
 							<object class="IBUIActivityIndicatorView" id="407892039">
 								<reference key="NSNextResponder" ref="421154073"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{92, 91}, {37, 37}}</string>
+								<string key="NSFrame">{{129, 130}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="421154073"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="170974308"/>
 								<string key="NSReuseIdentifierKey">_NS:1030</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIStyle">0</int>
-								<object class="NSColor" key="IBUIColor">
-									<int key="NSColorSpace">6</int>
-									<string key="NSCatalogName">System</string>
-									<string key="NSColorName">controlBackgroundColor</string>
-									<object class="NSColor" key="NSColor">
-										<int key="NSColorSpace">3</int>
-										<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
-									</object>
-								</object>
+								<int key="IBUIStyle">2</int>
 							</object>
 						</array>
-						<string key="NSFrame">{{50, 110}, {220, 220}}</string>
+						<string key="NSFrame">{{21, 71}, {279, 279}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="832537589"/>
@@ -313,10 +304,10 @@
 					<object class="IBUIButton" id="254057295">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{197, 5}, {31, 31}}</string>
+						<string key="NSFrame">{{237, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1008022327"/>
+						<reference key="NSNextKeyView" ref="205019"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -382,6 +373,14 @@
 						<reference key="destination" ref="407892039"/>
 					</object>
 					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">revertImage</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="254057295"/>
+					</object>
+					<int key="connectionID">54</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -589,7 +588,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">53</int>
+			<int key="maxID">54</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -644,6 +643,7 @@
 						<string key="areForEdit">SquareEditView</string>
 						<string key="editingIndicator">UIActivityIndicatorView</string>
 						<string key="frameForEdit">UIImageView</string>
+						<string key="revertImage">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="areForEdit">
@@ -657,6 +657,10 @@
 						<object class="IBToOneOutletInfo" key="frameForEdit">
 							<string key="name">frameForEdit</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="revertImage">
+							<string key="name">revertImage</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -681,13 +685,13 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bg-bg.png">{320, 460}</string>
 			<string key="border-photo.png">{449, 450}</string>
+			<string key="btn-backPrevious.png">{66, 66}</string>
 			<string key="btn-backview.png">{66, 66}</string>
 			<string key="btn-color.png">{129, 116}</string>
 			<string key="btn-crop.png">{129, 116}</string>
 			<string key="btn-eff.png">{129, 116}</string>
 			<string key="btn-export2.png">{66, 66}</string>
 			<string key="btn-rot.png">{129, 116}</string>
-			<string key="home.png">{66, 66}</string>
 			<string key="save-btn.png">{86, 86}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>

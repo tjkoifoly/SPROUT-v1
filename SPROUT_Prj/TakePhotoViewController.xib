@@ -107,10 +107,6 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="869256544"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">capture.png</string>
-						</object>
 						<reference key="IBUIFontDescription" ref="892701562"/>
 						<reference key="IBUIFont" ref="842594281"/>
 					</object>
@@ -301,7 +297,6 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bg-capture2.png">{640, 960}</string>
 			<string key="btn-load.png">{86, 86}</string>
-			<string key="capture.png">{67, 52}</string>
 			<string key="home.png">{66, 66}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>

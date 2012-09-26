@@ -28,5 +28,6 @@
 -(IBAction)dissmissKeyboard:(id)sender;
 -(IBAction)showListReminder:(id)sender;
 -(IBAction)tellAboutApp:(id)sender;
+-(void)addLocalNotification:(NSDate *)fireDate;
 
 @end

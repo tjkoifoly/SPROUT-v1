@@ -20,6 +20,7 @@
 @synthesize delegate;
 @synthesize switchButtonCamrera;
 @synthesize turnFlash;
+@synthesize flashStatus;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -69,6 +70,13 @@
 -(void)loadView
 {
     onFlash = [turnFlash isOn];
+    if(onFlash)
+    {
+        flashStatus.image = [UIImage imageNamed:@"flash-on"];
+    }else
+    {
+        flashStatus.image = [UIImage imageNamed:@"flash-off"];
+    }
     [self.delegate turnFlash:self withState:onFlash];
 }
 
@@ -102,6 +110,13 @@
 -(IBAction)turnOnFlash:(id)sender
 {
     onFlash = !onFlash;
+    if(onFlash)
+    {
+        flashStatus.image = [UIImage imageNamed:@"flash-on"];
+    }else
+    {
+        flashStatus.image = [UIImage imageNamed:@"flash-off"];
+    }
     [turnFlash setOn:onFlash];
      [self.delegate turnFlash:self withState:onFlash];
     //if(onFlash)

@@ -46,6 +46,7 @@
 @synthesize btnTW_before;
 @synthesize font1;
 @synthesize font2;
+@synthesize btnbackView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -168,7 +169,6 @@
     {
         //WHILE LOOP CHECK FINISH LOAD PHOTO
         while (![self performSelector:@selector(checkFinished)]) {
-            [NSThread sleepForTimeInterval:10];
             NSLog(@"NOT FINISH . SLEEPING ...");
         }
         
@@ -273,6 +273,7 @@
     btnFB_before            = nil;
     font1                   = nil;
     font2                   = nil;
+    btnbackView             = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -286,6 +287,22 @@
 -(IBAction)goToHome:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(IBAction)backViewAction:(id)sender
+{
+    self.emailButton.hidden = NO;
+    self.purchaseButton.hidden = NO;
+    self.saveButton.hidden = NO;
+    self.btnFB.hidden = YES;
+    self.btnTW.hidden = YES;
+    self.btnFB_before.hidden = NO;
+    self.btnTW_before.hidden = NO;
+    font1.hidden =NO;
+    font2.hidden = YES;
+    btnbackView.hidden = YES;
+     self.sproutToImage.hidden = YES;
+    scrollView.hidden = YES;
 }
 
 -(IBAction)sendViaEmail:(id)sender
@@ -467,6 +484,7 @@
     self.btnTW_before.hidden = YES;
     font1.hidden =YES;
     font2.hidden = NO;
+    btnbackView.hidden = NO;
     
     self.sproutToImage.image = imageToSave;
 
@@ -487,6 +505,8 @@
 
 -(void)viewPhoto
 {
+    if(scrollView == nil)
+    {
     scrollView = [[UIScrollView alloc] initWithFrame:self.sproutToImage.frame];
     [scrollView setScrollEnabled: YES];
     [scrollView setShowsHorizontalScrollIndicator:NO];
@@ -497,6 +517,10 @@
     [scrollView addSubview:self.sproutToImage];
     scrollView.delegate = self;
     [self.view addSubview:scrollView];
+    }else
+    {
+        scrollView.hidden = NO;
+    }
 }
 
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView

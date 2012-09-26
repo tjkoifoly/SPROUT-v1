@@ -219,8 +219,9 @@
 
 -(IBAction)goToHome:(id)sender
 {
-    [self viewDidUnload];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self viewDidUnload];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)sproutDidSelectedViewImage:(SproutScrollView *)sprout :(DragDropImageView *)imageSelected
@@ -328,7 +329,7 @@
 
     if(self.sproutScroll.colSize < 3 && self.sproutScroll.rowSize < 3)
     {
-        [imvToRender setFrame:CGRectMake(0.0, 0.0, 140, 140)];
+        [imvToRender setFrame:CGRectMake(0.0, 0.0, 180, 180)];
     }
     else if(self.sproutScroll.colSize < 5 && self.sproutScroll.rowSize < 5)
         [imvToRender setFrame:CGRectMake(0.0, 0.0, 100, 100)];

@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnTW_before;
 @property (strong, nonatomic) IBOutlet UIImageView *font1;
 @property (strong, nonatomic) IBOutlet UIImageView *font2;
+@property (strong, nonatomic) IBOutlet UIButton *btnbackView;
 
 @property (strong, nonatomic) SproutScrollView *sproutScroll;
 
@@ -40,6 +41,7 @@
 -(void)viewPhoto;
 -(void) postTwitter: (UIImage *)imageToPost;
 -(void)saveImageToFile : (NSString *)fileName input: (UIImage *)inputImage;
+-(IBAction)backViewAction:(id)sender;
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import "SelectGridSizeViewController.h"
 #import "CreateSproutViewController.h"
+#import "DragToSproutViewController.h"
 #import "SproutScrollView.h"
 #import "Sprout.h"
 
@@ -23,6 +24,8 @@
 @synthesize nameField;
 @synthesize sproutName;
 @synthesize stayup;
+@synthesize imageForNewSprout;
+@synthesize urlImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -88,6 +91,8 @@
     self.colPickerData = nil;
     self.nameField = nil;
     self.sproutName = nil;
+    self.imageForNewSprout = nil;
+    self.urlImage = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -158,12 +163,13 @@
         return;
     }
 
-    
     NSInteger rowSprout = [self.rowPicker selectedRowInComponent:0];
-    
-     NSInteger colSprout = [self.colPicker selectedRowInComponent:0];
+    NSInteger colSprout = [self.colPicker selectedRowInComponent:0];
     NSInteger rowValue = [[rowPickerData objectAtIndex:rowSprout] intValue];
     NSInteger colValue = [[colPickerData objectAtIndex:colSprout] intValue];
+    
+    if(!imageForNewSprout)
+    {
     
     NSLog(@"Size = %i X %i", rowValue, colValue);
     
@@ -174,11 +180,24 @@
     createSproutViewController.sprout = s;
     
     [self.navigationController pushViewController:createSproutViewController animated:YES];
+    }else
+    {
+        [Sprout createSprout:self.nameField.text :rowValue :colValue];
+        
+        DragToSproutViewController *dragToSproutController = [[DragToSproutViewController alloc] initWithNibName:@"DragToSproutViewController" bundle:nil];
+        
+        dragToSproutController.imageInput = self.imageForNewSprout;
+        dragToSproutController.urlImage = self.urlImage;
+        dragToSproutController.sprout = [Sprout sproutForName:self.nameField.text];
+        
+        [self.navigationController pushViewController:dragToSproutController animated:YES];
+    }
 }
 
 -(IBAction)goToHome:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(IBAction)resignKeyboard:(id)sender

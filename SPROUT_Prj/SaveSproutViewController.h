@@ -37,6 +37,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *sproutView;
 @property (strong, nonatomic) IBOutlet UIButton *exportButton;
+@property (strong, nonatomic) IBOutlet UIButton *backPrevious;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) IBOutlet UIButton *capButton;
@@ -53,6 +54,7 @@
 -(IBAction)capturePressed:(id)sender;
 -(IBAction)loadLibPressed:(id)sender;
 -(IBAction)viewFullScreen:(id)sender;
+-(IBAction)backPrevious:(id)sender;
 
 -(void)enableExport;
 -(void)exportFunction;

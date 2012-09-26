@@ -48,7 +48,7 @@
 -(void)backtoPreviousView
 {
     self.navigationController.navigationBarHidden = YES;
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 
@@ -77,20 +77,24 @@
         //[alert show];
         NSLog(@"No notification");
     }
+    
+    NSArray *notificationsArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    NSLog(@"%@", notificationsArray );
 }
 
--(UILocalNotification *)checkFinished: (NSString *)desc
+-(NSMutableArray *)checkFinished: (NSString *)desc
 {
+    NSMutableArray *list = [[NSMutableArray alloc] init];
     for(UILocalNotification *n in listNotifications)
     {
         //NSLog(@"%@",[n.userInfo valueForKey:@"DESC"]);
         
         if([[n.userInfo valueForKey:@"DESC"] isEqualToString:desc])
         {
-            return n;
+            [list addObject:n];
         }
     }
-    return nil;
+    return list;
 }
 
 - (void)viewDidUnload
@@ -138,18 +142,18 @@
     }
     
     cell.desc.text = [[listReminders objectAtIndex:indexPath.row] valueForKey:@"discription"];
-    UILocalNotification *noti = [self checkFinished:cell.desc.text];
-    cell.notifi = noti;
-    if(noti == nil)
+    NSMutableArray *notiArray = [self checkFinished:cell.desc.text];
+    cell.notisOfCell = notiArray;
+    if([notiArray count] == 0)
     {
         cell.date.text = @"Finished";
-        cell.icon.image = [UIImage imageNamed:@"arlm1"];
+        cell.icon.image = [UIImage imageNamed:@"alrm1"];
     }else
     {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mma"];
-        [[cell date] setText:[dateFormatter stringFromDate:noti.fireDate]];
-        cell.icon.image = [UIImage imageNamed:@"arlm2"];
+        [[cell date] setText:[dateFormatter stringFromDate:[(UILocalNotification *)[notiArray objectAtIndex:0] fireDate]]];
+        cell.icon.image = [UIImage imageNamed:@"alrm2.png"];
     }
     
     return cell;
@@ -165,11 +169,14 @@
     [self.listReminders removeObjectAtIndex:indexPath.row];
     [Sprout deleteObject:remindObj];
     
-    UILocalNotification *n = [(ReminderCell *)[tableView cellForRowAtIndexPath:indexPath] notifi];
-    if(n != nil)
+    NSMutableArray *arrNoti = [(ReminderCell *)[tableView cellForRowAtIndexPath:indexPath] notisOfCell];
+    if([arrNoti count] > 0)
     {
-        [listNotifications removeObject:n];
-        [[UIApplication sharedApplication] cancelLocalNotification:n];
+        for(UILocalNotification *n in arrNoti)
+        {
+            [listNotifications removeObject:n];
+            [[UIApplication sharedApplication] cancelLocalNotification:n];
+        }
     }
 
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

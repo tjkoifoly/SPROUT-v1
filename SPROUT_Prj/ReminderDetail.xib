@@ -74,6 +74,7 @@
 						<string key="NSFrame">{{113, 98}, {187, 68}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="1025293365"/>
 						<string key="NSReuseIdentifierKey">_NS:639</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="1000466587">
 							<int key="NSColorSpace">1</int>
@@ -216,6 +217,7 @@
 						<string key="NSFrame">{{113, 282}, {187, 46}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:639</string>
 						<reference key="IBUIBackgroundColor" ref="1000466587"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -246,7 +248,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">alrm3.png</string>
+							<string key="NSResourceName">arlm32.png</string>
 						</object>
 					</object>
 				</array>
@@ -526,8 +528,8 @@ AAgACAAIAAEAAQABAAE</bytes>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">alrm3.png</string>
-			<string key="NS.object.0">{32, 32}</string>
+			<string key="NS.key.0">arlm32.png</string>
+			<string key="NS.object.0">{128, 128}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

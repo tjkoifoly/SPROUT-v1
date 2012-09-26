@@ -146,7 +146,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home.png</string>
+							<string key="NSResourceName">btn-backPrevious.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="755332911">
 							<int key="type">2</int>
@@ -702,8 +702,8 @@
 			<string key="456.png">{161, 401}</string>
 			<string key="Screen8_03.png">{640, 920}</string>
 			<string key="bar-top.png">{320, 43}</string>
+			<string key="btn-backPrevious.png">{66, 66}</string>
 			<string key="create_sproutBt.png">{560, 82}</string>
-			<string key="home.png">{66, 66}</string>
 			<string key="shadow.png">{602, 21}</string>
 			<string key="txt-esn.png">{560, 82}</string>
 		</dictionary>

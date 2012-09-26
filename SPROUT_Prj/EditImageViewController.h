@@ -35,6 +35,7 @@
 
 @property (strong, nonatomic)   IBOutlet UIImageView *frameForEdit;
 @property (strong, nonatomic)   IBOutlet SquareEditView *areForEdit;
+@property (strong, nonatomic) IBOutlet UIButton *revertImage;
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)save:(id)sender;

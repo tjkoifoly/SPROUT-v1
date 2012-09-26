@@ -13,7 +13,7 @@
 @synthesize icon;
 @synthesize desc;
 @synthesize date;
-@synthesize notifi;
+@synthesize notisOfCell;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

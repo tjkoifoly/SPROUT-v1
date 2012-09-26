@@ -93,7 +93,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home.png</string>
+							<string key="NSResourceName">btn-backPrevious.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="608037676">
 							<int key="type">2</int>
@@ -559,12 +559,12 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bg-bg.png">{320, 460}</string>
+			<string key="btn-backPrevious.png">{66, 66}</string>
 			<string key="btn-pur03.png">{270, 82}</string>
 			<string key="btn-pur04.png">{270, 82}</string>
 			<string key="btn-pur1.png">{270, 82}</string>
 			<string key="btn-pur2.png">{270, 82}</string>
 			<string key="font-frame.png">{601, 723}</string>
-			<string key="home.png">{66, 66}</string>
 			<string key="print-logo.png">{420, 291}</string>
 			<string key="shadow.png">{602, 21}</string>
 		</dictionary>

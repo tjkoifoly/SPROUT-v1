@@ -13,6 +13,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *icon;
 @property (strong, nonatomic) IBOutlet UILabel *desc;
 @property (strong, nonatomic) IBOutlet UILabel *date;
-@property (strong, nonatomic) UILocalNotification *notifi;
+@property (strong, nonatomic) NSMutableArray *notisOfCell;
 
 @end

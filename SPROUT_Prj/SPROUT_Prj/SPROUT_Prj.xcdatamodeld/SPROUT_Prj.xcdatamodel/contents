@@ -19,7 +19,7 @@
     </entity>
     <elements>
         <element name="Images" positionX="198" positionY="414" width="128" height="90"/>
-        <element name="Reminders" positionX="81" positionY="315" width="128" height="120"/>
+        <element name="Reminders" positionX="-72" positionY="261" width="128" height="120"/>
         <element name="Sprouts" positionX="243" positionY="192" width="128" height="105"/>
     </elements>
 </model>

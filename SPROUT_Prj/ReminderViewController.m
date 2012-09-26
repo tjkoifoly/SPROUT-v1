@@ -18,6 +18,7 @@
 {
     NSCalendarUnit unit;
     SKPSMTPMessage *testMsg;
+    BOOL fortnightly;
 }
 
 @synthesize datePicker;
@@ -55,6 +56,7 @@
     self.alertTime = 0;
     unit = 0;
     //[self performSelector:@selector(customizeSegmentControl)];
+    [durationSegmentControl setWidth:70 forSegmentAtIndex:3];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(takePhoto)
                                                  name:UIApplicationDidBecomeActiveNotification object:[UIApplication sharedApplication]];
@@ -152,14 +154,17 @@
                 
                 break;
             case 1:
-                unit = NSHourCalendarUnit;
-                break;
-            case 2:
                 unit = NSDayCalendarUnit;
                 break;
-            case 3:
+            case 2:
                 unit = NSWeekCalendarUnit;
                 break;
+            case 3:
+                fortnightly = YES;
+                unit = NSMonthCalendarUnit;
+                break;
+            case 4:
+                unit = NSMonthCalendarUnit;
             default:
                 break;
         }
@@ -192,17 +197,34 @@
     
     [Sprout  createReminder:desc: alertLocation.text :date :duration];
     
+    NSDate *fireDate1 = [NSDate dateWithTimeInterval:60.0*self.alertTime sinceDate:[datePicker date]];
+    [self addLocalNotification:fireDate1];
+    if(fortnightly)
+    {
+        NSDate *fireDate2 =  [NSDate dateWithTimeInterval:60*60*24*7*2 sinceDate:fireDate1];
+        [self addLocalNotification:fireDate2];
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Added a reminder succeed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    
+    NSLog(@"Added a reminder succeed.");
+    [self dissmissKeyboard:nil];
+    NSArray *notificationsArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    NSLog(@"%@", notificationsArray );
+}
+
+-(void)addLocalNotification:(NSDate *)fireDate
+{
+    NSString *desc = alertDescription.text;
+    
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     
     //[localNotification setFireDate:[NSDate dateWithTimeIntervalSinceNow:[datePicker countDownDuration]]];
-     NSString *location = @"";
-    if(![alertLocation.text isEqualToString:@""])
-    {
-       location = [NSString stringWithFormat:@" at location: %@", alertLocation.text];
-    }
-    [localNotification setFireDate:[NSDate dateWithTimeInterval:60.0*self.alertTime sinceDate:[datePicker date]]];
+    //[localNotification setFireDate:[NSDate dateWithTimeInterval:60.0*self.alertTime sinceDate:[datePicker date]]];
+    [localNotification setFireDate:fireDate];
     [localNotification setAlertAction:@"Launch"];
-    [localNotification setAlertBody:[NSString stringWithFormat:@"%@%@",desc, location]];
+    [localNotification setAlertBody:[NSString stringWithFormat:@"%@",desc]];
     
     NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:@"SPROUT",@"APP",desc, @"DESC", nil];
     [localNotification setUserInfo:dict];
@@ -214,16 +236,11 @@
     [localNotification setApplicationIconBadgeNumber:1];
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Added a reminder succeed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alert show];
-    
-    NSLog(@"Added a reminder succeed.");
 }
 
 -(IBAction)dissmissKeyboard:(id)sender
 {
-    [self resignFirstResponder];
+    [alertDescription resignFirstResponder];
 }
 
 -(IBAction)tellAboutApp:(id)sender

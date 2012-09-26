@@ -57,7 +57,7 @@
 						<string key="NSFrame">{{13, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="737109229"/>
+						<reference key="NSNextKeyView" ref="125074332"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -77,7 +77,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home.png</string>
+							<string key="NSResourceName">btn-backPrevious.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="562582991">
 							<int key="type">2</int>
@@ -95,7 +95,7 @@
 						<string key="NSFrame">{{275, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="314798189"/>
+						<reference key="NSNextKeyView" ref="737109229"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -126,7 +126,7 @@
 						<string key="NSFrame">{{275, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="125074332"/>
+						<reference key="NSNextKeyView" ref="314798189"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -501,12 +501,12 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bar-bottom.png">{641, 96}</string>
 			<string key="bg-bg.png">{320, 460}</string>
+			<string key="btn-backPrevious.png">{66, 66}</string>
 			<string key="btn-capture.png">{86, 86}</string>
 			<string key="btn-export2.png">{66, 66}</string>
 			<string key="btn-load.png">{86, 86}</string>
 			<string key="exp.png">{53, 52}</string>
 			<string key="font-frame.png">{601, 723}</string>
-			<string key="home.png">{66, 66}</string>
 			<string key="save-btn.png">{86, 86}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>

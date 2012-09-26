@@ -25,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *buttonCap;
 @property (strong, nonatomic) IBOutlet UIButton *switchButtonCamrera;
 @property (strong, nonatomic) IBOutlet UISwitch *turnFlash;
+@property (strong, nonatomic) IBOutlet UIImageView *flashStatus;
  
 -(IBAction)buttonPressed:(id)sender;
 -(IBAction)turnFlashAction:(id)sender;
