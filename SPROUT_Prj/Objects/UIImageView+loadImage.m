@@ -15,11 +15,11 @@
     //NSLog(@"OKMEN - %@", urlString);
     ALAssetsLibrary* library = [[ALAssetsLibrary alloc] init];
     
-    __block UIActivityIndicatorView * indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    indicator.hidesWhenStopped = YES;
-    indicator.center = self.center;
-    [self addSubview:indicator];
-    [indicator startAnimating];
+//    __block UIActivityIndicatorView * indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//    indicator.hidesWhenStopped = YES;
+//    indicator.center = self.center;
+//    [self addSubview:indicator];
+//    [indicator startAnimating];
     
     ALAssetsLibraryAssetForURLResultBlock result = ^(ALAsset *__strong asset){
         ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
@@ -32,9 +32,9 @@
             [self setTag:1];
             NSLog(@"%@", self.image);
         }
-        
-        [indicator stopAnimating];
-        [indicator removeFromSuperview];
+//        
+//        [indicator stopAnimating];
+//        [indicator removeFromSuperview];
     };
     
     ALAssetsLibraryAccessFailureBlock failure = ^(NSError *__strong error){

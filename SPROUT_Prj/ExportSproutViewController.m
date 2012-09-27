@@ -15,10 +15,18 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+loadImage.h"
 #import "MBProgressHUD.h"
+#import "UIImage+FixRotation.h"
 
 #define kSize 200
 #define kMaxSize 2000
 #define kSizeToPost 600
+#define kA4Width 2480
+#define kA4Heigh 3508
+// This is defined in Math.h
+#define M_PI   3.14159265358979323846264338327950288   /* pi */
+
+// Our conversion definition
+#define DEGREES_TO_RADIANS(angle) (angle / 180.0 * M_PI)
 
 @implementation ExportSproutViewController
 {
@@ -33,6 +41,12 @@
     SA_OAuthTwitterEngine *_engine;
     GSTwitPicEngine *twitpicEngine;
     __block MFMailComposeViewController *mailer;
+    UIView *printPreview;
+    BOOL preview;
+    int COL;
+    int ROW;
+    NSMutableArray *arrImages;
+    NSTimer * timer;
 }
 
 @synthesize sproutToImage;
@@ -47,6 +61,7 @@
 @synthesize font1;
 @synthesize font2;
 @synthesize btnbackView;
+@synthesize btnPreView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,6 +81,8 @@
 }
 
 #pragma mark - View lifecycle
+
+
 
 -(void)loadData
 {
@@ -89,12 +106,14 @@
     [indicator startAnimating];
     [self.view addSubview:tView];
     */
-    
+    arrImages = [[NSMutableArray alloc] init];
     
     NSInteger standardSize = kSize;
    
     int row = sproutScroll.rowSize;
     int col = sproutScroll.colSize;
+    ROW = row;
+    COL = col;
      /*
     if( row > 10 || col > 10)
     {
@@ -125,6 +144,7 @@
     dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
     for(id ix in self.sproutScroll.subviews)
     {
+        [arrImages addObject:[(DragDropImageView *)ix url]];
         dispatch_sync(queue, ^{
         
         imvX = [[UIImageView alloc] init];
@@ -136,8 +156,9 @@
         [imvX loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
         // [(UIImageView *)ix loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
         [tempView2 addSubview:imvX];
-        imvX = nil;
+        
         });
+        
     }
     
     UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(tempView.bounds.size.width - 80, tempView.bounds.size.height - 70, 60, 50)];
@@ -151,6 +172,8 @@
 
 -(void)getImage
 {
+    if([self performSelector:@selector(checkFinished)])
+    {
     imageToSave = [self imageCaptureSave:tempView];
     saved = YES;
     NSLog(@"SAVED.");
@@ -158,8 +181,10 @@
     [tView removeFromSuperview];
     tView = nil;
      */
-    tempView = nil;
+    //tempView = nil;
     [self hudWasHidden:HUD];
+        [timer invalidate];
+    }
     
 }
 
@@ -168,15 +193,16 @@
     if(saved == NO)
     {
         //WHILE LOOP CHECK FINISH LOAD PHOTO
-        while (![self performSelector:@selector(checkFinished)]) {
-            NSLog(@"NOT FINISH . SLEEPING ...");
-        }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self performSelector:@selector(getImage) withObject:nil afterDelay:0.5f];
-        });
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            [self performSelector:@selector(getImage) withObject:nil afterDelay:0.5f];
+//        });
+       timer = [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(getImage) userInfo:nil repeats:YES];
+        
     }
     
+    [super viewDidAppear:YES];
 }
 
 -(BOOL)checkFinished
@@ -211,7 +237,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    preview = NO;
+    
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self loadData];
@@ -224,6 +251,7 @@
     saved = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive)
                                                  name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
+    [super viewDidLoad];
 }
 
 -(void)saveToLibrary: (UIImage *)imageForSave
@@ -274,6 +302,8 @@
     font1                   = nil;
     font2                   = nil;
     btnbackView             = nil;
+    printPreview            = nil;
+    btnPreView              = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -289,17 +319,43 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+-(IBAction)optimize:(id)sender
+{
+    //COL = 2;
+    //ROW = 15;
+    int product = COL * ROW;
+    int min = MIN(COL, ROW);
+    int max = (int)sqrt(product*1.0);
+    NSLog(@"MIN = %i, %i", min, max);
+    int temp = max;
+    while (min <= max) {
+        if((product % min) == 0)
+        {
+            temp = product/min;
+        }
+        min++;
+    }
+    ROW = temp;
+    COL = product / temp;
+    
+    NSLog(@"ROW = %i,COL = %i", ROW, COL);
+    NSLog(@"%@" ,[tempView subviews]);
+    
+}
+
 -(IBAction)backViewAction:(id)sender
 {
-    self.emailButton.hidden = NO;
-    self.purchaseButton.hidden = NO;
-    self.saveButton.hidden = NO;
-    self.btnFB.hidden = YES;
-    self.btnTW.hidden = YES;
-    self.btnFB_before.hidden = NO;
-    self.btnTW_before.hidden = NO;
-    font1.hidden =NO;
-    font2.hidden = YES;
+//    self.emailButton.hidden = NO;
+//    self.purchaseButton.hidden = NO;
+//    self.saveButton.hidden = NO;
+//    self.btnFB.hidden = YES;
+//    self.btnTW.hidden = YES;
+//    self.btnFB_before.hidden = NO;
+//    self.btnTW_before.hidden = NO;
+//    font1.hidden =NO;
+//    font2.hidden = YES;
+    [self showContent:NO];
+    btnPreView.hidden = NO;
     btnbackView.hidden = YES;
      self.sproutToImage.hidden = YES;
     scrollView.hidden = YES;
@@ -471,6 +527,19 @@
     return [self imageCaptureSave:imvToRender];
 }
 
+-(void)showContent:(BOOL)show
+{
+    self.emailButton.hidden = show;
+    self.purchaseButton.hidden = show;
+    self.saveButton.hidden = show;
+    self.btnFB.hidden = (!show);
+    self.btnTW.hidden = (!show);
+    self.btnFB_before.hidden = show;
+    self.btnTW_before.hidden = show;
+    font1.hidden = show;
+    //font2.hidden = (!show);
+}
+
 -(IBAction)saveAsImage:(id)sender
 {
     //imageToSave = [self imageCaptureSave:tempView];
@@ -484,8 +553,10 @@
     self.btnTW_before.hidden = YES;
     font1.hidden =YES;
     font2.hidden = NO;
-    btnbackView.hidden = NO;
+    //[self showContent:YES];
     
+    btnbackView.hidden = NO;
+    btnPreView.hidden = YES;
     self.sproutToImage.image = imageToSave;
 
     //Save image to asset library
@@ -497,10 +568,68 @@
         self.sproutToImage.center = pointCenter;
     }
      */
+    NSData* pngdata = UIImagePNGRepresentation (imageToSave); //PNG wrap 
+    UIImage* img = [UIImage imageWithData:pngdata];
     
-    [self saveToLibrary:imageToSave];
+    [self saveToLibrary:img];
     self.sproutToImage.hidden = NO;
     [self viewPhoto];
+}
+
+-(IBAction)printPreview:(id)sender
+{
+    preview = !preview ;
+    if(preview)
+    {
+        [self showContent:YES];
+        float height = 410;
+        
+        float frameWidth = height * (kA4Width * 1.0f/kA4Heigh) - 20.f;
+        
+        printPreview = [[UIView alloc] initWithFrame:CGRectMake(0.0, 46,frameWidth , height)];
+        printPreview.backgroundColor = [UIColor lightGrayColor];
+        printPreview.layer.borderColor = [UIColor blackColor].CGColor;
+        printPreview.layer.borderWidth = 1.f;
+        CGFloat centery = printPreview.center.y;
+        CGFloat centerx = 320.f / 2;
+        CGPoint newcenter = CGPointMake(centerx, centery);
+        
+        printPreview.center = newcenter;
+        
+        UIImage *printImage = imageToSave;
+        
+        height = printPreview.frame.size.height-20;
+        frameWidth = printPreview.frame.size.width - 20;
+        
+        UIImageView *a4;
+        if(printImage.size.width > printImage.size.height)
+        {
+            height = printPreview.frame.size.width - 20;
+            frameWidth = printPreview.frame.size.height-20;
+        }
+    
+        a4 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frameWidth, height)];
+
+        [a4 setContentMode:UIViewContentModeScaleAspectFit];
+        a4.center = CGPointMake(printPreview.frame.size.width / 2.f, printPreview.frame.size.height /2.f);
+    
+        [printPreview addSubview:a4];
+    
+       
+        if(printImage.size.width > printImage.size.height)
+        {
+            CGAffineTransform transform = 
+            CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(90));
+            a4.transform = transform;
+        }
+        
+        a4.image = printImage;
+        [self.view addSubview:printPreview];
+    }else
+    {
+        [printPreview removeFromSuperview];
+        [self showContent:NO];
+    }
 }
 
 -(void)viewPhoto
@@ -516,6 +645,7 @@
     [self.sproutToImage setFrame:CGRectMake(0.0, 0.0, scrollView.bounds.size.width, scrollView.bounds.size.height)];
     [scrollView addSubview:self.sproutToImage];
     scrollView.delegate = self;
+        scrollView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:scrollView];
     }else
     {
