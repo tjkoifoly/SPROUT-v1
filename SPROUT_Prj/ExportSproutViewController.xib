@@ -347,7 +347,7 @@
 					</object>
 					<object class="IBUIButton" id="543360407">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{237, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -481,6 +481,14 @@
 						<reference key="destination" ref="402299654"/>
 					</object>
 					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btnOpt</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="543360407"/>
+					</object>
+					<int key="connectionID">49</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -719,7 +727,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">48</int>
+			<int key="maxID">49</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -773,6 +781,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="btnFB">UIButton</string>
 						<string key="btnFB_before">UIButton</string>
+						<string key="btnOpt">UIButton</string>
 						<string key="btnPreView">UIButton</string>
 						<string key="btnTW">UIButton</string>
 						<string key="btnTW_before">UIButton</string>
@@ -791,6 +800,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="btnFB_before">
 							<string key="name">btnFB_before</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnOpt">
+							<string key="name">btnOpt</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="btnPreView">

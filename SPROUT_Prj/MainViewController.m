@@ -14,6 +14,7 @@
 #import "ContinueAfterSaveViewController.h"
 #import "ConfirmPurchaseViewController.h"
 #import "ExportSproutViewController.h"
+#import "Sprout.h"
 
 @implementation MainViewController
 
@@ -151,6 +152,20 @@
     controller = nil;
 }
 
+#pragma Export Delegate
+-(void)optimizeSproutReview:(NSString *)sName
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    SaveSproutViewController *displaySproutViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
+    id s = [Sprout sproutForName:sName];
+    
+    NSMutableArray *imgArray = [[NSMutableArray alloc]initWithArray:[Sprout imagesOfSrpout:s]];
+    
+    displaySproutViewController.imagesArray = imgArray;
+    displaySproutViewController.sprout = s;
+    
+    [self.navigationController pushViewController:displaySproutViewController animated:YES];
+}
 
 
 @end

@@ -9,6 +9,7 @@
 #import "ExportSproutViewController.h"
 #import "SendEmailViewController.h"
 #import "PurcharseCanvasViewController.h"
+#import "SaveSproutViewController.h"
 #import <Twitter/Twitter.h>
 #import "CNCAppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
@@ -16,6 +17,7 @@
 #import "UIImageView+loadImage.h"
 #import "MBProgressHUD.h"
 #import "UIImage+FixRotation.h"
+#import "Sprout.h"
 
 #define kSize 200
 #define kMaxSize 2000
@@ -45,7 +47,7 @@
     BOOL preview;
     int COL;
     int ROW;
-    NSMutableArray *arrImages;
+    NSString *sName;
     NSTimer * timer;
 }
 
@@ -62,6 +64,8 @@
 @synthesize font2;
 @synthesize btnbackView;
 @synthesize btnPreView;
+@synthesize btnOpt;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,7 +110,7 @@
     [indicator startAnimating];
     [self.view addSubview:tView];
     */
-    arrImages = [[NSMutableArray alloc] init];
+    sName = [sproutScroll name];
     
     NSInteger standardSize = kSize;
    
@@ -144,7 +148,6 @@
     dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
     for(id ix in self.sproutScroll.subviews)
     {
-        [arrImages addObject:[(DragDropImageView *)ix url]];
         dispatch_sync(queue, ^{
         
         imvX = [[UIImageView alloc] init];
@@ -174,15 +177,18 @@
 {
     if([self performSelector:@selector(checkFinished)])
     {
-    imageToSave = [self imageCaptureSave:tempView];
-    saved = YES;
-    NSLog(@"SAVED.");
-    /*
-    [tView removeFromSuperview];
-    tView = nil;
-     */
-    //tempView = nil;
-    [self hudWasHidden:HUD];
+        imageToSave = [self imageCaptureSave:tempView];
+        NSData* pngdata = UIImagePNGRepresentation (imageToSave); //PNG wrap 
+        UIImage* img = [UIImage imageWithData:pngdata];
+        imageToSave = img;
+        saved = YES;
+        NSLog(@"SAVED.");
+        /*
+         [tView removeFromSuperview];
+         tView = nil;
+         */
+        //tempView = nil;
+        [self hudWasHidden:HUD];
         [timer invalidate];
     }
     
@@ -239,6 +245,7 @@
 {
     preview = NO;
     
+    self.delegate = [[self.navigationController viewControllers] objectAtIndex:0];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self loadData];
@@ -304,6 +311,9 @@
     btnbackView             = nil;
     printPreview            = nil;
     btnPreView              = nil;
+    btnOpt                  = nil;
+    sName                   = nil;
+    delegate                = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -339,8 +349,31 @@
     COL = product / temp;
     
     NSLog(@"ROW = %i,COL = %i", ROW, COL);
-    NSLog(@"%@" ,[tempView subviews]);
-    
+    NSLog(@"OPTIMIZING ... ");
+    if([Sprout optimizeSprout:sName withCol:COL andRow:ROW])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Optimize sprout match to A4 paper!" message:@"Accept and reload sprout" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Close", nil];
+        [alert show];
+    };
+}
+
+#pragma mark - UIAlert View Delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%i", buttonIndex);
+    switch (buttonIndex) {
+        case 0:
+        {
+            [self.delegate optimizeSproutReview:sName];
+        }
+            break;
+            
+        case 1:
+            break;
+        default:
+            break;
+    }
 }
 
 -(IBAction)backViewAction:(id)sender
@@ -357,6 +390,7 @@
     [self showContent:NO];
     btnPreView.hidden = NO;
     btnbackView.hidden = YES;
+    btnOpt.hidden = NO;
      self.sproutToImage.hidden = YES;
     scrollView.hidden = YES;
 }
@@ -557,6 +591,7 @@
     
     btnbackView.hidden = NO;
     btnPreView.hidden = YES;
+    btnOpt.hidden = YES;
     self.sproutToImage.image = imageToSave;
 
     //Save image to asset library
@@ -568,10 +603,8 @@
         self.sproutToImage.center = pointCenter;
     }
      */
-    NSData* pngdata = UIImagePNGRepresentation (imageToSave); //PNG wrap 
-    UIImage* img = [UIImage imageWithData:pngdata];
     
-    [self saveToLibrary:img];
+    [self saveToLibrary:imageToSave];
     self.sproutToImage.hidden = NO;
     [self viewPhoto];
 }

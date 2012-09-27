@@ -14,8 +14,14 @@
 #import "SA_OAuthTwitterController.h"
 #import "GSTwitPicEngine.h"
 #import "MBProgressHUD.h"
+@class ExportSproutViewController;
+@protocol ExportDelegate <NSObject>
 
-@interface ExportSproutViewController : UIViewController <SA_OAuthTwitterControllerDelegate,MFMailComposeViewControllerDelegate, UIScrollViewDelegate, GSTwitPicEngineDelegate, MBProgressHUDDelegate>
+-(void)optimizeSproutReview: (NSString *)sName;
+
+@end
+
+@interface ExportSproutViewController : UIViewController <SA_OAuthTwitterControllerDelegate,MFMailComposeViewControllerDelegate, UIScrollViewDelegate, GSTwitPicEngineDelegate, MBProgressHUDDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *sproutToImage;
 @property (strong, nonatomic) IBOutlet UIButton *emailButton;
@@ -29,8 +35,10 @@
 @property (strong, nonatomic) IBOutlet UIImageView *font2;
 @property (strong, nonatomic) IBOutlet UIButton *btnbackView;
 @property (strong, nonatomic) IBOutlet UIButton *btnPreView;
+@property (strong, nonatomic) IBOutlet UIButton *btnOpt;
 
 @property (strong, nonatomic) SproutScrollView *sproutScroll;
+@property (assign, nonatomic) id <ExportDelegate> delegate;
 
 -(IBAction)goToHome:(id)sender;
 -(IBAction)sendViaEmail:(id)sender;

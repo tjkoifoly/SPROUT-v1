@@ -24,5 +24,6 @@
 +(BOOL)deleteObject : (NSManagedObject *)delObj;
 +(BOOL)save;
 +(BOOL)sproutFinished:(NSManagedObject *)sprout;
++(BOOL)optimizeSprout:(NSString *)sName withCol: (int)col andRow: (int)row;
 
 @end
