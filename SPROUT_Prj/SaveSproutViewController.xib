@@ -300,7 +300,7 @@
 						<string key="NSFrame">{{13, 5}, {31, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="128869069"/>
+						<reference key="NSNextKeyView" ref="644007701"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -319,7 +319,7 @@
 						<reference key="IBUIFontDescription" ref="289355358"/>
 						<reference key="IBUIFont" ref="53955145"/>
 					</object>
-					<object class="IBUIButton" id="128869069">
+					<object class="IBUIButton" id="644007701">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{197, 5}, {31, 31}}</string>
@@ -331,7 +331,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">O</string>
 						<reference key="IBUIHighlightedTitleColor" ref="521680554"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -339,6 +338,10 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="925535819"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">btn-autosize1.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="289355358"/>
 						<reference key="IBUIFont" ref="53955145"/>
 					</object>
@@ -436,7 +439,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">optimizeButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="128869069"/>
+						<reference key="destination" ref="644007701"/>
 					</object>
 					<int key="connectionID">37</int>
 				</object>
@@ -506,7 +509,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">optimizeSizeToFit:</string>
-						<reference key="source" ref="128869069"/>
+						<reference key="source" ref="644007701"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -537,7 +540,7 @@
 							<reference ref="431802315"/>
 							<reference ref="688715418"/>
 							<reference ref="967529671"/>
-							<reference ref="128869069"/>
+							<reference ref="644007701"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -614,7 +617,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">35</int>
-						<reference key="object" ref="128869069"/>
+						<reference key="object" ref="644007701"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -757,6 +760,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bar-bottom.png">{641, 96}</string>
 			<string key="bg-bg.png">{320, 460}</string>
+			<string key="btn-autosize1.png">{32, 32}</string>
 			<string key="btn-backPrevious.png">{66, 66}</string>
 			<string key="btn-capture.png">{86, 86}</string>
 			<string key="btn-export2.png">{66, 66}</string>

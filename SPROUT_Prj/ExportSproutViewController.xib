@@ -362,7 +362,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">A4</string>
 						<reference key="IBUIHighlightedTitleColor" ref="442709182"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -370,6 +369,10 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="581300978"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">btn-a4.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="274683790"/>
 						<reference key="IBUIFont" ref="456864088"/>
 					</object>
@@ -865,6 +868,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bg-bg.png">{320, 460}</string>
+			<string key="btn-a4.png">{32, 32}</string>
 			<string key="btn-backPrevious.png">{66, 66}</string>
 			<string key="btn-email.png">{560, 81}</string>
 			<string key="btn-fb.png">{80, 80}</string>
