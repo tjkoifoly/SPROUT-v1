@@ -157,6 +157,7 @@
 						<string key="NSFrame">{{20, 368}, {280, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -454,7 +455,7 @@
 			<string key="accept-box.png">{56, 56}</string>
 			<string key="bg-bg.png">{320, 460}</string>
 			<string key="btn-confirm.png">{548, 80}</string>
-			<string key="checked.png">{32, 32}</string>
+			<string key="checked.png">{16, 16}</string>
 			<string key="font-frame.png">{601, 723}</string>
 			<string key="home.png">{66, 66}</string>
 			<string key="print-logo.png">{420, 291}</string>

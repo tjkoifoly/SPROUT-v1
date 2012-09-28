@@ -37,6 +37,7 @@
 -(NSInteger)cellInPoint: (CGPoint) curPoint;
 -(BOOL)photoIntoSprout: (UIImage *)inputImage url: (NSString *)urlOfImage atPoint: (CGPoint) intoPoint;
 -(BOOL)checkInSprout: (CGPoint )point;
+-(void)movePhotoFrom:(NSInteger)fromTag1 to:(NSInteger)toTag1;
 
 
 @end

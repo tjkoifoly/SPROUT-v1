@@ -130,6 +130,22 @@
     controller = nil;
 }
 
+-(void)optimizeSize:(NSString *)sName
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    SaveSproutViewController *displaySproutViewController = [[SaveSproutViewController alloc] initWithNibName:@"SaveSproutViewController" bundle:nil];
+    id s = [Sprout sproutForName:sName];
+    
+    NSMutableArray *imgArray = [[NSMutableArray alloc]initWithArray:[Sprout imagesOfSrpout:s]];
+    
+    displaySproutViewController.imagesArray = imgArray;
+    displaySproutViewController.sprout = s;
+    displaySproutViewController.fromDrag = YES;
+    
+    [self.navigationController pushViewController:displaySproutViewController animated:YES];
+}
+
 #pragma Create delegate
 -(void)gotoCapturePhoto
 {
@@ -163,6 +179,7 @@
     
     displaySproutViewController.imagesArray = imgArray;
     displaySproutViewController.sprout = s;
+    displaySproutViewController.fromDrag = YES;
     
     [self.navigationController pushViewController:displaySproutViewController animated:YES];
 }

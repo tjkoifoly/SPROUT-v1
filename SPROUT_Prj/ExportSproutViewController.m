@@ -47,6 +47,8 @@
     BOOL preview;
     int COL;
     int ROW;
+    int row;
+    int col;
     NSString *sName;
     NSTimer * timer;
 }
@@ -114,8 +116,8 @@
     
     NSInteger standardSize = kSize;
    
-    int row = sproutScroll.rowSize;
-    int col = sproutScroll.colSize;
+    row = sproutScroll.rowSize;
+    col = sproutScroll.colSize;
     ROW = row;
     COL = col;
      /*
@@ -350,11 +352,17 @@
     
     NSLog(@"ROW = %i,COL = %i", ROW, COL);
     NSLog(@"OPTIMIZING ... ");
-    if([Sprout optimizeSprout:sName withCol:COL andRow:ROW])
+    NSManagedObject *s = [Sprout sproutForName:sName];
+    if(COL == [[s valueForKey:@"colSize"] intValue])
+    {
+        UIAlertView *alert1 = [[UIAlertView alloc] initWithTitle:@"Oh Yeah" message:@"Sprout is best match A4" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert1 show];
+        
+    } else if([Sprout optimizeSprout:sName withCol:COL andRow:ROW])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Optimize sprout match to A4 paper!" message:@"Accept and reload sprout" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Close", nil];
         [alert show];
-    };
+    }
 }
 
 #pragma mark - UIAlert View Delegate
@@ -370,6 +378,7 @@
             break;
             
         case 1:
+            [Sprout optimizeSprout:sName withCol:col andRow:row];
             break;
         default:
             break;
@@ -620,7 +629,7 @@
         float frameWidth = height * (kA4Width * 1.0f/kA4Heigh) - 20.f;
         
         printPreview = [[UIView alloc] initWithFrame:CGRectMake(0.0, 46,frameWidth , height)];
-        printPreview.backgroundColor = [UIColor lightGrayColor];
+        printPreview.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
         printPreview.layer.borderColor = [UIColor blackColor].CGColor;
         printPreview.layer.borderWidth = 1.f;
         CGFloat centery = printPreview.center.y;

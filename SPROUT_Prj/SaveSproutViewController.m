@@ -24,6 +24,8 @@
     UIView *fullView;
     CGPoint staticCenterDefault;
     NSTimer *timer;
+    NSMutableArray *photosToDelete;
+    NSInteger numberPhotos;
 }
 
 @synthesize sproutScroll;
@@ -39,6 +41,7 @@
 @synthesize fontFrame;
 @synthesize saveButton;
 @synthesize backPrevious;
+@synthesize optimizeButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,6 +66,7 @@
 {
     [super viewDidLoad];
     
+    photosToDelete = [[NSMutableArray alloc] init];
     //
     //Display button after drag
 //    if(fromDrag)
@@ -107,6 +111,7 @@
     
     //Set location for Sprout
     timer = [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(slideSproutToCenter) userInfo:nil repeats:YES];
+    [self enableExport];
     
 }
 
@@ -151,11 +156,13 @@
 {
     if([Sprout sproutFinished:self.sprout])
     {
+        self.optimizeButton.hidden = YES;
         self.exportButton.hidden = NO;
         self.saveButton.hidden = YES;
         
     }else
     {
+        self.optimizeButton.hidden = NO;
         self.exportButton.hidden = YES;
         self.saveButton.hidden = NO;
     }
@@ -173,10 +180,14 @@
     self.capButton          = nil;
     self.libButton          = nil;
     self.delegate           = nil;
-    fullView                = nil;
     self.fontFrame          = nil;
     self.saveButton         = nil;
     self.backPrevious       = nil;
+    self.optimizeButton     = nil;
+    fullView                = nil;
+    photosToDelete          = nil;
+    backView                = nil;
+    imageScrollView         = nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -191,7 +202,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma IBAction
+#pragma mark - IBAction
+
 -(IBAction)goToHome:(id)sender
 {
     //[self viewDidUnload];
@@ -221,9 +233,11 @@
     {
         if(sender != nil)
         {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"Sprout saved!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [self enableExport];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful!" message:@"Sprout saved!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [self performSelector:@selector(deleteTemplatePhoto)];
+            [self enableExport];
+            
         }
     }else
     {
@@ -251,6 +265,112 @@
     [self.delegate captureContinue:self];
 }
 
+-(IBAction)optimizeSizeToFit:(id)sender
+{
+        
+    UIAlertView *aletSize = [[UIAlertView alloc] initWithTitle:@"Notification" message:@"Auto select size to fit sprout! Are you sure?" delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:@"Close", nil];
+    [aletSize show];
+    
+}
+
+-(void)optimize
+{
+    NSLog(@"%@", [sproutScroll subviews]);
+    NSArray *listCells = [sproutScroll subviews];
+    int numberList = [listCells count];
+    int i = 0;
+    int j = i;
+    
+    //Sort cell in sprout
+    while (i < numberList) {
+        if([(DragDropImageView *)[listCells objectAtIndex:i] image] != nil)
+        {
+            i++;
+            NSLog(@"%i", i);
+        }else
+        {
+            j = i + 1;
+            while (j < numberList) {
+                if ([(DragDropImageView *)[listCells objectAtIndex:j] image] == nil) {
+                    j++;
+                }else
+                {
+                    //Move to blank
+                    [self.sproutScroll movePhotoFrom:j to:i];
+                    break;
+                    NSLog(@"FROM %i To %i", j , i);
+                }
+            }
+            i++;
+            
+        }
+    }
+    
+    [self save:nil];
+    
+    numberPhotos = 0;
+    //Select size
+    for(id ix in listCells)
+    {
+        if((DragDropImageView *)[ix image] == nil)
+        {
+            numberPhotos = [ix tag];
+            break;
+        }
+    }
+    if(numberPhotos == 0) 
+    {
+        return;
+    }
+    
+    [self performSelector:@selector(selectSize:) withObject:[NSNumber numberWithInt:numberPhotos] afterDelay:0.5];
+
+}
+
+-(void)selectSize:(NSNumber *)numberPhotos1
+{
+    int n = [numberPhotos1 intValue];
+    
+    int i;
+    
+    i = n/15 +1;
+    
+    int minOver = (int)sqrt(n*1.0f);
+    int col = 0;
+    int row = 0;
+    while (i <= minOver) {
+        if((n % i ) == 0)
+        {
+            col = i;
+            row = n/i;
+        }
+        i++;
+    } 
+    
+    if(col == 0)
+    {
+        UIAlertView *aletSize = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"To auto select size to fit sprout,you should delete(or add) some photos. Are you sure?" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [aletSize show];
+    }else
+    {
+        NSSet *imageSet = [sprout valueForKey:@"sproutToImages"];
+        NSArray *imgArray = [imageSet allObjects];
+        for(id imgObj in imgArray)
+        {
+            if([[imgObj valueForKey:@"tag"] intValue] >= col*row)
+            {
+                [Sprout deleteObject:imgObj];
+            }
+        }
+        
+        [Sprout optimizeSprout:self.sproutScroll.name withCol:col andRow:row];
+        [self.delegate optimizeSize:sproutScroll.name];
+    }
+    
+    NSLog(@"SIZE =%i : %i X %i", n,col, row);
+}
+
+
 -(IBAction)loadLibPressed:(id)sender
 {
     [self save:nil];
@@ -259,6 +379,8 @@
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentModalViewController:picker animated:YES];
 }
+
+#pragma mark - UIImagePicker Delegate
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -283,11 +405,17 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 //    NSLog(@"BUTTON INDEX SELECTED : %i", buttonIndex);
-    if(buttonIndex == 0) return;
-    else
+//    if(buttonIndex == 0) return;
+//    else
+//    {
+//        [self exportFunction];
+//    }
+    if(buttonIndex == 0)
     {
-        [self exportFunction];
+        [self performSelector:@selector(optimize)];
+        NSLog(@"AUTO SELECT SIZE");
     }
+    
 }
 
 -(void)exportFunction
@@ -353,8 +481,11 @@
     NSLog(@"Done");
 }
 
+#pragma mark - DeletePhotoDelegate
+
 -(void)deletePhoto:(ViewPhotoInSproutViewController *)controller :(DragDropImageView *)object
 {
+    self.optimizeButton.hidden = NO;
     self.exportButton.hidden = YES;
     self.saveButton.hidden = NO;
     NSLog(@"Delete OK");
@@ -369,7 +500,32 @@
     NSLog(@"WITH = %@", [NSString stringWithFormat:@"bg-cell%i.png", w+4]);
     [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setBackgroundColor:[UIColor lightGrayColor]];
     [(DragDropImageView *)[self.sproutScroll.subviews objectAtIndex:tag] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"bg-cell%i.png", w+4]]]];
-     
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", sproutScroll.name, tag];
+    [photosToDelete addObject:fileName];
+    
+}
+
+-(void)deleteTemplatePhoto
+{
+    NSFileManager *filemgr;
+    
+    filemgr = [NSFileManager defaultManager];
+    for(id strPhoto in photosToDelete)
+    {
+        if ([filemgr removeItemAtPath: [self dataPathFile:strPhoto] error: NULL]  == YES)
+            NSLog (@"Remove successful");
+    }
+}
+
+-(NSString *)dataPathFile:(NSString *)fileName
+{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDirectory, YES);
+    NSString *documentDirectory = [path objectAtIndex:0];
+    
+    NSLog(@"%@", documentDirectory);
+    
+    return [documentDirectory stringByAppendingPathComponent:fileName];
 }
 
 -(IBAction)viewFullScreen:(id)sender
@@ -440,7 +596,7 @@
     backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bar-top.png"]];
     backView.alpha = 0.9f;
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setBackgroundImage:[UIImage imageNamed:@"btn-backview.png"] forState:UIControlStateNormal];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"btn-backPrevious.png"] forState:UIControlStateNormal];
     backButton.frame = CGRectMake(13,5,31,31);
     [backButton addTarget:self action:@selector(backtoPreviousView) forControlEvents:UIControlEventTouchUpInside];
     backButton.alpha = 1.f;

@@ -339,8 +339,6 @@
         {
             if([(DragDropImageView *)[[self subviews]objectAtIndex:toTag] image] == nil)
             {
-               
-                
                 //SWAP
                 [(DragDropImageView *)[[self subviews]objectAtIndex:toTag] setImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] image]];
                 [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag] setImage:nil];
@@ -364,6 +362,26 @@
          
          
     }
+}
+
+-(void)movePhotoFrom:(NSInteger)fromTag1 to:(NSInteger)toTag1
+{
+    [(DragDropImageView *)[[self subviews]objectAtIndex:toTag1] setImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag1] image]];
+    [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag1] setImage:nil];
+    [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag1] setBackgroundColor:[UIColor lightGrayColor]];
+    //Set background again
+    int w = [[[self subviews]objectAtIndex:fromTag1] frame].size.width;
+    
+    NSLog(@"WITH = %@", [NSString stringWithFormat:@"bg-cell%i.png", w+4]);
+    [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag1] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"bg-cell%i.png", w+4]]]];
+    
+    [(DragDropImageView *)[[self subviews]objectAtIndex:toTag1] setUrlImage:[(DragDropImageView *)[[self subviews]objectAtIndex:fromTag1] url]];
+    [(DragDropImageView *)[[self subviews]objectAtIndex:fromTag1] setUrlImage:@"URL"];
+    
+    NSString *sName = [self.name stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@-atTag-%i", sName, toTag1];
+    [(DragDropImageView *)[[self subviews]objectAtIndex:toTag1] getImageFromFile:fileName input:[(DragDropImageView *)[[self subviews]objectAtIndex:toTag1] image]];
 }
 
 -(BOOL)checkInSprout: (CGPoint )point

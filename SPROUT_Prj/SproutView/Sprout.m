@@ -207,12 +207,6 @@
 +(BOOL)optimizeSprout:(NSString *)sName withCol: (int)col andRow: (int)row
 {
     NSManagedObject *s = [Sprout sproutForName:sName];
-    if(col == [[s valueForKey:@"colSize"] intValue])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oh Yeah" message:@"Sprout is best match A4" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        return NO;
-    }
     [s setValue:[NSNumber numberWithInt:col] forKey:@"colSize"];
     [s setValue:[NSNumber numberWithInt:row] forKey:@"rowSize"];
     CNCAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];

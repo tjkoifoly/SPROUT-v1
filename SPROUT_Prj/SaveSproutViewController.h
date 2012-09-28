@@ -27,6 +27,8 @@
 
 -(void)exportSproutOK: (SaveSproutViewController *)controller toView: (ExportSproutViewController *)expController;
 
+-(void)optimizeSize: (NSString *)sName;
+
 @end
 
 @interface SaveSproutViewController : UIViewController
@@ -42,6 +44,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) IBOutlet UIButton *capButton;
 @property (strong, nonatomic) IBOutlet UIButton *libButton;
+@property (strong, nonatomic) IBOutlet UIButton *optimizeButton;
 @property (strong, nonatomic) IBOutlet UIImageView *fontFrame;
 
 @property (nonatomic) BOOL fromDrag;
@@ -55,9 +58,11 @@
 -(IBAction)loadLibPressed:(id)sender;
 -(IBAction)viewFullScreen:(id)sender;
 -(IBAction)backPrevious:(id)sender;
+-(IBAction)optimizeSizeToFit:(id)sender;
 
 -(void)enableExport;
 -(void)exportFunction;
 - (void)setMinimumZoomForCurrentFrame;
+-(NSString *)dataPathFile:(NSString *)fileName;
 
 @end
