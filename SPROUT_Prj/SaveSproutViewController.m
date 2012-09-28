@@ -349,9 +349,13 @@
         i++;
     } 
     
-    if(col == 0)
+    if(col == 0 || (col * row < n))
     {
-        UIAlertView *aletSize = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"To auto select size to fit sprout,you should delete(or add) some photos. Are you sure?" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        NSString *message  = @"To auto select size to fit sprout,you should delete(or add) some photos!";
+        if(col*row < n)
+            message = [NSString stringWithFormat: @"%@\nDelete %i Or add %i photo(s) recommend!",message, n - col*row, col - (n%row)];
+        
+        UIAlertView *aletSize = [[UIAlertView alloc] initWithTitle:@"WARNING" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [aletSize show];
     }else
     {

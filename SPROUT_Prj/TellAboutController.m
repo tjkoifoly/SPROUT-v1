@@ -121,7 +121,7 @@
         
     }else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Set up a mail account in Settings." delegate:nil cancelButtonTitle:@"OK"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Set up an email account in Settings." delegate:nil cancelButtonTitle:@"OK"
             otherButtonTitles:nil];
         alert.delegate = self;
         [alert show];

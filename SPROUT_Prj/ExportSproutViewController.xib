@@ -371,7 +371,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="581300978"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-a4.png</string>
+							<string key="NSResourceName">btn-fitA4.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="274683790"/>
 						<reference key="IBUIFont" ref="456864088"/>
@@ -868,10 +868,10 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bg-bg.png">{320, 460}</string>
-			<string key="btn-a4.png">{32, 32}</string>
 			<string key="btn-backPrevious.png">{66, 66}</string>
 			<string key="btn-email.png">{560, 81}</string>
 			<string key="btn-fb.png">{80, 80}</string>
+			<string key="btn-fitA4.png">{66, 66}</string>
 			<string key="btn-preview.png">{66, 66}</string>
 			<string key="btn-purchase.png">{560, 81}</string>
 			<string key="btn-save-img.png">{560, 81}</string>

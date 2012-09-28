@@ -340,7 +340,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="925535819"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn-autosize1.png</string>
+							<string key="NSResourceName">btn-autoresize3.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="289355358"/>
 						<reference key="IBUIFont" ref="53955145"/>
@@ -760,7 +760,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bar-bottom.png">{641, 96}</string>
 			<string key="bg-bg.png">{320, 460}</string>
-			<string key="btn-autosize1.png">{32, 32}</string>
+			<string key="btn-autoresize3.png">{66, 66}</string>
 			<string key="btn-backPrevious.png">{66, 66}</string>
 			<string key="btn-capture.png">{86, 86}</string>
 			<string key="btn-export2.png">{66, 66}</string>
