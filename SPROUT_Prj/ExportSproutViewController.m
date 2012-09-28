@@ -360,7 +360,7 @@
         
     } else if([Sprout optimizeSprout:sName withCol:COL andRow:ROW])
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Optimize sprout match to A4 paper!" message:@"Accept and reload sprout" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Close", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Optimize sprout match to A4 paper!" message:@"Accept and reload sprout!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Close", nil];
         [alert show];
     }
 }

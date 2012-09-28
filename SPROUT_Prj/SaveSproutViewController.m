@@ -330,17 +330,19 @@
 -(void)selectSize:(NSNumber *)numberPhotos1
 {
     int n = [numberPhotos1 intValue];
-    
     int i;
+    int j;
     
     i = n/15 +1;
+    j = i - 1;
     
     int minOver = (int)sqrt(n*1.0f);
     int col = 0;
     int row = 0;
     while (i <= minOver) {
-        if((n % i ) == 0)
+        if((n % i ) <= j)
         {
+            j = n % i;
             col = i;
             row = n/i;
         }
