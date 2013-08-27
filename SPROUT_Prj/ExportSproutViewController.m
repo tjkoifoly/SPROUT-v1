@@ -1,10 +1,10 @@
-//
-//  DisplaySproutViewController.m
-//  SPROUT_Prj
-//
-//  Created by Nguyen Chi Cong on 8/2/12.
-//  Copyright (c) 2012 BKHN. All rights reserved.
-//
+    //
+    //  DisplaySproutViewController.m
+    //  SPROUT_Prj
+    //
+    //  Created by Nguyen Chi Cong on 8/2/12.
+    //  Copyright (c) 2012 BKHN. All rights reserved.
+    //
 
 #import "ExportSproutViewController.h"
 #import "SendEmailViewController.h"
@@ -24,10 +24,10 @@
 #define kSizeToPost 600
 #define kA4Width 2480
 #define kA4Heigh 3508
-// This is defined in Math.h
+    // This is defined in Math.h
 #define M_PI   3.14159265358979323846264338327950288   /* pi */
 
-// Our conversion definition
+    // Our conversion definition
 #define DEGREES_TO_RADIANS(angle) (angle / 180.0 * M_PI)
 
 @implementation ExportSproutViewController
@@ -35,10 +35,10 @@
     __block MBProgressHUD *HUD;
     UIImage *imageToSave;
     __block UIView *tempView;
-   // __block UIView *tView;
-    //__block UIView *tempViewPost;
+        // __block UIView *tView;
+        //__block UIView *tempViewPost;
     BOOL saved;
-    //BOOL finished;
+        //BOOL finished;
     UIScrollView *scrollView;
     SA_OAuthTwitterEngine *_engine;
     GSTwitPicEngine *twitpicEngine;
@@ -73,17 +73,17 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+            // Custom initialization
     }
     return self;
 }
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
+        // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     NSLog(@"WARNING WARNING WARNING MEMORY ...");
-    // Release any cached data, images, etc that aren't in use.
+        // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
@@ -95,45 +95,45 @@
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     
-    //HUD.backgroundColor = [UIColor blackColor];
+        //HUD.backgroundColor = [UIColor blackColor];
     HUD.delegate = self;
     HUD.labelText = @"Loading";
     [HUD show:YES];
     
     /*
-    tView  = [[UIView alloc] initWithFrame:self.view.frame];
-    tView.backgroundColor = [UIColor blackColor];
-    tView.alpha = 0.8f;
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    indicator.center = tView.center;
-    //indicator.color = [UIColor blackColor];
-    indicator.hidesWhenStopped = YES;
-    [tView addSubview:indicator];
-    [indicator startAnimating];
-    [self.view addSubview:tView];
-    */
+     tView  = [[UIView alloc] initWithFrame:self.view.frame];
+     tView.backgroundColor = [UIColor blackColor];
+     tView.alpha = 0.8f;
+     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+     indicator.center = tView.center;
+     //indicator.color = [UIColor blackColor];
+     indicator.hidesWhenStopped = YES;
+     [tView addSubview:indicator];
+     [indicator startAnimating];
+     [self.view addSubview:tView];
+     */
     sName = [sproutScroll name];
     
     NSInteger standardSize = kSize;
-   
+    
     row = sproutScroll.rowSize;
     col = sproutScroll.colSize;
     ROW = row;
     COL = col;
-     /*
-    if( row > 10 || col > 10)
-    {
-        int greater = row;
-        if(col > row) greater = col;
-        standardSize = kMaxSize/greater;
-    } 
+    /*
+     if( row > 10 || col > 10)
+     {
+     int greater = row;
+     if(col > row) greater = col;
+     standardSize = kMaxSize/greater;
+     }
      */
     
     NSLog(@"%i", standardSize);
     
     tempView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0, col * standardSize+20, row *standardSize+20)];
-    //tempView.layer.borderColor = [UIColor whiteColor].CGColor;
-    //tempView.layer.borderWidth = 2.0f;
+        //tempView.layer.borderColor = [UIColor whiteColor].CGColor;
+        //tempView.layer.borderWidth = 2.0f;
     tempView.backgroundColor = [UIColor clearColor];
     UIView *tempView2 = [[UIView alloc] initWithFrame:CGRectMake(10 , 10, col * standardSize, row *standardSize)];
     tempView2.backgroundColor = [UIColor clearColor];
@@ -151,17 +151,17 @@
     for(id ix in self.sproutScroll.subviews)
     {
         dispatch_sync(queue, ^{
-        
-        imvX = [[UIImageView alloc] init];
-        y = [ix tag]%(self.sproutScroll.colSize);
-        x = [ix tag]/(self.sproutScroll.colSize);
-        [imvX setFrame:CGRectMake(y*standardSize + 5, x*standardSize + 5, standardSize - 10, standardSize - 10)];
-        imvX.layer.borderColor = [UIColor whiteColor].CGColor;
-        imvX.layer.borderWidth = 3.f;
-        [imvX loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
-        // [(UIImageView *)ix loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
-        [tempView2 addSubview:imvX];
-        
+            
+            imvX = [[UIImageView alloc] init];
+            y = [ix tag]%(self.sproutScroll.colSize);
+            x = [ix tag]/(self.sproutScroll.colSize);
+            [imvX setFrame:CGRectMake(y*standardSize + 5, x*standardSize + 5, standardSize - 10, standardSize - 10)];
+            imvX.layer.borderColor = [UIColor whiteColor].CGColor;
+            imvX.layer.borderWidth = 3.f;
+            [imvX loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
+                // [(UIImageView *)ix loadImageFromLibAssetURL:[(DragDropImageView *)ix url]];
+            [tempView2 addSubview:imvX];
+            
         });
         
     }
@@ -180,7 +180,7 @@
     if([self performSelector:@selector(checkFinished)])
     {
         imageToSave = [self imageCaptureSave:tempView];
-        NSData* pngdata = UIImagePNGRepresentation (imageToSave); //PNG wrap 
+        NSData* pngdata = UIImagePNGRepresentation (imageToSave); //PNG wrap
         UIImage* img = [UIImage imageWithData:pngdata];
         imageToSave = img;
         saved = YES;
@@ -189,7 +189,7 @@
          [tView removeFromSuperview];
          tView = nil;
          */
-        //tempView = nil;
+            //tempView = nil;
         [self hudWasHidden:HUD];
         [timer invalidate];
     }
@@ -200,13 +200,13 @@
 {
     if(saved == NO)
     {
-        //WHILE LOOP CHECK FINISH LOAD PHOTO
+            //WHILE LOOP CHECK FINISH LOAD PHOTO
         
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            
-//            [self performSelector:@selector(getImage) withObject:nil afterDelay:0.5f];
-//        });
-       timer = [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(getImage) userInfo:nil repeats:YES];
+            //        dispatch_async(dispatch_get_main_queue(), ^{
+            //
+            //            [self performSelector:@selector(getImage) withObject:nil afterDelay:0.5f];
+            //        });
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(getImage) userInfo:nil repeats:YES];
         
     }
     
@@ -228,12 +228,12 @@
 
 -(void)applicationWillResignActive
 {
-//    if(tempViewPost != nil)
-//    {
-//        [tempViewPost removeFromSuperview];
-//        tempViewPost = nil;
-//        NSLog(@"QUIT FROM POST");
-//    }
+        //    if(tempViewPost != nil)
+        //    {
+        //        [tempViewPost removeFromSuperview];
+        //        tempViewPost = nil;
+        //        NSLog(@"QUIT FROM POST");
+        //    }
     
     [self hudWasHidden:HUD];
 }
@@ -252,11 +252,11 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self loadData];
     });
-   
+    
     NSLog(@"LOADING...");
     
     
-    //Render sprout to image
+        //Render sprout to image
     saved = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive)
                                                  name:UIApplicationWillResignActiveNotification object:[UIApplication sharedApplication]];
@@ -281,7 +281,7 @@
               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful" message:
                                     [NSString stringWithFormat:@"Sprout was saved as image to Library!"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
               [alert show];
-          } 
+          }
                  failureBlock:^(NSError *error )
           {
               NSLog(@"Error loading asset");
@@ -320,7 +320,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+        // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -333,8 +333,8 @@
 
 -(IBAction)optimize:(id)sender
 {
-    //COL = 2;
-    //ROW = 15;
+        //COL = 2;
+        //ROW = 15;
     int product = COL * ROW;
     int min = MIN(COL, ROW);
     int max = (int)sqrt(product*1.0);
@@ -387,61 +387,61 @@
 
 -(IBAction)backViewAction:(id)sender
 {
-//    self.emailButton.hidden = NO;
-//    self.purchaseButton.hidden = NO;
-//    self.saveButton.hidden = NO;
-//    self.btnFB.hidden = YES;
-//    self.btnTW.hidden = YES;
-//    self.btnFB_before.hidden = NO;
-//    self.btnTW_before.hidden = NO;
-//    font1.hidden =NO;
-//    font2.hidden = YES;
+        //    self.emailButton.hidden = NO;
+        //    self.purchaseButton.hidden = NO;
+        //    self.saveButton.hidden = NO;
+        //    self.btnFB.hidden = YES;
+        //    self.btnTW.hidden = YES;
+        //    self.btnFB_before.hidden = NO;
+        //    self.btnTW_before.hidden = NO;
+        //    font1.hidden =NO;
+        //    font2.hidden = YES;
     [self showContent:NO];
     btnPreView.hidden = NO;
     btnbackView.hidden = YES;
     btnOpt.hidden = NO;
-     self.sproutToImage.hidden = YES;
+    self.sproutToImage.hidden = YES;
     scrollView.hidden = YES;
 }
 
 -(IBAction)sendViaEmail:(id)sender
 {/*
-    SendEmailViewController *sendEmailViewController = [[SendEmailViewController alloc] initWithNibName:@"SendEmailViewController" bundle:nil];
-
-    sendEmailViewController.imageToSend = imageToSave;
-    [self.navigationController pushViewController:sendEmailViewController animated:YES];
+  SendEmailViewController *sendEmailViewController = [[SendEmailViewController alloc] initWithNibName:@"SendEmailViewController" bundle:nil];
+  
+  sendEmailViewController.imageToSend = imageToSave;
+  [self.navigationController pushViewController:sendEmailViewController animated:YES];
   */
-
+    
     if([MFMailComposeViewController canSendMail])
     {
         if(mailer == nil)
         {
-        dispatch_queue_t queuemail = dispatch_get_global_queue(0, 0);
-        UIImage *mailImage = [self thumnailImageFromImageView:imageToSave];
-        mailer = [[MFMailComposeViewController alloc]init];
-        mailer.mailComposeDelegate = self;
-        
-        dispatch_async(queuemail, ^{
+            dispatch_queue_t queuemail = dispatch_get_global_queue(0, 0);
+            UIImage *mailImage = [self thumnailImageFromImageView:imageToSave];
+            mailer = [[MFMailComposeViewController alloc]init];
+            mailer.mailComposeDelegate = self;
             
-            [mailer setSubject:@"Your sprout to send"];
-            NSArray *toRecipients = [NSArray arrayWithObjects:nil];
-            [mailer setToRecipients:toRecipients];
-            
-            UIImage *myImage = mailImage;
-            NSLog(@"%f x %f", myImage.size.width, myImage.size.height);
-            NSData *imageData = UIImagePNGRepresentation(myImage);
-            [mailer addAttachmentData:imageData mimeType:@"image/png" fileName:@"MyCoolSprout"];
-            
-            NSString *emailBody = @"Comment ........";
-            [mailer setMessageBody:emailBody isHTML:NO];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentModalViewController:mailer animated:YES];
+            dispatch_async(queuemail, ^{
+                
+                [mailer setSubject:@"Your sprout to send"];
+                NSArray *toRecipients = [NSArray arrayWithObjects:nil];
+                [mailer setToRecipients:toRecipients];
+                
+                UIImage *myImage = mailImage;
+                NSLog(@"%f x %f", myImage.size.width, myImage.size.height);
+                NSData *imageData = UIImagePNGRepresentation(myImage);
+                [mailer addAttachmentData:imageData mimeType:@"image/png" fileName:@"MyCoolSprout"];
+                
+                NSString *emailBody = @"Comment ........";
+                [mailer setMessageBody:emailBody isHTML:NO];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentModalViewController:mailer animated:YES];
+                });
             });
-        });
-        
-        dispatch_release(queuemail);
-        
+            
+            dispatch_release(queuemail);
+            
         }else
         {
             [self presentModalViewController:mailer animated:YES];
@@ -518,7 +518,7 @@
             break;
     }
     
-    // Remove the mail view
+        // Remove the mail view
     controller.delegate = nil;
     [self dismissModalViewControllerAnimated:YES];
     mailer = nil;
@@ -561,7 +561,7 @@
         h = greater;
     }
     
-    //NSLog(@"%f x %f", w, h);
+        //NSLog(@"%f x %f", w, h);
     
     UIImageView *imvToRender = [[UIImageView alloc] initWithImage:inputImage];
     [imvToRender setFrame:CGRectMake(0.0, 0.0, w, h)];
@@ -580,12 +580,12 @@
     self.btnFB_before.hidden = show;
     self.btnTW_before.hidden = show;
     font1.hidden = show;
-    //font2.hidden = (!show);
+        //font2.hidden = (!show);
 }
 
 -(IBAction)saveAsImage:(id)sender
 {
-    //imageToSave = [self imageCaptureSave:tempView];
+        //imageToSave = [self imageCaptureSave:tempView];
     
     self.emailButton.hidden = YES;
     self.purchaseButton.hidden = YES;
@@ -596,21 +596,21 @@
     self.btnTW_before.hidden = YES;
     font1.hidden =YES;
     font2.hidden = NO;
-    //[self showContent:YES];
+        //[self showContent:YES];
     
     btnbackView.hidden = NO;
     btnPreView.hidden = YES;
     btnOpt.hidden = YES;
     self.sproutToImage.image = imageToSave;
-
-    //Save image to asset library
+    
+        //Save image to asset library
     /*
-    CGPoint pointCenter = [self.sproutToImage center];
-    if(tempView.bounds.size.width < self.sproutToImage.bounds.size.width)
-    {
-        [self.sproutToImage setFrame:tempView.frame];
-        self.sproutToImage.center = pointCenter;
-    }
+     CGPoint pointCenter = [self.sproutToImage center];
+     if(tempView.bounds.size.width < self.sproutToImage.bounds.size.width)
+     {
+     [self.sproutToImage setFrame:tempView.frame];
+     self.sproutToImage.center = pointCenter;
+     }
      */
     
     [self saveToLibrary:imageToSave];
@@ -649,18 +649,18 @@
             height = printPreview.frame.size.width - 20;
             frameWidth = printPreview.frame.size.height-20;
         }
-    
+        
         a4 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frameWidth, height)];
-
+        
         [a4 setContentMode:UIViewContentModeScaleAspectFit];
         a4.center = CGPointMake(printPreview.frame.size.width / 2.f, printPreview.frame.size.height /2.f);
-    
+        
         [printPreview addSubview:a4];
-    
-       
+        
+        
         if(printImage.size.width > printImage.size.height)
         {
-            CGAffineTransform transform = 
+            CGAffineTransform transform =
             CGAffineTransformMakeRotation(DEGREES_TO_RADIANS(90));
             a4.transform = transform;
         }
@@ -678,17 +678,17 @@
 {
     if(scrollView == nil)
     {
-    scrollView = [[UIScrollView alloc] initWithFrame:self.sproutToImage.frame];
-    [scrollView setScrollEnabled: YES];
-    [scrollView setShowsHorizontalScrollIndicator:NO];
-    [scrollView setShowsVerticalScrollIndicator:NO];
-    [scrollView setMaximumZoomScale:5.f];
-    [scrollView setMinimumZoomScale:1.0f];
-    [self.sproutToImage setFrame:CGRectMake(0.0, 0.0, scrollView.bounds.size.width, scrollView.bounds.size.height)];
-    [scrollView addSubview:self.sproutToImage];
-    scrollView.delegate = self;
+        scrollView = [[UIScrollView alloc] initWithFrame:self.sproutToImage.frame];
+        [scrollView setScrollEnabled: YES];
+        [scrollView setShowsHorizontalScrollIndicator:NO];
+        [scrollView setShowsVerticalScrollIndicator:NO];
+        [scrollView setMaximumZoomScale:5.f];
+        [scrollView setMinimumZoomScale:1.0f];
+        [self.sproutToImage setFrame:CGRectMake(0.0, 0.0, scrollView.bounds.size.width, scrollView.bounds.size.height)];
+        [scrollView addSubview:self.sproutToImage];
+        scrollView.delegate = self;
         scrollView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:scrollView];
+        [self.view addSubview:scrollView];
     }else
     {
         scrollView.hidden = NO;
@@ -707,13 +707,13 @@
     if (_engine == nil) {
         _engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate:self];
         _engine.consumerKey = TWITTER_OAUTH_CONSUMER_KEY;
-        _engine.consumerSecret = TWITTER_OAUTH_CONSUMER_SECRET;        
+        _engine.consumerSecret = TWITTER_OAUTH_CONSUMER_SECRET;
     }
-    //[_engine clearAccessToken];
-    if(![_engine isAuthorized]){  
-        UIViewController *controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine:_engine delegate:self];  
+        //[_engine clearAccessToken];
+    if(![_engine isAuthorized]){
+        UIViewController *controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine:_engine delegate:self];
         [_engine requestAccessToken];
-        [self presentModalViewController:controller animated:YES];  
+        [self presentModalViewController:controller animated:YES];
     }  else
     {
         SA_OAuthTwitterController *controller1 = [[SA_OAuthTwitterController alloc] initWithEngine: _engine andOrientation: UIInterfaceOrientationPortrait];
@@ -721,8 +721,8 @@
         
         [self presentModalViewController:controller1 animated:YES];
         
-        //[twitpicEngine setAccessToken:[_engine getAccessToken]];
-        //[twitpicEngine uploadPicture:imageInput withMessage:@"Post sprout from my iPhone"];
+            //[twitpicEngine setAccessToken:[_engine getAccessToken]];
+            //[twitpicEngine uploadPicture:imageInput withMessage:@"Post sprout from my iPhone"];
         NSLog(@"POST");
     }
 }
@@ -734,7 +734,7 @@
         TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc]init];
         [tweetSheet setInitialText:@"You can write tittle for picture to post Twitter !"];
         
-        //Set image in HERE
+            //Set image in HERE
         [tweetSheet addImage:imageToPost];
         [self presentModalViewController:tweetSheet animated:YES];
     }else
@@ -750,86 +750,86 @@
     UIImage *postImage = [self thumnailImageFromImageView:imageToSave];
     UIButton *shareButton = (UIButton *)sender;
     
-    //POST ON TWITTER
+        //POST ON TWITTER
     if(shareButton.tag == 1)
     {
         /*
-        NSString *reqSysVer = @"5.0";
-        NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-        if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
-        {
-            [self postTwitter:postImage];
-        }else{
-            tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
-            tempViewPost.backgroundColor = [UIColor blackColor];
-            tempViewPost.alpha = 0.5f;
-            __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-            indicator.center = tempViewPost.center;
-            //indicator.color = [UIColor blackColor];
-            indicator.hidesWhenStopped = YES;
-            [tempViewPost addSubview:indicator];
-            [indicator startAnimating];
-            [self.view addSubview:tempViewPost];
-            
-            [self postTwitteriOS4 : postImage];
-            
-        }
+         NSString *reqSysVer = @"5.0";
+         NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+         if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+         {
+         [self postTwitter:postImage];
+         }else{
+         tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
+         tempViewPost.backgroundColor = [UIColor blackColor];
+         tempViewPost.alpha = 0.5f;
+         __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+         indicator.center = tempViewPost.center;
+         //indicator.color = [UIColor blackColor];
+         indicator.hidesWhenStopped = YES;
+         [tempViewPost addSubview:indicator];
+         [indicator startAnimating];
+         [self.view addSubview:tempViewPost];
+         
+         [self postTwitteriOS4 : postImage];
+         
+         }
          */
         /*
-        tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
-        tempViewPost.backgroundColor = [UIColor blackColor];
-        tempViewPost.alpha = 0.5f;
-        __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        indicator.center = tempViewPost.center;
-        //indicator.color = [UIColor blackColor];
-        indicator.hidesWhenStopped = YES;
-        [tempViewPost addSubview:indicator];
-        [indicator startAnimating];
-        [self.view addSubview:tempViewPost];
+         tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
+         tempViewPost.backgroundColor = [UIColor blackColor];
+         tempViewPost.alpha = 0.5f;
+         __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+         indicator.center = tempViewPost.center;
+         //indicator.color = [UIColor blackColor];
+         indicator.hidesWhenStopped = YES;
+         [tempViewPost addSubview:indicator];
+         [indicator startAnimating];
+         [self.view addSubview:tempViewPost];
          */
         
         HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         [self.navigationController.view addSubview:HUD];
         
-        //HUD.backgroundColor = [UIColor blackColor];
+            //HUD.backgroundColor = [UIColor blackColor];
         HUD.delegate = self;
         HUD.labelText = @"Sharing...";
         [HUD show:YES];
         
         [self postTwitteriOS4:imageToSave];
     }
-    //POST ON FACEBOOK
+        //POST ON FACEBOOK
     else if(shareButton.tag == 2)
     {
         /*
-        tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
-        tempViewPost.backgroundColor = [UIColor blackColor];
-        tempViewPost.alpha = 0.8f;
-        __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        indicator.center = tempViewPost.center;
-        //indicator.color = [UIColor blackColor];
-        indicator.hidesWhenStopped = YES;
-        [tempViewPost addSubview:indicator];
-        [indicator startAnimating];
-        [self.view addSubview:tempViewPost];
+         tempViewPost = [[UIView alloc] initWithFrame:self.view.frame];
+         tempViewPost.backgroundColor = [UIColor blackColor];
+         tempViewPost.alpha = 0.8f;
+         __block UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+         indicator.center = tempViewPost.center;
+         //indicator.color = [UIColor blackColor];
+         indicator.hidesWhenStopped = YES;
+         [tempViewPost addSubview:indicator];
+         [indicator startAnimating];
+         [self.view addSubview:tempViewPost];
          */
         
         HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         [self.navigationController.view addSubview:HUD];
         
-        //HUD.backgroundColor = [UIColor blackColor];
+            //HUD.backgroundColor = [UIColor blackColor];
         HUD.delegate = self;
         HUD.labelText = @"Sharing...";
         [HUD show:YES];
         [[FBSession sessionOpen] closeAndClearTokenInformation];
-        [FBSession sessionOpenWithPermissions:nil 
-                            completionHandler:^(FBSession *session, 
-                                                FBSessionState status, 
+        [FBSession sessionOpenWithPermissions:nil
+                            completionHandler:^(FBSession *session,
+                                                FBSessionState status,
                                                 NSError *error) {
-                                // session might now be open.  
+                                    // session might now be open.
                                 if (session.isOpen) {
                                     FBRequest *me = [FBRequest requestForMe];
-                                    [me startWithCompletionHandler: ^(FBRequestConnection *connection, 
+                                    [me startWithCompletionHandler: ^(FBRequestConnection *connection,
                                                                       NSDictionary<FBGraphUser> *my,
                                                                       NSError *error) {
                                         NSLog(@"%@", my.first_name);
@@ -846,12 +846,12 @@
                                                 [alert show];
                                             }
                                             /*
-                                            if(tempViewPost != nil)
-                                            {
-                                                //[indicator stopAnimating];
-                                                [tempViewPost removeFromSuperview];
-                                                tempViewPost = nil;
-                                            }*/
+                                             if(tempViewPost != nil)
+                                             {
+                                             //[indicator stopAnimating];
+                                             [tempViewPost removeFromSuperview];
+                                             tempViewPost = nil;
+                                             }*/
                                             [self hudWasHidden:HUD];
                                             
                                         }];
@@ -861,15 +861,15 @@
                             }];
         
     }
-    //POST ON LINKIN
+        //POST ON LINKIN
     else if(shareButton.tag == 3)
     {
         
     }
-        
+    
 }
 
-#pragma mark SA_OAuthTwitterEngineDelegate 
+#pragma mark SA_OAuthTwitterEngineDelegate
 
 - (void) OAuthTwitterController: (SA_OAuthTwitterController *) controller authenticatedWithUsername: (NSString *) username {
 	NSLog(@"Authenicated for %@", username);
@@ -880,22 +880,22 @@
 }
 
 - (void) OAuthTwitterControllerFailed: (SA_OAuthTwitterController *) controller {
-//    if(tempViewPost != nil)
-//    {
-//        [tempViewPost removeFromSuperview];
-//        tempViewPost = nil;
-//    }
+        //    if(tempViewPost != nil)
+        //    {
+        //        [tempViewPost removeFromSuperview];
+        //        tempViewPost = nil;
+        //    }
     
     [self hudWasHidden:HUD];
 	NSLog(@"Authentication Failed!");
 }
 
 - (void) OAuthTwitterControllerCanceled: (SA_OAuthTwitterController *) controller {
-//    if(tempViewPost != nil)
-//    {
-//        [tempViewPost removeFromSuperview];
-//        tempViewPost = nil;
-//    }
+        //    if(tempViewPost != nil)
+        //    {
+        //        [tempViewPost removeFromSuperview];
+        //        tempViewPost = nil;
+        //    }
     
     [self hudWasHidden:HUD];
 	NSLog(@"Authentication Canceled.");
@@ -913,14 +913,14 @@
 	return [[NSUserDefaults standardUserDefaults] objectForKey: @"authData"];
 }
 
-#pragma mark TwitterEngineDelegate  
-- (void) requestSucceeded: (NSString *) requestIdentifier {  
-    NSLog(@"Request %@ succeeded", requestIdentifier);  
-}  
+#pragma mark TwitterEngineDelegate
+- (void) requestSucceeded: (NSString *) requestIdentifier {
+    NSLog(@"Request %@ succeeded", requestIdentifier);
+}
 
-- (void) requestFailed: (NSString *) requestIdentifier withError: (NSError *) error {  
-    NSLog(@"Request %@ failed with error: %@", requestIdentifier, error);  
-} 
+- (void) requestFailed: (NSString *) requestIdentifier withError: (NSError *) error {
+    NSLog(@"Request %@ failed with error: %@", requestIdentifier, error);
+}
 
 #pragma mark -
 #pragma mark - GSTwitPicEngineDelegate
@@ -928,49 +928,49 @@
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Successful shared" message:@"Photo was posted on your twitter." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
-//    if(tempViewPost != nil)
-//    {
-//        [tempViewPost removeFromSuperview];
-//        tempViewPost = nil;
-//    }
+        //    if(tempViewPost != nil)
+        //    {
+        //        [tempViewPost removeFromSuperview];
+        //        tempViewPost = nil;
+        //    }
     
     [self hudWasHidden:HUD];
     NSLog(@"TwitPic finished uploading: %@", response);
     
-    // [response objectForKey:@"parsedResponse"] gives an NSDictionary of the response one of the parsing libraries was available.
-    // Otherwise, use [[response objectForKey:@"request"] objectForKey:@"responseString"] to parse yourself.
+        // [response objectForKey:@"parsedResponse"] gives an NSDictionary of the response one of the parsing libraries was available.
+        // Otherwise, use [[response objectForKey:@"request"] objectForKey:@"responseString"] to parse yourself.
     
-    //    if ([[[response objectForKey:@"request"] userInfo] objectForKey:@"message"] > 0 && [[response objectForKey:@"parsedResponse"] count] > 0) {
-    // Uncomment to update status upon successful upload, using MGTwitterEngine's instance.
-    //        [twitterEngine sendUpdate:[NSString stringWithFormat:@"%@ %@", [[[response objectForKey:@"request"] userInfo] objectForKey:@"message"], [[response objectForKey:@"parsedResponse"] objectForKey:@"url"]]];
-    //    }
+        //    if ([[[response objectForKey:@"request"] userInfo] objectForKey:@"message"] > 0 && [[response objectForKey:@"parsedResponse"] count] > 0) {
+        // Uncomment to update status upon successful upload, using MGTwitterEngine's instance.
+        //        [twitterEngine sendUpdate:[NSString stringWithFormat:@"%@ %@", [[[response objectForKey:@"request"] userInfo] objectForKey:@"message"], [[response objectForKey:@"parsedResponse"] objectForKey:@"url"]]];
+        //    }
     NSDictionary *parsedResponse = [response objectForKey:@"parsedResponse"];
     NSString *imageLink = [parsedResponse objectForKey:@"url"];
-    //    [imageLinks addObject:imageLink];
-    //    if (imageLinks.count == 1) {
-    //        NSString *links = [NSString stringWithFormat:@"%@", [imageLinks objectAtIndex:0]];
-    //        NSLog(@"links: %@", links);
+        //    [imageLinks addObject:imageLink];
+        //    if (imageLinks.count == 1) {
+        //        NSString *links = [NSString stringWithFormat:@"%@", [imageLinks objectAtIndex:0]];
+        //        NSLog(@"links: %@", links);
     NSString *update = [NSString stringWithFormat:@"Images: %@", imageLink];
     [_engine sendUpdate:update];
     
     
-    //    }
+        //    }
 }
 
 - (void)twitpicDidFailUpload:(NSDictionary *)error {
     
-//    if(tempViewPost != nil)
-//    {
-//        [tempViewPost removeFromSuperview];
-//        tempViewPost = nil;
-//    }
+        //    if(tempViewPost != nil)
+        //    {
+        //        [tempViewPost removeFromSuperview];
+        //        tempViewPost = nil;
+        //    }
     
     [self hudWasHidden:HUD];
     NSLog(@"TwitPic failed to upload: %@", error);
     
     if ([[error objectForKey:@"request"] responseStatusCode] == 401) {
-        //        UIAlertViewQuick(@"Authentication failed", [error objectForKey:@"errorDescription"], @"OK");
-    }    
+            //        UIAlertViewQuick(@"Authentication failed", [error objectForKey:@"errorDescription"], @"OK");
+    }
 }
 
 #pragma mark
@@ -996,7 +996,7 @@
 -(UIImage *)loadImageFromFile: (NSString *)fileName
 {
     UIImage *iFF = [UIImage imageWithContentsOfFile:[self dataPathFile:fileName]];
-    //NSLog(@"%@", [self dataPathFile:fileName]);
+        //NSLog(@"%@", [self dataPathFile:fileName]);
     return iFF;
 }
 -(void)saveImageToFile : (NSString *)fileName input: (UIImage *)inputImage
@@ -1004,7 +1004,7 @@
     NSString *path = [self dataPathFile:fileName];    
     [UIImagePNGRepresentation(inputImage) writeToFile:path atomically:YES];
     NSLog(@"Saved");
-    //return [UIImage imageWithContentsOfFile:path];
+        //return [UIImage imageWithContentsOfFile:path];
 }
 
 
